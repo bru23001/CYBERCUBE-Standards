@@ -492,6 +492,7 @@ Activities:
 
 CYBERCUBE Release & Deployment Standard (v1)
 
+Standard ID: STD-ENG-006
 Status: Active
 Effective: 2026-01-17
 Applies to: All CYBERCUBE production deployments

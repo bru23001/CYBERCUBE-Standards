@@ -420,7 +420,7 @@ Types:
 
 CYBERCUBE Incident Response & Reliability Standard (v1)
 
-**Standard ID:** STD-OPS-003  
+**Standard ID:** STD-OPS-004  
 **Status:** Active  
 **Effective:** 2026-01-17  
 **Classification:** INTERNAL  

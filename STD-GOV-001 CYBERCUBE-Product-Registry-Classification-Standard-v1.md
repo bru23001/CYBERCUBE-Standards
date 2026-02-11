@@ -137,6 +137,7 @@ Scope: Tactical, short-lived. See Section 8.
 
 # CYBERCUBE Product Registry & Classification Standard (v1)
 
+**Standard ID:** STD-GOV-001
 **Status:** Active
 **Effective:** 2026-02-07
 **Owner:** CTO / Architecture Lead

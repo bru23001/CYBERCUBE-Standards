@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cybercube.software/schemas/product.schema.json",
+  "title": "CYBERCUBE Product Registry",
+  "description": "Namespace G — Product records (PRD-XXX). Source: 1.5 PRCS v1",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["id", "name", "pcl", "domainTags", "owner", "status", "createdAt"],
+    "additionalProperties": false,
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^PRD-[0-9]{3}$",
+        "description": "Sequential governance ID (e.g., PRD-001)"
+      },
+      "name": {
+        "type": "string",
+        "minLength": 1,
+        "description": "Human-readable product name"
+      },
+      "pcl": {
+        "type": "string",
+        "pattern": "^PCL-[0-9]\\.[0-9]\\.[0-9]\\.[0-9]$",
+        "description": "Product Classification code: PCL-Layer.Delivery.Extensibility.Criticality"
+      },
+      "domainTags": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "Analytics", "Collaboration", "Commerce", "Communication",
+            "Compliance", "Data Management", "Developer Tools", "Education",
+            "Finance", "Healthcare", "Identity/Auth", "Infrastructure",
+            "Marketing", "Operations", "Productivity", "Project Management",
+            "Security", "Other"
+          ]
+        },
+        "minItems": 1,
+        "uniqueItems": true,
+        "description": "Controlled vocabulary domain tags (>=1 required)"
+      },
+      "functionDescriptors": {
+        "type": "array",
+        "items": { "type": "string" },
+        "default": [],
+        "description": "Free-form labels for search/discoverability"
+      },
+      "owner": {
+        "type": "string",
+        "minLength": 1,
+        "description": "Responsible team or individual"
+      },
+      "status": {
+        "type": "string",
+        "enum": ["Active", "Sunset", "Deprecated", "Archived"],
+        "description": "Product lifecycle status"
+      },
+      "createdAt": {
+        "type": "string",
+        "format": "date",
+        "description": "ISO 8601 date when product was registered"
+      },
+      "notes": {
+        "type": "string",
+        "description": "Optional additional context"
+      }
+    }
+  },
+  "uniqueItems": true
+}

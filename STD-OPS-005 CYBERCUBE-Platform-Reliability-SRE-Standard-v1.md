@@ -373,6 +373,7 @@ Target: ≤ 50% of capacity
 
 # CYBERCUBE Platform Reliability / SRE Standard (v1)
 
+**Standard ID:** STD-OPS-005  
 **Status:** Active  
 **Effective:** 2026-02-01  
 **Classification:** INTERNAL  

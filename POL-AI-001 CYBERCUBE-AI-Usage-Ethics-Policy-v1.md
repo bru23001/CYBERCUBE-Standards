@@ -242,6 +242,7 @@ Requirement: Human review for important outputs
 
 # CYBERCUBE AI Usage & Ethics Policy (v1)
 
+**Standard ID:** POL-AI-001  
 **Status:** Active  
 **Effective:** 2026-01-17  
 **Classification:** INTERNAL  

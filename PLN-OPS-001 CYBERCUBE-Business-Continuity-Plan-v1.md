@@ -175,6 +175,7 @@ Protection: Backup, off-site storage, redundancy
 
 # CYBERCUBE Business Continuity Plan (v1)
 
+**Standard ID:** PLN-OPS-001  
 **Status:** Active  
 **Effective:** 2026-01-17  
 **Classification:** CONFIDENTIAL  

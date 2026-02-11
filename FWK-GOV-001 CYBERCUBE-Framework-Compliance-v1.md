@@ -1,5 +1,13 @@
 # CYBERCUBE Framework Compliance
 
+**Standard ID:** FWK-GOV-001  
+**Status:** Active  
+**Effective:** 2026-01-17  
+**Classification:** INTERNAL  
+**Owner:** Standards Council
+
+---
+
 This is the official CYBERCUBE Framework Compliance Definitions for each element of the acronym. These definitions are structured to serve as compliance checkpoints for evaluating future digital projects, deliverables, or product features.
 
 Use this checklist during design, development, and QA phases to ensure full adherence to the CYBERCUBE framework standards.

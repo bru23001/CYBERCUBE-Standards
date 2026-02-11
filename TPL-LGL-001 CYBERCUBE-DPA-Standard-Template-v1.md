@@ -1,5 +1,6 @@
 # CYBERCUBE Data Processing Agreement (DPA) Standard Template
 
+**Standard ID:** TPL-LGL-001  
 **Version:** 1.0  
 **Effective:** January 17, 2026  
 **Classification:** INTERNAL — Template for Customer Agreements  

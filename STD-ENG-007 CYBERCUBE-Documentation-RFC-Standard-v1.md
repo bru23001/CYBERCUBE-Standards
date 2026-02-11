@@ -326,6 +326,7 @@ Location: End of document
 
 CYBERCUBE Documentation & RFC Standard (v1)
 
+Standard ID: STD-ENG-007
 Status: Active
 Effective: 2026-01-17
 Applies to: All CYBERCUBE technical documentation

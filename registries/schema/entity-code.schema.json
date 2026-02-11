@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cybercube.software/schemas/entity-code.schema.json",
+  "title": "CYBERCUBE Entity Code Registry",
+  "description": "Namespace B — CC-PID entity codes. Source: 5.1 Naming & Identifier Standard v1.2 §5.2",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["code", "name", "category", "description", "dbTable", "status", "ccpidStatus", "createdAt"],
+    "additionalProperties": false,
+    "properties": {
+      "code": {
+        "type": "string",
+        "pattern": "^[A-Z]{3}$",
+        "description": "3-letter uppercase entity code (unique, never reused)"
+      },
+      "name": {
+        "type": "string",
+        "minLength": 1,
+        "description": "Human-readable entity name"
+      },
+      "category": {
+        "type": "string",
+        "enum": [
+          "Customer & Org",
+          "Support & Comms",
+          "Project Mgmt",
+          "Billing & Finance",
+          "Content & Docs",
+          "System & Integration",
+          "Access Control"
+        ],
+        "description": "Functional category grouping"
+      },
+      "description": {
+        "type": "string",
+        "minLength": 1,
+        "description": "Purpose and usage context"
+      },
+      "dbTable": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_]*$",
+        "description": "Database table name (snake_case)"
+      },
+      "status": {
+        "type": "string",
+        "enum": ["ACTIVE", "DEPRECATED"],
+        "description": "Registry status (deprecated codes are never removed)"
+      },
+      "ccpidStatus": {
+        "type": "string",
+        "enum": ["COMPLETE", "MIGRATION READY", "PENDING"],
+        "description": "CC-PID implementation status for this entity"
+      },
+      "createdAt": {
+        "type": "string",
+        "format": "date",
+        "description": "ISO 8601 date when code was registered"
+      }
+    }
+  },
+  "uniqueItems": true
+}

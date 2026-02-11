@@ -137,6 +137,7 @@ Types: Employees, contractors, vendors
 
 # CYBERCUBE Acceptable Use Policy (v1)
 
+**Standard ID:** POL-AUP-001  
 **Status:** Active  
 **Effective:** 2026-01-17  
 **Owner:** Director of Engineering  

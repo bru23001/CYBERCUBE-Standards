@@ -342,6 +342,7 @@ Components:
 
 # CYBERCUBE Webhooks & External Integrations Standard (v1)
 
+**Standard ID:** STD-ENG-003
 **Status:** Active
 **Effective:** 2026-01-17
 **Applies to:** All CYBERCUBE webhook and external integration implementations

@@ -87,6 +87,7 @@ Requirement: Mandatory for Critical and High findings
 
 # CYBERCUBE Internal Audit & Assurance Standard (v1)
 
+**Standard ID:** STD-GOV-004
 **Status:** Active
 **Effective:** 2026-02-07
 **Classification:** INTERNAL

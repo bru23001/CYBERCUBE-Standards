@@ -358,7 +358,7 @@ Types:
 
 # CYBERCUBE Soft-Delete & Lifecycle Management Standard (v1)
 
-**Standard ID:** STD-DATA-002  
+**Standard ID:** STD-DAT-002  
 **Parent Document:** 2.1 CYBERCUBE Security Policy (STD-SEC-001)  
 **Status:** Active  
 **Effective:** 2026-01-17  

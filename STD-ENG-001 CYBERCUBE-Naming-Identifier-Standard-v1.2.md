@@ -1,12 +1,13 @@
-# CYBERCUBE Naming & Identifier Standard (v1.1)
+# CYBERCUBE Naming & Identifier Standard (v1.2)
 
+**Standard ID:** STD-ENG-001  
 **Status:** Active  
-**Effective:** 2026-01-17  
+**Effective:** 2026-02-10  
 **Classification:** INTERNAL  
 **Owner:** Engineering Lead  
 **Review Cycle:** Annual + on major version change
 
-**Quick links:** [Glossary](#glossary) · [0. Purpose](#0-purpose--design-principles) · [1. Artifact Naming](#1-namespace-a--artifact-naming) · [2. Public Entity IDs](#2-namespace-b--public-entity-ids-cc-pid-v1) · [3. Implementation](#3-implementation-guidelines) · [4. Tables](#4-tables) · [5. Tickets vs WOE](#5-ticket-vs-issue-woe-separation) · [Cheat Sheet](#developer-cheat-sheet) · [Appendix A: Support SOP](#appendix-a-support-sop--reading-and-collecting-public-entity-ids-cc-pid) · [Implementation Status](#implementation-status)
+**Quick links:** [Glossary](#glossary) · [0. Purpose](#0-purpose--design-principles) · [1. Artifact Naming](#1-namespace-a--artifact-naming) · [2. Public Entity IDs](#2-namespace-b--public-entity-ids-cc-pid-v1) · [3. Governance Registry IDs](#3-namespace-g--governance-registry-identifiers) · [4. Module, Component & File Naming](#4-namespace-m--module-component--file-naming) · [5. CC-PID Implementation](#5-cc-pid-implementation-guidelines) · [6. Tables](#6-tables) · [7. Tickets vs WOE](#7-ticket-vs-issue-woe-separation) · [8. Version History](#8-version-history) · [Cheat Sheet](#developer-cheat-sheet) · [Appendix A: Support SOP](#appendix-a-support-sop--reading-and-collecting-public-entity-ids-cc-pid) · [Implementation Status](#implementation-status)
 
 ---
 
@@ -228,6 +229,61 @@ A top-level project classification for versioned, governed, standalone modules d
 
 ---
 
+### M
+
+#### Module (MOD)
+
+A reusable software unit that exists within products, may be shared across products, and has an independent lifecycle requiring governance, ownership, and dependency tracking.
+
+| Property | Value |
+|----------|-------|
+| **Registry ID** | MOD-XXX (Namespace G, sequential, immutable) |
+| **Scope** | Platform, Core, Domain, Integration, UI, Governance, Experimental |
+| **Reusability** | Global, Portfolio, Product |
+
+#### Module Slug
+
+A kebab-case, human-readable name assigned alongside a Module ID. Used in directory paths, import paths, and configuration references.
+
+**Properties:**
+- ✅ Derived from the module name (e.g., `identity`, `billing-engine`)
+- ✅ Immutable once assigned
+- ✅ Registered in the Module Registry alongside MOD-XXX
+- ❌ Must NOT contain version, date, or environment metadata
+
+#### Component Type Suffix
+
+A controlled vocabulary term appended to file names to classify the role of a component within a module. Uses dot-notation before the file extension.
+
+**Examples:** `.service`, `.controller`, `.repository`, `.adapter`, `.page`, `.form`, `.chart`
+
+**Properties:**
+- ✅ From a controlled vocabulary (architectural or UI)
+- ✅ Centrally governed; new suffixes require review
+- ❌ Must NOT be invented ad-hoc
+
+---
+
+### N-G
+
+#### Namespace G (Governance Registry Identifiers)
+
+A logical partition for immutable, sequential governance identifiers used to register strategic and architectural assets.
+
+**Format:** `{PREFIX}-{NNN}` (e.g., `PRD-001`, `MOD-003`)
+
+**Properties:**
+- ✅ Sequential assignment, registry-controlled
+- ✅ Immutable, never reused
+- ❌ Not random (unlike CC-PID tokens)
+- ❌ Not mutable (unlike Namespace A artifacts)
+
+#### Namespace M (Module, Component & File Naming)
+
+A logical partition defining naming conventions for the internal anatomy of software modules: module identification, component naming, file naming, and directory structure.
+
+---
+
 ### T
 
 #### Token
@@ -290,7 +346,7 @@ Design principles:
 
 • Auditability & future-proofing
 
-It defines two namespaces that must never be confused:
+It defines four namespaces that must never be confused:
 
 • Namespace A — Artifact Naming (files, repos, branches, tickets-as-artifacts, and other
 
@@ -300,9 +356,15 @@ build or release artifacts.)
 
 databases (clients, projects, invoices, etc.).
 
+• Namespace G — Governance Registry Identifiers (product and module registration IDs).
+Immutable, sequential.
+
+• Namespace M — Module, Component & File Naming (internal anatomy of software modules:
+identification, component naming, file conventions, directory structure). Convention-based.
+
 These namespaces MUST NOT be mixed.
 
-Each namespace has its own pattern and rules but shares a common code registry and governance process. Keeping the namespaces separate prevents mutable metadata (like version or date) from leaking into IDs that must remain immutable.
+Each namespace has its own pattern and rules but shares a common code registry and governance process. Keeping the namespaces separate prevents mutable metadata (like version or date) from leaking into IDs that must remain immutable, and prevents governance-layer identifiers from colliding with runtime entity identifiers.
 
 ---
 
@@ -827,7 +889,539 @@ whitespace characters.
 
 ---
 
-## 3. Implementation Guidelines
+## 3. Namespace G — Governance Registry Identifiers
+
+Governance Registry Identifiers are immutable, sequential IDs assigned to strategic and architectural assets that require formal registration, ownership tracking, and lifecycle governance.
+
+**Used for:**
+- Products (PRD-XXX, per PRCS 1.5)
+- Modules (MOD-XXX, see §4)
+
+**NOT used for:**
+- ❌ Database entities (use CC-PID, Namespace B)
+- ❌ Build artifacts (use Namespace A)
+- ❌ Source files or components (use Namespace M)
+
+### 3.1 Canonical Format
+
+```
+<PREFIX>-<NNN>
+```
+
+| Component | Rules |
+|-----------|-------|
+| **PREFIX** | 3 uppercase letters; centrally registered; identifies the asset class |
+| **NNN** | 3-digit zero-padded sequential number (001–999); assigned by registry |
+
+**Example:** `MOD-001`, `PRD-003`
+
+### 3.2 Registered Prefixes
+
+| Prefix | Asset Class | Governed By |
+|--------|-------------|-------------|
+| **PRD** | Product Record | PRCS 1.5 |
+| **MOD** | Module Record | This standard, §4 |
+
+**Future-reserved (not yet active):**
+| Prefix | Intended Use |
+|--------|--------------|
+| **ADR** | Architecture Decision Records |
+| **STD** | Standards |
+
+### 3.3 Governance Rules
+
+1. **Sequential assignment** — IDs are assigned in order from the central registry. No gaps permitted unless a registration is voided before publication.
+2. **Immutability** — once assigned, a governance ID never changes.
+3. **No reuse** — retired or deprecated IDs remain reserved indefinitely.
+4. **Registry-controlled** — only the designated registry authority may assign IDs. Self-assignment is PROHIBITED.
+5. **No semantic encoding** — the numeric portion has no meaning; semantics live in the associated record (Module Record, Product Record).
+
+### 3.4 Validation Regex
+
+```
+^[A-Z]{3}-[0-9]{3}$
+```
+
+### 3.5 Relationship to Other Namespaces
+
+| Namespace | Example | Relationship |
+|-----------|---------|--------------|
+| **G** (this) | MOD-001 | Governance identity — "which module" |
+| **B** (CC-PID) | MOD-X2M8KD-F | Runtime entity identity — reserved for future use if modules become database entities |
+| **A** (Artifact) | SC-AU_IdentityModule_v1.0.0_PRD.zip | Build artifact naming for a module's release package |
+| **M** (Module Naming) | `modules/identity/src/...` | Internal file and component structure |
+
+---
+
+## 4. Namespace M — Module, Component & File Naming
+
+This section defines the naming and identification system for the internal anatomy of software modules: module registration, component naming, file naming, and directory structure.
+
+**Supersedes:** CYBERCUBE Module ID Standard (v1), which is now fully absorbed into this section.
+
+### 4.1 Position in the Classification Model
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                    IDENTITY & CLASSIFICATION BOUNDARIES                     │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│  PRODUCT LEVEL (Strategic, Stable)                                          │
+│  ├── Product ID        → PRD-XXX          (Namespace G)                     │
+│  ├── Product Class     → PCL-L.D.E.C      (PRCS facets)                    │
+│  └── Domain / Function → Controlled + Free-form                             │
+│                                                                             │
+│  MODULE LEVEL (Architectural, Reusable)                                     │
+│  ├── Module ID         → MOD-XXX          (Namespace G)                     │
+│  ├── Module Slug       → kebab-case       (Namespace M)                     │
+│  ├── Module Scope      → Platform / Core / Domain / ...                     │
+│  └── Module Role       → Identity, Metrics, Workflow, etc.                  │
+│                                                                             │
+│  COMPONENT LEVEL (Implementation, Named)                                    │
+│  ├── Component Name    → {descriptor}.{type}.{ext}   (Namespace M)          │
+│  └── Component Type    → .service / .controller / .page / ...               │
+│                                                                             │
+│  PROJECT LEVEL (Tactical, Volatile)                                         │
+│  └── Work Type Tags    → WA-SS, AP-RS, MN-BG, …     (Namespace A)          │
+│                                                                             │
+│  RULE                                                                        │
+│  • Products are classified (PCL)                                            │
+│  • Modules are identified (MOD)                                             │
+│  • Components are named (type-suffixed)                                     │
+│  • Work is tagged (XX-YY)                                                   │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+### 4.2 Core Principles
+
+1. **Modules are architectural assets, not products** — they exist within and across products
+2. **Semantics are authoritative** — names define meaning, numbers encode
+3. **IDs are stable and never reused** — MOD-XXX is permanent
+4. **No lifecycle coupling** between products and modules — a module may outlive the product that created it
+5. **Human-readable first, machine-readable second** — slugs over codes in daily work
+6. **No mathematical encoding or bitmasks** — simple sequential assignment
+7. **Convention over configuration** — component and file naming follows predictable patterns
+
+### 4.3 Module Identification (MOD-XXX)
+
+#### 4.3.1 Format
+
+```
+MOD-NNN
+```
+
+| Component | Meaning |
+|-----------|---------|
+| MOD | Module Identifier prefix (Namespace G) |
+| NNN | Sequential numeric ID (001–999), zero-padded |
+
+**Grammar:**
+```
+MOD := "MOD-" DIGIT DIGIT DIGIT
+```
+
+#### 4.3.2 Why Module IDs Are Numeric-Only
+
+Unlike CC-PIDs which use random tokens for runtime entities:
+
+- Modules are **governance assets**, not runtime entities
+- Modules are **few in number** (tens to low hundreds, not millions)
+- Sequential IDs are **easier to discuss** ("MOD-001" vs. "MOD-X2M8KD-F")
+- Semantic meaning belongs in the **Module Record**, not the identifier
+
+#### 4.3.3 Module Slug
+
+Every module MUST have a **slug** in addition to its MOD-XXX identifier.
+
+| Property | Rule |
+|----------|------|
+| Format | kebab-case, lowercase, alphanumeric + hyphens only |
+| Derivation | Derived from the module's human-readable name |
+| Mutability | Immutable once assigned |
+| Registration | Registered alongside MOD-XXX in the Module Registry |
+| Uniqueness | Globally unique across all modules |
+| Usage | Directory paths, import paths, config references, package names |
+
+**Examples:**
+- `identity` (from "Identity Module")
+- `billing-engine` (from "Billing Engine")
+- `metrics-collector` (from "Metrics Collector")
+
+**Validation Regex:**
+```
+^[a-z][a-z0-9]*(-[a-z0-9]+)*$
+```
+
+**Forbidden slugs:** Reserved words (`shared`, `common`, `utils`, `lib`, `core`, `platform`, `internal`, `test`, `config`, `docs`, `scripts`, `build`, `dist`, `node_modules`, `vendor`).
+
+### 4.4 Module Record (Authoritative Metadata)
+
+Every Module ID MUST have a Module Record. The record is the authoritative source of all semantic information about a module.
+
+#### 4.4.1 Required Fields
+
+| Field | Requirement |
+|-------|-------------|
+| Module ID | Required, immutable (MOD-XXX) |
+| Slug | Required, immutable, kebab-case |
+| Name | Human-readable, descriptive |
+| Scope | One of the controlled vocabulary terms (§4.4.3) |
+| Primary Responsibility | One-sentence purpose statement |
+| Reusability Level | Global / Portfolio / Product |
+| Stability | Experimental / Beta / Stable / Deprecated / Retired |
+| Owner | Team or role |
+| Dependencies | Other Module IDs (MOD-XXX references) |
+| Used By Products | PRD-XXX references |
+| First Introduced | Date (YYYY-MM-DD) |
+| Last Reviewed | Date (YYYY-MM-DD) |
+
+#### 4.4.2 Module Record Template
+
+```
+# Module Record: MOD-001
+
+**Module ID:** MOD-001
+**Slug:** identity
+**Name:** Identity Module
+**Scope:** Platform
+**Reusability:** Global
+**Stability:** Stable
+**Owner:** Platform Team
+
+## Responsibility
+Authentication, credential lifecycle, MFA orchestration, and session control.
+
+## Dependencies
+- MOD-004 (Cryptography Module)
+- MOD-006 (Configuration Module)
+
+## Used By
+- PRD-001 (Kanban Platform)
+- PRD-003 (API Gateway)
+
+## Lifecycle
+- **First Introduced:** 2025-11-12
+- **Last Reviewed:** 2026-02-07
+```
+
+#### 4.4.3 Scope Vocabulary (Controlled)
+
+| Scope | Meaning |
+|-------|---------|
+| **Platform** | Cross-cutting foundation modules |
+| **Core** | Business-agnostic engines and services |
+| **Domain** | Business-capability-specific modules |
+| **Integration** | External systems and automation |
+| **UI** | Visual components and frontends |
+| **Governance** | Audit, policy, risk, compliance |
+| **Experimental** | R&D, pre-governance |
+
+#### 4.4.4 Reusability Levels
+
+| Level | Meaning |
+|-------|---------|
+| **Global** | Reusable across all products |
+| **Portfolio** | Reusable across a product group |
+| **Product** | Bound to a single product |
+
+Product-bound modules still REQUIRE Module IDs if they are architecturally significant.
+
+#### 4.4.5 Lifecycle States
+
+```
+Experimental → Beta → Stable → Deprecated → Retired
+```
+
+- Retired modules remain in the registry for audit purposes
+- IDs are never removed or reused
+- Deprecated modules MUST document their replacement
+
+### 4.5 Component Naming Convention
+
+Components are named functional units within modules. They do NOT receive governance IDs (MOD-XXX) or CC-PIDs — they use a **controlled type-suffix convention**.
+
+#### 4.5.1 File Naming Pattern
+
+```
+{descriptor}.{type}.{ext}
+```
+
+| Segment | Rules |
+|---------|-------|
+| **descriptor** | kebab-case; describes what it does, not how (e.g., `session`, `invoice-create`, `oauth`) |
+| **type** | Controlled vocabulary suffix from §4.5.2 or §4.5.3 |
+| **ext** | Standard file extension (`.ts`, `.tsx`, `.test.ts`, etc.) |
+
+**Examples:**
+- `session.service.ts`
+- `oauth.adapter.ts`
+- `invoice-create.form.tsx`
+- `revenue.chart.tsx`
+- `auth.guard.ts`
+
+#### 4.5.2 Architectural Component Types (Controlled Vocabulary)
+
+| Suffix | Purpose | Example |
+|--------|---------|---------|
+| `.service` | Business logic | `session.service.ts` |
+| `.controller` | Request handling (HTTP, RPC) | `project.controller.ts` |
+| `.repository` | Data access layer | `invoice.repository.ts` |
+| `.adapter` | External system integration | `oauth.adapter.ts` |
+| `.provider` | Dependency injection / factory | `cache.provider.ts` |
+| `.guard` | Auth and access guards | `auth.guard.ts` |
+| `.middleware` | Request pipeline processing | `tenant.middleware.ts` |
+| `.handler` | Event/message/job handling | `webhook.handler.ts` |
+| `.validator` | Input validation logic | `payment.validator.ts` |
+| `.transformer` | Data transformation / mapping | `invoice.transformer.ts` |
+| `.engine` | Complex processing pipelines | `aggregation.engine.ts` |
+| `.gateway` | External API gateway wrappers | `stripe.gateway.ts` |
+
+#### 4.5.3 UI Component Types (Controlled Vocabulary)
+
+| Suffix | Purpose | Example |
+|--------|---------|---------|
+| `.page` | Full page component | `login.page.tsx` |
+| `.layout` | Page layout scaffold | `dashboard.layout.tsx` |
+| `.form` | User input form | `invoice-create.form.tsx` |
+| `.dialog` | Modal/dialog | `confirm-delete.dialog.tsx` |
+| `.card` | Content card | `project-summary.card.tsx` |
+| `.list` | List/collection view | `task.list.tsx` |
+| `.table` | Data table | `invoice.table.tsx` |
+| `.chart` | Visualization | `revenue.chart.tsx` |
+| `.widget` | Self-contained widget | `activity-feed.widget.tsx` |
+| `.panel` | Side/info panel | `project-details.panel.tsx` |
+
+#### 4.5.4 Supporting File Types
+
+| Suffix | Purpose | Example |
+|--------|---------|---------|
+| `.types` | Type definitions | `session.types.ts` |
+| `.dto` | Data transfer object | `invoice.dto.ts` |
+| `.constants` | Constants and enums | `permissions.constants.ts` |
+| `.config` | Module configuration | `identity.config.ts` |
+| `.utils` | Utility functions | `date.utils.ts` |
+| `.test` | Unit test | `session.service.test.ts` |
+| `.integration.test` | Integration test | `auth.guard.integration.test.ts` |
+| `.e2e.test` | End-to-end test | `login.e2e.test.ts` |
+| `.mock` | Test mock/fixture | `user.mock.ts` |
+| `.factory` | Test data factory | `invoice.factory.ts` |
+
+#### 4.5.5 Adding New Component Types
+
+New type suffixes MUST be approved through architecture review before use. The criteria:
+- The type represents a **distinct architectural role** not covered by existing types
+- At least **2 modules** would use the new type
+- The type has a **clear, non-overlapping definition**
+
+Ad-hoc invention of type suffixes is PROHIBITED.
+
+### 4.6 File Naming Convention
+
+#### 4.6.1 Hybrid Prefixing Rule (Mandatory)
+
+> **If the directory path unambiguously identifies the parent module, the file name does NOT repeat it. If the file lives outside its module's directory tree, it MUST carry the module slug as a prefix.**
+
+**Inside module directory (NO prefix — path provides context):**
+```
+modules/identity/src/services/session.service.ts          ✅
+modules/identity/src/adapters/oauth.adapter.ts             ✅
+modules/identity/src/components/pages/login.page.tsx       ✅
+```
+
+**Inside module directory (prefix is FORBIDDEN — redundant):**
+```
+modules/identity/src/services/identity.session.service.ts  ❌
+modules/identity/src/adapters/identity.oauth.adapter.ts    ❌
+```
+
+**Outside module directory (prefix REQUIRED — context is lost):**
+```
+shared/validators/identity.token.validator.ts              ✅
+shared/types/billing.invoice.types.ts                      ✅
+shared/validators/token.validator.ts                       ❌ (ambiguous origin)
+```
+
+**Rationale:**
+- Avoids redundancy (directory already identifies the module)
+- Prevents rename pressure if module slug changes
+- Aligns with ecosystem conventions (NestJS, Angular, Spring)
+- Ensures disambiguation in shared locations
+
+#### 4.6.2 Class and Export Naming
+
+Publicly exported names SHOULD carry module context to avoid ambiguity in consuming code:
+
+```typescript
+// Inside module — short name is fine for internal use
+export class SessionService { }
+
+// Public API / barrel export — scoped name recommended
+export { SessionService as IdentitySessionService } from './services/session.service';
+```
+
+#### 4.6.3 Index / Barrel Files
+
+Each module MUST have a root `index.ts` (or equivalent) that serves as the public API:
+- Explicitly exports only the public interface
+- Internal implementation details are NOT exported
+- Re-exports MAY use module-scoped names for disambiguation
+
+### 4.7 Directory Structure Standard
+
+#### 4.7.1 Canonical Module Layout
+
+```
+modules/{module-slug}/
+├── src/
+│   ├── controllers/          # Request handlers
+│   ├── services/             # Business logic
+│   ├── repositories/         # Data access
+│   ├── adapters/             # External integrations
+│   ├── guards/               # Auth/access guards
+│   ├── handlers/             # Event/message handlers
+│   ├── validators/           # Input validation
+│   ├── transformers/         # Data transformation
+│   ├── types/                # Type definitions and DTOs
+│   ├── constants/            # Constants and enums
+│   ├── utils/                # Utility functions
+│   └── components/           # UI components (if applicable)
+│       ├── pages/
+│       ├── layouts/
+│       ├── forms/
+│       ├── dialogs/
+│       ├── charts/
+│       └── shared/           # Shared UI primitives within module
+├── tests/
+│   ├── unit/                 # Unit tests (mirror src/ structure)
+│   ├── integration/          # Integration tests
+│   └── fixtures/             # Test data and factories
+├── docs/
+│   ├── README.md             # Module overview (REQUIRED)
+│   └── CHANGELOG.md          # Module change log
+├── config/                   # Module-specific configuration
+└── index.ts                  # Public API barrel (REQUIRED)
+```
+
+#### 4.7.2 Required vs Optional Directories
+
+| Directory | Required | Condition |
+|-----------|----------|-----------|
+| `src/` | REQUIRED | Always |
+| `src/services/` | REQUIRED | If module contains business logic |
+| `src/types/` | REQUIRED | If module defines types |
+| `src/components/` | Optional | Only if module includes UI |
+| `tests/` | REQUIRED | Always (per Testing Standard 5.5) |
+| `tests/unit/` | REQUIRED | Always |
+| `tests/integration/` | Optional | If integration tests exist |
+| `docs/` | REQUIRED | Always |
+| `docs/README.md` | REQUIRED | Always |
+| `config/` | Optional | If module-specific config exists |
+| `index.ts` | REQUIRED | Always (public API barrel) |
+
+Empty directories SHOULD NOT be committed. Create directories when the first file is added.
+
+#### 4.7.3 Shared / Cross-Module Code
+
+Code that is genuinely shared across multiple modules lives outside the module tree:
+
+```
+shared/
+├── types/                    # Cross-module type definitions
+├── utils/                    # Cross-module utilities
+├── validators/               # Cross-module validators
+└── constants/                # Cross-module constants
+```
+
+**Rules for shared code:**
+- Files MUST carry the originating module slug as prefix (§4.6.1)
+- Shared code MUST NOT import from any specific module's internal paths
+- If shared code grows into a cohesive unit, it SHOULD become its own module
+
+### 4.8 Module Boundary Rules
+
+#### 4.8.1 What Belongs Inside a Module
+
+- All code that implements the module's **primary responsibility**
+- Types, constants, and utilities **specific to** the module
+- Tests for the module's own code
+- Module-specific documentation and configuration
+
+#### 4.8.2 What Belongs Outside (Shared)
+
+- Types or utilities used by **3+ modules** without modification
+- Cross-cutting infrastructure (logging, telemetry, config loading)
+- Framework-level abstractions (base classes, decorators)
+
+#### 4.8.3 Cross-Module Import Rules
+
+| Import Direction | Allowed | Mechanism |
+|------------------|---------|-----------|
+| Module A → Module B's **public API** (`index.ts`) | YES | Barrel import only |
+| Module A → Module B's **internal path** (`src/services/...`) | NO | Encapsulation violation |
+| Module → **shared/** | YES | Prefix-named shared code |
+| **shared/** → Module internal | NO | Dependency inversion violation |
+
+#### 4.8.4 Circular Dependency Prohibition
+
+Circular dependencies between modules are PROHIBITED. If Module A depends on Module B and Module B depends on Module A:
+1. Extract the shared concern into a new module
+2. Or invert the dependency using interfaces/events
+3. Or merge the two modules if they are not independently meaningful
+
+### 4.9 Module Registry Index (Required)
+
+All modules MUST be listed in a single registry index file.
+
+```
+# CYBERCUBE Module Registry
+
+| Module ID | Slug             | Name                  | Scope       | Reusability | Stability  | Owner          |
+|-----------|------------------|-----------------------|-------------|-------------|------------|----------------|
+| MOD-001   | identity         | Identity Module       | Platform    | Global      | Stable     | Platform Team  |
+| MOD-002   | authorization    | Authorization Engine  | Platform    | Global      | Stable     | Platform Team  |
+| MOD-003   | metrics          | Metrics Engine        | Core        | Global      | Stable     | Data Team      |
+```
+
+### 4.10 Governance Rules
+
+| Rule | Enforcement |
+|------|-------------|
+| Module ID assigned at design time | Architecture review |
+| IDs are sequential, zero-padded | Registry control |
+| IDs never reused | Absolute |
+| Slugs never reused | Absolute |
+| Semantic meaning never encoded in ID | Mandatory |
+| All dependencies use Module IDs | Required |
+| All PRDs reference modules by MOD-XXX | Required |
+| Component type suffixes from controlled vocabulary only | Architecture review |
+| Directory structure follows canonical layout | Code review |
+
+### 4.11 Forbidden Anti-Patterns
+
+| Anti-Pattern | Why It Is Forbidden | Correct Approach |
+|--------------|---------------------|------------------|
+| Encoding scope or domain into IDs (e.g., `MOD-PLT-001`) | Violates "numbers encode, never define" | Use Module Record metadata |
+| Renaming modules to "fix" IDs | IDs are immutable | Update Module Record name only |
+| Reusing deprecated IDs or slugs | Breaks audit trail | Assign new ID/slug |
+| Using work type tags as module identifiers | Conflates project and module layers | Use MOD-XXX for modules, XX-YY for work |
+| Coupling Module ID to Product ID | Modules may outlive products | Keep independent lifecycles |
+| Inventing ad-hoc component type suffixes | Inconsistency across codebase | Propose new type through architecture review |
+| Importing module internals directly | Breaks encapsulation | Import from barrel `index.ts` only |
+| Prefixing file names inside their own module directory | Redundant with path | Let directory provide context |
+| Placing module-specific code in `shared/` | Blurs module boundaries | Keep inside module tree |
+
+### 4.12 Compatibility Statement
+
+This section is:
+- Fully compatible with PRCS (v1) — PRD-XXX and MOD-XXX coexist in Namespace G
+- Fully compatible with PCL-L.D.E.C — products are classified, modules are identified
+- Explicitly separated from Work Type Tags (Namespace A) — modules are not projects
+- Aligned with Namespace B (CC-PID) — MOD is reserved as a Namespace G prefix, not a CC-PID entity code
+
+---
+
+## 5. CC-PID Implementation Guidelines
 
 Although this document defines the patterns and rules, implementers may benefit from
 reference code and database schemas.  The following guidelines reflect best practices:
@@ -855,7 +1449,7 @@ using 8-character tokens (lower collision probability ~1 in 1.1T). Implementatio
 
 embed instance identifiers or timestamps in tokens—tokens remain purely random.
 
-### 3.1. UUIDs vs Public Entity IDs
+### 5.1. UUIDs vs Public Entity IDs
 
 | Aspect | UUID | CC-PID |
 |--------|------|--------|
@@ -872,7 +1466,7 @@ embed instance identifiers or timestamps in tokens—tokens remain purely random
 
 • Public Entity IDs MUST NOT be treated as capabilities or access tokens.
 
-### 3.2 Entity Code Registry
+### 5.2 Entity Code Registry
 
 Entity codes are governed via a central registry: `entity-codes.json`
 
@@ -891,7 +1485,7 @@ Entity codes are governed via a central registry: `entity-codes.json`
 
 ---
 
-### 3.3 Service Contract (Required)
+### 5.3 Service Contract (Required)
 
 All services handling CC-PID MUST implement:
 
@@ -940,7 +1534,7 @@ Services MUST normalize candidate CC-PID input by:
 
 ---
 
-### 3.4 ID Generation Service
+### 5.4 ID Generation Service
 
 Implement a `PublicIdService` (e.g., in TypeScript) with methods to:
 
@@ -977,7 +1571,7 @@ For bulk imports or migrations, implementations MAY provide a batch generator th
 
 > 📄 **Reference Implementation:** See the accompanying `public-id-service.ts` file for a complete example.
 
-#### 3.4.1 Reference Implementation: `public-id-service.ts`
+#### 5.4.1 Reference Implementation: `public-id-service.ts`
 
 ```typescript
 import crypto from "crypto";
@@ -1262,7 +1856,7 @@ static validateDetailed(input: string): PublicIdValidationResult {
   }
 ```
 
-#### 3.4.2 Cross-Language Reference Implementations
+#### 5.4.2 Cross-Language Reference Implementations
 
 To ensure interoperability, here are reference implementations of the check digit algorithm in common languages:
 
@@ -1406,7 +2000,7 @@ public class CCPIDCheckDigit
 
 ---
 
-### 3.5 Database Constraints
+### 5.5 Database Constraints
 
 For each table storing public IDs, define columns similar to:
 
@@ -1424,7 +2018,7 @@ For each table storing public IDs, define columns similar to:
 
 ---
 
-### 3.6 Sample Implementation
+### 5.6 Sample Implementation
 
 A full TypeScript implementation of the `PublicIdService` (with deterministic checksum logic and parse/validate methods) is provided alongside this document in `public-id-service.ts`. A sample PostgreSQL migration with recommended constraints is provided in `db_migration.sql`.
 
@@ -1457,7 +2051,7 @@ LEGACY:<old-id> → PRJ-<newtoken>-<chk>
 
 ---
 
-#### 3.6.1 Reference Implementation: `db_migration.sql`
+#### 5.6.1 Reference Implementation: `db_migration.sql`
 
 Sample PostgreSQL migration for adding public ID columns, constraints, and prefix-search support.
 
@@ -1537,7 +2131,7 @@ COMMIT;
 
 > 📝 **Reusability:** Repeat similar statements for other entity tables (projects, invoices, etc.), adjusting the default `entity_code` accordingly (e.g., 'PRJ', 'INV').
 
-#### 3.6.2 Global Token Uniqueness Implementation (Optional)
+#### 5.6.2 Global Token Uniqueness Implementation (Optional)
 
 For implementations choosing global token uniqueness (see §2.3.2), use this approach:
 
@@ -1645,9 +2239,9 @@ async function generateGloballyUniqueId(
 
 ---
 
-## 4. Tables
+## 6. Tables
 
-### 4.1. Crosswalk Table (Parent → Subtype → Full Code)
+### 6.1. Crosswalk Table (Parent → Subtype → Full Code)
 
 | Parent | Parent Name | Subtype | Subtype Name | Full Code |
 |--------|-------------|---------|--------------|-----------|
@@ -1732,7 +2326,7 @@ async function generateGloballyUniqueId(
 
 ---
 
-#### 4.1.0 Top-level Project Classification (Governance)
+#### 6.1.0 Top-level Project Classification (Governance)
 
 All deliverables are classified first by **Top-level Project Classification** (governance), then by Domain (PARENT–SUB) per §4.1.1. This governance layer distinguishes how work is funded, versioned, and reused.
 
@@ -1755,9 +2349,9 @@ All deliverables are classified first by **Top-level Project Classification** (g
 
 ---
 
-#### 4.1.1 Project Classification Criteria
+#### 6.1.1 Project Classification Criteria
 
-##### 4.1.1.1 WA — Web Applications
+##### 6.1.1.1 WA — Web Applications
 
 Web-based systems accessed through browsers, requiring frontend + backend architecture.
 
@@ -1768,7 +2362,7 @@ Web-based systems accessed through browsers, requiring frontend + backend archit
 | **WA-EC** (E-Commerce) | • Product catalog management<br>• Shopping cart and checkout workflow<br>• Payment gateway integration<br>• Order and inventory management |
 | **WA-CM** (Content Management) | • Content creation and editing interface<br>• Version control and publishing workflow<br>• Media library management<br>• Multi-channel content delivery |
 
-##### 4.1.1.2 MA — Mobile Applications
+##### 6.1.1.2 MA — Mobile Applications
 
 Apps built for mobile devices (iOS/Android), native or cross-platform.
 
@@ -1779,7 +2373,7 @@ Apps built for mobile devices (iOS/Android), native or cross-platform.
 | **MA-XP** (Cross-Platform) | • Unified codebase for iOS and Android<br>• Cross-platform framework (e.g., Flutter, React Native, Xamarin)<br>• Platform-specific adaptations where needed |
 | **MA-PW** (PWA) | • Installable web application<br>• Offline functionality via service workers<br>• Native-like user experience<br>• Progressive enhancement strategy |
 
-##### 4.1.1.3 DA — Desktop Applications
+##### 6.1.1.3 DA — Desktop Applications
 
 Installable applications for macOS, Windows, or Linux.
 
@@ -1790,7 +2384,7 @@ Installable applications for macOS, Windows, or Linux.
 | **DA-LX** | Linux | • Linux-native packaging (deb, rpm, AppImage, Flatpak)<br>• Desktop environment integration<br>• Linux distribution compatibility |
 | **DA-XP** | Cross-Platform | • Single codebase for multiple desktop platforms<br>• Cross-platform framework (e.g., Electron, Tauri, Qt)<br>• Platform-specific adaptations where needed |
 
-##### 4.1.1.4 CS — Custom Software
+##### 6.1.1.4 CS — Custom Software
 
 Bespoke internal tools or systems built specifically for a business workflow.
 
@@ -1801,7 +2395,7 @@ Bespoke internal tools or systems built specifically for a business workflow.
 | **CS-IT** (Internal Tools) | • Organization-specific functionality<br>• Internal user base only<br>• Specialized operational requirements |
 | **CS-ST** (Software Suites) | • Multiple integrated applications or modules<br>• Unified authentication and user management<br>• Consistent UI/UX across modules<br>• Shared data model |
 
-##### 4.1.1.5 AP — API & Backend Services
+##### 6.1.1.5 AP — API & Backend Services
 
 Backend systems exposing programmatic interfaces or providing server-side functionality.
 
@@ -1813,7 +2407,7 @@ Backend systems exposing programmatic interfaces or providing server-side functi
 | **AP-RT** (Real-Time API) | • Persistent connection support (WebSockets, SSE, etc.)<br>• Live data streaming<br>• Push-based updates<br>• Low-latency communication |
 | **AP-BE** (Backend Services) | • Server-side business logic<br>• Background processing<br>• Scheduled jobs and workers<br>• Non-API backend functionality |
 
-##### 4.1.1.6 A1 — AI & Machine Learning
+##### 6.1.1.6 A1 — AI & Machine Learning
 
 Systems using ML models, RAG, NLP, vision, or inference.
 
@@ -1824,7 +2418,7 @@ Systems using ML models, RAG, NLP, vision, or inference.
 | **A1-RC** (Recommender) | • Personalized suggestions<br>• Behavioral or content-based models |
 | **A1-NL** (NLP/CV/RAG) | • Natural language, vision, or retrieval-augmented tasks<br>• Embeddings or vector search |
 
-##### 4.1.1.7 DT — Data & Analytics
+##### 6.1.1.7 DT — Data & Analytics
 
 Data-heavy or analytics-centric systems.
 
@@ -1835,7 +2429,7 @@ Data-heavy or analytics-centric systems.
 | **DT-DW** (Data Warehouse) | • Centralized enterprise data repository<br>• OLAP and analytical query optimization<br>• Historical data storage and archival<br>• Data mart and cube structures |
 | **DT-RP** (Reporting) | • Operational report generation<br>• Scheduled and on-demand reporting<br>• Report distribution and delivery<br>• Standard metric calculations |
 
-##### 4.1.1.8 DC — DevOps & Cloud
+##### 6.1.1.8 DC — DevOps & Cloud
 
 Infrastructure, automation, and cloud platform engineering.
 
@@ -1846,7 +2440,7 @@ Infrastructure, automation, and cloud platform engineering.
 | **DC-IA** (IaC) | • Terraform/Pulumi/CloudFormation<br>• Version-controlled infrastructure |
 | **DC-MN** (Monitoring) | • Logging + alerting<br>• Observability tooling |
 
-##### 4.1.1.9 SC — Security & Compliance
+##### 6.1.1.9 SC — Security & Compliance
 
 Security-focused systems or enhancements.
 
@@ -1857,7 +2451,7 @@ Security-focused systems or enhancements.
 | **SC-PT** (Pen Testing) | • Vulnerability scanning<br>• Threat reports |
 | **SC-CM** (Compliance) | • Auditing<br>• Regulatory alignment |
 
-##### 4.1.1.10 I1 — Embedded / IoT
+##### 6.1.1.10 I1 — Embedded / IoT
 
 Hardware-connected or low-level software.
 
@@ -1868,7 +2462,7 @@ Hardware-connected or low-level software.
 | **I1-SN** (Sensors) | • Sensor data handling<br>• Real-time readings |
 | **I1-RT** (RTOS) | • Real-time operating constraints |
 
-##### 4.1.1.11 GM — Games & Interactive
+##### 6.1.1.11 GM — Games & Interactive
 
 Graphical or interactive entertainment systems.
 
@@ -1879,7 +2473,7 @@ Graphical or interactive entertainment systems.
 | **GM-SM** (Simulation) | • Real-world or abstract system modeling<br>• Simulation logic and state management<br>• Configurable simulation parameters |
 | **GM-VR** (VR/AR) | • Virtual or augmented reality device support<br>• Immersive 3D environments<br>• Motion tracking and spatial interaction |
 
-##### 4.1.1.12 BC — Blockchain/Web3
+##### 6.1.1.12 BC — Blockchain/Web3
 
 Distributed-ledger or decentralized systems.
 
@@ -1890,7 +2484,7 @@ Distributed-ledger or decentralized systems.
 | **BC-WL** (Wallet) | • Cryptographic key management<br>• Transaction signing and broadcasting<br>• Multi-chain or multi-asset support |
 | **BC-DF** (DeFi) | • Decentralized finance protocols<br>• Liquidity pools or yield mechanisms<br>• On-chain financial operations |
 
-##### 4.1.1.13 RP — Automation / RPA
+##### 6.1.1.13 RP — Automation / RPA
 
 Automated workflows or software robots.
 
@@ -1900,7 +2494,7 @@ Automated workflows or software robots.
 | **RP-WF** (RPA Workflow) | • Robotic process automation platform<br>• Trigger-based action sequences<br>• Multi-step flow orchestration<br>• UI automation and screen scraping |
 | **RP-NC** (No-code Automation) | • Visual workflow builder<br>• Drag-and-drop logic composition<br>• No-code or low-code interface<br>• Pre-built automation templates |
 
-##### 4.1.1.14 IN — System Integrations
+##### 6.1.1.14 IN — System Integrations
 
 Bridging systems or connecting services.
 
@@ -1911,7 +2505,7 @@ Bridging systems or connecting services.
 | **IN-BR** (API Bridge) | • System-to-system middleware<br>• Data format transformation<br>• Protocol translation<br>• Message routing and orchestration |
 | **IN-LG** (Legacy Integration) | • Legacy system connectivity<br>• Modernization bridge<br>• Data migration support<br>• Backward compatibility layer |
 
-##### 4.1.1.15 MN — Maintenance / Support
+##### 6.1.1.15 MN — Maintenance / Support
 
 Ongoing maintenance and support activities for existing systems.
 
@@ -1922,7 +2516,7 @@ Ongoing maintenance and support activities for existing systems.
 | **MN-OP** (Optimization) | • Performance improvements<br>• Resource utilization optimization<br>• Code refactoring<br>• Query and algorithm optimization |
 | **MN-TN** (Configuration) | • System configuration adjustments<br>• Parameter tuning<br>• Environment-specific settings<br>• Infrastructure optimization |
 
-##### 4.1.1.16 CM — Communication Systems
+##### 6.1.1.16 CM — Communication Systems
 
 Messaging, collaboration, and communication platforms.
 
@@ -1933,7 +2527,7 @@ Messaging, collaboration, and communication platforms.
 | **CM-VC** (Video Conferencing) | • Real-time video and audio streaming<br>• Multi-participant support<br>• Screen sharing<br>• Recording capabilities |
 | **CM-CL** (Collaboration) | • Real-time collaborative editing<br>• Shared workspaces<br>• Activity feeds and notifications<br>• Team coordination tools |
 
-##### 4.1.1.17 QA — Testing & Quality Assurance
+##### 6.1.1.17 QA — Testing & Quality Assurance
 
 Testing frameworks, tools, and quality assurance systems.
 
@@ -1946,7 +2540,7 @@ Testing frameworks, tools, and quality assurance systems.
 
 ---
 
-### 4.2 Public Entity Codes (CC-PID v1)
+### 6.2 Public Entity Codes (CC-PID v1)
 
 Below are the 3-letter codes used in the CYBERCUBE Public Entity ID scheme.
 
@@ -1979,7 +2573,7 @@ Below are the 3-letter codes used in the CYBERCUBE Public Entity ID scheme.
 | **MSG** | Message | **TEN** | Time Entry |
 | **ACT** | Activity | **TMB** | Team Member |
 
-#### 4.2.1 Entities Classification Reasoning
+#### 6.2.1 Entities Classification Reasoning
 
 These 3-letter codes prefix all user-facing Public IDs. They identify the type of database entity. Each code should be used when generating or referencing an ID for that entity type.
 
@@ -2051,9 +2645,9 @@ These 3-letter codes prefix all user-facing Public IDs. They identify the type o
 
 ---
 
-## 5. Ticket vs Issue (WOE) Separation
+## 7. Ticket vs Issue (WOE) Separation
 
-### 5.1 Customer Tickets (Entity)
+### 7.1 Customer Tickets (Entity)
 
 Customer-facing support items are entities.
 
@@ -2063,7 +2657,7 @@ Customer-facing support items are entities.
 - ✅ Shown to customers
 - ✅ Used in URLs, emails, invoices, exports, and webhooks
 
-### 5.2 Internal Issues / Work-Oriented Entries (WOE)
+### 7.2 Internal Issues / Work-Oriented Entries (WOE)
 
 Engineering work items are artifacts.
 
@@ -2072,7 +2666,7 @@ Engineering work items are artifacts.
 - ✅ Lives in Jira / GitHub / Linear
 - ❌ Never exposed externally
 
-### 5.3 Linking Rule (Mandatory)
+### 7.3 Linking Rule (Mandatory)
 
 If a customer ticket requires internal work:
 
@@ -2080,7 +2674,7 @@ If a customer ticket requires internal work:
 - ✅ The Ticket entity stores one or more WOE references
 - ✅ Internal issues may reference the Ticket CC-PID
 
-#### 5.3.1 Recommended Schema
+#### 7.3.1 Recommended Schema
 
 ```sql
 external_key_source  -- JIRA | GITHUB | LINEAR | CYBERCUBE
@@ -2092,30 +2686,32 @@ UNIQUE(external_key_source, external_key)
 
 ---
 
-## 6. Version History
+## 8. Version History
 
 | Version | Date | Changes |
 |---------|------|---------|
 | v1.0 | 2025-12 | Initial release: artifact naming conventions, CC-PID format, entity code registry |
 | v1.1 | 2026-01 | Added mandatory SHA-256 check digit algorithm, cross-language reference implementations (7 languages), SDK contract with standard error codes, batch generation guidance, global uniqueness model and decision matrix, collision handling requirements, rate limiting guidance, Support SOP |
+| v1.2 | 2026-02 | Added Namespace G (Governance Registry Identifiers: PRD-XXX, MOD-XXX). Added Namespace M (Module, Component & File Naming): absorbed Module ID Standard v1, module identification (MOD-XXX), module slugs, Module Records, component type-suffix convention (architectural + UI), hybrid file naming rule, canonical directory structure, module boundary rules, anti-patterns. Renumbered sections 3–6 to 5–8. Updated glossary, cheat sheet, and related documents. |
 
 ---
 
 ## Developer Cheat Sheet
 
 Below is a developer-first cheat sheet distilled from the final CYBERCUBE Naming & Identifier
-Standard (v1.1).
+Standard (v1.2).
 
 This is meant to be printed, pinned, or dropped into a repo (/docs/ID_CHEATSHEET.md).
 
 No theory. No prose. Just rules and examples.
 
-### 🔹 Two Namespaces (DO NOT MIX)
+### 🔹 Four Namespaces (DO NOT MIX)
 
-| Namespace A — Artifacts | Namespace B — Entities (CC-PID) |
-|-------------------------|----------------------------------|
-| **Used for:** Code & workflow, may change over time | **Used for:** Data & external references, NEVER changes |
-| • Files<br>• Repos<br>• Branches<br>• Commits<br>• CI/CD outputs<br>• Internal issues (WOE) | • Database entities<br>• URLs<br>• PDFs / exports<br>• Emails<br>• Webhooks |
+| Namespace A — Artifacts | Namespace B — Entities (CC-PID) | Namespace G — Governance IDs | Namespace M — Modules/Components/Files |
+|-------------------------|----------------------------------|------------------------------|----------------------------------------|
+| **Used for:** Code & workflow | **Used for:** Data & external refs | **Used for:** Product & module registration | **Used for:** Module internal anatomy |
+| Mutable | Immutable, random | Immutable, sequential | Convention-based |
+| Files, repos, branches, CI/CD, WOE | DB entities, URLs, PDFs, emails, webhooks | PRD-XXX, MOD-XXX | Slugs, type-suffixed files, directories |
 
 ### 🔹 Namespace A — Artifact Naming
 
@@ -2467,18 +3063,52 @@ Every service handling CC-PID MUST implement:
 
 ### 🔹 Mental Model (memorize this)
 
-| Type | Purpose | Mutability |
-|------|---------|------------|
-| **Artifact** | Workflow label | Mutable |
-| **WOE** | Internal work | Tracker-owned |
-| **CC-PID** | External label | Immutable |
-| **UUID** | Internal key | Hidden |
+| Type | Namespace | Purpose | Mutability |
+|------|-----------|---------|------------|
+| **Artifact** | A | Workflow label | Mutable |
+| **WOE** | A | Internal work | Tracker-owned |
+| **CC-PID** | B | External entity label | Immutable, random |
+| **MOD-XXX** | G | Module registration | Immutable, sequential |
+| **PRD-XXX** | G | Product registration | Immutable, sequential |
+| **Component** | M | Type-suffixed file | Convention-based |
+| **UUID** | — | Internal key | Hidden |
+
+---
+
+### 🔹 Namespace G — Governance IDs
+
+**Format:** `{PREFIX}-{NNN}` (e.g., `MOD-001`, `PRD-003`)
+
+**Rules:**
+- Sequential, zero-padded, immutable, never reused
+- Registry-controlled
+- NOT random (unlike CC-PID), NOT for runtime entities
+
+---
+
+### 🔹 Namespace M — Module, Component & File Naming
+
+**Module ID:** `MOD-XXX` + slug (e.g., `MOD-001` / `identity`)
+
+**Component file pattern:** `{descriptor}.{type}.{ext}`
+
+**Architectural types:** `.service`, `.controller`, `.repository`, `.adapter`, `.provider`, `.guard`, `.middleware`, `.handler`, `.validator`, `.transformer`, `.engine`, `.gateway`
+
+**UI types:** `.page`, `.layout`, `.form`, `.dialog`, `.card`, `.list`, `.table`, `.chart`, `.widget`, `.panel`
+
+**Hybrid prefixing rule:**
+- Inside module dir: NO prefix (`modules/identity/src/services/session.service.ts`)
+- Outside module dir: prefix REQUIRED (`shared/validators/identity.token.validator.ts`)
+
+**Directory:** `modules/{slug}/src/{type-dir}/{descriptor}.{type}.{ext}`
 
 ---
 
 ### 🔹 One-Line Rule (if you remember nothing else)
 
 If it leaves the system, it uses a CC-PID.
+
+If it is a registered asset, it uses a Governance ID (MOD/PRD).
 
 If it drives work, it’s an artifact.
 
@@ -2545,9 +3175,20 @@ Note: Token alphabet excludes I and O to reduce confusion.
 
 ## Implementation Status
 
-**Last Updated:** 2026-01-17
+**Last Updated:** 2026-02-10
 
-### Core Implementation
+### Namespace G & M (v1.2 Additions)
+
+| Component | Status |
+|-----------|--------|
+| Namespace G standard (Section 3) | COMPLETE |
+| Namespace M standard (Section 4) | COMPLETE |
+| Module Registry population | PENDING |
+| Component type vocabulary enforcement (lint rule) | PENDING |
+| Directory structure validation (CI check) | PENDING |
+| Module boundary enforcement (import lint) | PENDING |
+
+### Core Implementation (CC-PID)
 
 | Component             | Status   | File                                                      |
 | --------------------- | -------- | --------------------------------------------------------- |
@@ -2602,8 +3243,11 @@ All endpoints accepting entity IDs now support both formats:
 
 | Document | Relationship |
 |----------|--------------|
-| API Design Standard | CC-PID usage in REST endpoints, URL patterns |
-| Data Classification & Retention Standard | Classification levels for entity data referenced by CC-PIDs |
-| Soft-Delete Lifecycle Standard | Deprecation and 410 Gone semantics for retired CC-PIDs |
-| Webhooks & Integrations Standard | CC-PID format in webhook payloads and integration events |
-| Testing & Quality Standard | Test vector validation, reference implementation testing |
+| Product Registry & Classification Standard (PRCS 1.5) | PRD-XXX governance IDs (Namespace G); PCL classification; product-module relationship |
+| Architecture Governance Policy (1.4) | Module registration triggers architecture review; ADR future-reserved prefix |
+| API Design Standard (5.2) | CC-PID usage in REST endpoints, URL patterns |
+| Data Classification & Retention Standard (3.3) | Classification levels for entity data referenced by CC-PIDs |
+| Soft-Delete Lifecycle Standard (3.5) | Deprecation and 410 Gone semantics for retired CC-PIDs |
+| Webhooks & Integrations Standard (5.3) | CC-PID format in webhook payloads and integration events |
+| Testing & Quality Standard (5.5) | Test vector validation, reference implementation testing; test file naming conventions (§4.5.4) |
+| Module ID Standard (v1) | **SUPERSEDED** — fully absorbed into this standard, Section 4 (Namespace M) |

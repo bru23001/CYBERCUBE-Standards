@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cybercube.software/schemas/module.schema.json",
+  "title": "CYBERCUBE Module Registry",
+  "description": "Namespace G/M — Module records (MOD-XXX). Source: 5.1 Naming & Identifier Standard v1.2 §4",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["id", "slug", "name", "scope", "reusability", "stability", "owner", "sourceStandard", "createdAt"],
+    "additionalProperties": false,
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^MOD-[0-9]{3}$",
+        "description": "Sequential governance ID (e.g., MOD-001)"
+      },
+      "slug": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+        "description": "Immutable kebab-case slug (globally unique)"
+      },
+      "name": {
+        "type": "string",
+        "minLength": 1,
+        "description": "Human-readable module name"
+      },
+      "scope": {
+        "type": "string",
+        "enum": ["Platform", "Core", "Domain", "Integration", "UI", "Governance", "Experimental"],
+        "description": "Module scope vocabulary per 5.1 §4.2"
+      },
+      "reusability": {
+        "type": "string",
+        "enum": ["Global", "Portfolio", "Product"],
+        "description": "Reusability level"
+      },
+      "stability": {
+        "type": "string",
+        "enum": ["Experimental", "Beta", "Stable", "Deprecated", "Retired"],
+        "description": "Module lifecycle stage"
+      },
+      "owner": {
+        "type": "string",
+        "minLength": 1,
+        "description": "Responsible team or individual"
+      },
+      "sourceStandard": {
+        "type": "string",
+        "description": "Source CYBERCUBE standard (e.g., '2.3')"
+      },
+      "dependencies": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "pattern": "^MOD-[0-9]{3}$"
+        },
+        "uniqueItems": true,
+        "default": [],
+        "description": "Module IDs this module depends on"
+      },
+      "usedByProducts": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "pattern": "^PRD-[0-9]{3}$"
+        },
+        "uniqueItems": true,
+        "default": [],
+        "description": "Product IDs that consume this module"
+      },
+      "createdAt": {
+        "type": "string",
+        "format": "date",
+        "description": "ISO 8601 date when module was registered"
+      }
+    }
+  },
+  "uniqueItems": true
+}

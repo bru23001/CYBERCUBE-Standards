@@ -1,0 +1,522 @@
+[
+  {
+    "code": "CLT",
+    "name": "Client",
+    "category": "Customer & Org",
+    "description": "Identifies a client record in the customer management system",
+    "dbTable": "clients",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "ACC",
+    "name": "Organization / Account",
+    "category": "Customer & Org",
+    "description": "Represents an organizational tenant or account",
+    "dbTable": "accounts",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "USR",
+    "name": "User",
+    "category": "Customer & Org",
+    "description": "Used for individual user accounts",
+    "dbTable": "users",
+    "status": "ACTIVE",
+    "ccpidStatus": "MIGRATION READY",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "CON",
+    "name": "Contact",
+    "category": "Customer & Org",
+    "description": "Denotes a contact person tied to a client or organization",
+    "dbTable": "contacts",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "ADR",
+    "name": "Address",
+    "category": "Customer & Org",
+    "description": "Represents a physical or mailing address entity",
+    "dbTable": "addresses",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "TKT",
+    "name": "Support Ticket",
+    "category": "Support & Comms",
+    "description": "Used for customer support tickets",
+    "dbTable": "tickets",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "NTF",
+    "name": "Notification",
+    "category": "Support & Comms",
+    "description": "Used for notification records (e.g., push or email notifications)",
+    "dbTable": "notifications",
+    "status": "ACTIVE",
+    "ccpidStatus": "MIGRATION READY",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "MSG",
+    "name": "Message",
+    "category": "Support & Comms",
+    "description": "Used for direct messages or conversation records",
+    "dbTable": "messages",
+    "status": "ACTIVE",
+    "ccpidStatus": "MIGRATION READY",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "COM",
+    "name": "Comment",
+    "category": "Support & Comms",
+    "description": "Used for comments attached to tasks, cards, or tickets",
+    "dbTable": "comments",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "PRJ",
+    "name": "Project",
+    "category": "Project Mgmt",
+    "description": "Identifies a project in the project management system",
+    "dbTable": "projects",
+    "status": "ACTIVE",
+    "ccpidStatus": "COMPLETE",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "BRD",
+    "name": "Board",
+    "category": "Project Mgmt",
+    "description": "Denotes a board (e.g., Kanban or Scrum board)",
+    "dbTable": "boards",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "COL",
+    "name": "Column",
+    "category": "Project Mgmt",
+    "description": "Represents a column within a board",
+    "dbTable": "columns",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "CRD",
+    "name": "Card",
+    "category": "Project Mgmt",
+    "description": "Used for cards or tasks in a board",
+    "dbTable": "cards",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "TSK",
+    "name": "Task",
+    "category": "Project Mgmt",
+    "description": "Identifies a task item",
+    "dbTable": "tasks",
+    "status": "ACTIVE",
+    "ccpidStatus": "COMPLETE",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "SPR",
+    "name": "Sprint / Iteration",
+    "category": "Project Mgmt",
+    "description": "Used for a sprint or iteration",
+    "dbTable": "sprints",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "MLN",
+    "name": "Milestone",
+    "category": "Project Mgmt",
+    "description": "Identifies milestones in project timelines",
+    "dbTable": "milestones",
+    "status": "ACTIVE",
+    "ccpidStatus": "COMPLETE",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "BEN",
+    "name": "Benchmark",
+    "category": "Project Mgmt",
+    "description": "Used for benchmark records or performance tests",
+    "dbTable": "benchmarks",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "PHZ",
+    "name": "Phase",
+    "category": "Project Mgmt",
+    "description": "Identifies a phase in a larger program or project",
+    "dbTable": "phases",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "DLV",
+    "name": "Deliverable",
+    "category": "Project Mgmt",
+    "description": "Identifies a project deliverable or work product",
+    "dbTable": "deliverables",
+    "status": "ACTIVE",
+    "ccpidStatus": "COMPLETE",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "ACT",
+    "name": "Activity",
+    "category": "Project Mgmt",
+    "description": "Used for activity log records or tracked actions",
+    "dbTable": "activities",
+    "status": "ACTIVE",
+    "ccpidStatus": "MIGRATION READY",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "TMB",
+    "name": "Team Member",
+    "category": "Project Mgmt",
+    "description": "Identifies a team member assignment within a project or organization",
+    "dbTable": "team_members",
+    "status": "ACTIVE",
+    "ccpidStatus": "MIGRATION READY",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "INV",
+    "name": "Invoice",
+    "category": "Billing & Finance",
+    "description": "Used for invoices in billing modules",
+    "dbTable": "invoices",
+    "status": "ACTIVE",
+    "ccpidStatus": "COMPLETE",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "PAY",
+    "name": "Payment",
+    "category": "Billing & Finance",
+    "description": "Used for payment transactions",
+    "dbTable": "payments",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "SUB",
+    "name": "Subscription",
+    "category": "Billing & Finance",
+    "description": "Identifies subscription records (recurring billing)",
+    "dbTable": "subscriptions",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "PLN",
+    "name": "Plan",
+    "category": "Billing & Finance",
+    "description": "Denotes a pricing or service plan",
+    "dbTable": "plans",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "QTE",
+    "name": "Quote",
+    "category": "Billing & Finance",
+    "description": "Used for formal quotes provided to clients",
+    "dbTable": "quotes",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "EST",
+    "name": "Estimate",
+    "category": "Billing & Finance",
+    "description": "For cost or time estimates",
+    "dbTable": "estimates",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "TXN",
+    "name": "Transaction",
+    "category": "Billing & Finance",
+    "description": "Used for transactional records in finance modules",
+    "dbTable": "transactions",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "PRC",
+    "name": "Price / Rate",
+    "category": "Billing & Finance",
+    "description": "Represents pricing tiers or rates",
+    "dbTable": "prices",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "DSC",
+    "name": "Discount / Coupon",
+    "category": "Billing & Finance",
+    "description": "Used for discount codes or coupons",
+    "dbTable": "discounts",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "DOC",
+    "name": "Document",
+    "category": "Content & Docs",
+    "description": "Generic document entity",
+    "dbTable": "documents",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "PGS",
+    "name": "Page",
+    "category": "Content & Docs",
+    "description": "Denotes a page (e.g., wiki page, CMS page)",
+    "dbTable": "pages",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "FLE",
+    "name": "File",
+    "category": "Content & Docs",
+    "description": "Generic file stored in the system",
+    "dbTable": "files",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "FDR",
+    "name": "Folder",
+    "category": "Content & Docs",
+    "description": "Used for folders or directories in file management modules",
+    "dbTable": "folders",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "TMP",
+    "name": "Template",
+    "category": "Content & Docs",
+    "description": "Identifies templates (e.g., email or document templates)",
+    "dbTable": "templates",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "FRM",
+    "name": "Form",
+    "category": "Content & Docs",
+    "description": "Used for forms in form builders or workflows",
+    "dbTable": "forms",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "SIG",
+    "name": "Signature Request",
+    "category": "Content & Docs",
+    "description": "Denotes a digital signature request",
+    "dbTable": "signatures",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "ATT",
+    "name": "Attachment",
+    "category": "Content & Docs",
+    "description": "Identifies uploaded attachments or files",
+    "dbTable": "attachments",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "TAG",
+    "name": "Tag",
+    "category": "Content & Docs",
+    "description": "Used for tags or labels applied to entities",
+    "dbTable": "tags",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "SES",
+    "name": "Session",
+    "category": "System & Integration",
+    "description": "Used for user sessions or login sessions",
+    "dbTable": "sessions",
+    "status": "ACTIVE",
+    "ccpidStatus": "MIGRATION READY",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "TOK",
+    "name": "Token",
+    "category": "System & Integration",
+    "description": "Records non-secret reference tokens (not auth tokens)",
+    "dbTable": "tokens",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "API",
+    "name": "API Key Record",
+    "category": "System & Integration",
+    "description": "Identifies an API key record (not the secret itself)",
+    "dbTable": "api_keys",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "AUD",
+    "name": "Audit Event",
+    "category": "System & Integration",
+    "description": "Used for audit log events",
+    "dbTable": "audit_events",
+    "status": "ACTIVE",
+    "ccpidStatus": "MIGRATION READY",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "LOG",
+    "name": "Log Entry",
+    "category": "System & Integration",
+    "description": "Denotes log entries or system logs",
+    "dbTable": "log_entries",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "JOB",
+    "name": "Background Job",
+    "category": "System & Integration",
+    "description": "Identifies asynchronous jobs or tasks",
+    "dbTable": "jobs",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "WEB",
+    "name": "Webhook",
+    "category": "System & Integration",
+    "description": "Used for webhook records",
+    "dbTable": "webhooks",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "INT",
+    "name": "Integration",
+    "category": "System & Integration",
+    "description": "Denotes integrations with external services",
+    "dbTable": "integrations",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "ENV",
+    "name": "Environment",
+    "category": "System & Integration",
+    "description": "Identifies environments (e.g., dev, staging, prod) in system config",
+    "dbTable": "environments",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "TEN",
+    "name": "Time Entry",
+    "category": "System & Integration",
+    "description": "Used for time tracking records tied to tasks or projects",
+    "dbTable": "time_entries",
+    "status": "ACTIVE",
+    "ccpidStatus": "MIGRATION READY",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "RLE",
+    "name": "Role",
+    "category": "Access Control",
+    "description": "Used for role definitions in role-based access control",
+    "dbTable": "roles",
+    "status": "ACTIVE",
+    "ccpidStatus": "MIGRATION READY",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "PRM",
+    "name": "Permission",
+    "category": "Access Control",
+    "description": "Identifies permissions or entitlements",
+    "dbTable": "permissions",
+    "status": "ACTIVE",
+    "ccpidStatus": "MIGRATION READY",
+    "createdAt": "2026-01-17"
+  },
+  {
+    "code": "POL",
+    "name": "Policy",
+    "category": "Access Control",
+    "description": "Denotes policies (e.g., access policies, security policies)",
+    "dbTable": "policies",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-01-17"
+  }
+]

@@ -179,6 +179,7 @@ Output: Risk rating, required controls
 
 # CYBERCUBE Vendor Risk Management Policy (v1)
 
+**Standard ID:** POL-VEN-001  
 **Status:** Active  
 **Effective:** 2026-01-17  
 **Classification:** INTERNAL  

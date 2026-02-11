@@ -1,5 +1,6 @@
 # CYBERCUBE Standards Governance Policy (v1)
 
+**Standard ID:** POL-GOV-001
 **Status:** Active
 **Effective:** 2026-01-17
 **Applies to:** All CYBERCUBE standards and policies

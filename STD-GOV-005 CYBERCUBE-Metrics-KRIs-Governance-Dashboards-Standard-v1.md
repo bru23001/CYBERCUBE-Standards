@@ -1,5 +1,6 @@
 # CYBERCUBE Metrics, Key Risk Indicators (KRIs) & Governance Dashboards Standard
 
+**Standard ID:** STD-GOV-005
 **Version:** v1.0
 **Status:** Active
 **Effective Date:** 2026-02-07

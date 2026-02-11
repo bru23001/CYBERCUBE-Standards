@@ -335,7 +335,7 @@ Response: Compensating controls, vendor notification
 
 CYBERCUBE Security Incident Response Standard (v1)
 
-**Standard ID:** STD-SEC-005**Status:** Active**Effective:** 2026-01-17**Classification:** INTERNAL**Owner:** Security Team**Applies to:** All security incidents affecting CYBERCUBE systems or data
+**Standard ID:** STD-SEC-007**Status:** Active**Effective:** 2026-01-17**Classification:** INTERNAL**Owner:** Security Team**Applies to:** All security incidents affecting CYBERCUBE systems or data
 
 0. Purpose & Design Principles
 

@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cybercube.software/schemas/standard.schema.json",
+  "title": "CYBERCUBE Standards Registry",
+  "description": "Namespace G — Standard/Policy/Plan/Template/Framework records. Source: 1.2 Standards Governance Policy",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["id", "catalogNumber", "name", "type", "domain", "version", "owner", "status", "effective", "classification", "filename", "createdAt"],
+    "additionalProperties": false,
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^(STD|POL|PLN|TPL|FWK)-[A-Z]{2,3}-[0-9]{3}$",
+        "description": "Formal document identifier (e.g., STD-SEC-001, POL-GOV-001)"
+      },
+      "catalogNumber": {
+        "type": "string",
+        "pattern": "^[0-9]+\\.[0-9]+$",
+        "description": "Original catalog number (e.g., '1.1', '2.3')"
+      },
+      "name": {
+        "type": "string",
+        "minLength": 1,
+        "description": "Human-readable document title"
+      },
+      "type": {
+        "type": "string",
+        "enum": ["Standard", "Policy", "Plan", "Template", "Framework"],
+        "description": "Document type classification"
+      },
+      "domain": {
+        "type": "string",
+        "enum": ["Governance", "Security", "Data & Privacy", "Operations", "Engineering", "Audit & Metrics", "Policies"],
+        "description": "Framework domain area (1.x–7.x)"
+      },
+      "version": {
+        "type": "string",
+        "pattern": "^v[0-9]+(\\.[0-9]+)*$",
+        "description": "Document version (e.g., 'v1', 'v1.2')"
+      },
+      "owner": {
+        "type": "string",
+        "minLength": 1,
+        "description": "Responsible party or team"
+      },
+      "status": {
+        "type": "string",
+        "enum": ["Active", "Deprecated", "Withdrawn"],
+        "description": "Lifecycle status per 1.2 Standards Governance Policy"
+      },
+      "effective": {
+        "type": "string",
+        "format": "date",
+        "description": "Effective date (ISO 8601)"
+      },
+      "classification": {
+        "type": "string",
+        "enum": ["PUBLIC", "INTERNAL", "CONFIDENTIAL", "RESTRICTED"],
+        "description": "Data classification per 3.3 STD-DAT-001"
+      },
+      "filename": {
+        "type": "string",
+        "pattern": "^(STD|POL|PLN|TPL|FWK)-[A-Z]{2,3}-[0-9]{3} CYBERCUBE-.+\\.md$",
+        "description": "Canonical filename in the standards repository"
+      },
+      "createdAt": {
+        "type": "string",
+        "format": "date",
+        "description": "ISO 8601 date when record was registered"
+      }
+    }
+  },
+  "uniqueItems": true
+}
