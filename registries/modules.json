@@ -362,5 +362,18 @@
     "dependencies": [],
     "usedByProducts": [],
     "createdAt": "2026-02-10"
+  },
+  {
+    "id": "MOD-029",
+    "slug": "ai-intelligence",
+    "name": "AI Intelligence Module",
+    "scope": "Platform",
+    "reusability": "Global",
+    "stability": "Experimental",
+    "owner": "Engineering",
+    "sourceStandard": "7.2",
+    "dependencies": ["MOD-005", "MOD-009", "MOD-010", "MOD-011", "MOD-012", "MOD-017", "MOD-018", "MOD-019"],
+    "usedByProducts": [],
+    "createdAt": "2026-02-16"
   }
 ]

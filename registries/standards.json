@@ -628,5 +628,19 @@
     "classification": "INTERNAL",
     "filename": "POL-AUP-001 CYBERCUBE-Acceptable-Use-Policy-v1.md",
     "createdAt": "2026-02-10"
+  },
+  {
+    "id": "STD-GOV-006",
+    "catalogNumber": "6.4",
+    "name": "CYBERCUBE Unified Control Matrix",
+    "type": "Standard",
+    "domain": "Audit & Metrics",
+    "version": "v1",
+    "owner": "CISO + Compliance Lead",
+    "status": "Active",
+    "effective": "2026-02-16",
+    "classification": "INTERNAL",
+    "filename": "STD-GOV-006 CYBERCUBE-Unified-Control-Matrix-v1.md",
+    "createdAt": "2026-02-16"
   }
 ]
