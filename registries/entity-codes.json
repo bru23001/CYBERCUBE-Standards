@@ -518,5 +518,75 @@
     "status": "ACTIVE",
     "ccpidStatus": "PENDING",
     "createdAt": "2026-01-17"
+  },
+  {
+    "code": "ACV",
+    "name": "AI Conversation",
+    "category": "AI & Intelligence",
+    "description": "Identifies a conversation thread in the AI Intelligence Module (M-29)",
+    "dbTable": "ai_conversations",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-02-16"
+  },
+  {
+    "code": "APR",
+    "name": "AI Prompt",
+    "category": "AI & Intelligence",
+    "description": "Identifies a prompt template in the AI Intelligence Module (M-29)",
+    "dbTable": "ai_prompts",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-02-16"
+  },
+  {
+    "code": "ADC",
+    "name": "AI Document",
+    "category": "AI & Intelligence",
+    "description": "Identifies a document ingested into a RAG collection in the AI Intelligence Module (M-29)",
+    "dbTable": "ai_documents",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-02-16"
+  },
+  {
+    "code": "ACL",
+    "name": "AI Collection",
+    "category": "AI & Intelligence",
+    "description": "Identifies a RAG document collection in the AI Intelligence Module (M-29)",
+    "dbTable": "ai_collections",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-02-16"
+  },
+  {
+    "code": "AMR",
+    "name": "AI Model Registry",
+    "category": "AI & Intelligence",
+    "description": "Identifies a model entry in the AI Model Registry (M-29 Component G)",
+    "dbTable": "ai_model_registry",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-02-16"
+  },
+  {
+    "code": "ADP",
+    "name": "AI Data Provenance",
+    "category": "AI & Intelligence",
+    "description": "Identifies a data provenance record for AI training/RAG data sources (M-29 §12I)",
+    "dbTable": "ai_data_provenance",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-02-16"
+  },
+  {
+    "code": "AIS",
+    "name": "AI System",
+    "category": "AI & Intelligence",
+    "description": "Identifies a deployed AI system or capability in the AI System Inventory (M-29 §12J)",
+    "dbTable": "ai_systems",
+    "status": "ACTIVE",
+    "ccpidStatus": "PENDING",
+    "createdAt": "2026-02-16"
   }
 ]

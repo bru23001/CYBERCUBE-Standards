@@ -372,7 +372,7 @@
     "stability": "Experimental",
     "owner": "Engineering",
     "sourceStandard": "7.2",
-    "dependencies": ["MOD-005", "MOD-009", "MOD-010", "MOD-011", "MOD-012", "MOD-017", "MOD-018", "MOD-019"],
+    "dependencies": ["MOD-002", "MOD-003", "MOD-004", "MOD-005", "MOD-006", "MOD-009", "MOD-010", "MOD-011", "MOD-012", "MOD-013", "MOD-017", "MOD-018", "MOD-019"],
     "usedByProducts": [],
     "createdAt": "2026-02-16"
   }
