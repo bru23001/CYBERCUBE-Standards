@@ -1,19 +1,20 @@
 # CYBERCUBE Reusable Modules
 
-| Metadata | Value |
-|----------|-------|
-| **Standard ID** | STD-ENG-008 |
-| **Catalog Number** | 5.9 |
-| **Version** | 1.4 |
-| **Status** | Active |
-| **Owner** | Architecture Team |
-| **Last Updated** | 2026-02-11 |
-| **Compliance Level** | Mandatory |
-| **Total Modules** | 40 |
+| Metadata             | Value             |
+| -------------------- | ----------------- |
+| **Standard ID**      | STD-ENG-008       |
+| **Catalog Number**   | 5.9               |
+| **Version**          | 1.4               |
+| **Status**           | Active            |
+| **Owner**            | Architecture Team |
+| **Last Updated**     | 2026-02-11        |
+| **Compliance Level** | Mandatory         |
+| **Total Modules**    | 40                |
 
 > **Purpose:** Canonical registry of all reusable CYBERCUBE modules with interface contracts, dependency maps, and skeleton implementations.
 
 **Related Documents:**
+
 - [Process for Designing Modules](./Process%20for%20Designing%20Modules.md) — How to design new modules
 - [8.1 M-01 Identity Module](./8.1%20M-01%20CYBERCUBE%20Identity%20Module.md) — Detailed Identity spec
 - [8.1.1 MFAOrchestrator](./8.1.1%20MFAOrchestrator.md) — MFA sub-component spec
@@ -56,39 +57,39 @@
 
 ### **CORE INFRASTRUCTURE**
 
-| #              | Module                          | Source Standard     | Key Components                                                                                           |
-| -------------- | ------------------------------- | ------------------- | -------------------------------------------------------------------------------------------------------- |
-| **M-01** | **Identity Module**       | 2.3 Authentication  | User registration, email verification, password hashing (Argon2id), account lockout, MFA (TOTP/WebAuthn) |
-| **M-02** | **Authentication Module** | 2.3 Authentication  | Login/logout, session management, OAuth 2.0/OIDC, SAML SSO, magic links, token refresh                   |
-| **M-03** | **Authorization Module**  | 2.4 Access Control  | RBAC engine, permission evaluation, policy enforcement, ACL management, tenant isolation                 |
-| **M-04** | **API Gateway Module**    | 5.2 API Design      | Rate limiting, request validation, response envelopes, versioning, error handling                        |
-| **M-05** | **Identifier Module**     | 5.1 Naming Standard | CC-PID generation, check digit validation, entity code registry                                          |
-| **M-29** | **Configuration Module**  | 5.4 IaC / 12-Factor | Config sources (env/file/remote), schema validation, defaults, per-environment overrides, env var loading |
-| **M-30** | **Error Handling Module** | 2.2 Secure Coding   | Error taxonomy, standard error classes, error serialization, i18n-ready messages, implements ICD-5        |
-| **M-31** | **Core Utilities Module** | 4.5 Observability   | Date/time (ISO 8601 UTC, timezone), string ops (slugify, truncate, PII-safe), math (currency, precision) |
-| **M-38** | **Localization Module**   | 1.1 Compliance (Content) | Translation management, locale detection, number/date/currency formatting, pluralization, RTL support, i18n key registry |
-| **M-40** | **Cache Module**          | 4.4 SRE / 4.5 Obs  | Cache-aside/write-through/write-behind, Redis/Memcached abstraction, TTL management, tenant-scoped keys, invalidation, stampede protection |
+| #        | Module                    | Source Standard          | Key Components                                                                                                                             |
+| -------- | ------------------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| **M-01** | **Identity Module**       | 2.3 Authentication       | User registration, email verification, password hashing (Argon2id), account lockout, MFA (TOTP/WebAuthn)                                   |
+| **M-02** | **Authentication Module** | 2.3 Authentication       | Login/logout, session management, OAuth 2.0/OIDC, SAML SSO, magic links, token refresh                                                     |
+| **M-03** | **Authorization Module**  | 2.4 Access Control       | RBAC engine, permission evaluation, policy enforcement, ACL management, tenant isolation                                                   |
+| **M-04** | **API Gateway Module**    | 5.2 API Design           | Rate limiting, request validation, response envelopes, versioning, error handling                                                          |
+| **M-05** | **Identifier Module**     | 5.1 Naming Standard      | CC-PID generation, check digit validation, entity code registry                                                                            |
+| **M-29** | **Configuration Module**  | 5.4 IaC / 12-Factor      | Config sources (env/file/remote), schema validation, defaults, per-environment overrides, env var loading                                  |
+| **M-30** | **Error Handling Module** | 2.2 Secure Coding        | Error taxonomy, standard error classes, error serialization, i18n-ready messages, implements ICD-5                                         |
+| **M-31** | **Core Utilities Module** | 4.5 Observability        | Date/time (ISO 8601 UTC, timezone), string ops (slugify, truncate, PII-safe), math (currency, precision)                                   |
+| **M-38** | **Localization Module**   | 1.1 Compliance (Content) | Translation management, locale detection, number/date/currency formatting, pluralization, RTL support, i18n key registry                   |
+| **M-40** | **Cache Module**          | 4.4 SRE / 4.5 Obs        | Cache-aside/write-through/write-behind, Redis/Memcached abstraction, TTL management, tenant-scoped keys, invalidation, stampede protection |
 
 ---
 
 ### **DATA MANAGEMENT**
 
-| #              | Module                               | Source Standard         | Key Components                                                                                       |
-| -------------- | ------------------------------------ | ----------------------- | ---------------------------------------------------------------------------------------------------- |
-| **M-06** | **Data Classification Module** | 3.3 Data Classification | Classification labels (PUBLIC/INTERNAL/CONFIDENTIAL/RESTRICTED), handling rules, encryption triggers |
-| **M-07** | **Soft-Delete Module**         | 3.5 Soft-Delete         | Lifecycle states (ACTIVE→DELETED→PURGED), grace periods, cascade delete, restore API               |
-| **M-08** | **Records Management Module**  | 3.8 Records Management  | Retention policies, legal holds, archive management, disposal workflows                              |
-| **M-09** | **Audit Log Module**           | 4.5 Observability       | Immutable event logging, who/what/when/where capture, tamper detection                               |
-| **M-10** | **Multi-Tenancy Module**       | 3.4 Data Isolation      | Tenant context, row-level security, cross-tenant query prevention                                    |
-| **M-32** | **Data Access Module**         | 5.4 IaC / Architecture  | Repository base, query builder (filter/sort/page), unit of work, transactions, connection pooling, migrations |
+| #        | Module                         | Source Standard         | Key Components                                                                                                                     |
+| -------- | ------------------------------ | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| **M-06** | **Data Classification Module** | 3.3 Data Classification | Classification labels (PUBLIC/INTERNAL/CONFIDENTIAL/RESTRICTED), handling rules, encryption triggers                               |
+| **M-07** | **Soft-Delete Module**         | 3.5 Soft-Delete         | Lifecycle states (ACTIVE→DELETED→PURGED), grace periods, cascade delete, restore API                                               |
+| **M-08** | **Records Management Module**  | 3.8 Records Management  | Retention policies, legal holds, archive management, disposal workflows                                                            |
+| **M-09** | **Audit Log Module**           | 4.5 Observability       | Immutable event logging, who/what/when/where capture, tamper detection                                                             |
+| **M-10** | **Multi-Tenancy Module**       | 3.4 Data Isolation      | Tenant context, row-level security, cross-tenant query prevention                                                                  |
+| **M-32** | **Data Access Module**         | 5.4 IaC / Architecture  | Repository base, query builder (filter/sort/page), unit of work, transactions, connection pooling, migrations                      |
 | **M-39** | **Search Module**              | 5.2 API Design          | Full-text search abstraction (Elasticsearch/Typesense), indexing pipeline, faceted search, relevance tuning, tenant-scoped indices |
 
 ---
 
 ### **OPERATIONS & OBSERVABILITY**
 
-| #              | Module                        | Source Standard   | Key Components                                                           |
-| -------------- | ----------------------------- | ----------------- | ------------------------------------------------------------------------ |
+| #        | Module                  | Source Standard   | Key Components                                                           |
+| -------- | ----------------------- | ----------------- | ------------------------------------------------------------------------ |
 | **M-11** | **Logging Module**      | 4.5 Observability | Structured logging, log levels, PII redaction, correlation IDs           |
 | **M-12** | **Metrics Module**      | 4.5 Observability | Golden signals (latency/traffic/errors/saturation), histograms, counters |
 | **M-13** | **Tracing Module**      | 4.5 Observability | Distributed tracing, span context, OpenTelemetry integration             |
@@ -99,8 +100,8 @@
 
 ### **SECURITY**
 
-| #              | Module                             | Source Standard   | Key Components                                                           |
-| -------------- | ---------------------------------- | ----------------- | ------------------------------------------------------------------------ |
+| #        | Module                       | Source Standard   | Key Components                                                           |
+| -------- | ---------------------------- | ----------------- | ------------------------------------------------------------------------ |
 | **M-16** | **Cryptography Module**      | 2.5 Cryptography  | Key generation, encryption/decryption, key rotation, envelope encryption |
 | **M-17** | **Secret Management Module** | 2.5 Cryptography  | Secret storage, access control, rotation, injection                      |
 | **M-18** | **Input Validation Module**  | 2.2 Secure Coding | Schema validation, sanitization, injection prevention                    |
@@ -111,21 +112,21 @@
 
 ### **COMMUNICATION & INTEGRATION**
 
-| #              | Module                        | Source Standard       | Key Components                                                         |
-| -------------- | ----------------------------- | --------------------- | ---------------------------------------------------------------------- |
-| **M-21** | **Webhook Module**      | 5.3 Webhooks          | Event dispatch, retry logic, signature verification, delivery tracking |
-| **M-22** | **Notification Module** | 4.3 Incident Response | Multi-channel delivery (email/SMS/push), templates, preferences        |
-| **M-23** | **Email Module**        | 2.3 Authentication    | Transactional emails, templates, delivery tracking, bounce handling    |
-| **M-24** | **File Upload Module**  | 5.2 API Design        | Presigned URLs, virus scanning, size limits, type validation           |
-| **M-33** | **HTTP Client Module**  | 4.5 Observability     | Outbound HTTP, retry/backoff, circuit breaker, correlation propagation, mTLS, PII-redacted logging |
+| #        | Module                  | Source Standard        | Key Components                                                                                                        |
+| -------- | ----------------------- | ---------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| **M-21** | **Webhook Module**      | 5.3 Webhooks           | Event dispatch, retry logic, signature verification, delivery tracking                                                |
+| **M-22** | **Notification Module** | 4.3 Incident Response  | Multi-channel delivery (email/SMS/push), templates, preferences                                                       |
+| **M-23** | **Email Module**        | 2.3 Authentication     | Transactional emails, templates, delivery tracking, bounce handling                                                   |
+| **M-24** | **File Upload Module**  | 5.2 API Design         | Presigned URLs, virus scanning, size limits, type validation                                                          |
+| **M-33** | **HTTP Client Module**  | 4.5 Observability      | Outbound HTTP, retry/backoff, circuit breaker, correlation propagation, mTLS, PII-redacted logging                    |
 | **M-34** | **Message Bus Module**  | 5.3 Webhooks / 4.5 Obs | Broker-agnostic pub/sub, dead-letter queues, consumer groups, schema validation, at-least-once delivery, backpressure |
 
 ---
 
 ### **OPERATIONAL PROCESSES**
 
-| #              | Module                               | Source Standard       | Key Components                                                        |
-| -------------- | ------------------------------------ | --------------------- | --------------------------------------------------------------------- |
+| #        | Module                         | Source Standard       | Key Components                                                        |
+| -------- | ------------------------------ | --------------------- | --------------------------------------------------------------------- |
 | **M-25** | **Incident Management Module** | 4.3 Incident Response | Incident declaration, severity classification, escalation, postmortem |
 | **M-26** | **Change Management Module**   | 5.7 Change Management | Change requests, approval workflows, rollback procedures              |
 | **M-27** | **Feature Flag Module**        | 5.6 Release           | Flag management, gradual rollout, A/B testing, kill switches          |
@@ -135,18 +136,18 @@
 
 ### **BUSINESS SERVICES**
 
-| #              | Module                           | Source Standard                | Key Components                                                                     |
-| -------------- | -------------------------------- | ------------------------------ | ---------------------------------------------------------------------------------- |
-| **M-35** | **Billing Module**         | 3.3 Data Classification / 2.5 Crypto | Payment gateway abstraction, subscription lifecycle, plan management, usage metering, invoicing, proration, dunning, refunds, payment method vault |
-| **M-36** | **Workflow Module**        | 5.7 Change Mgmt / 4.3 IR      | State machine definition & execution, task assignment, approval chains, SLA tracking, escalation, parallel/sequential steps, compensation (rollback) |
+| #        | Module              | Source Standard                      | Key Components                                                                                                                                       |
+| -------- | ------------------- | ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **M-35** | **Billing Module**  | 3.3 Data Classification / 2.5 Crypto | Payment gateway abstraction, subscription lifecycle, plan management, usage metering, invoicing, proration, dunning, refunds, payment method vault   |
+| **M-36** | **Workflow Module** | 5.7 Change Mgmt / 4.3 IR             | State machine definition & execution, task assignment, approval chains, SLA tracking, escalation, parallel/sequential steps, compensation (rollback) |
 
 ---
 
 ### **FRONTEND & PRESENTATION**
 
-| #              | Module                           | Source Standard                     | Key Components                                                                     |
-| -------------- | -------------------------------- | ----------------------------------- | ---------------------------------------------------------------------------------- |
-| **M-37** | **UI Foundation Module**   | 1.1 Compliance (Brand) / 5.1 Naming | Design tokens (color/spacing/typography/elevation/motion), theme engine (light/dark/white-label), component library (CYBERCUBE primitives), layout system (responsive grid/page templates/shell), WCAG 2.1 AA accessibility |
+| #        | Module                   | Source Standard                     | Key Components                                                                                                                                                                                                              |
+| -------- | ------------------------ | ----------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **M-37** | **UI Foundation Module** | 1.1 Compliance (Brand) / 5.1 Naming | Design tokens (color/spacing/typography/elevation/motion), theme engine (light/dark/white-label), component library (CYBERCUBE primitives), layout system (responsive grid/page templates/shell), WCAG 2.1 AA accessibility |
 
 ---
 
@@ -413,11 +414,11 @@
 
 ### **FLOW LEGEND & ANALYSIS**
 
-| Flow Type             | Symbol     | Software Equivalent               | Critical Paths                                     |
-| --------------------- | ---------- | --------------------------------- | -------------------------------------------------- |
-| **Data**        | `═══` | Payloads, events, query results   | Client → Gateway → AuthN → Business Logic → DB |
-| **Control**     | `───` | Requests, commands, orchestration | Login: M-04 → M-02 → M-01 → M-03 → Response    |
-| **Runtime Dep** | `∙∙∙` | Service availability (must be up) | M-16/M-17/M-05/M-29/M-30/M-31 → ALL modules        |
+| Flow Type       | Symbol | Software Equivalent               | Critical Paths                                 |
+| --------------- | ------ | --------------------------------- | ---------------------------------------------- |
+| **Data**        | `═══`  | Payloads, events, query results   | Client → Gateway → AuthN → Business Logic → DB |
+| **Control**     | `───`  | Requests, commands, orchestration | Login: M-04 → M-02 → M-01 → M-03 → Response    |
+| **Runtime Dep** | `∙∙∙`  | Service availability (must be up) | M-16/M-17/M-05/M-29/M-30/M-31 → ALL modules    |
 
 ---
 
@@ -571,29 +572,29 @@
 
 For any new CYBERCUBE-compliant project, these modules are **required**:
 
-| Priority     | Module              | Reason                    |
-| ------------ | ------------------- | ------------------------- |
-| **P0** | M-05 Identifier     | All entities need CC-PIDs |
-| **P0** | M-11 Logging        | Compliance & debugging    |
-| **P0** | M-18 Validation     | Security baseline         |
-| **P0** | M-29 Configuration  | All modules need config   |
-| **P0** | M-30 Error Handling | Consistent error taxonomy |
-| **P0** | M-31 Core Utilities | Date/time, string, math   |
-| **P0** | M-32 Data Access    | All persistence goes here |
-| **P1** | M-01 Identity       | User management           |
-| **P1** | M-02 Authentication | Access control            |
-| **P1** | M-03 Authorization  | Permission enforcement    |
-| **P1** | M-10 Multi-Tenancy  | Data isolation            |
-| **P1** | M-33 HTTP Client    | Outbound HTTP transport   |
-| **P1** | M-34 Message Bus    | Async event transport     |
-| **P1** | M-40 Cache          | Performance & resilience  |
-| **P2** | M-07 Soft-Delete    | Data lifecycle            |
-| **P2** | M-09 Audit Log      | Compliance                |
-| **P2** | M-35 Billing        | Revenue operations        |
-| **P2** | M-36 Workflow       | Process orchestration     |
-| **P2** | M-37 UI Foundation  | Frontend consistency      |
-| **P2** | M-38 Localization   | Multi-locale support      |
-| **P2** | M-39 Search         | Full-text search          |
+| Priority | Module              | Reason                    |
+| -------- | ------------------- | ------------------------- |
+| **P0**   | M-05 Identifier     | All entities need CC-PIDs |
+| **P0**   | M-11 Logging        | Compliance & debugging    |
+| **P0**   | M-18 Validation     | Security baseline         |
+| **P0**   | M-29 Configuration  | All modules need config   |
+| **P0**   | M-30 Error Handling | Consistent error taxonomy |
+| **P0**   | M-31 Core Utilities | Date/time, string, math   |
+| **P0**   | M-32 Data Access    | All persistence goes here |
+| **P1**   | M-01 Identity       | User management           |
+| **P1**   | M-02 Authentication | Access control            |
+| **P1**   | M-03 Authorization  | Permission enforcement    |
+| **P1**   | M-10 Multi-Tenancy  | Data isolation            |
+| **P1**   | M-33 HTTP Client    | Outbound HTTP transport   |
+| **P1**   | M-34 Message Bus    | Async event transport     |
+| **P1**   | M-40 Cache          | Performance & resilience  |
+| **P2**   | M-07 Soft-Delete    | Data lifecycle            |
+| **P2**   | M-09 Audit Log      | Compliance                |
+| **P2**   | M-35 Billing        | Revenue operations        |
+| **P2**   | M-36 Workflow       | Process orchestration     |
+| **P2**   | M-37 UI Foundation  | Frontend consistency      |
+| **P2**   | M-38 Localization   | Multi-locale support      |
+| **P2**   | M-39 Search         | Full-text search          |
 
 ## Interface Control Document (ICD)
 
@@ -603,13 +604,13 @@ For any new CYBERCUBE-compliant project, these modules are **required**:
 
 ### ICD-1. Interface Classification
 
-| Interface Type     | Description                          | Example                                   |
-| ------------------ | ------------------------------------ | ----------------------------------------- |
-| **SYNC**     | Synchronous request/response         | `AuthModule.verifyToken(token) → User` |
-| **ASYNC**    | Fire-and-forget events               | `AuditModule.emit(event)`               |
-| **STREAM**   | Continuous data flow                 | `MetricsModule.subscribe(metric)`       |
-| **CALLBACK** | Inverted control (hook registration) | `WebhookModule.onEvent(handler)`        |
-| **PORT**     | Dependency injection interface       | `IUserRepository`, `IAuditPort`       |
+| Interface Type | Description                          | Example                                |
+| -------------- | ------------------------------------ | -------------------------------------- |
+| **SYNC**       | Synchronous request/response         | `AuthModule.verifyToken(token) → User` |
+| **ASYNC**      | Fire-and-forget events               | `AuditModule.emit(event)`              |
+| **STREAM**     | Continuous data flow                 | `MetricsModule.subscribe(metric)`      |
+| **CALLBACK**   | Inverted control (hook registration) | `WebhookModule.onEvent(handler)`       |
+| **PORT**       | Dependency injection interface       | `IUserRepository`, `IAuditPort`        |
 
 ---
 
@@ -3867,7 +3868,7 @@ For any new CYBERCUBE-compliant project, these modules are **required**:
 //═══════════════════════════════════════════════════════════════════════════════
 
 INTERFACE ICybercubeModule {
-  
+
   //─────────────────────────────────────────────────────────────────────────────
   // IDENTITY (Critical Dimension: Module must be uniquely identifiable)
   //─────────────────────────────────────────────────────────────────────────────
@@ -3875,14 +3876,14 @@ INTERFACE ICybercubeModule {
   READONLY moduleName    : String          // e.g., "Identity Module"
   READONLY version       : SemVer          // e.g., "1.2.3"
   READONLY dependencies  : List<ModuleCode> // Modules this depends on
-  
+
   //─────────────────────────────────────────────────────────────────────────────
   // LIFECYCLE (Critical Dimension: Predictable startup/shutdown)
   //─────────────────────────────────────────────────────────────────────────────
   FUNCTION initialize(config: ModuleConfig) → Result<void, InitError>
   FUNCTION shutdown(timeout: Duration) → Result<void, ShutdownError>
   FUNCTION getStatus() → ModuleStatus
-  
+
   //─────────────────────────────────────────────────────────────────────────────
   // HEALTH (Critical Dimension: Observable health state)
   //─────────────────────────────────────────────────────────────────────────────
@@ -3891,14 +3892,14 @@ INTERFACE ICybercubeModule {
     checks    : List<DependencyCheck>
     timestamp : Timestamp
   }
-  
+
   //─────────────────────────────────────────────────────────────────────────────
   // OBSERVABILITY HOOKS (Critical Dimension: All modules must be observable)
   //─────────────────────────────────────────────────────────────────────────────
   READONLY logger  : ILogger       // Injected, never instantiate own
   READONLY metrics : IMetrics      // Injected, never instantiate own
   READONLY tracer  : ITracer       // Injected, never instantiate own
-  
+
 }
 
 //─────────────────────────────────────────────────────────────────────────────
@@ -4170,7 +4171,7 @@ INTERFACE ICacheService {
 //═══════════════════════════════════════════════════════════════════════════════
 
 CLASS RequestContext {
-  
+
   //─────────────────────────────────────────────────────────────────────────────
   // IDENTITY DIMENSIONS (Who is making this request)
   //─────────────────────────────────────────────────────────────────────────────
@@ -4179,39 +4180,39 @@ CLASS RequestContext {
   READONLY tenantId      : TenantId       // Multi-tenant isolation
   READONLY userId        : UserId?        // Authenticated user (if any)
   READONLY sessionId     : SessionId?     // Session reference (if any)
-  
+
   //─────────────────────────────────────────────────────────────────────────────
   // TIMING DIMENSIONS (When and how long)
   //─────────────────────────────────────────────────────────────────────────────
   READONLY timestamp     : Timestamp      // Request start time
   READONLY deadline      : Timestamp?     // When to give up
-  
+
   //─────────────────────────────────────────────────────────────────────────────
   // ORIGIN DIMENSIONS (Where did it come from)
   //─────────────────────────────────────────────────────────────────────────────
   READONLY sourceIp      : IpAddress?     // Client IP
   READONLY userAgent     : String?        // Client identifier
   READONLY sourceModule  : ModuleCode?    // If internal call
-  
+
   //─────────────────────────────────────────────────────────────────────────────
   // TRACING DIMENSIONS (Observability thread)
   //─────────────────────────────────────────────────────────────────────────────
   READONLY spanContext   : SpanContext?   // Distributed tracing
-  
+
   //─────────────────────────────────────────────────────────────────────────────
   // FACTORY METHODS
   //─────────────────────────────────────────────────────────────────────────────
   STATIC FUNCTION fromHttpRequest(req: HttpRequest) → RequestContext
   STATIC FUNCTION fromEvent(event: DomainEvent) → RequestContext
   STATIC FUNCTION forInternal(sourceModule: ModuleCode) → RequestContext
-  
+
   //─────────────────────────────────────────────────────────────────────────────
   // PROPAGATION
   //─────────────────────────────────────────────────────────────────────────────
   FUNCTION withDeadline(deadline: Timestamp) → RequestContext
   FUNCTION withUserId(userId: UserId) → RequestContext
   FUNCTION toHeaders() → Map<String, String>
-  
+
 }
 
 //─────────────────────────────────────────────────────────────────────────────
@@ -4235,7 +4236,7 @@ CLASS ContextHolder {
 //  Exceptions MUST NOT cross module boundaries.
 //═══════════════════════════════════════════════════════════════════════════════
 
-TYPE Result<T, E> = 
+TYPE Result<T, E> =
   | { ok: true,  value: T }
   | { ok: false, error: E }
 
@@ -4249,7 +4250,7 @@ CLASS ModuleError {
   retryable   : Boolean         // Can caller retry?
   cause       : Error?          // Original error (internal only)
   context     : Object?         // Additional debug info
-  
+
   //─────────────────────────────────────────────────────────────────────────────
   // ERROR CATEGORIES (For circuit breaker decisions)
   //─────────────────────────────────────────────────────────────────────────────
@@ -4286,68 +4287,68 @@ ENUM ErrorCategory {
 //═══════════════════════════════════════════════════════════════════════════════
 
 BOUNDARY_RULES {
-  
+
   //─────────────────────────────────────────────────────────────────────────────
   // RULE 1: Single Responsibility
   //─────────────────────────────────────────────────────────────────────────────
   // Each module owns ONE domain concept. Violations detected by:
-  
+
   M-01 Identity     OWNS: User records, credentials, MFA enrollment
                     FORBIDDEN: Sessions, tokens, permissions
-  
+
   M-02 AuthN        OWNS: Sessions, tokens, OAuth flows
                     FORBIDDEN: User records, passwords, authorization
-  
+
   M-03 AuthZ        OWNS: Roles, permissions, policies
                     FORBIDDEN: User identity, authentication, sessions
-  
+
   M-09 Audit        OWNS: Event storage, compliance queries
                     FORBIDDEN: Business logic decisions, filtering events
-  
+
   M-10 Tenant       OWNS: Tenant context, isolation queries
                     FORBIDDEN: Business data, user data, permissions
-  
+
   M-29 Config       OWNS: Config sources, env var loading, schema validation, defaults
                     FORBIDDEN: Secrets (→ M-17), business logic, runtime state
-  
+
   M-30 Errors       OWNS: Error taxonomy, error classes, serialization, i18n messages
                     FORBIDDEN: Business logic, error recovery decisions, logging (→ M-11)
-  
+
   M-31 Utils        OWNS: Date/time, string ops, math precision, PII masking helpers
                     FORBIDDEN: Persistence, config, business rules, side effects
-  
+
   M-32 Data Access  OWNS: Repositories, query building, transactions, connection pool, migrations
                     FORBIDDEN: Business logic, domain validation, direct SQL in consumers
-  
+
   M-33 HTTP Client  OWNS: Outbound HTTP, retry/backoff, circuit breakers, connection pooling, correlation propagation
                     FORBIDDEN: Business logic, response interpretation, domain-specific error mapping
-  
+
   M-34 Message Bus  OWNS: Broker abstraction, pub/sub transport, DLQ, consumer groups, schema validation, backpressure
                     FORBIDDEN: Business logic, message interpretation, domain-specific routing decisions
-  
+
   M-35 Billing      OWNS: Payment processing, subscriptions, plans, invoicing, usage metering, dunning, refunds
                     FORBIDDEN: Product feature logic, authorization decisions, user management, direct gateway calls outside adapter
-  
+
   M-36 Workflow     OWNS: State machine execution, task management, approval chains, SLA tracking, escalation, compensation
                     FORBIDDEN: Business logic (consumers define it), domain-specific decisions, direct user notification (delegates to M-22)
-  
+
   M-37 UI Foundation OWNS: Design tokens, theme engine, component library, layout system, accessibility primitives
                     FORBIDDEN: Business logic, API calls (consumers make API calls), state management, routing
-  
+
   M-38 Localization  OWNS: Translation files, locale detection, number/date/currency formatting, pluralization
                     FORBIDDEN: Business logic, persistence, user preferences (consumers store locale per user)
-  
+
   M-39 Search        OWNS: Index management, full-text queries, faceted search, relevance tuning, reindexing
                     FORBIDDEN: Source-of-truth data (M-32 owns), business logic, direct DB queries
-  
+
   M-40 Cache         OWNS: Cache key management, TTL, invalidation, stampede protection, backend abstraction
                     FORBIDDEN: Business logic, data ownership (cache = derived), persistence (cache is ephemeral)
-  
+
   //─────────────────────────────────────────────────────────────────────────────
   // RULE 2: Data Ownership
   //─────────────────────────────────────────────────────────────────────────────
   // Each module owns its database tables. Cross-module data access is FORBIDDEN.
-  
+
   M-01 → users, user_credentials, user_mfa_methods
   M-02 → sessions, refresh_tokens, oauth_states
   M-03 → roles, permissions, role_assignments, policies
@@ -4365,14 +4366,14 @@ BOUNDARY_RULES {
   M-38 → (stateless — translation files on disk/CDN, no database tables)
   M-39 → search_index_configs (index metadata); actual search data in search engine
   M-40 → (stateless — cache state in Redis/Memcached, no database tables)
-  
+
   // Data is exchanged ONLY through defined interfaces, never direct DB access.
-  
+
   //─────────────────────────────────────────────────────────────────────────────
   // RULE 3: Event Ownership
   //─────────────────────────────────────────────────────────────────────────────
   // Modules emit events in their namespace only.
-  
+
   M-01 EMITS: cybercube.identity.*
   M-02 EMITS: cybercube.auth.*
   M-03 EMITS: cybercube.authz.*
@@ -4386,15 +4387,15 @@ BOUNDARY_RULES {
   M-38 EMITS: (none — stateless in-process library)
   M-39 EMITS: cybercube.search.*
   M-40 EMITS: (none — synchronous in-process; metrics via M-12)
-  
+
   // M-30 and M-31 are stateless utilities — they do NOT emit domain events.
   // Modules can SUBSCRIBE to any event but MUST NOT modify events from others.
-  
+
   //─────────────────────────────────────────────────────────────────────────────
   // RULE 4: API Surface
   //─────────────────────────────────────────────────────────────────────────────
   // Modules expose endpoints in their path namespace only.
-  
+
   M-01 OWNS: /api/v*/identity/*, /api/v*/users/*
   M-02 OWNS: /api/v*/auth/*, /api/v*/sessions/*
   M-03 OWNS: /api/v*/authz/*, /api/v*/roles/*, /api/v*/permissions/*
@@ -4402,12 +4403,12 @@ BOUNDARY_RULES {
   M-29 OWNS: /api/v*/config/* (internal only)
   M-39 OWNS: /api/v*/search/*
   // M-30, M-31, M-38, M-40 are library modules — they expose NO API endpoints.
-  
+
   //─────────────────────────────────────────────────────────────────────────────
   // RULE 5: Dependency Direction
   //─────────────────────────────────────────────────────────────────────────────
   // Dependencies flow DOWN only. Cycles are FORBIDDEN.
-  
+
   ALLOWED:    M-02 → M-01 (AuthN calls Identity)
   ALLOWED:    M-03 → M-01 (AuthZ calls Identity for user context)
   ALLOWED:    ALL  → M-29 (Any module may consume config)
@@ -4425,7 +4426,7 @@ BOUNDARY_RULES {
   FORBIDDEN:  M-01 → M-02 (Identity MUST NOT call AuthN)
   FORBIDDEN:  M-01 ↔ M-03 (Bidirectional dependencies)
   FORBIDDEN:  M-29/M-30/M-31/M-38/M-40 → business modules (Foundation MUST NOT call up)
-  
+
 }
 ```
 
@@ -4519,80 +4520,80 @@ BOUNDARY_RULES {
 
 Before a module is considered "skeleton-compliant", verify:
 
-| Check | Requirement                     | Verification                      |
-| ----- | ------------------------------- | --------------------------------- |
-| □    | Implements `ICybercubeModule` | Type system enforces              |
-| □    | Uses only injected ports        | No `new` of infrastructure      |
-| □    | Propagates `RequestContext`   | All public methods accept context |
-| □    | Returns `Result<T, E>`        | No thrown exceptions at boundary  |
-| □    | Emits events in own namespace   | Event type prefix matches module  |
-| □    | Owns only designated tables     | Schema review                     |
-| □    | Exposes only designated APIs    | Route audit                       |
-| □    | Dependencies flow downward      | Dependency graph check            |
-| □    | Health check includes deps      | Test with deps down               |
-| □    | Graceful shutdown works         | Test with SIGTERM                 |
+| Check | Requirement                   | Verification                      |
+| ----- | ----------------------------- | --------------------------------- |
+| □     | Implements `ICybercubeModule` | Type system enforces              |
+| □     | Uses only injected ports      | No `new` of infrastructure        |
+| □     | Propagates `RequestContext`   | All public methods accept context |
+| □     | Returns `Result<T, E>`        | No thrown exceptions at boundary  |
+| □     | Emits events in own namespace | Event type prefix matches module  |
+| □     | Owns only designated tables   | Schema review                     |
+| □     | Exposes only designated APIs  | Route audit                       |
+| □     | Dependencies flow downward    | Dependency graph check            |
+| □     | Health check includes deps    | Test with deps down               |
+| □     | Graceful shutdown works       | Test with SIGTERM                 |
 
 ---
 
 ## Version History
 
-| Version | Date | Author | Changes |
-|---------|------|--------|---------|
-| 1.0 | 2026-02-05 | Architecture Team | Initial consolidated release with 28 modules, ICDs, skeleton interfaces |
-| 1.1 | 2026-02-09 | Architecture Team | ICD-3.1: Added magic link interfaces + events. ICD-3.2: Added SAML SSO, expanded CONSUMES + events, added DEPENDENCIES section. ICD-3.16: Expanded algorithms per STD-SEC-005, added PROHIBITED list. ICD-3.17: Added GCP Secret Manager as primary backend. ICD-3.11: Expanded log format per STD-OPS-003. ICD-3.12: Fixed metric naming to `cybercube_` prefix + `_ms`. ICD-3.4: Audit retention updated to 2 years (immutable). ICD-4: Aligned TenantId to `ACC` per STD-DAT-004. ICD-5: Added 5 error namespaces (CLS, DEL, REC, FILE, BKP) + AUTH_006–AUTH_012. ICD-8: Added 9 event namespaces for M-06–M-28 + expanded identity/auth events. Metadata: Added Compliance Level, updated version. |
-| 1.2 | 2026-02-11 | Architecture Team | Added 3 Core Infrastructure modules: M-29 Configuration, M-30 Error Handling, M-31 Core Utilities. Added 1 Data Management module: M-32 Data Access (repository base, query builder, unit of work, transactions, connection pooling, tenant-scoped query decoration, soft-delete filtering, migration runner, read replica routing). Updated: Module Dependency Map (foundation + persistence gateway layers), System Block Diagram (M-32 Data Access Layer wrapping persistence), ICD-2 dependency matrix, ICD-3 contracts (3.29–3.32), ICD-4 (QuerySpec, Operator, TransactionOpts, IsolationLevel), ICD-5 error namespaces (CFG, ERR, UTL, DAL + 8 error codes), ICD-8 (cybercube.dal.* events), boundary rules, skeleton ports (IConfigProvider, IErrorFactory, IDateTimeService, IStringService, IMathService, IQueryBuilder, IDataAccessService; IRepository expanded), assembly diagram, priority table (all P0). Total modules: 28 → 32. |
-| 1.2.1 | 2026-02-11 | Architecture Team | Added M-33 HTTP Client Module (Communication & Integration). Standardizes outbound HTTP: retry/exponential backoff, per-host circuit breaker, correlation ID propagation (W3C Trace Context + X-Request-ID), mTLS support, PII-redacted logging. Updated: ICD-2 matrix (M-33 column), ICD-3.33 full interface contract, ICD-4 (HttpMethod, CircuitState, RetryConfig, HttpResponse), ICD-5 (HTP_001–HTP_008), ICD-8 (cybercube.httpclient.* events), boundary rules, skeleton ports (IHttpClient), assembly diagram, failure isolation (Domain D). Priority: P1. Total modules: 32 → 33. |
-| 1.2.2 | 2026-02-11 | Architecture Team | Added M-34 Message Bus Module (Communication & Integration). Broker-agnostic async transport: pub/sub, consumer groups, dead-letter queues, schema validation, backpressure, poison message handling. Implements ICD-8 Event Bus Contract transport layer. Updated: ICD-2 matrix (M-34 column — ASYNC from all event-emitting modules), ICD-3.34 full interface contract, ICD-4 (TopicName, MessageId, ConsumerGroupConfig, TopicMetrics, BackpressureConfig), ICD-5 (MBU_001–MBU_008), ICD-8 (M-34 noted as transport provider + cybercube.msgbus.* events), boundary rules, skeleton ports (IMessageBus), assembly diagram, failure isolation (Domain D). Priority: P1. Total modules: 33 → 34. |
-| 1.3 | 2026-02-11 | Architecture Team | New category: **Business Services**. Added M-35 Billing Module (payment gateway abstraction Stripe/Braintree/Adyen, subscription lifecycle TRIAL→ACTIVE→PAST_DUE→CANCELLED, plan management, usage metering, invoicing, proration, dunning, refunds, PCI-compliant tokenization). Added M-36 Workflow Module (state machine definition & execution, task assignment, approval chains, SLA tracking with escalation, parallel/sequential steps, compensation on failure, checkpoint recovery). Consumers: M-25 Incident/M-26 Change/M-35 Billing define workflows, M-36 executes. Updated: Module Dependency Map (Business Services layer), System Block Diagram (M-35/M-36 block), ICD-2 matrix (M-35/M-36 columns), ICD-3.35 + ICD-3.36 full contracts, ICD-4 (14 billing types + 8 workflow types), ICD-5 (BIL_001–BIL_010 + WFL_001–WFL_010), ICD-8 (cybercube.billing.* 14 events + cybercube.workflow.* 17 events), boundary rules (6 rules each), skeleton ports (IBillingService, IWorkflowService), assembly diagram, failure isolation (Domain F: Business Services). Priority: P2. Total modules: 34 → 36. |
-| 1.3.1 | 2026-02-11 | Architecture Team | New category: **Frontend & Presentation**. Added M-37 UI Foundation Module (design tokens — color/spacing/typography/elevation/motion/breakpoints, theme engine — light/dark/white-label per tenant via M-10, component library — 6 categories ~30 primitives, layout system — 12-column grid + 5 page templates, WCAG 2.1 AA mandatory). Client-side only — no server dependencies, no event bus. Updated: System Block Diagram (M-37 between clients and API boundary), ICD-2 matrix (M-37 column — SYNC to M-10/M-29 only), ICD-3.37 full contract, ICD-4 (8 UI types), ICD-5 (UI_001–UI_005), boundary rules, skeleton ports (IThemeProvider, ITokenProvider), assembly diagram, failure isolation (Domain G: Frontend — fallback to default theme on error). Priority: P2. Total modules: 36 → 37. |
-| 1.4 | 2026-02-11 | Architecture Team | Added 3 modules from gap analysis. **M-38 Localization Module** (P2, Core Infrastructure): translation management, BCP 47 locale detection, ICU MessageFormat pluralization, number/date/currency formatting, RTL support, lazy namespace loading, fallback chain. **M-39 Search Module** (P2, Data Management): full-text search abstraction (Elasticsearch/Typesense/OpenSearch), tenant-scoped indices, faceted search, relevance tuning, event-driven reindexing via M-34, alias-swap zero-downtime reindex. **M-40 Cache Module** (P1, Core Infrastructure): cache-aside/write-through/write-behind/read-through strategies, Redis/Memcached abstraction, tenant-scoped keys per STD-DAT-004, TTL management, tag-based invalidation, stampede protection (singleflight + probabilistic early expiry), CONFIDENTIAL+ data encrypted via M-16. Updated: catalog tables, dependency map, system block diagram, failure isolation (Domain B + E), priority table, ICD-2 matrix (3 new rows/columns), ICD-3.38–3.40 full contracts, ICD-4 (12 i18n + 10 search + 5 cache types), ICD-5 (I18N_001–004, SRC_001–006, CSH_001–006), ICD-8 (cybercube.search.* 6 events), boundary rules (all 5 rules updated), skeleton ports (ILocalizationService, ISearchService, ICacheService), assembly diagram. Total modules: 37 → 40. |
+| Version | Date       | Author            | Changes                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| ------- | ---------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1.0     | 2026-02-05 | Architecture Team | Initial consolidated release with 28 modules, ICDs, skeleton interfaces                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| 1.1     | 2026-02-09 | Architecture Team | ICD-3.1: Added magic link interfaces + events. ICD-3.2: Added SAML SSO, expanded CONSUMES + events, added DEPENDENCIES section. ICD-3.16: Expanded algorithms per STD-SEC-005, added PROHIBITED list. ICD-3.17: Added GCP Secret Manager as primary backend. ICD-3.11: Expanded log format per STD-OPS-003. ICD-3.12: Fixed metric naming to `cybercube_` prefix + `_ms`. ICD-3.4: Audit retention updated to 2 years (immutable). ICD-4: Aligned TenantId to `ACC` per STD-DAT-004. ICD-5: Added 5 error namespaces (CLS, DEL, REC, FILE, BKP) + AUTH_006–AUTH_012. ICD-8: Added 9 event namespaces for M-06–M-28 + expanded identity/auth events. Metadata: Added Compliance Level, updated version.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| 1.2     | 2026-02-11 | Architecture Team | Added 3 Core Infrastructure modules: M-29 Configuration, M-30 Error Handling, M-31 Core Utilities. Added 1 Data Management module: M-32 Data Access (repository base, query builder, unit of work, transactions, connection pooling, tenant-scoped query decoration, soft-delete filtering, migration runner, read replica routing). Updated: Module Dependency Map (foundation + persistence gateway layers), System Block Diagram (M-32 Data Access Layer wrapping persistence), ICD-2 dependency matrix, ICD-3 contracts (3.29–3.32), ICD-4 (QuerySpec, Operator, TransactionOpts, IsolationLevel), ICD-5 error namespaces (CFG, ERR, UTL, DAL + 8 error codes), ICD-8 (cybercube.dal.\* events), boundary rules, skeleton ports (IConfigProvider, IErrorFactory, IDateTimeService, IStringService, IMathService, IQueryBuilder, IDataAccessService; IRepository expanded), assembly diagram, priority table (all P0). Total modules: 28 → 32.                                                                                                                                                                                                                                                                                                                                                                             |
+| 1.2.1   | 2026-02-11 | Architecture Team | Added M-33 HTTP Client Module (Communication & Integration). Standardizes outbound HTTP: retry/exponential backoff, per-host circuit breaker, correlation ID propagation (W3C Trace Context + X-Request-ID), mTLS support, PII-redacted logging. Updated: ICD-2 matrix (M-33 column), ICD-3.33 full interface contract, ICD-4 (HttpMethod, CircuitState, RetryConfig, HttpResponse), ICD-5 (HTP_001–HTP_008), ICD-8 (cybercube.httpclient.\* events), boundary rules, skeleton ports (IHttpClient), assembly diagram, failure isolation (Domain D). Priority: P1. Total modules: 32 → 33.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| 1.2.2   | 2026-02-11 | Architecture Team | Added M-34 Message Bus Module (Communication & Integration). Broker-agnostic async transport: pub/sub, consumer groups, dead-letter queues, schema validation, backpressure, poison message handling. Implements ICD-8 Event Bus Contract transport layer. Updated: ICD-2 matrix (M-34 column — ASYNC from all event-emitting modules), ICD-3.34 full interface contract, ICD-4 (TopicName, MessageId, ConsumerGroupConfig, TopicMetrics, BackpressureConfig), ICD-5 (MBU_001–MBU_008), ICD-8 (M-34 noted as transport provider + cybercube.msgbus.\* events), boundary rules, skeleton ports (IMessageBus), assembly diagram, failure isolation (Domain D). Priority: P1. Total modules: 33 → 34.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| 1.3     | 2026-02-11 | Architecture Team | New category: **Business Services**. Added M-35 Billing Module (payment gateway abstraction Stripe/Braintree/Adyen, subscription lifecycle TRIAL→ACTIVE→PAST*DUE→CANCELLED, plan management, usage metering, invoicing, proration, dunning, refunds, PCI-compliant tokenization). Added M-36 Workflow Module (state machine definition & execution, task assignment, approval chains, SLA tracking with escalation, parallel/sequential steps, compensation on failure, checkpoint recovery). Consumers: M-25 Incident/M-26 Change/M-35 Billing define workflows, M-36 executes. Updated: Module Dependency Map (Business Services layer), System Block Diagram (M-35/M-36 block), ICD-2 matrix (M-35/M-36 columns), ICD-3.35 + ICD-3.36 full contracts, ICD-4 (14 billing types + 8 workflow types), ICD-5 (BIL_001–BIL_010 + WFL_001–WFL_010), ICD-8 (cybercube.billing.* 14 events + cybercube.workflow.\_ 17 events), boundary rules (6 rules each), skeleton ports (IBillingService, IWorkflowService), assembly diagram, failure isolation (Domain F: Business Services). Priority: P2. Total modules: 34 → 36.                                                                                                                                                                                                         |
+| 1.3.1   | 2026-02-11 | Architecture Team | New category: **Frontend & Presentation**. Added M-37 UI Foundation Module (design tokens — color/spacing/typography/elevation/motion/breakpoints, theme engine — light/dark/white-label per tenant via M-10, component library — 6 categories ~30 primitives, layout system — 12-column grid + 5 page templates, WCAG 2.1 AA mandatory). Client-side only — no server dependencies, no event bus. Updated: System Block Diagram (M-37 between clients and API boundary), ICD-2 matrix (M-37 column — SYNC to M-10/M-29 only), ICD-3.37 full contract, ICD-4 (8 UI types), ICD-5 (UI_001–UI_005), boundary rules, skeleton ports (IThemeProvider, ITokenProvider), assembly diagram, failure isolation (Domain G: Frontend — fallback to default theme on error). Priority: P2. Total modules: 36 → 37.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| 1.4     | 2026-02-11 | Architecture Team | Added 3 modules from gap analysis. **M-38 Localization Module** (P2, Core Infrastructure): translation management, BCP 47 locale detection, ICU MessageFormat pluralization, number/date/currency formatting, RTL support, lazy namespace loading, fallback chain. **M-39 Search Module** (P2, Data Management): full-text search abstraction (Elasticsearch/Typesense/OpenSearch), tenant-scoped indices, faceted search, relevance tuning, event-driven reindexing via M-34, alias-swap zero-downtime reindex. **M-40 Cache Module** (P1, Core Infrastructure): cache-aside/write-through/write-behind/read-through strategies, Redis/Memcached abstraction, tenant-scoped keys per STD-DAT-004, TTL management, tag-based invalidation, stampede protection (singleflight + probabilistic early expiry), CONFIDENTIAL+ data encrypted via M-16. Updated: catalog tables, dependency map, system block diagram, failure isolation (Domain B + E), priority table, ICD-2 matrix (3 new rows/columns), ICD-3.38–3.40 full contracts, ICD-4 (12 i18n + 10 search + 5 cache types), ICD-5 (I18N_001–004, SRC_001–006, CSH_001–006), ICD-8 (cybercube.search.\* 6 events), boundary rules (all 5 rules updated), skeleton ports (ILocalizationService, ISearchService, ICacheService), assembly diagram. Total modules: 37 → 40. |
 
 ---
 
 ## Module Documentation Status
 
-| Module | Detailed Doc | ICD Complete | Status |
-|--------|--------------|--------------|--------|
-| M-01 Identity | [8.1](./8.1%20M-01%20CYBERCUBE%20Identity%20Module.md) | ✓ | Complete |
-| M-02 Authentication | [8.2](./8.2%20M-02%20CYBERCUBE%20Authentication%20Module.md) | ✓ | Complete |
-| M-03 Authorization | — | ✓ | ICD only |
-| M-04 API Gateway | — | ✓ | ICD only |
-| M-05 Identifier | — | ✓ | ICD only |
-| M-06 Data Classification | — | ✓ | ICD only |
-| M-07 Soft-Delete | — | ✓ | ICD only |
-| M-08 Records Management | — | ✓ | ICD only |
-| M-09 Audit Log | — | ✓ | ICD only |
-| M-10 Multi-Tenancy | — | ✓ | ICD only |
-| M-11 Logging | — | ✓ | ICD only |
-| M-12 Metrics | — | ✓ | ICD only |
-| M-13 Tracing | — | ✓ | ICD only |
-| M-14 Alerting | — | ✓ | ICD only |
-| M-15 Health Check | — | ✓ | ICD only |
-| M-16 Cryptography | — | ✓ | ICD only |
-| M-17 Secret Management | — | ✓ | ICD only |
-| M-18 Input Validation | — | ✓ | ICD only |
-| M-19 Rate Limiting | — | ✓ | ICD only |
-| M-20 Security Headers | — | ✓ | ICD only |
-| M-21 Webhook | — | ✓ | ICD only |
-| M-22 Notification | — | ✓ | ICD only |
-| M-23 Email | — | ✓ | ICD only |
-| M-24 File Upload | — | ✓ | ICD only |
-| M-25 Incident Management | — | ✓ | ICD only |
-| M-26 Change Management | — | ✓ | ICD only |
-| M-27 Feature Flag | — | ✓ | ICD only |
-| M-28 Backup | — | ✓ | ICD only |
-| M-29 Configuration | — | ✓ | ICD only |
-| M-30 Error Handling | — | ✓ | ICD only |
-| M-31 Core Utilities | — | ✓ | ICD only |
-| M-32 Data Access | — | ✓ | ICD only |
-| M-33 HTTP Client | — | ✓ | ICD only |
-| M-34 Message Bus | — | ✓ | ICD only |
-| M-35 Billing | — | ✓ | ICD only |
-| M-36 Workflow | — | ✓ | ICD only |
-| M-37 UI Foundation | — | ✓ | ICD only |
-| M-38 Localization | — | ✓ | ICD only |
-| M-39 Search | — | ✓ | ICD only |
-| M-40 Cache | — | ✓ | ICD only |
+| Module                   | Detailed Doc                                                 | ICD Complete | Status   |
+| ------------------------ | ------------------------------------------------------------ | ------------ | -------- |
+| M-01 Identity            | [8.1](./8.1%20M-01%20CYBERCUBE%20Identity%20Module.md)       | ✓            | Complete |
+| M-02 Authentication      | [8.2](./8.2%20M-02%20CYBERCUBE%20Authentication%20Module.md) | ✓            | Complete |
+| M-03 Authorization       | —                                                            | ✓            | ICD only |
+| M-04 API Gateway         | —                                                            | ✓            | ICD only |
+| M-05 Identifier          | —                                                            | ✓            | ICD only |
+| M-06 Data Classification | —                                                            | ✓            | ICD only |
+| M-07 Soft-Delete         | —                                                            | ✓            | ICD only |
+| M-08 Records Management  | —                                                            | ✓            | ICD only |
+| M-09 Audit Log           | —                                                            | ✓            | ICD only |
+| M-10 Multi-Tenancy       | —                                                            | ✓            | ICD only |
+| M-11 Logging             | —                                                            | ✓            | ICD only |
+| M-12 Metrics             | —                                                            | ✓            | ICD only |
+| M-13 Tracing             | —                                                            | ✓            | ICD only |
+| M-14 Alerting            | —                                                            | ✓            | ICD only |
+| M-15 Health Check        | —                                                            | ✓            | ICD only |
+| M-16 Cryptography        | —                                                            | ✓            | ICD only |
+| M-17 Secret Management   | —                                                            | ✓            | ICD only |
+| M-18 Input Validation    | —                                                            | ✓            | ICD only |
+| M-19 Rate Limiting       | —                                                            | ✓            | ICD only |
+| M-20 Security Headers    | —                                                            | ✓            | ICD only |
+| M-21 Webhook             | —                                                            | ✓            | ICD only |
+| M-22 Notification        | —                                                            | ✓            | ICD only |
+| M-23 Email               | —                                                            | ✓            | ICD only |
+| M-24 File Upload         | —                                                            | ✓            | ICD only |
+| M-25 Incident Management | —                                                            | ✓            | ICD only |
+| M-26 Change Management   | —                                                            | ✓            | ICD only |
+| M-27 Feature Flag        | —                                                            | ✓            | ICD only |
+| M-28 Backup              | —                                                            | ✓            | ICD only |
+| M-29 Configuration       | —                                                            | ✓            | ICD only |
+| M-30 Error Handling      | —                                                            | ✓            | ICD only |
+| M-31 Core Utilities      | —                                                            | ✓            | ICD only |
+| M-32 Data Access         | —                                                            | ✓            | ICD only |
+| M-33 HTTP Client         | —                                                            | ✓            | ICD only |
+| M-34 Message Bus         | —                                                            | ✓            | ICD only |
+| M-35 Billing             | —                                                            | ✓            | ICD only |
+| M-36 Workflow            | —                                                            | ✓            | ICD only |
+| M-37 UI Foundation       | —                                                            | ✓            | ICD only |
+| M-38 Localization        | —                                                            | ✓            | ICD only |
+| M-39 Search              | —                                                            | ✓            | ICD only |
+| M-40 Cache               | —                                                            | ✓            | ICD only |
 
 > **Legend:** ✓ = Complete | ○ = Pending | — = Not started
 >

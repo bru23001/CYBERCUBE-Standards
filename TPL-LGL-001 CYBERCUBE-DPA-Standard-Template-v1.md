@@ -16,6 +16,7 @@ B2B SaaS customers. It defines CYBERCUBE's role as a data processor, customer
 obligations as data controller, and mutual commitments for data protection.
 
 **Usage:**
+
 - Attach as exhibit/schedule to Master Service Agreement (MSA)
 - Or execute as standalone agreement
 - Customize Schedules A-D per customer requirements
@@ -50,13 +51,13 @@ and
 **WHEREAS:**
 
 A. The Parties have entered into an agreement for the provision of services
-   (the "**Principal Agreement**" or "**Agreement**");
+(the "**Principal Agreement**" or "**Agreement**");
 
 B. In connection with the Principal Agreement, the Processor will Process
-   Personal Data on behalf of the Controller;
+Personal Data on behalf of the Controller;
 
 C. The Parties wish to ensure that such Processing complies with applicable
-   Data Protection Laws;
+Data Protection Laws;
 
 D. This DPA sets out the terms governing such Processing.
 
@@ -70,26 +71,26 @@ D. This DPA sets out the terms governing such Processing.
 
 In this DPA, unless the context requires otherwise:
 
-| Term | Definition |
-|------|------------|
-| **Approved Sub-processor** | A Sub-processor listed in Schedule C or subsequently approved |
-| **Controller** | The entity that determines the purposes and means of Processing |
-| **Data Protection Laws** | All applicable laws relating to data protection and privacy |
-| **Data Subject** | An identified or identifiable natural person |
-| **EEA** | European Economic Area |
-| **GDPR** | Regulation (EU) 2016/679 |
-| **Personal Data** | Any information relating to a Data Subject |
-| **Personal Data Breach** | A breach of security leading to accidental or unlawful destruction, loss, alteration, unauthorized disclosure of, or access to, Personal Data |
-| **Processing** | Any operation performed on Personal Data |
-| **Processor** | The entity that Processes Personal Data on behalf of the Controller |
-| **SCCs** | Standard Contractual Clauses approved by the European Commission |
-| **Security Incident** | Any actual or suspected Personal Data Breach |
-| **Services** | The services provided under the Principal Agreement |
-| **Sub-processor** | Any Processor engaged by the Processor to Process Personal Data |
-| **Supervisory Authority** | An independent public authority responsible for monitoring Data Protection Laws |
-| **UK GDPR** | The GDPR as incorporated into UK law |
-| **DPF** | The EU-U.S. Data Privacy Framework (and UK Extension, Swiss-U.S. DPF) |
-| **DPIA** | Data Protection Impact Assessment as defined in GDPR Art. 35 |
+| Term                       | Definition                                                                                                                                    |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Approved Sub-processor** | A Sub-processor listed in Schedule C or subsequently approved                                                                                 |
+| **Controller**             | The entity that determines the purposes and means of Processing                                                                               |
+| **Data Protection Laws**   | All applicable laws relating to data protection and privacy                                                                                   |
+| **Data Subject**           | An identified or identifiable natural person                                                                                                  |
+| **EEA**                    | European Economic Area                                                                                                                        |
+| **GDPR**                   | Regulation (EU) 2016/679                                                                                                                      |
+| **Personal Data**          | Any information relating to a Data Subject                                                                                                    |
+| **Personal Data Breach**   | A breach of security leading to accidental or unlawful destruction, loss, alteration, unauthorized disclosure of, or access to, Personal Data |
+| **Processing**             | Any operation performed on Personal Data                                                                                                      |
+| **Processor**              | The entity that Processes Personal Data on behalf of the Controller                                                                           |
+| **SCCs**                   | Standard Contractual Clauses approved by the European Commission                                                                              |
+| **Security Incident**      | Any actual or suspected Personal Data Breach                                                                                                  |
+| **Services**               | The services provided under the Principal Agreement                                                                                           |
+| **Sub-processor**          | Any Processor engaged by the Processor to Process Personal Data                                                                               |
+| **Supervisory Authority**  | An independent public authority responsible for monitoring Data Protection Laws                                                               |
+| **UK GDPR**                | The GDPR as incorporated into UK law                                                                                                          |
+| **DPF**                    | The EU-U.S. Data Privacy Framework (and UK Extension, Swiss-U.S. DPF)                                                                         |
+| **DPIA**                   | Data Protection Impact Assessment as defined in GDPR Art. 35                                                                                  |
 
 ### 1.2 Interpretation
 
@@ -108,14 +109,14 @@ In this DPA, unless the context requires otherwise:
 ### 2.1 Controller and Processor Relationship
 
 (a) **Controller Role:** The Customer is the Controller of Personal Data and
-    determines the purposes and means of Processing.
+determines the purposes and means of Processing.
 
 (b) **Processor Role:** CYBERCUBE is the Processor and Processes Personal Data
-    only on behalf of and under the instructions of the Controller.
+only on behalf of and under the instructions of the Controller.
 
 (c) **Independent Controller:** Each Party is an independent Controller for
-    Personal Data it collects for its own purposes (e.g., billing contacts,
-    account management).
+Personal Data it collects for its own purposes (e.g., billing contacts,
+account management).
 
 ### 2.2 Controller Obligations
 
@@ -144,11 +145,11 @@ The Controller shall:
 The Processor shall:
 
 (a) Process Personal Data only on documented instructions from the Controller,
-    unless required by law (in which case, the Processor shall inform the
-    Controller before Processing, unless prohibited by law);
+unless required by law (in which case, the Processor shall inform the
+Controller before Processing, unless prohibited by law);
 
 (b) Ensure that persons authorized to Process Personal Data have committed
-    to confidentiality or are under an appropriate statutory obligation;
+to confidentiality or are under an appropriate statutory obligation;
 
 (c) Implement appropriate technical and organizational security measures;
 
@@ -157,7 +158,7 @@ The Processor shall:
 (e) Assist the Controller with Data Subject requests;
 
 (f) Assist the Controller with security, breach notification, DPIAs, and
-    prior consultations;
+prior consultations;
 
 (g) Delete or return Personal Data at the end of the Services;
 
@@ -172,10 +173,10 @@ The Processor shall:
 ### 3.1 Subject Matter and Duration
 
 (a) **Subject Matter:** Processing of Personal Data in connection with the
-    Services described in the Principal Agreement.
+Services described in the Principal Agreement.
 
 (b) **Duration:** Processing shall continue for the duration of the Principal
-    Agreement, plus any retention period specified in Schedule B.
+Agreement, plus any retention period specified in Schedule B.
 
 ### 3.2 Nature and Purpose
 
@@ -192,10 +193,10 @@ The types of Personal Data are as set out in **Schedule A**.
 ### 3.5 Special Categories of Data
 
 (a) The Processor shall not Process special categories of Personal Data
-    unless explicitly authorized in Schedule A.
+unless explicitly authorized in Schedule A.
 
 (b) If authorized, additional safeguards shall apply as specified in
-    Schedule A.
+Schedule A.
 
 ---
 
@@ -204,32 +205,32 @@ The types of Personal Data are as set out in **Schedule A**.
 ### 4.1 Documented Instructions
 
 (a) The Processor shall Process Personal Data only in accordance with the
-    Controller's documented instructions.
+Controller's documented instructions.
 
 (b) The Principal Agreement and this DPA constitute the Controller's
-    complete initial instructions.
+complete initial instructions.
 
 (c) Additional instructions must be provided in writing and agreed by
-    both Parties.
+both Parties.
 
 ### 4.2 Unlawful Instructions
 
 (a) If the Processor believes an instruction infringes Data Protection Laws,
-    it shall promptly notify the Controller.
+it shall promptly notify the Controller.
 
 (b) The Processor may suspend Processing until the Controller confirms or
-    modifies the instruction.
+modifies the instruction.
 
 (c) The Processor shall not be liable for non-performance resulting from
-    refusing to comply with an unlawful instruction.
+refusing to comply with an unlawful instruction.
 
 ### 4.3 Processing Outside Instructions
 
 (a) The Processor shall not Process Personal Data outside the scope of
-    instructions unless required by applicable law.
+instructions unless required by applicable law.
 
 (b) If required by law to Process, the Processor shall inform the Controller
-    before Processing (unless prohibited by law) and minimize such Processing.
+before Processing (unless prohibited by law) and minimize such Processing.
 
 ### 4.4 CCPA/CPRA Service Provider Provisions
 
@@ -237,29 +238,25 @@ To the extent the California Consumer Privacy Act (as amended by the CPRA)
 applies to the Processing:
 
 (a) The Processor is a "**Service Provider**" as defined in Cal. Civ. Code
-    sec. 1798.140(ag) and shall Process Personal Data only for the business
-    purposes specified in this DPA and the Principal Agreement.
+sec. 1798.140(ag) and shall Process Personal Data only for the business
+purposes specified in this DPA and the Principal Agreement.
 
-(b) The Processor shall **not**:
-    - Sell Personal Data (as defined in Cal. Civ. Code sec. 1798.140(ad));
-    - Share Personal Data for cross-context behavioral advertising
-      (as defined in Cal. Civ. Code sec. 1798.140(ah));
-    - Retain, use, or disclose Personal Data for any purpose other than
-      providing the Services, including any commercial purpose other than
-      providing the Services;
-    - Combine Personal Data received from or on behalf of the Controller
-      with Personal Data received from other sources or collected from its
-      own interactions with Data Subjects, except as expressly permitted
-      by the CCPA/CPRA.
+(b) The Processor shall **not**: - Sell Personal Data (as defined in Cal. Civ. Code sec. 1798.140(ad)); - Share Personal Data for cross-context behavioral advertising
+(as defined in Cal. Civ. Code sec. 1798.140(ah)); - Retain, use, or disclose Personal Data for any purpose other than
+providing the Services, including any commercial purpose other than
+providing the Services; - Combine Personal Data received from or on behalf of the Controller
+with Personal Data received from other sources or collected from its
+own interactions with Data Subjects, except as expressly permitted
+by the CCPA/CPRA.
 
 (c) The Processor certifies that it understands and will comply with these
-    restrictions.
+restrictions.
 
 (d) The Controller may take reasonable steps to ensure the Processor uses
-    Personal Data in a manner consistent with the Controller's obligations
-    under the CCPA/CPRA. If the Controller determines the Processor is using
-    Personal Data in violation of this Section, the Controller shall notify
-    the Processor and the Processor shall take immediate steps to remediate.
+Personal Data in a manner consistent with the Controller's obligations
+under the CCPA/CPRA. If the Controller determines the Processor is using
+Personal Data in violation of this Section, the Controller shall notify
+the Processor and the Processor shall take immediate steps to remediate.
 
 ---
 
@@ -268,44 +265,33 @@ applies to the Processing:
 ### 5.1 Authorization
 
 (a) The Controller provides **general authorization** for the Processor to
-    engage Sub-processors to assist in providing the Services.
+engage Sub-processors to assist in providing the Services.
 
 (b) The current list of Approved Sub-processors is set out in **Schedule C**.
 
 (c) The Processor shall maintain an up-to-date list of Sub-processors at:
-    [URL to Sub-processor list]
+[URL to Sub-processor list]
 
 ### 5.2 Changes to Sub-processors
 
 (a) The Processor shall notify the Controller at least **thirty (30) days**
-    before engaging a new Sub-processor or replacing an existing one.
+before engaging a new Sub-processor or replacing an existing one.
 
-(b) Notification shall be provided via:
-    - Email to the Controller's designated contact; and/or
-    - Update to the Sub-processor list with notification mechanism
+(b) Notification shall be provided via: - Email to the Controller's designated contact; and/or - Update to the Sub-processor list with notification mechanism
 
 (c) The Controller may object to a new Sub-processor on reasonable grounds
-    related to data protection within **fourteen (14) days** of notification.
+related to data protection within **fourteen (14) days** of notification.
 
 (d) If the Controller objects, the Parties shall negotiate in good faith to
-    resolve the objection. If no resolution is reached within **thirty (30)
-    days**, the Controller may terminate the affected Services without penalty.
+resolve the objection. If no resolution is reached within **thirty (30)
+days**, the Controller may terminate the affected Services without penalty.
 
 ### 5.3 Sub-processor Requirements
 
-(a) The Processor shall:
-    - Conduct due diligence on Sub-processors' data protection capabilities;
-    - Enter into a written agreement imposing data protection obligations
-      no less protective than those in this DPA;
-    - Remain fully liable for Sub-processor acts and omissions.
+(a) The Processor shall: - Conduct due diligence on Sub-processors' data protection capabilities; - Enter into a written agreement imposing data protection obligations
+no less protective than those in this DPA; - Remain fully liable for Sub-processor acts and omissions.
 
-(b) Sub-processor agreements shall include:
-    - Processing only on documented instructions;
-    - Confidentiality obligations;
-    - Appropriate security measures;
-    - Assistance with Data Subject rights;
-    - Audit rights;
-    - Data deletion/return obligations.
+(b) Sub-processor agreements shall include: - Processing only on documented instructions; - Confidentiality obligations; - Appropriate security measures; - Assistance with Data Subject rights; - Audit rights; - Data deletion/return obligations.
 
 ### 5.4 Sub-processor List
 
@@ -319,18 +305,18 @@ The Processor's current Sub-processors are listed in **Schedule C** and at:
 ### 6.1 Security Measures
 
 (a) The Processor shall implement appropriate technical and organizational
-    measures to ensure a level of security appropriate to the risk, including:
+measures to ensure a level of security appropriate to the risk, including:
 
-| Category | Measures |
-|----------|----------|
-| **Access Control** | Role-based access, MFA, least privilege |
-| **Encryption** | TLS 1.2+ in transit, AES-256 at rest |
-| **Network Security** | Firewalls, intrusion detection, segmentation |
-| **Physical Security** | Data center controls, access logging |
-| **Personnel** | Background checks, training, confidentiality |
-| **Incident Response** | Detection, response, notification procedures |
-| **Business Continuity** | Backups, disaster recovery, redundancy |
-| **Vendor Management** | Sub-processor assessment, monitoring |
+| Category                | Measures                                     |
+| ----------------------- | -------------------------------------------- |
+| **Access Control**      | Role-based access, MFA, least privilege      |
+| **Encryption**          | TLS 1.2+ in transit, AES-256 at rest         |
+| **Network Security**    | Firewalls, intrusion detection, segmentation |
+| **Physical Security**   | Data center controls, access logging         |
+| **Personnel**           | Background checks, training, confidentiality |
+| **Incident Response**   | Detection, response, notification procedures |
+| **Business Continuity** | Backups, disaster recovery, redundancy       |
+| **Vendor Management**   | Sub-processor assessment, monitoring         |
 
 (b) Detailed security measures are described in **Schedule D**.
 
@@ -338,19 +324,16 @@ The Processor's current Sub-processors are listed in **Schedule C** and at:
 
 (a) The Processor shall regularly assess security measures for effectiveness.
 
-(b) The Processor shall conduct:
-    - Annual penetration testing by qualified third parties;
-    - Regular vulnerability assessments;
-    - Continuous security monitoring.
+(b) The Processor shall conduct: - Annual penetration testing by qualified third parties; - Regular vulnerability assessments; - Continuous security monitoring.
 
 ### 6.3 Certifications
 
 The Processor maintains the following certifications (as applicable):
 
-| Certification | Scope | Renewal |
-|---------------|-------|---------|
-| SOC 2 Type II | Security, Availability | Annual |
-| ISO 27001 | Information Security | Annual |
+| Certification | Scope                  | Renewal |
+| ------------- | ---------------------- | ------- |
+| SOC 2 Type II | Security, Availability | Annual  |
+| ISO 27001     | Information Security   | Annual  |
 
 (a) The Processor shall provide copies of certifications upon request.
 
@@ -373,34 +356,20 @@ including:
 ### 7.2 Breach Notification to Controller
 
 (a) The Processor shall notify the Controller of any Personal Data Breach
-    **without undue delay** and in any event within **forty-eight (48) hours**
-    of becoming aware of the breach.
+**without undue delay** and in any event within **forty-eight (48) hours**
+of becoming aware of the breach.
 
-(b) Initial notification shall include (to the extent known):
-    - Description of the nature of the breach;
-    - Categories and approximate number of Data Subjects affected;
-    - Categories and approximate number of records affected;
-    - Name and contact details of Processor's data protection contact;
-    - Likely consequences of the breach;
-    - Measures taken or proposed to address the breach.
+(b) Initial notification shall include (to the extent known): - Description of the nature of the breach; - Categories and approximate number of Data Subjects affected; - Categories and approximate number of records affected; - Name and contact details of Processor's data protection contact; - Likely consequences of the breach; - Measures taken or proposed to address the breach.
 
-(c) If complete information is not available, the Processor shall:
-    - Provide information in phases as it becomes available;
-    - Provide updates at least every **twenty-four (24) hours** until
-      resolution;
-    - Document reasons for any delay.
+(c) If complete information is not available, the Processor shall: - Provide information in phases as it becomes available; - Provide updates at least every **twenty-four (24) hours** until
+resolution; - Document reasons for any delay.
 
 ### 7.3 Breach Response
 
-(a) The Processor shall:
-    - Take immediate steps to contain and mitigate the breach;
-    - Preserve evidence for investigation;
-    - Cooperate with the Controller's investigation;
-    - Provide reasonable assistance with notifications;
-    - Implement measures to prevent recurrence.
+(a) The Processor shall: - Take immediate steps to contain and mitigate the breach; - Preserve evidence for investigation; - Cooperate with the Controller's investigation; - Provide reasonable assistance with notifications; - Implement measures to prevent recurrence.
 
 (b) The Processor shall not notify Data Subjects or Supervisory Authorities
-    without the Controller's prior written approval, unless required by law.
+without the Controller's prior written approval, unless required by law.
 
 ### 7.4 Breach Documentation
 
@@ -413,12 +382,12 @@ The Processor shall document all Personal Data Breaches, including:
 
 ### 7.5 Notification Timeline Summary
 
-| Event | Timeline |
-|-------|----------|
-| Processor detects breach | T+0 |
-| Processor notifies Controller | Within 48 hours |
+| Event                                                   | Timeline                     |
+| ------------------------------------------------------- | ---------------------------- |
+| Processor detects breach                                | T+0                          |
+| Processor notifies Controller                           | Within 48 hours              |
 | Controller notifies Supervisory Authority (if required) | Within 72 hours of awareness |
-| Controller notifies Data Subjects (if required) | Without undue delay |
+| Controller notifies Data Subjects (if required)         | Without undue delay          |
 
 ---
 
@@ -427,27 +396,24 @@ The Processor shall document all Personal Data Breaches, including:
 ### 8.1 Assistance with Requests
 
 (a) The Processor shall assist the Controller in responding to Data Subject
-    requests to exercise their rights, including:
+requests to exercise their rights, including:
 
-| Right | GDPR Article | Processor Assistance |
-|-------|--------------|---------------------|
-| Access | Art. 15 | Provide data copies |
-| Rectification | Art. 16 | Correct data |
-| Erasure | Art. 17 | Delete data |
-| Restriction | Art. 18 | Restrict processing |
-| Portability | Art. 20 | Export data |
-| Object | Art. 21 | Cease processing |
-| Automated decisions | Art. 22 | Provide information |
+| Right               | GDPR Article | Processor Assistance |
+| ------------------- | ------------ | -------------------- |
+| Access              | Art. 15      | Provide data copies  |
+| Rectification       | Art. 16      | Correct data         |
+| Erasure             | Art. 17      | Delete data          |
+| Restriction         | Art. 18      | Restrict processing  |
+| Portability         | Art. 20      | Export data          |
+| Object              | Art. 21      | Cease processing     |
+| Automated decisions | Art. 22      | Provide information  |
 
 (b) Assistance shall be provided within **ten (10) business days** of request.
 
 ### 8.2 Direct Requests
 
 (a) If the Processor receives a request directly from a Data Subject, it
-    shall:
-    - Promptly redirect the request to the Controller;
-    - Not respond directly unless authorized by the Controller;
-    - Inform the Data Subject to contact the Controller.
+shall: - Promptly redirect the request to the Controller; - Not respond directly unless authorized by the Controller; - Inform the Data Subject to contact the Controller.
 
 (b) Exception: The Processor may acknowledge receipt and confirm redirection.
 
@@ -456,7 +422,7 @@ The Processor shall document all Personal Data Breaches, including:
 (a) Reasonable assistance is included in the Services fees.
 
 (b) For requests requiring substantial resources, the Processor may charge
-    reasonable fees based on actual costs.
+reasonable fees based on actual costs.
 
 ---
 
@@ -465,30 +431,20 @@ The Processor shall document all Personal Data Breaches, including:
 ### 9.1 Transfer Restrictions
 
 (a) The Processor shall not transfer Personal Data to a country outside the
-    EEA, UK, or Switzerland unless:
-    - The transfer is to a country with an adequacy decision; or
-    - Appropriate safeguards are in place (e.g., SCCs); or
-    - A derogation applies under Data Protection Laws.
+EEA, UK, or Switzerland unless: - The transfer is to a country with an adequacy decision; or - Appropriate safeguards are in place (e.g., SCCs); or - A derogation applies under Data Protection Laws.
 
 (b) Current transfer mechanisms are specified in **Schedule C**.
 
 ### 9.2 Standard Contractual Clauses
 
 (a) Where SCCs are required, the Parties agree to the EU Commission's
-    Standard Contractual Clauses (2021/914), incorporated by reference.
+Standard Contractual Clauses (2021/914), incorporated by reference.
 
 (b) For Controller-to-Processor transfers: **Module Two** applies.
 
 (c) For Processor-to-Sub-processor transfers: **Module Three** applies.
 
-(d) SCC-specific terms:
-    - **Clause 7 (Docking clause):** Not applicable
-    - **Clause 9 (Sub-processors):** Option 2 (General authorization)
-    - **Clause 11 (Redress):** Optional clause applies
-    - **Clause 17 (Governing law):** [Governing Law jurisdiction]
-    - **Clause 18 (Forum):** [Forum jurisdiction]
-    - **Annex I:** See Schedule A
-    - **Annex II:** See Schedule D
+(d) SCC-specific terms: - **Clause 7 (Docking clause):** Not applicable - **Clause 9 (Sub-processors):** Option 2 (General authorization) - **Clause 11 (Redress):** Optional clause applies - **Clause 17 (Governing law):** [Governing Law jurisdiction] - **Clause 18 (Forum):** [Forum jurisdiction] - **Annex I:** See Schedule A - **Annex II:** See Schedule D
 
 ### 9.3 UK International Data Transfer Agreement
 
@@ -499,12 +455,9 @@ The Processor shall document all Personal Data Breaches, including:
 ### 9.4 Transfer Impact Assessment
 
 (a) The Processor shall conduct Transfer Impact Assessments for transfers
-    to countries without adequacy decisions.
+to countries without adequacy decisions.
 
-(b) Assessments shall consider:
-    - Laws and practices of the destination country;
-    - Effectiveness of safeguards;
-    - Supplementary measures required.
+(b) Assessments shall consider: - Laws and practices of the destination country; - Effectiveness of safeguards; - Supplementary measures required.
 
 (c) Copies of assessments shall be provided upon request.
 
@@ -515,33 +468,20 @@ The Processor shall document all Personal Data Breaches, including:
 ### 10.1 Information and Audit Rights
 
 (a) The Processor shall make available to the Controller all information
-    necessary to demonstrate compliance with this DPA.
+necessary to demonstrate compliance with this DPA.
 
 (b) The Processor shall allow for and contribute to audits, including
-    inspections, conducted by:
-    - The Controller; or
-    - An auditor mandated by the Controller.
+inspections, conducted by: - The Controller; or - An auditor mandated by the Controller.
 
 ### 10.2 Audit Procedures
 
-(a) Audits shall be:
-    - Conducted during normal business hours;
-    - Subject to reasonable advance notice (minimum **30 days**);
-    - Limited to once per year (unless a breach has occurred);
-    - Conducted by qualified personnel bound by confidentiality;
-    - Scoped to matters covered by this DPA.
+(a) Audits shall be: - Conducted during normal business hours; - Subject to reasonable advance notice (minimum **30 days**); - Limited to once per year (unless a breach has occurred); - Conducted by qualified personnel bound by confidentiality; - Scoped to matters covered by this DPA.
 
-(b) The Controller shall:
-    - Minimize disruption to Processor operations;
-    - Bear its own audit costs;
-    - Comply with Processor's reasonable security requirements.
+(b) The Controller shall: - Minimize disruption to Processor operations; - Bear its own audit costs; - Comply with Processor's reasonable security requirements.
 
 ### 10.3 Third-Party Audits
 
-(a) In lieu of direct audits, the Controller may accept:
-    - SOC 2 Type II reports (within 12 months);
-    - ISO 27001 certificates;
-    - Other recognized third-party assessments.
+(a) In lieu of direct audits, the Controller may accept: - SOC 2 Type II reports (within 12 months); - ISO 27001 certificates; - Other recognized third-party assessments.
 
 (b) The Processor shall provide such reports upon request.
 
@@ -550,7 +490,7 @@ The Processor shall document all Personal Data Breaches, including:
 (a) The Processor shall promptly address any audit findings.
 
 (b) Material non-compliance shall be remediated within **thirty (30) days**
-    or as otherwise agreed.
+or as otherwise agreed.
 
 ---
 
@@ -559,53 +499,43 @@ The Processor shall document all Personal Data Breaches, including:
 ### 11.1 Retention During Services
 
 (a) The Processor shall retain Personal Data only for as long as necessary
-    to provide the Services.
+to provide the Services.
 
 (b) Retention periods are specified in **Schedule B**.
 
 ### 11.2 Data Return or Deletion
 
 (a) Upon termination or expiration of the Principal Agreement, the Processor
-    shall, at the Controller's election:
-    - **Return** all Personal Data in a commonly used format; and/or
-    - **Delete** all Personal Data and existing copies.
+shall, at the Controller's election: - **Return** all Personal Data in a commonly used format; and/or - **Delete** all Personal Data and existing copies.
 
 (b) The Controller shall communicate its election within **thirty (30) days**
-    of termination.
+of termination.
 
 (c) If no election is made, the Processor shall **delete** all Personal Data.
 
 ### 11.3 Deletion Timeline
 
-| Milestone | Timeline |
-|-----------|----------|
-| Termination effective | T+0 |
-| Controller election deadline | T+30 days |
-| Data export available (if requested) | T+45 days |
-| Production deletion complete | T+90 days |
-| Backup rotation complete | T+120 days |
-| Deletion certification provided | T+120 days |
+| Milestone                            | Timeline   |
+| ------------------------------------ | ---------- |
+| Termination effective                | T+0        |
+| Controller election deadline         | T+30 days  |
+| Data export available (if requested) | T+45 days  |
+| Production deletion complete         | T+90 days  |
+| Backup rotation complete             | T+120 days |
+| Deletion certification provided      | T+120 days |
 
 ### 11.4 Deletion Certification
 
 (a) Upon request, the Processor shall certify in writing that all Personal
-    Data has been deleted.
+Data has been deleted.
 
-(b) Certification shall confirm deletion from:
-    - Production systems;
-    - Backup systems (within backup rotation cycle);
-    - Sub-processor systems.
+(b) Certification shall confirm deletion from: - Production systems; - Backup systems (within backup rotation cycle); - Sub-processor systems.
 
 ### 11.5 Retention Exceptions
 
-(a) The Processor may retain Personal Data beyond termination if required by:
-    - Applicable law (e.g., tax, audit requirements);
-    - Pending legal proceedings or investigations.
+(a) The Processor may retain Personal Data beyond termination if required by: - Applicable law (e.g., tax, audit requirements); - Pending legal proceedings or investigations.
 
-(b) Such retention shall be:
-    - Limited to what is legally required;
-    - Subject to continued DPA protections;
-    - Disclosed to the Controller.
+(b) Such retention shall be: - Limited to what is legally required; - Subject to continued DPA protections; - Disclosed to the Controller.
 
 ---
 
@@ -614,24 +544,15 @@ The Processor shall document all Personal Data Breaches, including:
 ### 12.1 Liability Allocation
 
 (a) Each Party shall be liable for damages caused by its breach of this DPA
-    or Data Protection Laws.
+or Data Protection Laws.
 
-(b) The Processor shall be liable for damages caused by:
-    - Processing outside the Controller's lawful instructions;
-    - Breach of Processor-specific obligations under Data Protection Laws;
-    - Acts or omissions of its Sub-processors.
+(b) The Processor shall be liable for damages caused by: - Processing outside the Controller's lawful instructions; - Breach of Processor-specific obligations under Data Protection Laws; - Acts or omissions of its Sub-processors.
 
 ### 12.2 Indemnification
 
-(a) Each Party shall indemnify the other for:
-    - Fines, penalties, and regulatory sanctions arising from its breach;
-    - Third-party claims arising from its breach;
-    - Costs of breach notification and remediation caused by its breach.
+(a) Each Party shall indemnify the other for: - Fines, penalties, and regulatory sanctions arising from its breach; - Third-party claims arising from its breach; - Costs of breach notification and remediation caused by its breach.
 
-(b) Indemnification is subject to:
-    - Prompt notice of claims;
-    - Reasonable cooperation;
-    - Control of defense by indemnifying Party.
+(b) Indemnification is subject to: - Prompt notice of claims; - Reasonable cooperation; - Control of defense by indemnifying Party.
 
 ### 12.3 Liability Cap
 
@@ -654,10 +575,10 @@ and any period during which Personal Data is Processed.
 ### 13.2 Termination
 
 (a) This DPA shall automatically terminate upon termination of the Principal
-    Agreement.
+Agreement.
 
 (b) Either Party may terminate this DPA if the other Party materially
-    breaches and fails to cure within **thirty (30) days** of notice.
+breaches and fails to cure within **thirty (30) days** of notice.
 
 ### 13.3 Survival
 
@@ -727,23 +648,23 @@ In case of conflict:
 
 **CONTROLLER:**
 
-Signature: _________________________
+Signature: \***\*\*\*\*\*\*\***\_\***\*\*\*\*\*\*\***
 
-Name: _________________________
+Name: \***\*\*\*\*\*\*\***\_\***\*\*\*\*\*\*\***
 
-Title: _________________________
+Title: \***\*\*\*\*\*\*\***\_\***\*\*\*\*\*\*\***
 
-Date: _________________________
+Date: \***\*\*\*\*\*\*\***\_\***\*\*\*\*\*\*\***
 
 **PROCESSOR (CYBERCUBE Inc.):**
 
-Signature: _________________________
+Signature: \***\*\*\*\*\*\*\***\_\***\*\*\*\*\*\*\***
 
-Name: _________________________
+Name: \***\*\*\*\*\*\*\***\_\***\*\*\*\*\*\*\***
 
-Title: _________________________
+Title: \***\*\*\*\*\*\*\***\_\***\*\*\*\*\*\*\***
 
-Date: _________________________
+Date: \***\*\*\*\*\*\*\***\_\***\*\*\*\*\*\*\***
 
 ---
 
@@ -751,45 +672,45 @@ Date: _________________________
 
 ## A.1 Description of Processing
 
-| Element | Description |
-|---------|-------------|
-| **Subject Matter** | Processing of Customer Data in connection with [Service Name] |
-| **Duration** | Duration of the Principal Agreement |
+| Element                  | Description                                                             |
+| ------------------------ | ----------------------------------------------------------------------- |
+| **Subject Matter**       | Processing of Customer Data in connection with [Service Name]           |
+| **Duration**             | Duration of the Principal Agreement                                     |
 | **Nature of Processing** | Collection, storage, organization, retrieval, use, disclosure, deletion |
-| **Purpose** | To provide the Services as described in the Principal Agreement |
+| **Purpose**              | To provide the Services as described in the Principal Agreement         |
 
 ## A.2 Categories of Data Subjects
 
-| Category | Description |
-|----------|-------------|
-| Customer employees | Users of Customer's organization accessing the Services |
-| Customer contacts | Business contacts managed within the Services |
-| End users | Individuals whose data is processed through the Services |
-| [Other] | [Description] |
+| Category           | Description                                              |
+| ------------------ | -------------------------------------------------------- |
+| Customer employees | Users of Customer's organization accessing the Services  |
+| Customer contacts  | Business contacts managed within the Services            |
+| End users          | Individuals whose data is processed through the Services |
+| [Other]            | [Description]                                            |
 
 ## A.3 Categories of Personal Data
 
-| Category | Examples | Sensitivity |
-|----------|----------|-------------|
-| **Identity Data** | Name, username, employee ID | Standard |
-| **Contact Data** | Email, phone, address | Standard |
-| **Account Data** | Login credentials, preferences | Confidential |
-| **Usage Data** | Activity logs, feature usage | Standard |
-| **Communication Data** | Messages, support tickets | Standard |
-| **[Other]** | [Examples] | [Level] |
+| Category               | Examples                       | Sensitivity  |
+| ---------------------- | ------------------------------ | ------------ |
+| **Identity Data**      | Name, username, employee ID    | Standard     |
+| **Contact Data**       | Email, phone, address          | Standard     |
+| **Account Data**       | Login credentials, preferences | Confidential |
+| **Usage Data**         | Activity logs, feature usage   | Standard     |
+| **Communication Data** | Messages, support tickets      | Standard     |
+| **[Other]**            | [Examples]                     | [Level]      |
 
 ## A.4 Special Categories of Data
 
-| Special Category | Processed? | Additional Safeguards |
-|------------------|------------|----------------------|
-| Racial/ethnic origin | ☐ Yes ☒ No | — |
-| Political opinions | ☐ Yes ☒ No | — |
-| Religious beliefs | ☐ Yes ☒ No | — |
-| Trade union membership | ☐ Yes ☒ No | — |
-| Genetic data | ☐ Yes ☒ No | — |
-| Biometric data | ☐ Yes ☒ No | — |
-| Health data | ☐ Yes ☒ No | — |
-| Sex life/orientation | ☐ Yes ☒ No | — |
+| Special Category       | Processed? | Additional Safeguards |
+| ---------------------- | ---------- | --------------------- |
+| Racial/ethnic origin   | ☐ Yes ☒ No | —                     |
+| Political opinions     | ☐ Yes ☒ No | —                     |
+| Religious beliefs      | ☐ Yes ☒ No | —                     |
+| Trade union membership | ☐ Yes ☒ No | —                     |
+| Genetic data           | ☐ Yes ☒ No | —                     |
+| Biometric data         | ☐ Yes ☒ No | —                     |
+| Health data            | ☐ Yes ☒ No | —                     |
+| Sex life/orientation   | ☐ Yes ☒ No | —                     |
 
 **If any special categories are processed, describe additional safeguards:**
 
@@ -797,22 +718,22 @@ Date: _________________________
 
 ## A.5 Data Exporter (Controller)
 
-| Field | Value |
-|-------|-------|
-| Name | [Customer Legal Name] |
-| Address | [Address] |
-| Contact | [Name, Title, Email] |
-| Role | Controller |
+| Field      | Value                                      |
+| ---------- | ------------------------------------------ |
+| Name       | [Customer Legal Name]                      |
+| Address    | [Address]                                  |
+| Contact    | [Name, Title, Email]                       |
+| Role       | Controller                                 |
 | Activities | [Brief description of business activities] |
 
 ## A.6 Data Importer (Processor)
 
-| Field | Value |
-|-------|-------|
-| Name | CYBERCUBE Inc. |
-| Address | [Address] |
-| Contact | dpa@cybercube.software |
-| Role | Processor |
+| Field      | Value                                         |
+| ---------- | --------------------------------------------- |
+| Name       | CYBERCUBE Inc.                                |
+| Address    | [Address]                                     |
+| Contact    | dpa@cybercube.software                        |
+| Role       | Processor                                     |
 | Activities | Provision of [Service Name] software services |
 
 ---
@@ -821,31 +742,31 @@ Date: _________________________
 
 ## B.1 Standard Retention Periods
 
-| Data Category | Retention Period | Basis |
-|---------------|------------------|-------|
-| Account data | Duration of account + 30 days | Service delivery |
-| Usage/audit logs | 12 months | Security, compliance |
-| Support tickets | 3 years | Service quality |
-| Billing records | 7 years | Legal/tax requirements |
-| Backups | 30 days rolling | Disaster recovery |
+| Data Category    | Retention Period              | Basis                  |
+| ---------------- | ----------------------------- | ---------------------- |
+| Account data     | Duration of account + 30 days | Service delivery       |
+| Usage/audit logs | 12 months                     | Security, compliance   |
+| Support tickets  | 3 years                       | Service quality        |
+| Billing records  | 7 years                       | Legal/tax requirements |
+| Backups          | 30 days rolling               | Disaster recovery      |
 
 ## B.2 Post-Termination Retention
 
-| Data Type | Retention Post-Termination | Purpose |
-|-----------|---------------------------|---------|
-| All Customer Data | 90 days (for export) | Customer retrieval |
-| Audit logs | 1 year | Compliance evidence |
-| Billing records | 7 years | Legal requirements |
+| Data Type         | Retention Post-Termination | Purpose             |
+| ----------------- | -------------------------- | ------------------- |
+| All Customer Data | 90 days (for export)       | Customer retrieval  |
+| Audit logs        | 1 year                     | Compliance evidence |
+| Billing records   | 7 years                    | Legal requirements  |
 
 ## B.3 Deletion Procedures
 
-| Phase | Timeline | Actions |
-|-------|----------|---------|
-| Termination | T+0 | Access disabled, export available |
-| Grace period | T+0 to T+90 | Data available for export |
-| Deletion | T+90 | Production data deleted |
-| Backup rotation | T+90 to T+120 | Backups aged out |
-| Certification | T+120 | Deletion certificate issued |
+| Phase           | Timeline      | Actions                           |
+| --------------- | ------------- | --------------------------------- |
+| Termination     | T+0           | Access disabled, export available |
+| Grace period    | T+0 to T+90   | Data available for export         |
+| Deletion        | T+90          | Production data deleted           |
+| Backup rotation | T+90 to T+120 | Backups aged out                  |
+| Certification   | T+120         | Deletion certificate issued       |
 
 ---
 
@@ -853,15 +774,15 @@ Date: _________________________
 
 ## C.1 Approved Sub-processors
 
-| Sub-processor | Purpose | Location | Transfer Mechanism |
-|---------------|---------|----------|-------------------|
-| Amazon Web Services (AWS) | Cloud infrastructure | US, EU | DPF + SCCs |
-| Google Cloud Platform | Cloud infrastructure | US, EU | DPF + SCCs |
-| Stripe | Payment processing | US | DPF |
-| SendGrid (Twilio) | Email delivery | US | DPF + SCCs |
-| Datadog | Monitoring & logging | US | DPF + SCCs |
-| Zendesk | Customer support | US | DPF + SCCs |
-| [Other] | [Purpose] | [Location] | [Mechanism] |
+| Sub-processor             | Purpose              | Location   | Transfer Mechanism |
+| ------------------------- | -------------------- | ---------- | ------------------ |
+| Amazon Web Services (AWS) | Cloud infrastructure | US, EU     | DPF + SCCs         |
+| Google Cloud Platform     | Cloud infrastructure | US, EU     | DPF + SCCs         |
+| Stripe                    | Payment processing   | US         | DPF                |
+| SendGrid (Twilio)         | Email delivery       | US         | DPF + SCCs         |
+| Datadog                   | Monitoring & logging | US         | DPF + SCCs         |
+| Zendesk                   | Customer support     | US         | DPF + SCCs         |
+| [Other]                   | [Purpose]            | [Location] | [Mechanism]        |
 
 **Note:** Not all Sub-processors apply to every Customer. The specific
 Sub-processors engaged depend on the Services purchased and Customer
@@ -892,90 +813,90 @@ Each Sub-processor has been assessed for:
 
 ## D.1 Access Control
 
-| Measure | Implementation |
-|---------|----------------|
-| Authentication | SSO, MFA required for all personnel |
-| Authorization | Role-based access control (RBAC) |
-| Least privilege | Access limited to job function |
-| Access reviews | Quarterly access reviews |
-| Termination | Immediate access revocation |
+| Measure         | Implementation                      |
+| --------------- | ----------------------------------- |
+| Authentication  | SSO, MFA required for all personnel |
+| Authorization   | Role-based access control (RBAC)    |
+| Least privilege | Access limited to job function      |
+| Access reviews  | Quarterly access reviews            |
+| Termination     | Immediate access revocation         |
 
 ## D.2 Encryption
 
-| Data State | Encryption Standard |
-|------------|---------------------|
-| In transit | TLS 1.2+ (TLS 1.3 preferred) |
-| At rest | AES-256-GCM |
-| Backups | AES-256 |
-| Key management | AWS KMS / GCP KMS |
+| Data State     | Encryption Standard          |
+| -------------- | ---------------------------- |
+| In transit     | TLS 1.2+ (TLS 1.3 preferred) |
+| At rest        | AES-256-GCM                  |
+| Backups        | AES-256                      |
+| Key management | AWS KMS / GCP KMS            |
 
 ## D.3 Network Security
 
-| Measure | Implementation |
-|---------|----------------|
-| Firewalls | Network and application firewalls |
-| Segmentation | VPC isolation, network segmentation |
-| IDS/IPS | Intrusion detection and prevention |
-| DDoS protection | Cloud provider DDoS mitigation |
-| Monitoring | 24/7 network monitoring |
+| Measure         | Implementation                      |
+| --------------- | ----------------------------------- |
+| Firewalls       | Network and application firewalls   |
+| Segmentation    | VPC isolation, network segmentation |
+| IDS/IPS         | Intrusion detection and prevention  |
+| DDoS protection | Cloud provider DDoS mitigation      |
+| Monitoring      | 24/7 network monitoring             |
 
 ## D.4 Physical Security
 
-| Measure | Implementation |
-|---------|----------------|
-| Data centers | SOC 2 / ISO 27001 certified facilities |
-| Access control | Biometric + badge access |
-| Monitoring | 24/7 CCTV surveillance |
-| Environmental | Fire suppression, climate control |
+| Measure        | Implementation                         |
+| -------------- | -------------------------------------- |
+| Data centers   | SOC 2 / ISO 27001 certified facilities |
+| Access control | Biometric + badge access               |
+| Monitoring     | 24/7 CCTV surveillance                 |
+| Environmental  | Fire suppression, climate control      |
 
 ## D.5 Personnel Security
 
-| Measure | Implementation |
-|---------|----------------|
-| Background checks | Pre-employment screening |
-| Confidentiality | NDA and confidentiality agreements |
-| Training | Annual security awareness training |
-| Acceptable use | Enforced acceptable use policies |
+| Measure           | Implementation                     |
+| ----------------- | ---------------------------------- |
+| Background checks | Pre-employment screening           |
+| Confidentiality   | NDA and confidentiality agreements |
+| Training          | Annual security awareness training |
+| Acceptable use    | Enforced acceptable use policies   |
 
 ## D.6 Incident Response
 
-| Measure | Implementation |
-|---------|----------------|
-| Detection | SIEM, anomaly detection |
+| Measure       | Implementation                            |
+| ------------- | ----------------------------------------- |
+| Detection     | SIEM, anomaly detection                   |
 | Response team | Dedicated security incident response team |
-| Procedures | Documented incident response playbooks |
-| Notification | 48-hour breach notification SLA |
-| Post-incident | Blameless postmortems, lessons learned |
+| Procedures    | Documented incident response playbooks    |
+| Notification  | 48-hour breach notification SLA           |
+| Post-incident | Blameless postmortems, lessons learned    |
 
 ## D.7 Business Continuity
 
-| Measure | Implementation |
-|---------|----------------|
-| Backups | Daily automated backups |
-| Retention | 30-day backup retention |
-| Recovery | Tested disaster recovery procedures |
-| RTO (target) | 4 hours |
-| RPO (target) | 1 hour |
+| Measure      | Implementation                      |
+| ------------ | ----------------------------------- |
+| Backups      | Daily automated backups             |
+| Retention    | 30-day backup retention             |
+| Recovery     | Tested disaster recovery procedures |
+| RTO (target) | 4 hours                             |
+| RPO (target) | 1 hour                              |
 
 ## D.8 Development Security
 
-| Measure | Implementation |
-|---------|----------------|
-| SDLC | Secure development lifecycle |
-| Code review | Mandatory peer review |
-| Testing | SAST, DAST, dependency scanning |
+| Measure                  | Implementation                   |
+| ------------------------ | -------------------------------- |
+| SDLC                     | Secure development lifecycle     |
+| Code review              | Mandatory peer review            |
+| Testing                  | SAST, DAST, dependency scanning  |
 | Vulnerability management | Regular patching, CVE monitoring |
-| Penetration testing | Annual third-party pen tests |
+| Penetration testing      | Annual third-party pen tests     |
 
 ## D.9 Audit and Compliance
 
-| Measure | Implementation |
-|---------|----------------|
-| Logging | Comprehensive audit logging |
-| Log retention | 12 months minimum |
+| Measure        | Implementation                    |
+| -------------- | --------------------------------- |
+| Logging        | Comprehensive audit logging       |
+| Log retention  | 12 months minimum                 |
 | Log protection | Immutable, access-controlled logs |
-| Certifications | SOC 2 Type II, ISO 27001 |
-| Assessments | Annual third-party assessments |
+| Certifications | SOC 2 Type II, ISO 27001          |
+| Assessments    | Annual third-party assessments    |
 
 ---
 
@@ -983,44 +904,44 @@ Each Sub-processor has been assessed for:
 
 ### GDPR Requirements Mapping
 
-| GDPR Article | DPA Section |
-|--------------|-------------|
-| Art. 28(1) - Processor requirements | Section 2.3 |
-| Art. 28(2) - Sub-processor authorization | Section 5 |
-| Art. 28(3)(a) - Documented instructions | Section 4 |
-| Art. 28(3)(b) - Confidentiality | Section 2.3(b) |
-| Art. 28(3)(c) - Security measures | Section 6 |
-| Art. 28(3)(d) - Sub-processor conditions | Section 5.3 |
-| Art. 28(3)(e) - Data Subject assistance | Section 8 |
-| Art. 28(3)(f) - Compliance assistance | Sections 6-10 |
-| Art. 28(3)(g) - Deletion/return | Section 11 |
-| Art. 28(3)(h) - Audit rights | Section 10 |
-| Art. 32 - Security of processing | Section 6, Schedule D |
-| Art. 33 - Breach notification | Section 7 |
-| Art. 46 - Transfers | Section 9 |
+| GDPR Article                             | DPA Section           |
+| ---------------------------------------- | --------------------- |
+| Art. 28(1) - Processor requirements      | Section 2.3           |
+| Art. 28(2) - Sub-processor authorization | Section 5             |
+| Art. 28(3)(a) - Documented instructions  | Section 4             |
+| Art. 28(3)(b) - Confidentiality          | Section 2.3(b)        |
+| Art. 28(3)(c) - Security measures        | Section 6             |
+| Art. 28(3)(d) - Sub-processor conditions | Section 5.3           |
+| Art. 28(3)(e) - Data Subject assistance  | Section 8             |
+| Art. 28(3)(f) - Compliance assistance    | Sections 6-10         |
+| Art. 28(3)(g) - Deletion/return          | Section 11            |
+| Art. 28(3)(h) - Audit rights             | Section 10            |
+| Art. 32 - Security of processing         | Section 6, Schedule D |
+| Art. 33 - Breach notification            | Section 7             |
+| Art. 46 - Transfers                      | Section 9             |
 
 ### CCPA/CPRA Requirements Mapping
 
-| CCPA Requirement | DPA Section |
-|------------------|-------------|
-| Service provider contract | Section 2 |
-| Purpose limitation | Section 3, 4 |
-| Security procedures | Section 6, Schedule D |
-| Assistance with consumer requests | Section 8 |
-| Breach notification | Section 7 |
-| No selling/sharing | Section 4.4 |
-| Service provider certification | Section 4.4(c) |
-| No combining personal data | Section 4.4(b) |
+| CCPA Requirement                  | DPA Section           |
+| --------------------------------- | --------------------- |
+| Service provider contract         | Section 2             |
+| Purpose limitation                | Section 3, 4          |
+| Security procedures               | Section 6, Schedule D |
+| Assistance with consumer requests | Section 8             |
+| Breach notification               | Section 7             |
+| No selling/sharing                | Section 4.4           |
+| Service provider certification    | Section 4.4(c)        |
+| No combining personal data        | Section 4.4(b)        |
 
 ---
 
 ## Version History
 
-| Version | Date | Changes |
-|---------|------|---------|
-| 1.0 | 2026-01-17 | Initial release |
+| Version | Date       | Changes         |
+| ------- | ---------- | --------------- |
+| 1.0     | 2026-01-17 | Initial release |
 
 ---
 
-*This DPA template is provided for informational purposes. Legal review is
-recommended before execution.*
+_This DPA template is provided for informational purposes. Legal review is
+recommended before execution._

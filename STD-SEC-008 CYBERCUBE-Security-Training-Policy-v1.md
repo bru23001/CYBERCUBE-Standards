@@ -248,15 +248,15 @@ and customer data from security threats.
 
 ### 1.2 Training Matrix
 
-| Audience         | Baseline    | Role-Based              | Specialized       | Compliance  |
-| ---------------- | ----------- | ----------------------- | ----------------- | ----------- |
+| Audience         | Baseline   | Role-Based              | Specialized       | Compliance  |
+| ---------------- | ---------- | ----------------------- | ----------------- | ----------- |
 | All Employees    | ✓ Required | By role                 | By access         | As required |
 | Engineering      | ✓          | Secure Development      | Production Access | SOC 2       |
 | SRE/DevOps       | ✓          | Infrastructure Security | Privileged Access | SOC 2       |
 | Customer Success | ✓          | Customer Data Handling  | Customer Data     | GDPR/CCPA   |
-| Sales            | ✓          | Customer Data Handling  | —                | GDPR/CCPA   |
-| Finance          | ✓          | Financial Security      | —                | SOC 2       |
-| HR               | ✓          | Personnel Security      | —                | GDPR        |
+| Sales            | ✓          | Customer Data Handling  | —                 | GDPR/CCPA   |
+| Finance          | ✓          | Financial Security      | —                 | SOC 2       |
+| HR               | ✓          | Personnel Security      | —                 | GDPR        |
 | Security Team    | ✓          | All Technical           | All               | All         |
 | Managers         | ✓          | Security Leadership     | By team           | As required |
 | Executives       | ✓          | Executive Security      | Crisis Management | As required |
@@ -320,8 +320,8 @@ and customer data from security threats.
 
 ### 2.3 Training Calendar
 
-| Month               | Activities                                 |
-| ------------------- | ------------------------------------------ |
+| Month         | Activities                                 |
+| ------------- | ------------------------------------------ |
 | **January**   | Annual planning, Q1 phishing simulation    |
 | **February**  | Security awareness month kickoff           |
 | **March**     | Q1 microlearning, compliance review        |
@@ -341,8 +341,8 @@ and customer data from security threats.
 
 ### 3.1 Core Modules (All Personnel)
 
-| Module                                  | Duration | Topics                                               | Assessment       |
-| --------------------------------------- | -------- | ---------------------------------------------------- | ---------------- |
+| Module                            | Duration | Topics                                               | Assessment       |
+| --------------------------------- | -------- | ---------------------------------------------------- | ---------------- |
 | **Security Fundamentals**         | 45 min   | Threat landscape, security mindset, responsibilities | Quiz (80%)       |
 | **Phishing & Social Engineering** | 30 min   | Recognition, reporting, examples                     | Quiz + scenarios |
 | **Password & Authentication**     | 20 min   | Strong passwords, MFA, password managers             | Quiz (80%)       |
@@ -362,13 +362,16 @@ and customer data from security threats.
 ## Module: Security Fundamentals
 
 ### Learning Objectives
+
 By the end of this module, you will be able to:
+
 - Explain why security matters to CYBERCUBE
 - Identify common security threats
 - Describe your security responsibilities
 - Recognize security-conscious behavior
 
 ### Topics Covered
+
 1. The Security Landscape
    - Why attackers target companies like ours
    - Real-world breach examples
@@ -392,6 +395,7 @@ By the end of this module, you will be able to:
    - Staying vigilant
 
 ### Assessment
+
 - 10 multiple choice questions
 - Passing score: 80%
 - Unlimited retakes
@@ -403,13 +407,16 @@ By the end of this module, you will be able to:
 ## Module: Phishing & Social Engineering
 
 ### Learning Objectives
+
 By the end of this module, you will be able to:
+
 - Recognize phishing attempts
 - Identify social engineering tactics
 - Respond appropriately to suspicious messages
 - Report phishing attempts correctly
 
 ### Topics Covered
+
 1. What is Phishing?
    - Email phishing
    - Spear phishing
@@ -438,11 +445,13 @@ By the end of this module, you will be able to:
    - When to escalate
 
 ### Interactive Elements
+
 - Real phishing examples (anonymized)
 - "Spot the phish" exercises
 - Reporting practice
 
 ### Assessment
+
 - Scenario-based questions
 - Identify red flags
 - Passing score: 80%
@@ -454,8 +463,8 @@ By the end of this module, you will be able to:
 
 ### 4.1 Engineering & Development
 
-| Module                                 | Audience          | Duration | Topics                                                                                     |
-| -------------------------------------- | ----------------- | -------- | ------------------------------------------------------------------------------------------ |
+| Module                           | Audience          | Duration | Topics                                                                                     |
+| -------------------------------- | ----------------- | -------- | ------------------------------------------------------------------------------------------ |
 | **Secure Coding Fundamentals**   | All developers    | 2 hours  | OWASP Top 10, secure coding principles                                                     |
 | **Input Validation & Injection** | All developers    | 1 hour   | SQL injection, XSS, command injection                                                      |
 | **Authentication & Session**     | All developers    | 1 hour   | Auth security, session management                                                          |
@@ -467,8 +476,8 @@ By the end of this module, you will be able to:
 
 ### 4.2 Operations & Infrastructure
 
-| Module                                 | Audience   | Duration | Topics                                                                               |
-| -------------------------------------- | ---------- | -------- | ------------------------------------------------------------------------------------ |
+| Module                           | Audience   | Duration | Topics                                                                               |
+| -------------------------------- | ---------- | -------- | ------------------------------------------------------------------------------------ |
 | **Infrastructure Security**      | SRE/DevOps | 2 hours  | Cloud security, network security                                                     |
 | **Access Management**            | SRE/DevOps | 1 hour   | IAM, least privilege, access reviews                                                 |
 | **Logging & Monitoring**         | SRE/DevOps | 1 hour   | Security logging, alert response                                                     |
@@ -478,8 +487,8 @@ By the end of this module, you will be able to:
 
 ### 4.3 Customer-Facing Roles
 
-| Module                               | Audience            | Duration | Topics                              |
-| ------------------------------------ | ------------------- | -------- | ----------------------------------- |
+| Module                         | Audience            | Duration | Topics                              |
+| ------------------------------ | ------------------- | -------- | ----------------------------------- |
 | **Customer Data Handling**     | All customer-facing | 1 hour   | Data protection, access limits      |
 | **Privacy Fundamentals**       | All customer-facing | 1 hour   | GDPR/CCPA basics, customer rights   |
 | **Secure Communication**       | Support/Success     | 30 min   | Verifying customers, secure sharing |
@@ -487,8 +496,8 @@ By the end of this module, you will be able to:
 
 ### 4.4 Management & Leadership
 
-| Module                         | Audience        | Duration | Topics                                  |
-| ------------------------------ | --------------- | -------- | --------------------------------------- |
+| Module                   | Audience        | Duration | Topics                                  |
+| ------------------------ | --------------- | -------- | --------------------------------------- |
 | **Security Leadership**  | All managers    | 1 hour   | Leading security culture, team security |
 | **Incident Management**  | All managers    | 1 hour   | Manager role in incidents               |
 | **Security Metrics**     | Senior managers | 30 min   | Understanding security metrics          |
@@ -583,9 +592,10 @@ By the end of this module, you will be able to:
 ```markdown
 ## Security Onboarding Checklist
 
-### Employee: _________________ Start Date: _____________
+### Employee: **\*\*\*\***\_**\*\*\*\*** Start Date: **\*\***\_**\*\***
 
 ### Day 1 Requirements
+
 - [ ] LMS account activated
 - [ ] Security Fundamentals module completed
 - [ ] Acceptable Use Policy acknowledged
@@ -595,6 +605,7 @@ By the end of this module, you will be able to:
 - [ ] Password manager setup
 
 ### Week 1 Requirements
+
 - [ ] Phishing & Social Engineering module completed
 - [ ] Password & Authentication module completed
 - [ ] Data Handling module completed
@@ -602,6 +613,7 @@ By the end of this module, you will be able to:
 - [ ] Email security features reviewed (recognizing spoofing indicators)
 
 ### First 30 Days
+
 - [ ] All baseline modules completed
 - [ ] Role-based training assigned
 - [ ] Role-based training started
@@ -609,6 +621,7 @@ By the end of this module, you will be able to:
 - [ ] Added to security communications
 
 ### First 90 Days
+
 - [ ] All role-based training completed
 - [ ] Specialized training completed (if applicable)
 - [ ] First phishing simulation received
@@ -616,9 +629,10 @@ By the end of this module, you will be able to:
 - [ ] Full onboarding complete
 
 ### Sign-off
-- **Employee:** _________________ Date: _______
-- **Manager:** _________________ Date: _______
-- **Security:** _________________ Date: _______
+
+- **Employee:** **\*\*\*\***\_**\*\*\*\*** Date: **\_\_\_**
+- **Manager:** **\*\*\*\***\_**\*\*\*\*** Date: **\_\_\_**
+- **Security:** **\*\*\*\***\_**\*\*\*\*** Date: **\_\_\_**
 ```
 
 ### 5.3 Contractor Onboarding
@@ -679,8 +693,8 @@ By the end of this module, you will be able to:
 
 ### 6.2 Simulation Scenarios
 
-| Scenario Type                  | Description                     | Difficulty |
-| ------------------------------ | ------------------------------- | ---------- |
+| Scenario Type            | Description                     | Difficulty |
+| ------------------------ | ------------------------------- | ---------- |
 | **IT Password Reset**    | Fake password reset request     | Basic      |
 | **HR Benefits Update**   | Fake HR notification            | Basic      |
 | **Package Delivery**     | Fake shipping notification      | Basic      |
@@ -694,8 +708,8 @@ By the end of this module, you will be able to:
 
 ### 6.3 Response Handling
 
-| Action                          | Classification | Follow-up                                                  |
-| ------------------------------- | -------------- | ---------------------------------------------------------- |
+| Action                    | Classification | Follow-up                                                  |
+| ------------------------- | -------------- | ---------------------------------------------------------- |
 | **Reported** (correct)    | Pass           | Positive reinforcement, recognition                        |
 | **Ignored** (no action)   | Neutral        | General awareness reminder                                 |
 | **Clicked link**          | Fail           | Immediate training, flag for monitoring                    |
@@ -741,8 +755,8 @@ By the end of this module, you will be able to:
 
 ### 6.5 Metrics & Reporting
 
-| Metric                           | Target                | Frequency      |
-| -------------------------------- | --------------------- | -------------- |
+| Metric                     | Target                | Frequency      |
+| -------------------------- | --------------------- | -------------- |
 | **Click rate**             | < 5%                  | Per simulation |
 | **Report rate**            | > 70%                 | Per simulation |
 | **Credential submission**  | < 2%                  | Per simulation |
@@ -756,8 +770,8 @@ By the end of this module, you will be able to:
 
 ### 7.1 Delivery Methods
 
-| Method                           | Use Case                       | Advantages                    |
-| -------------------------------- | ------------------------------ | ----------------------------- |
+| Method                     | Use Case                       | Advantages                    |
+| -------------------------- | ------------------------------ | ----------------------------- |
 | **Online self-paced**      | Baseline, most role-based      | Scalable, trackable, flexible |
 | **Virtual instructor-led** | Complex topics, Q&A needed     | Interactive, clarification    |
 | **In-person workshop**     | Hands-on skills, team building | Engagement, practice          |
@@ -780,8 +794,8 @@ By the end of this module, you will be able to:
 
 **LMS Capabilities:**
 
-| Feature                       | Purpose                                  |
-| ----------------------------- | ---------------------------------------- |
+| Feature                 | Purpose                                  |
+| ----------------------- | ---------------------------------------- |
 | **Auto-assignment**     | Assign training based on role/start date |
 | **Deadline tracking**   | Monitor completion deadlines             |
 | **Reminder automation** | Send reminders before deadlines          |
@@ -792,8 +806,8 @@ By the end of this module, you will be able to:
 
 ### 7.3 Content Development
 
-| Source                      | Use For                               |
-| --------------------------- | ------------------------------------- |
+| Source                | Use For                               |
+| --------------------- | ------------------------------------- |
 | **Vendor content**    | Baseline awareness, compliance basics |
 | **Custom content**    | Company-specific policies, procedures |
 | **Internal examples** | Anonymized real incidents             |
@@ -850,8 +864,8 @@ By the end of this module, you will be able to:
 
 ### 8.2 Reporting
 
-| Report                         | Audience          | Frequency |
-| ------------------------------ | ----------------- | --------- |
+| Report                   | Audience          | Frequency |
+| ------------------------ | ----------------- | --------- |
 | **Completion dashboard** | HR, Security      | Real-time |
 | **Overdue report**       | Managers          | Weekly    |
 | **Department summary**   | Department heads  | Monthly   |
@@ -885,8 +899,8 @@ By the end of this module, you will be able to:
 
 ### 9.2 Documentation Requirements
 
-| Document                      | Purpose                 | Retention               |
-| ----------------------------- | ----------------------- | ----------------------- |
+| Document                | Purpose                 | Retention               |
+| ----------------------- | ----------------------- | ----------------------- |
 | **Training policy**     | Define requirements     | Current + prior version |
 | **Completion records**  | Prove training occurred | 7 years                 |
 | **Assessment scores**   | Prove knowledge         | 7 years                 |
@@ -900,29 +914,34 @@ By the end of this module, you will be able to:
 ## Security Training Audit Evidence
 
 ### Policy & Program
+
 - [ ] Current Security Training Policy
 - [ ] Training curriculum documentation
 - [ ] Role-based training matrix
 - [ ] Onboarding procedures
 
 ### Completion Evidence
+
 - [ ] LMS completion report (all personnel)
 - [ ] On-time completion rates
 - [ ] Overdue resolution documentation
 - [ ] New hire completion verification
 
 ### Assessment Evidence
+
 - [ ] Assessment score reports
 - [ ] Pass/fail rates
 - [ ] Remediation records
 
 ### Simulation Evidence
+
 - [ ] Phishing simulation schedule
 - [ ] Simulation results (aggregated)
 - [ ] Click rates and trends
 - [ ] Remediation for failures
 
 ### Acknowledgments
+
 - [ ] Policy acknowledgment records
 - [ ] Date-stamped acknowledgments
 - [ ] Version acknowledged
@@ -1026,162 +1045,158 @@ Remediation: 7 days, no grace
 | Data Classification Standard                                    | Data handling training                  |
 | Privacy Handling Policy                                         | Privacy training content                |
 
-
-
-
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│        CYBERCUBE SECURITY TRAINING & AWARENESS — DIRECTIVE BLOCK            │
+│ CYBERCUBE SECURITY TRAINING & AWARENESS — DIRECTIVE BLOCK │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│ AUTHORITY                                                                   │
-│ Standard ID: STD-SEC-008                                                     │
-│ Owner: Security Team + HR                                                    │
-│ Applies to: ALL employees, contractors, vendors with system/data access     │
-│ Binding: MANDATORY                                                          │
+│ AUTHORITY │
+│ Standard ID: STD-SEC-008 │
+│ Owner: Security Team + HR │
+│ Applies to: ALL employees, contractors, vendors with system/data access │
+│ Binding: MANDATORY │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│ PURPOSE                                                                     │
-│ Ensure all personnel possess role-appropriate security knowledge and        │
-│ behaviors to reduce human-factor risk and meet regulatory obligations.      │
+│ PURPOSE │
+│ Ensure all personnel possess role-appropriate security knowledge and │
+│ behaviors to reduce human-factor risk and meet regulatory obligations. │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│ GOVERNING PRINCIPLES                                                        │
-│ • Universal coverage                                                        │
-│ • Role- and risk-based relevance                                            │
-│ • Continuous reinforcement                                                  │
-│ • Measurable effectiveness                                                  │
-│ • Audit-grade evidence                                                      │
+│ GOVERNING PRINCIPLES │
+│ • Universal coverage │
+│ • Role- and risk-based relevance │
+│ • Continuous reinforcement │
+│ • Measurable effectiveness │
+│ • Audit-grade evidence │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│ TRAINING CATEGORIES (MANDATORY)                                              │
-│ • Baseline: all personnel                                                   │
-│ • Role-Based: by job function                                               │
-│ • Specialized: by access/privilege                                          │
-│ • Compliance: regulatory/customer-driven                                   │
+│ TRAINING CATEGORIES (MANDATORY) │
+│ • Baseline: all personnel │
+│ • Role-Based: by job function │
+│ • Specialized: by access/privilege │
+│ • Compliance: regulatory/customer-driven │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│ BASELINE TRAINING (ALL PERSONNEL)                                           │
-│ • Security fundamentals                                                     │
-│ • Phishing & social engineering                                             │
-│ • Passwords & MFA                                                          │
-│ • Data handling & classification                                            │
-│ • Physical & remote work security                                           │
-│ • Incident reporting                                                        │
-│ • Acceptable Use Policy acknowledgment                                      │
+│ BASELINE TRAINING (ALL PERSONNEL) │
+│ • Security fundamentals │
+│ • Phishing & social engineering │
+│ • Passwords & MFA │
+│ • Data handling & classification │
+│ • Physical & remote work security │
+│ • Incident reporting │
+│ • Acceptable Use Policy acknowledgment │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│ ROLE-BASED & SPECIALIZED TRAINING                                           │
-│ • Engineering: secure coding, OWASP, secrets                                │
-│ • Ops/SRE: infrastructure, access mgmt, IR                                  │
-│ • Customer-facing: privacy, customer data                                   │
-│ • Privileged/Prod access: elevated responsibility                            │
-│ • Leadership: security leadership, crisis management                         │
+│ ROLE-BASED & SPECIALIZED TRAINING │
+│ • Engineering: secure coding, OWASP, secrets │
+│ • Ops/SRE: infrastructure, access mgmt, IR │
+│ • Customer-facing: privacy, customer data │
+│ • Privileged/Prod access: elevated responsibility │
+│ • Leadership: security leadership, crisis management │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│ TRAINING CADENCE                                                            │
-│ • Onboarding: Day 1 → Week 1 → 30 days                                      │
-│ • Annual: refreshers + policy acknowledgment                                 │
-│ • Quarterly: phishing simulations + microlearning                            │
-│ • Monthly: security reminders                                               │
-│ • As-needed: incidents, new threats, role change                            │
+│ TRAINING CADENCE │
+│ • Onboarding: Day 1 → Week 1 → 30 days │
+│ • Annual: refreshers + policy acknowledgment │
+│ • Quarterly: phishing simulations + microlearning │
+│ • Monthly: security reminders │
+│ • As-needed: incidents, new threats, role change │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│ PHISHING SIMULATION PROGRAM                                                  │
-│ • Org-wide quarterly; high-risk roles monthly                                │
-│ • Difficulty progression enforced                                           │
-│ • Failure triggers remediation                                              │
-│ • Repeated failure escalates to management/HR                               │
+│ PHISHING SIMULATION PROGRAM │
+│ • Org-wide quarterly; high-risk roles monthly │
+│ • Difficulty progression enforced │
+│ • Failure triggers remediation │
+│ • Repeated failure escalates to management/HR │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│ ASSESSMENT & REMEDIATION                                                     │
-│ • Passing score ≥80%                                                        │
-│ • Unlimited retakes allowed                                                 │
-│ • Failed assessments require remediation ≤7 days                            │
+│ ASSESSMENT & REMEDIATION │
+│ • Passing score ≥80% │
+│ • Unlimited retakes allowed │
+│ • Failed assessments require remediation ≤7 days │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│ DELIVERY & LMS REQUIREMENTS                                                  │
-│ • Central LMS REQUIRED                                                      │
-│ • Auto-assignment by role/start date                                        │
-│ • Deadline tracking & escalation                                            │
-│ • Reporting and certificates                                                │
-│ • Audit trail preserved                                                     │
+│ DELIVERY & LMS REQUIREMENTS │
+│ • Central LMS REQUIRED │
+│ • Auto-assignment by role/start date │
+│ • Deadline tracking & escalation │
+│ • Reporting and certificates │
+│ • Audit trail preserved │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│ METRICS (MANDATORY)                                                         │
-│ • Completion rate (target: 100%)                                            │
-│ • On-time completion (>95%)                                                 │
-│ • Assessment scores (>85% avg)                                              │
-│ • Phishing click rate (<5%)                                                 │
-│ • Report rate (>70%)                                                        │
-│ • Repeat failure rate (<10%)                                                │
+│ METRICS (MANDATORY) │
+│ • Completion rate (target: 100%) │
+│ • On-time completion (>95%) │
+│ • Assessment scores (>85% avg) │
+│ • Phishing click rate (<5%) │
+│ • Report rate (>70%) │
+│ • Repeat failure rate (<10%) │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│ COMPLIANCE & ENFORCEMENT                                                     │
-│ • Non-completion escalates to management/HR                                 │
-│ • Access restriction permitted for non-compliance                           │
-│ • Evidence retained per audit schedule                                      │
-│ • Aligned with Security Policy, ERM, IR                                     │
+│ COMPLIANCE & ENFORCEMENT │
+│ • Non-completion escalates to management/HR │
+│ • Access restriction permitted for non-compliance │
+│ • Evidence retained per audit schedule │
+│ • Aligned with Security Policy, ERM, IR │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│ REVIEW & MAINTENANCE                                                         │
-│ • Annual review MINIMUM                                                     │
-│ • Update upon policy, threat, or regulatory change                          │
+│ REVIEW & MAINTENANCE │
+│ • Annual review MINIMUM │
+│ • Update upon policy, threat, or regulatory change │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│ OUTCOME                                                                     │
-│ • Security-aware culture                                                    │
-│ • Reduced human-factor risk                                                 │
-│ • Continuous compliance                                                     │
-│ • Audit-ready training evidence                                             │
+│ OUTCOME │
+│ • Security-aware culture │
+│ • Reduced human-factor risk │
+│ • Continuous compliance │
+│ • Audit-ready training evidence │
 └─────────────────────────────────────────────────────────────────────────────┘
 
-
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│ CYBERCUBE SECURITY TRAINING — COMPLIANCE MATRIX (0–5)                       │
+│ CYBERCUBE SECURITY TRAINING — COMPLIANCE MATRIX (0–5) │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│ SCORING SCALE                                                               │
-│ 0 = Not defined                                                             │
-│ 1 = Defined only                                                            │
-│ 2 = Partially implemented                                                   │
-│ 3 = Implemented (baseline compliant)                                        │
-│ 4 = Enforced, measured                                                      │
-│ 5 = Institutionalized, audited                                              │
+│ SCORING SCALE │
+│ 0 = Not defined │
+│ 1 = Defined only │
+│ 2 = Partially implemented │
+│ 3 = Implemented (baseline compliant) │
+│ 4 = Enforced, measured │
+│ 5 = Institutionalized, audited │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│ T1 — GOVERNANCE & OWNERSHIP                                                 │
-│ • Policy owner defined                                                     │
-│ • HR/Security accountability                                               │
+│ T1 — GOVERNANCE & OWNERSHIP │
+│ • Policy owner defined │
+│ • HR/Security accountability │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│ T2 — SCOPE & COVERAGE                                                       │
-│ • All personnel included                                                   │
-│ • Contractors/vendors covered                                              │
+│ T2 — SCOPE & COVERAGE │
+│ • All personnel included │
+│ • Contractors/vendors covered │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│ T3 — BASELINE TRAINING                                                      │
-│ • Core modules delivered                                                   │
-│ • Onboarding deadlines met                                                 │
+│ T3 — BASELINE TRAINING │
+│ • Core modules delivered │
+│ • Onboarding deadlines met │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│ T4 — ROLE-BASED & SPECIALIZED TRAINING                                      │
-│ • Role mapping enforced                                                    │
-│ • Privileged access training                                               │
+│ T4 — ROLE-BASED & SPECIALIZED TRAINING │
+│ • Role mapping enforced │
+│ • Privileged access training │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│ T5 — TRAINING CADENCE                                                       │
-│ • Annual refreshers                                                       │
-│ • Ongoing reinforcement                                                    │
+│ T5 — TRAINING CADENCE │
+│ • Annual refreshers │
+│ • Ongoing reinforcement │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│ T6 — PHISHING SIMULATION PROGRAM                                            │
-│ • Regular simulations                                                     │
-│ • Difficulty progression & remediation                                     │
+│ T6 — PHISHING SIMULATION PROGRAM │
+│ • Regular simulations │
+│ • Difficulty progression & remediation │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│ T7 — ASSESSMENT & REMEDIATION                                               │
-│ • Assessments scored                                                      │
-│ • Failures remediated                                                      │
+│ T7 — ASSESSMENT & REMEDIATION │
+│ • Assessments scored │
+│ • Failures remediated │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│ T8 — LMS & EVIDENCE                                                         │
-│ • Central LMS                                                             │
-│ • Audit trail retained                                                     │
+│ T8 — LMS & EVIDENCE │
+│ • Central LMS │
+│ • Audit trail retained │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│ T9 — METRICS & EFFECTIVENESS                                                │
-│ • Completion & score tracking                                             │
-│ • Behavior metrics (phish rate, reports)                                   │
+│ T9 — METRICS & EFFECTIVENESS │
+│ • Completion & score tracking │
+│ • Behavior metrics (phish rate, reports) │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│ T10 — ENFORCEMENT & ESCALATION                                              │
-│ • Overdue escalation                                                      │
-│ • Access restriction applied if needed                                    │
+│ T10 — ENFORCEMENT & ESCALATION │
+│ • Overdue escalation │
+│ • Access restriction applied if needed │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│ TOTAL SCORE                                                                │
-│ • Max: 50                                                                 │
-│ • ≥45 = Training-Mature                                                    │
-│ • 36–44 = Managed                                                          │
-│ • 28–35 = Elevated human-risk                                               │
-│ • <28 = Unacceptable                                                       │
+│ TOTAL SCORE │
+│ • Max: 50 │
+│ • ≥45 = Training-Mature │
+│ • 36–44 = Managed │
+│ • 28–35 = Elevated human-risk │
+│ • <28 = Unacceptable │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│ HARD FAIL CONDITIONS                                                       │
-│ • T2 < 3 (Incomplete coverage)                                            │
-│ • T3 < 3 (Baseline not enforced)                                          │
-│ • T8 < 3 (No auditable evidence)                                          │
+│ HARD FAIL CONDITIONS │
+│ • T2 < 3 (Incomplete coverage) │
+│ • T3 < 3 (Baseline not enforced) │
+│ • T8 < 3 (No auditable evidence) │
 └─────────────────────────────────────────────────────────────────────────────┘

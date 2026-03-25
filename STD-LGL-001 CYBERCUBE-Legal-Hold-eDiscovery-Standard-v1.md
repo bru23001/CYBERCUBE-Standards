@@ -25,6 +25,7 @@
 9. [Audit Trail](#9-audit-trail)
 10. [Compliance & Defensibility](#10-compliance--defensibility)
 11. [Training & Awareness](#11-training--awareness)
+
 - [Quick Reference Card](#quick-reference-card)
 - [Appendix A: Glossary](#appendix-a-glossary)
 
@@ -38,6 +39,7 @@ relevant information when litigation, investigations, or regulatory
 matters are anticipated or pending.
 
 **Regulatory & Legal Alignment:**
+
 - Federal Rules of Civil Procedure (FRCP) Rules 26, 37
 - Federal Rules of Evidence
 - Sedona Principles (Third Edition)
@@ -55,10 +57,12 @@ matters are anticipated or pending.
 6. **Compliance** — Meet all legal and regulatory obligations
 
 **Related Standards:**
+
 - Records Management Policy — CYBERCUBE-Records-Management-Policy-v1
 - Privacy Handling Policy — CYBERCUBE-Privacy-Handling-Policy-v1
 
 **This standard does NOT define:**
+
 - Data retention periods — see Data Classification & Retention Standard
 - Soft delete lifecycle — see Soft-Delete & Lifecycle Management Standard
 - Incident response — see Security Incident Response Standard
@@ -95,24 +99,24 @@ matters are anticipated or pending.
 
 ### 1.2 Roles and Responsibilities
 
-| Role | Responsibilities |
-|------|------------------|
-| **Legal Counsel** | Determine trigger events, authorize holds, define scope, approve releases |
-| **Legal Hold Administrator** | Issue notices, track acknowledgments, manage holds, maintain records |
-| **IT/Security** | Implement system holds, suspend deletion, collect data, maintain integrity |
-| **Custodians** | Preserve relevant data, acknowledge holds, comply with instructions |
-| **Records Management** | Suspend destruction, maintain retention schedules, coordinate with Legal |
-| **Executive Sponsor** | Ensure organizational compliance, allocate resources |
+| Role                         | Responsibilities                                                           |
+| ---------------------------- | -------------------------------------------------------------------------- |
+| **Legal Counsel**            | Determine trigger events, authorize holds, define scope, approve releases  |
+| **Legal Hold Administrator** | Issue notices, track acknowledgments, manage holds, maintain records       |
+| **IT/Security**              | Implement system holds, suspend deletion, collect data, maintain integrity |
+| **Custodians**               | Preserve relevant data, acknowledge holds, comply with instructions        |
+| **Records Management**       | Suspend destruction, maintain retention schedules, coordinate with Legal   |
+| **Executive Sponsor**        | Ensure organizational compliance, allocate resources                       |
 
 ### 1.3 Legal Hold Governance
 
-| Element | Requirement |
-|---------|-------------|
-| Policy Owner | General Counsel |
-| Administrator | Legal Operations |
-| Review Frequency | Annual |
-| Training | Annual for all employees |
-| Audit | Annual compliance audit |
+| Element          | Requirement              |
+| ---------------- | ------------------------ |
+| Policy Owner     | General Counsel          |
+| Administrator    | Legal Operations         |
+| Review Frequency | Annual                   |
+| Training         | Annual for all employees |
+| Audit            | Annual compliance audit  |
 
 ---
 
@@ -122,25 +126,25 @@ matters are anticipated or pending.
 
 Legal holds must be initiated upon:
 
-| Trigger | Response Time | Authorization |
-|---------|---------------|---------------|
-| Complaint received | Immediate | Legal Counsel |
-| Complaint filed by CYBERCUBE | Before filing | Legal Counsel |
-| Subpoena received | Immediate | Legal Counsel |
-| Demand letter received | 24 hours | Legal Counsel |
-| Regulatory inquiry | 24 hours | Legal Counsel |
-| Government investigation | Immediate | General Counsel |
-| Anticipated litigation | Upon reasonable anticipation | Legal Counsel |
+| Trigger                      | Response Time                | Authorization   |
+| ---------------------------- | ---------------------------- | --------------- |
+| Complaint received           | Immediate                    | Legal Counsel   |
+| Complaint filed by CYBERCUBE | Before filing                | Legal Counsel   |
+| Subpoena received            | Immediate                    | Legal Counsel   |
+| Demand letter received       | 24 hours                     | Legal Counsel   |
+| Regulatory inquiry           | 24 hours                     | Legal Counsel   |
+| Government investigation     | Immediate                    | General Counsel |
+| Anticipated litigation       | Upon reasonable anticipation | Legal Counsel   |
 
 ### 2.2 Internal Investigation Triggers
 
-| Trigger | Response Time | Authorization |
-|---------|---------------|---------------|
-| Fraud allegation | Immediate | Legal + HR |
-| Whistleblower complaint | Immediate | Legal + HR |
-| Security incident (potential litigation) | 24 hours | Legal + Security |
-| Employment dispute | 24 hours | Legal + HR |
-| IP theft allegation | Immediate | Legal Counsel |
+| Trigger                                  | Response Time | Authorization    |
+| ---------------------------------------- | ------------- | ---------------- |
+| Fraud allegation                         | Immediate     | Legal + HR       |
+| Whistleblower complaint                  | Immediate     | Legal + HR       |
+| Security incident (potential litigation) | 24 hours      | Legal + Security |
+| Employment dispute                       | 24 hours      | Legal + HR       |
+| IP theft allegation                      | Immediate     | Legal Counsel    |
 
 ### 2.3 Reasonable Anticipation Standard
 
@@ -223,6 +227,7 @@ Preservation duty begins when litigation is **reasonably anticipated**:
 ## Legal Hold Authorization
 
 ### Matter Information
+
 - **Matter ID:** LH-2026-001
 - **Matter Name:** [Case Name]
 - **Matter Type:** ☐ Litigation ☐ Regulatory ☐ Investigation ☐ Other
@@ -230,20 +235,25 @@ Preservation duty begins when litigation is **reasonably anticipated**:
 - **Trigger Date:** [Date]
 
 ### Authorization
+
 - **Authorized By:** [Legal Counsel Name]
 - **Authorization Date:** [Date]
 - **Priority:** ☐ Immediate ☐ Standard
 
 ### Scope Definition
+
 **Custodians:**
+
 - [Name, Title, Department]
 - [Name, Title, Department]
 
 **Date Range:**
+
 - From: [Date]
 - To: [Date or "Present"]
 
 **Data Types:**
+
 - ☐ Email
 - ☐ Documents (specify types)
 - ☐ Instant messages / Slack
@@ -255,6 +265,7 @@ Preservation duty begins when litigation is **reasonably anticipated**:
 - ☐ Other: [specify]
 
 **Systems:**
+
 - ☐ Google Workspace
 - ☐ Slack
 - ☐ GitHub
@@ -267,52 +278,53 @@ Preservation duty begins when litigation is **reasonably anticipated**:
 [If applicable]
 
 ### Approval
-- **Signature:** _________________________
-- **Date:** _________________________
+
+- **Signature:** \***\*\*\*\*\*\*\***\_\***\*\*\*\*\*\*\***
+- **Date:** \***\*\*\*\*\*\*\***\_\***\*\*\*\*\*\*\***
 ```
 
 ### 3.3 Scope Definition
 
 Scope must be:
 
-| Criterion | Requirement |
-|-----------|-------------|
-| **Documented** | Written scope in hold authorization |
-| **Proportional** | Balanced to matter significance |
-| **Defensible** | Reasonable under circumstances |
-| **Complete** | All relevant data sources |
-| **Clear** | Unambiguous for custodians |
+| Criterion        | Requirement                         |
+| ---------------- | ----------------------------------- |
+| **Documented**   | Written scope in hold authorization |
+| **Proportional** | Balanced to matter significance     |
+| **Defensible**   | Reasonable under circumstances      |
+| **Complete**     | All relevant data sources           |
+| **Clear**        | Unambiguous for custodians          |
 
 #### 3.3.1 Custodian Identification
 
-| Factor | Consideration |
-|--------|---------------|
-| Direct involvement | Parties to the dispute |
-| Knowledge | Those with relevant information |
-| Decision-makers | Executives, managers involved |
-| Communication | Recipients of relevant communications |
-| Witnesses | Potential witnesses |
+| Factor             | Consideration                         |
+| ------------------ | ------------------------------------- |
+| Direct involvement | Parties to the dispute                |
+| Knowledge          | Those with relevant information       |
+| Decision-makers    | Executives, managers involved         |
+| Communication      | Recipients of relevant communications |
+| Witnesses          | Potential witnesses                   |
 
 #### 3.3.2 Data Source Identification
 
-| Category | Examples |
-|----------|----------|
-| Email | Gmail, Outlook, archived |
-| Messaging | Slack, Teams, SMS |
+| Category  | Examples                        |
+| --------- | ------------------------------- |
+| Email     | Gmail, Outlook, archived        |
+| Messaging | Slack, Teams, SMS               |
 | Documents | Google Drive, SharePoint, local |
-| Databases | Production, analytics, logs |
-| Code | Repositories, version history |
-| Cloud | AWS, GCP, SaaS applications |
-| Devices | Laptops, phones, tablets |
-| Backups | System backups, archives |
+| Databases | Production, analytics, logs     |
+| Code      | Repositories, version history   |
+| Cloud     | AWS, GCP, SaaS applications     |
+| Devices   | Laptops, phones, tablets        |
+| Backups   | System backups, archives        |
 
 #### 3.3.3 Date Range
 
-| Approach | When to Use |
-|----------|-------------|
-| Fixed range | Clear triggering events with dates |
-| Rolling | Ongoing matters |
-| Broad + refine | Uncertain scope, refine after ECA |
+| Approach       | When to Use                        |
+| -------------- | ---------------------------------- |
+| Fixed range    | Clear triggering events with dates |
+| Rolling        | Ongoing matters                    |
+| Broad + refine | Uncertain scope, refine after ECA  |
 
 ---
 
@@ -322,16 +334,16 @@ Scope must be:
 
 Every hold notice must include:
 
-| Element | Description |
-|---------|-------------|
-| Matter identification | Case name, matter ID |
-| Legal basis | Why preservation is required |
-| Scope | What data must be preserved |
-| Obligations | Specific custodian duties |
-| Prohibitions | What custodian must NOT do |
-| Duration | Expected length (if known) |
-| Contact | Who to contact with questions |
-| Acknowledgment | How to confirm receipt |
+| Element               | Description                   |
+| --------------------- | ----------------------------- |
+| Matter identification | Case name, matter ID          |
+| Legal basis           | Why preservation is required  |
+| Scope                 | What data must be preserved   |
+| Obligations           | Specific custodian duties     |
+| Prohibitions          | What custodian must NOT do    |
+| Duration              | Expected length (if known)    |
+| Contact               | Who to contact with questions |
+| Acknowledgment        | How to confirm receipt        |
 
 ### 4.2 Hold Notice Template
 
@@ -359,11 +371,13 @@ You are required to **PRESERVE** all documents and electronically stored
 information (ESI) that may be relevant to this matter, including:
 
 **In Scope:**
+
 - [Specific data types]
 - [Date range: From [date] to present]
 - [Keywords or subjects, if applicable]
 
 **Data Types to Preserve:**
+
 - Emails (sent, received, drafts, deleted)
 - Documents (all formats)
 - Instant messages and chats
@@ -415,6 +429,7 @@ Please acknowledge receipt by [completing the form / clicking the link /
 replying to this email] within **48 hours**.
 
 **By acknowledging, you confirm that you:**
+
 1. Have read and understood this notice
 2. Will comply with preservation obligations
 3. Will contact Legal with any questions
@@ -426,20 +441,20 @@ consequences for CYBERCUBE and may be grounds for disciplinary action.**
 
 ---
 
-*This notice is CONFIDENTIAL and may be subject to attorney-client privilege
+_This notice is CONFIDENTIAL and may be subject to attorney-client privilege
 and/or work product protection. Do not forward or discuss outside of
-authorized personnel.*
+authorized personnel._
 ```
 
 ### 4.3 Acknowledgment Tracking
 
-| Status | Action Required |
-|--------|-----------------|
-| Sent | Notice delivered |
-| Acknowledged | Custodian confirmed receipt |
-| Overdue | No acknowledgment within 48 hours |
-| Escalated | Manager/Legal notified |
-| Non-compliant | Disciplinary referral |
+| Status        | Action Required                   |
+| ------------- | --------------------------------- |
+| Sent          | Notice delivered                  |
+| Acknowledged  | Custodian confirmed receipt       |
+| Overdue       | No acknowledgment within 48 hours |
+| Escalated     | Manager/Legal notified            |
+| Non-compliant | Disciplinary referral             |
 
 ```
 Acknowledgment Timeline:
@@ -450,11 +465,11 @@ Notice Sent ──▶ 48h Deadline ──▶ Reminder ──▶ 72h Escalation �
 
 ### 4.4 Hold Reminders
 
-| Reminder Type | Frequency | Purpose |
-|---------------|-----------|---------|
-| Quarterly reminder | Every 90 days | Maintain awareness |
-| Scope update | As needed | Inform of changes |
-| Status check | Semi-annually | Confirm ongoing compliance |
+| Reminder Type      | Frequency     | Purpose                    |
+| ------------------ | ------------- | -------------------------- |
+| Quarterly reminder | Every 90 days | Maintain awareness         |
+| Scope update       | As needed     | Inform of changes          |
+| Status check       | Semi-annually | Confirm ongoing compliance |
 
 ---
 
@@ -462,35 +477,35 @@ Notice Sent ──▶ 48h Deadline ──▶ Reminder ──▶ 72h Escalation �
 
 ### 5.1 Technical Preservation
 
-| System | Preservation Method |
-|--------|---------------------|
-| Email (Google) | Vault hold on custodian accounts |
-| Email (O365) | Litigation hold on mailboxes |
-| Slack | Legal hold via Slack Enterprise |
-| Google Drive | Vault hold on accounts |
-| Databases | Suspend deletion, snapshot |
-| Application data | API-level hold flag |
-| Backups | Extend retention, isolate |
-| Logs | Suspend rotation for relevant period |
+| System           | Preservation Method                  |
+| ---------------- | ------------------------------------ |
+| Email (Google)   | Vault hold on custodian accounts     |
+| Email (O365)     | Litigation hold on mailboxes         |
+| Slack            | Legal hold via Slack Enterprise      |
+| Google Drive     | Vault hold on accounts               |
+| Databases        | Suspend deletion, snapshot           |
+| Application data | API-level hold flag                  |
+| Backups          | Extend retention, isolate            |
+| Logs             | Suspend rotation for relevant period |
 
 ### 5.2 System-Level Hold Implementation
 
 ```typescript
 // Legal Hold Implementation
 interface LegalHold {
-  hold_id: string;           // LH-2026-001
-  matter_id: string;         // Reference to legal matter
+  hold_id: string; // LH-2026-001
+  matter_id: string; // Reference to legal matter
   status: 'active' | 'released';
   created_at: Date;
-  created_by: string;        // Legal counsel CC-PID
+  created_by: string; // Legal counsel CC-PID
   scope: HoldScope;
-  custodians: string[];      // User CC-PIDs
-  systems: string[];         // Affected systems
+  custodians: string[]; // User CC-PIDs
+  systems: string[]; // Affected systems
 }
 
 interface HoldScope {
   date_from: Date;
-  date_to: Date | null;      // null = ongoing
+  date_to: Date | null; // null = ongoing
   data_types: DataType[];
   keywords?: string[];
 }
@@ -499,7 +514,7 @@ interface HoldScope {
 async function canDelete(resource: Resource): Promise<boolean> {
   // Check for active legal holds
   const holds = await getLegalHolds({ status: 'active' });
-  
+
   for (const hold of holds) {
     if (isResourceInScope(resource, hold)) {
       // Log attempted deletion
@@ -509,11 +524,11 @@ async function canDelete(resource: Resource): Promise<boolean> {
         hold_id: hold.hold_id,
         reason: 'Active legal hold',
       });
-      
+
       return false; // Block deletion
     }
   }
-  
+
   return true; // Allow deletion
 }
 
@@ -536,23 +551,23 @@ function isResourceInScope(resource: Resource, hold: LegalHold): boolean {
 
 ### 5.3 Preservation Actions by System
 
-| System | Action | Owner | SLA |
-|--------|--------|-------|-----|
-| Google Workspace | Create Vault matter and holds | IT Admin | 4 hours |
-| Slack Enterprise | Apply legal hold | IT Admin | 4 hours |
-| Production DB | Flag records, suspend deletion | DBA | 4 hours |
-| Application | Enable hold flag on entities | Engineering | 4 hours |
-| Cloud storage | Suspend lifecycle rules | DevOps | 4 hours |
-| Backups | Isolate relevant backups | IT Ops | 24 hours |
-| Devices | Image if required | IT Security | As directed |
+| System           | Action                         | Owner       | SLA         |
+| ---------------- | ------------------------------ | ----------- | ----------- |
+| Google Workspace | Create Vault matter and holds  | IT Admin    | 4 hours     |
+| Slack Enterprise | Apply legal hold               | IT Admin    | 4 hours     |
+| Production DB    | Flag records, suspend deletion | DBA         | 4 hours     |
+| Application      | Enable hold flag on entities   | Engineering | 4 hours     |
+| Cloud storage    | Suspend lifecycle rules        | DevOps      | 4 hours     |
+| Backups          | Isolate relevant backups       | IT Ops      | 24 hours    |
+| Devices          | Image if required              | IT Security | As directed |
 
 ### 5.4 In-Place vs. Collection Preservation
 
-| Approach | When to Use | Pros | Cons |
-|----------|-------------|------|------|
-| **In-place** | Early stage, broad scope | Less disruptive, maintains context | Relies on system controls |
-| **Collection** | Active litigation, specific need | Full control, forensic integrity | More resource-intensive |
-| **Hybrid** | Complex matters | Balances needs | Requires coordination |
+| Approach       | When to Use                      | Pros                               | Cons                      |
+| -------------- | -------------------------------- | ---------------------------------- | ------------------------- |
+| **In-place**   | Early stage, broad scope         | Less disruptive, maintains context | Relies on system controls |
+| **Collection** | Active litigation, specific need | Full control, forensic integrity   | More resource-intensive   |
+| **Hybrid**     | Complex matters                  | Balances needs                     | Requires coordination     |
 
 ### 5.5 GDPR Erasure Requests During Legal Hold
 
@@ -561,13 +576,13 @@ that is subject to an active legal hold, the legal hold supersedes the
 erasure request per Article 17(3)(e) (establishment, exercise, or defence of
 legal claims).
 
-| Step | Action | Owner |
-|------|--------|-------|
-| 1 | Identify overlap between erasure request scope and active holds | Privacy Team + Legal |
-| 2 | Document the legal basis for retention (Art. 17(3)(e)) | Legal Counsel |
-| 3 | Notify the data subject that erasure is delayed due to legal obligations | Privacy Team |
-| 4 | Segregate and minimize access to held personal data | IT/Security |
-| 5 | Upon hold release, re-evaluate erasure request and process if still valid | Privacy Team + Legal |
+| Step | Action                                                                    | Owner                |
+| ---- | ------------------------------------------------------------------------- | -------------------- |
+| 1    | Identify overlap between erasure request scope and active holds           | Privacy Team + Legal |
+| 2    | Document the legal basis for retention (Art. 17(3)(e))                    | Legal Counsel        |
+| 3    | Notify the data subject that erasure is delayed due to legal obligations  | Privacy Team         |
+| 4    | Segregate and minimize access to held personal data                       | IT/Security          |
+| 5    | Upon hold release, re-evaluate erasure request and process if still valid | Privacy Team + Legal |
 
 All decisions SHALL be documented in both the hold register and the
 privacy request log. See Privacy Handling Policy for erasure request
@@ -616,27 +631,32 @@ procedures.
 ## Collection Authorization Form
 
 ### Matter Information
+
 - **Matter ID:** LH-2026-001
 - **Matter Name:** [Case Name]
 - **Collection ID:** COL-2026-001
 
 ### Collection Scope
+
 - **Custodians:** [List]
 - **Date Range:** [From] to [To]
 - **Data Sources:** [List]
 - **Keywords/Filters:** [If applicable]
 
 ### Collection Method
+
 - ☐ Forensic imaging (full)
 - ☐ Targeted collection
 - ☐ Export from system
 - ☐ API extraction
 
 ### Authorization
+
 - **Authorized By:** [Legal Counsel]
 - **Date:** [Date]
 
 ### Chain of Custody
+
 - **Collected By:** [Name]
 - **Collection Date:** [Date]
 - **Hash Value:** [SHA-256]
@@ -645,15 +665,15 @@ procedures.
 
 #### 6.2.2 Collection Methods
 
-| Source | Method | Tool |
-|--------|--------|------|
-| Google Workspace | Vault export | Google Vault |
-| Email (O365) | eDiscovery export | Microsoft Purview |
-| Slack | Export via API | Slack Enterprise |
-| Databases | Query + export | Secure SQL export |
-| Cloud storage | Sync + hash | rclone, gsutil |
-| Devices | Forensic image | FTK, EnCase |
-| Application | API export | Custom scripts |
+| Source           | Method            | Tool              |
+| ---------------- | ----------------- | ----------------- |
+| Google Workspace | Vault export      | Google Vault      |
+| Email (O365)     | eDiscovery export | Microsoft Purview |
+| Slack            | Export via API    | Slack Enterprise  |
+| Databases        | Query + export    | Secure SQL export |
+| Cloud storage    | Sync + hash       | rclone, gsutil    |
+| Devices          | Forensic image    | FTK, EnCase       |
+| Application      | API export        | Custom scripts    |
 
 #### 6.2.3 Chain of Custody
 
@@ -661,24 +681,28 @@ procedures.
 ## Chain of Custody Record
 
 ### Collection Information
+
 - **Collection ID:** COL-2026-001
 - **Source:** [System/Custodian]
 - **Date Collected:** [Date/Time UTC]
 - **Collected By:** [Name]
 
 ### Verification
+
 - **Original Hash (SHA-256):** [hash]
 - **File Count:** [count]
 - **Total Size:** [size]
 
 ### Custody Log
-| Date/Time | From | To | Purpose | Hash Verified | Signature |
-|-----------|------|-----|---------|---------------|-----------|
-| [Date] | [Name] | [Name] | Collection | ✓ | [sig] |
-| [Date] | [Name] | [Name] | Processing | ✓ | [sig] |
-| [Date] | [Name] | [Name] | Review | ✓ | [sig] |
+
+| Date/Time | From   | To     | Purpose    | Hash Verified | Signature |
+| --------- | ------ | ------ | ---------- | ------------- | --------- |
+| [Date]    | [Name] | [Name] | Collection | ✓             | [sig]     |
+| [Date]    | [Name] | [Name] | Processing | ✓             | [sig]     |
+| [Date]    | [Name] | [Name] | Review     | ✓             | [sig]     |
 
 ### Storage
+
 - **Location:** [Secure storage path]
 - **Access Controls:** [Who has access]
 - **Encryption:** [Method]
@@ -686,35 +710,35 @@ procedures.
 
 ### 6.3 Processing
 
-| Step | Action | Purpose |
-|------|--------|---------|
-| Ingestion | Load into review platform | Centralize |
-| De-duplication | Remove exact duplicates | Reduce volume |
-| De-NISTing | Remove system files | Remove noise |
-| Filtering | Apply date/custodian filters | Focus scope |
-| Extraction | Extract text, metadata | Enable search |
-| OCR | Convert images to text | Searchability |
-| Indexing | Build search index | Enable review |
+| Step           | Action                       | Purpose       |
+| -------------- | ---------------------------- | ------------- |
+| Ingestion      | Load into review platform    | Centralize    |
+| De-duplication | Remove exact duplicates      | Reduce volume |
+| De-NISTing     | Remove system files          | Remove noise  |
+| Filtering      | Apply date/custodian filters | Focus scope   |
+| Extraction     | Extract text, metadata       | Enable search |
+| OCR            | Convert images to text       | Searchability |
+| Indexing       | Build search index           | Enable review |
 
 ### 6.4 Review
 
-| Review Type | Description | When Used |
-|-------------|-------------|-----------|
-| First-pass | Initial relevance review | All matters |
-| Privilege | Identify privileged documents | All matters |
-| TAR/Predictive | Machine-assisted relevance | Large volumes |
-| QC | Quality control sampling | All matters |
-| Final | Confirm production set | Pre-production |
+| Review Type    | Description                   | When Used      |
+| -------------- | ----------------------------- | -------------- |
+| First-pass     | Initial relevance review      | All matters    |
+| Privilege      | Identify privileged documents | All matters    |
+| TAR/Predictive | Machine-assisted relevance    | Large volumes  |
+| QC             | Quality control sampling      | All matters    |
+| Final          | Confirm production set        | Pre-production |
 
 ### 6.5 Production
 
-| Element | Requirement |
-|---------|-------------|
-| Format | Per agreement (native, TIFF, PDF) |
-| Bates numbers | Unique identifiers on each page |
-| Load file | Metadata in standard format |
-| Privilege log | List of withheld documents |
-| Production letter | Cover letter with details |
+| Element           | Requirement                       |
+| ----------------- | --------------------------------- |
+| Format            | Per agreement (native, TIFF, PDF) |
+| Bates numbers     | Unique identifiers on each page   |
+| Load file         | Metadata in standard format       |
+| Privilege log     | List of withheld documents        |
+| Production letter | Cover letter with details         |
 
 ---
 
@@ -727,18 +751,18 @@ Maintain a central register of all legal holds:
 ```yaml
 # Legal Hold Register Entry
 hold_id: LH-2026-001
-matter_name: "ABC Corp v. CYBERCUBE"
+matter_name: 'ABC Corp v. CYBERCUBE'
 matter_type: litigation
 status: active
 
 trigger:
-  event: "Complaint filed"
+  event: 'Complaint filed'
   date: 2026-01-15
-  
+
 authorization:
-  authorized_by: "Jane Counsel"
+  authorized_by: 'Jane Counsel'
   date: 2026-01-15
-  
+
 scope:
   custodians:
     - usr_123 # Alice Employee
@@ -754,43 +778,43 @@ scope:
     - google_workspace
     - slack
     - production_db
-    
+
 notices:
   initial_sent: 2026-01-15
   acknowledgments_received: 2026-01-16
   last_reminder: 2026-04-15
-  
+
 preservation:
-  google_vault_matter: "ABC Corp Matter"
-  slack_hold_id: "SLK-2026-001"
+  google_vault_matter: 'ABC Corp Matter'
+  slack_hold_id: 'SLK-2026-001'
   db_flags_applied: true
-  
+
 notes:
   - date: 2026-01-15
-    note: "Hold initiated upon receipt of complaint"
+    note: 'Hold initiated upon receipt of complaint'
   - date: 2026-02-01
-    note: "Scope expanded to include Slack per Legal"
+    note: 'Scope expanded to include Slack per Legal'
 ```
 
 ### 7.2 Hold Monitoring
 
-| Activity | Frequency | Owner |
-|----------|-----------|-------|
+| Activity                | Frequency            | Owner            |
+| ----------------------- | -------------------- | ---------------- |
 | Acknowledgment tracking | Daily until complete | Legal Hold Admin |
-| Compliance check | Weekly | Legal Hold Admin |
-| Reminder issuance | Quarterly | Legal Hold Admin |
-| Scope review | Quarterly | Legal Counsel |
-| Status review | Quarterly | Legal Counsel |
+| Compliance check        | Weekly               | Legal Hold Admin |
+| Reminder issuance       | Quarterly            | Legal Hold Admin |
+| Scope review            | Quarterly            | Legal Counsel    |
+| Status review           | Quarterly            | Legal Counsel    |
 
 ### 7.3 Hold Modification
 
-| Change Type | Process | Authorization |
-|-------------|---------|---------------|
-| Add custodian | Issue supplemental notice | Legal Counsel |
-| Remove custodian | Document reason, update scope | Legal Counsel |
-| Expand scope | Supplemental notice to all | Legal Counsel |
-| Narrow scope | Document reason, update records | Legal Counsel |
-| Extend date range | Update system holds | Legal Counsel |
+| Change Type       | Process                         | Authorization |
+| ----------------- | ------------------------------- | ------------- |
+| Add custodian     | Issue supplemental notice       | Legal Counsel |
+| Remove custodian  | Document reason, update scope   | Legal Counsel |
+| Expand scope      | Supplemental notice to all      | Legal Counsel |
+| Narrow scope      | Document reason, update records | Legal Counsel |
+| Extend date range | Update system holds             | Legal Counsel |
 
 ---
 
@@ -840,11 +864,13 @@ A legal hold may be released when:
 ## Legal Hold Release Authorization
 
 ### Matter Information
+
 - **Matter ID:** LH-2026-001
 - **Matter Name:** [Case Name]
 - **Hold Initiation Date:** [Date]
 
 ### Release Reason
+
 - ☐ Litigation concluded (judgment/settlement/dismissal)
 - ☐ Investigation closed
 - ☐ Regulatory matter resolved
@@ -852,25 +878,29 @@ A legal hold may be released when:
 - ☐ Other: [specify]
 
 ### Release Details
+
 - **Release Date:** [Date]
 - **Authorized By:** [Legal Counsel Name]
 - **Documentation:** [Reference to closing documents]
 
 ### Post-Release Actions
+
 - ☐ Release notices sent to custodians
 - ☐ System holds removed
 - ☐ Collected data disposition determined
 - ☐ Hold register updated
 
 ### Data Disposition
+
 - ☐ Return to normal retention (destroy per policy)
 - ☐ Retain for [period] for appeal period
 - ☐ Permanent retention (specify reason)
 - ☐ Destruction authorized
 
 ### Approval
-- **Signature:** _________________________
-- **Date:** _________________________
+
+- **Signature:** \***\*\*\*\*\*\*\***\_\***\*\*\*\*\*\*\***
+- **Date:** \***\*\*\*\*\*\*\***\_\***\*\*\*\*\*\*\***
 ```
 
 ### 8.4 Release Notice Template
@@ -911,7 +941,7 @@ Email: legal-hold@cybercube.software
 
 ---
 
-*This notice is confidential. Do not forward.*
+_This notice is confidential. Do not forward._
 ```
 
 ---
@@ -920,17 +950,17 @@ Email: legal-hold@cybercube.software
 
 ### 9.1 Required Audit Records
 
-| Event | Data Captured |
-|-------|---------------|
-| Hold initiation | Authorization, scope, timestamp, authorizer |
-| Notice sent | Recipient, timestamp, content hash |
-| Acknowledgment | Custodian, timestamp, method |
-| Reminder sent | Recipient, timestamp |
-| Scope change | Old scope, new scope, reason, authorizer |
-| System hold applied | System, timestamp, operator |
-| Collection performed | Source, hash, timestamp, collector |
-| Hold release | Reason, timestamp, authorizer |
-| Deletion blocked | Resource, hold, timestamp |
+| Event                | Data Captured                               |
+| -------------------- | ------------------------------------------- |
+| Hold initiation      | Authorization, scope, timestamp, authorizer |
+| Notice sent          | Recipient, timestamp, content hash          |
+| Acknowledgment       | Custodian, timestamp, method                |
+| Reminder sent        | Recipient, timestamp                        |
+| Scope change         | Old scope, new scope, reason, authorizer    |
+| System hold applied  | System, timestamp, operator                 |
+| Collection performed | Source, hash, timestamp, collector          |
+| Hold release         | Reason, timestamp, authorizer               |
+| Deletion blocked     | Resource, hold, timestamp                   |
 
 ### 9.2 Audit Log Schema
 
@@ -940,10 +970,10 @@ interface LegalHoldAuditLog {
   hold_id: string;
   timestamp: Date;
   action: LegalHoldAction;
-  actor: string;           // User CC-PID
+  actor: string; // User CC-PID
   details: Record<string, any>;
   ip_address?: string;
-  evidence_hash?: string;  // For collections
+  evidence_hash?: string; // For collections
 }
 
 type LegalHoldAction =
@@ -966,13 +996,13 @@ type LegalHoldAction =
 
 ### 9.3 Audit Retention
 
-| Record Type | Retention Period |
-|-------------|------------------|
-| Hold records | 10 years after release |
-| Notices and acknowledgments | 10 years after release |
-| Collection records | 10 years after matter close |
-| Audit logs | 10 years after last entry |
-| Chain of custody | Permanent |
+| Record Type                 | Retention Period            |
+| --------------------------- | --------------------------- |
+| Hold records                | 10 years after release      |
+| Notices and acknowledgments | 10 years after release      |
+| Collection records          | 10 years after matter close |
+| Audit logs                  | 10 years after last entry   |
+| Chain of custody            | Permanent                   |
 
 ---
 
@@ -980,13 +1010,13 @@ type LegalHoldAction =
 
 ### 10.1 Compliance Metrics
 
-| Metric | Target | Measurement |
-|--------|--------|-------------|
-| Notice delivery | 100% within 24 hours | Time from authorization to delivery |
-| Acknowledgment rate | 100% within 48 hours | Custodian response time |
-| System hold implementation | 100% within 4 hours | Time to apply technical holds |
-| Reminder compliance | 100% quarterly | Reminder issuance tracking |
-| Release documentation | 100% complete | Checklist completion |
+| Metric                     | Target               | Measurement                         |
+| -------------------------- | -------------------- | ----------------------------------- |
+| Notice delivery            | 100% within 24 hours | Time from authorization to delivery |
+| Acknowledgment rate        | 100% within 48 hours | Custodian response time             |
+| System hold implementation | 100% within 4 hours  | Time to apply technical holds       |
+| Reminder compliance        | 100% quarterly       | Reminder issuance tracking          |
+| Release documentation      | 100% complete        | Checklist completion                |
 
 ### 10.2 Defensibility Checklist
 
@@ -994,36 +1024,42 @@ type LegalHoldAction =
 ## Legal Hold Defensibility Checklist
 
 ### Initiation
+
 - [ ] Trigger event documented
 - [ ] Authorization from Legal Counsel
 - [ ] Scope reasonably defined
 - [ ] Proportionality considered
 
 ### Notice
+
 - [ ] Written notice issued
 - [ ] Scope clearly communicated
 - [ ] Obligations clearly stated
 - [ ] Acknowledgment requested
 
 ### Implementation
+
 - [ ] System holds applied
 - [ ] Deletion suspended
 - [ ] Auto-delete disabled
 - [ ] Implementation documented
 
 ### Monitoring
+
 - [ ] Acknowledgments tracked
 - [ ] Reminders issued quarterly
 - [ ] Compliance verified
 - [ ] Issues escalated
 
 ### Documentation
+
 - [ ] All actions logged
 - [ ] Chain of custody maintained
 - [ ] Scope changes documented
 - [ ] Release properly authorized
 
 ### Release
+
 - [ ] Legal authorization obtained
 - [ ] Release notices issued
 - [ ] System holds removed
@@ -1032,13 +1068,13 @@ type LegalHoldAction =
 
 ### 10.3 Spoliation Prevention
 
-| Risk | Mitigation |
-|------|------------|
-| Accidental deletion | System holds, deletion blocks |
-| Auto-delete routines | Suspend for held data |
-| User non-compliance | Training, acknowledgments, escalation |
-| System failure | Redundant holds, backups |
-| Scope gaps | Regular scope review |
+| Risk                 | Mitigation                            |
+| -------------------- | ------------------------------------- |
+| Accidental deletion  | System holds, deletion blocks         |
+| Auto-delete routines | Suspend for held data                 |
+| User non-compliance  | Training, acknowledgments, escalation |
+| System failure       | Redundant holds, backups              |
+| Scope gaps           | Regular scope review                  |
 
 ---
 
@@ -1046,29 +1082,32 @@ type LegalHoldAction =
 
 ### 11.1 Training Requirements
 
-| Audience | Training | Frequency |
-|----------|----------|-----------|
-| All employees | Legal hold basics | Annual |
-| IT/Security | Technical implementation | Annual + updates |
-| Legal team | Full program | Annual + updates |
-| Custodians | Upon hold receipt | Per hold |
-| Executives | Program overview | Annual |
+| Audience      | Training                 | Frequency        |
+| ------------- | ------------------------ | ---------------- |
+| All employees | Legal hold basics        | Annual           |
+| IT/Security   | Technical implementation | Annual + updates |
+| Legal team    | Full program             | Annual + updates |
+| Custodians    | Upon hold receipt        | Per hold         |
+| Executives    | Program overview         | Annual           |
 
 ### 11.2 Training Topics
 
 **All Employees:**
+
 - What is a legal hold
 - Preservation obligations
 - What to do when notified
 - Consequences of non-compliance
 
 **IT/Security:**
+
 - Technical preservation methods
 - System hold implementation
 - Collection procedures
 - Chain of custody
 
 **Legal Team:**
+
 - Trigger identification
 - Scope definition
 - Hold management
@@ -1083,23 +1122,23 @@ Print it. Keep it handy.
 
 ### Trigger Response Times
 
-| Trigger | Response |
-|---------|----------|
-| Complaint received | Immediate |
-| Subpoena | Immediate |
-| Demand letter | 24 hours |
-| Regulatory inquiry | 24 hours |
+| Trigger                | Response       |
+| ---------------------- | -------------- |
+| Complaint received     | Immediate      |
+| Subpoena               | Immediate      |
+| Demand letter          | 24 hours       |
+| Regulatory inquiry     | 24 hours       |
 | Anticipated litigation | Upon awareness |
 
 ### Key SLAs
 
-| Action | SLA |
-|--------|-----|
-| Hold authorization | Same day |
-| Notice delivery | 24 hours |
-| Acknowledgment | 48 hours |
-| System holds | 4 hours |
-| Reminders | Quarterly |
+| Action             | SLA       |
+| ------------------ | --------- |
+| Hold authorization | Same day  |
+| Notice delivery    | 24 hours  |
+| Acknowledgment     | 48 hours  |
+| System holds       | 4 hours   |
+| Reminders          | Quarterly |
 
 ### Hold Notice Must Include
 
@@ -1114,12 +1153,14 @@ Print it. Keep it handy.
 ### Custodian Obligations
 
 **DO:**
+
 - Preserve all relevant data
 - Acknowledge within 48 hours
 - Report issues immediately
 - Comply until released
 
 **DON'T:**
+
 - Delete relevant data
 - Modify relevant data
 - Ignore the notice
@@ -1142,17 +1183,17 @@ General Counsel: legal@cybercube.software
 
 ### Core Implementation
 
-| Component | Status | Notes |
-|-----------|--------|-------|
-| Hold process defined | COMPLETE | This standard |
-| Notice templates | COMPLETE | This standard |
-| Authorization forms | COMPLETE | This standard |
-| System hold capability | PARTIAL | Implement per system |
-| Hold register | PENDING | Select tool |
-| Acknowledgment tracking | PENDING | Implement workflow |
-| Audit logging | PARTIAL | Extend existing logs |
-| Training program | PENDING | Develop curriculum |
-| Compliance metrics | PENDING | Build dashboard |
+| Component               | Status   | Notes                |
+| ----------------------- | -------- | -------------------- |
+| Hold process defined    | COMPLETE | This standard        |
+| Notice templates        | COMPLETE | This standard        |
+| Authorization forms     | COMPLETE | This standard        |
+| System hold capability  | PARTIAL  | Implement per system |
+| Hold register           | PENDING  | Select tool          |
+| Acknowledgment tracking | PENDING  | Implement workflow   |
+| Audit logging           | PARTIAL  | Extend existing logs |
+| Training program        | PENDING  | Develop curriculum   |
+| Compliance metrics      | PENDING  | Build dashboard      |
 
 ### Migration Path
 
@@ -1167,19 +1208,19 @@ General Counsel: legal@cybercube.software
 
 ## Document Approval
 
-| Role | Name | Signature | Date |
-|------|------|-----------|------|
-| Author | Legal Operations | — | 2026-01-17 |
-| Reviewer | General Counsel | — | 2026-01-17 |
-| Approver | Executive Leadership | — | 2026-01-17 |
+| Role     | Name                 | Signature | Date       |
+| -------- | -------------------- | --------- | ---------- |
+| Author   | Legal Operations     | —         | 2026-01-17 |
+| Reviewer | General Counsel      | —         | 2026-01-17 |
+| Approver | Executive Leadership | —         | 2026-01-17 |
 
 ---
 
 ## Version History
 
-| Version | Date | Author | Changes |
-|---------|------|--------|---------|
-| v1 | 2026-01-17 | Legal Operations | Initial release |
+| Version | Date       | Author           | Changes         |
+| ------- | ---------- | ---------------- | --------------- |
+| v1      | 2026-01-17 | Legal Operations | Initial release |
 
 ---
 
@@ -1188,40 +1229,40 @@ General Counsel: legal@cybercube.software
 This glossary defines key terms used throughout the CYBERCUBE Legal Hold &
 eDiscovery Standard. All definitions are normative unless stated otherwise.
 
-| Term | Definition |
-|------|------------|
-| **Anticipated Litigation** | Reasonably foreseeable legal proceedings that trigger preservation obligations |
-| **Audit Trail** | Immutable record of all legal hold actions and data access |
-| **Chain of Custody** | Documented record of who handled evidence and when |
-| **Collection** | The process of gathering potentially relevant ESI for review |
-| **Compliance Certificate** | Written confirmation that preservation obligations have been met |
-| **Custodian** | An individual who possesses, controls, or is responsible for relevant data |
-| **Data Map** | Inventory of data sources, locations, and custodians |
-| **Defensibility** | Ability to demonstrate reasonable, good-faith preservation efforts |
-| **Destruction** | Permanent deletion of data per retention policy; suspended during legal hold |
-| **Early Case Assessment (ECA)** | Preliminary review to evaluate case merits and scope |
-| **eDiscovery** | Electronic discovery — identifying, collecting, processing, reviewing, and producing ESI in legal proceedings |
-| **ESI** | Electronically Stored Information — any information stored electronically that may be relevant to litigation |
-| **Hold Notice** | Formal communication instructing custodians to preserve relevant data |
-| **Hold Reminder** | Periodic reissuance of hold notice to maintain awareness (quarterly minimum) |
-| **Identification** | The process of locating relevant custodians, data sources, and ESI |
-| **In-Place Preservation** | Preserving data in its original location without collection |
-| **Legal Hold** | A directive to preserve all potentially relevant information for anticipated or pending litigation |
-| **Legal Hold Custodian** | Person designated to manage and track legal holds |
-| **Litigation** | Legal proceedings including lawsuits, arbitration, regulatory investigations |
-| **Matter** | A specific legal proceeding, investigation, or dispute requiring preservation |
-| **Metadata** | Data about data — information describing ESI characteristics (e.g., created date, author, file path) |
-| **Preservation** | Actions taken to protect ESI from alteration or destruction |
-| **Preservation Letter** | External communication to third parties requesting data preservation |
-| **Processing** | Converting collected ESI into reviewable format (de-duplication, filtering, indexing) |
-| **Production** | Delivering ESI to requesting party in specified format (native, TIFF, PDF, load file) |
-| **Proportionality** | Balancing discovery burden against likely benefit |
-| **Reasonable Anticipation** | Point at which litigation becomes reasonably foreseeable, triggering preservation duty |
-| **Release** | Termination of legal hold when no longer needed; authorization by Legal only |
-| **Relevant** | Information that tends to prove or disprove a fact at issue; broadly construed during preservation |
-| **Retention Policy** | Organizational rules governing data retention and destruction; suspended by legal hold |
-| **Sanctions** | Penalties imposed for discovery failures (monetary, adverse inference, case dismissal) |
-| **Scope** | Definition of what data, custodians, and time periods are subject to hold |
-| **Spoliation** | Destruction or alteration of relevant evidence |
-| **TAR (Technology-Assisted Review)** | Use of machine learning to prioritize document review (a.k.a. predictive coding) |
-| **Trigger Event** | Event that initiates preservation obligation (complaint, demand letter, incident, regulatory inquiry) |
+| Term                                 | Definition                                                                                                    |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------------------- |
+| **Anticipated Litigation**           | Reasonably foreseeable legal proceedings that trigger preservation obligations                                |
+| **Audit Trail**                      | Immutable record of all legal hold actions and data access                                                    |
+| **Chain of Custody**                 | Documented record of who handled evidence and when                                                            |
+| **Collection**                       | The process of gathering potentially relevant ESI for review                                                  |
+| **Compliance Certificate**           | Written confirmation that preservation obligations have been met                                              |
+| **Custodian**                        | An individual who possesses, controls, or is responsible for relevant data                                    |
+| **Data Map**                         | Inventory of data sources, locations, and custodians                                                          |
+| **Defensibility**                    | Ability to demonstrate reasonable, good-faith preservation efforts                                            |
+| **Destruction**                      | Permanent deletion of data per retention policy; suspended during legal hold                                  |
+| **Early Case Assessment (ECA)**      | Preliminary review to evaluate case merits and scope                                                          |
+| **eDiscovery**                       | Electronic discovery — identifying, collecting, processing, reviewing, and producing ESI in legal proceedings |
+| **ESI**                              | Electronically Stored Information — any information stored electronically that may be relevant to litigation  |
+| **Hold Notice**                      | Formal communication instructing custodians to preserve relevant data                                         |
+| **Hold Reminder**                    | Periodic reissuance of hold notice to maintain awareness (quarterly minimum)                                  |
+| **Identification**                   | The process of locating relevant custodians, data sources, and ESI                                            |
+| **In-Place Preservation**            | Preserving data in its original location without collection                                                   |
+| **Legal Hold**                       | A directive to preserve all potentially relevant information for anticipated or pending litigation            |
+| **Legal Hold Custodian**             | Person designated to manage and track legal holds                                                             |
+| **Litigation**                       | Legal proceedings including lawsuits, arbitration, regulatory investigations                                  |
+| **Matter**                           | A specific legal proceeding, investigation, or dispute requiring preservation                                 |
+| **Metadata**                         | Data about data — information describing ESI characteristics (e.g., created date, author, file path)          |
+| **Preservation**                     | Actions taken to protect ESI from alteration or destruction                                                   |
+| **Preservation Letter**              | External communication to third parties requesting data preservation                                          |
+| **Processing**                       | Converting collected ESI into reviewable format (de-duplication, filtering, indexing)                         |
+| **Production**                       | Delivering ESI to requesting party in specified format (native, TIFF, PDF, load file)                         |
+| **Proportionality**                  | Balancing discovery burden against likely benefit                                                             |
+| **Reasonable Anticipation**          | Point at which litigation becomes reasonably foreseeable, triggering preservation duty                        |
+| **Release**                          | Termination of legal hold when no longer needed; authorization by Legal only                                  |
+| **Relevant**                         | Information that tends to prove or disprove a fact at issue; broadly construed during preservation            |
+| **Retention Policy**                 | Organizational rules governing data retention and destruction; suspended by legal hold                        |
+| **Sanctions**                        | Penalties imposed for discovery failures (monetary, adverse inference, case dismissal)                        |
+| **Scope**                            | Definition of what data, custodians, and time periods are subject to hold                                     |
+| **Spoliation**                       | Destruction or alteration of relevant evidence                                                                |
+| **TAR (Technology-Assisted Review)** | Use of machine learning to prioritize document review (a.k.a. predictive coding)                              |
+| **Trigger Event**                    | Event that initiates preservation obligation (complaint, demand letter, incident, regulatory inquiry)         |

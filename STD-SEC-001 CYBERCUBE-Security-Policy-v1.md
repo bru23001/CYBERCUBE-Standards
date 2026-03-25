@@ -38,7 +38,7 @@ defines the governance framework ensuring:
 - Defense against threats and vulnerabilities
 - Continuous security improvement
 
-1.2 Scope
+  1.2 Scope
 
 This policy applies to:
 
@@ -71,7 +71,7 @@ This policy applies to:
 - Remote work environments
 - Data centers and cloud regions
 
-1.3 Exclusions
+  1.3 Exclusions
 
 None. This policy applies universally without exception.
 
@@ -207,7 +207,7 @@ standards.
 - Authentication & Identity Standard
 - Authorization & Access Control Standard
 
-4.2 Data Protection
+  4.2 Data Protection
 
 **Policy Requirements:**
 
@@ -222,7 +222,7 @@ standards.
 - Data Classification & Retention Standard
 - Soft-Delete & Lifecycle Management Standard
 
-4.3 System Security
+  4.3 System Security
 
 **Policy Requirements:**
 
@@ -239,7 +239,7 @@ standards.
 - API Design Standard (transport security)
 - Release & Deployment Standard (secure delivery)
 
-4.4 Application Security
+  4.4 Application Security
 
 **Policy Requirements:**
 
@@ -256,7 +256,7 @@ standards.
 - Webhooks & Integrations Standard
 - Testing & Quality Standard
 
-4.5 Operational Security
+  4.5 Operational Security
 
 **Policy Requirements:**
 
@@ -272,7 +272,7 @@ standards.
 - Release & Deployment Standard
 - Incident Response Standard
 
-4.6 Incident Management
+  4.6 Incident Management
 
 **Policy Requirements:**
 
@@ -314,7 +314,7 @@ contractual requirements, including:
 | System Security   | CC6.6-6.7       | Art. 32       | A.12, A.13 |
 | Operations        | CC7.1-7.5       | Art. 32       | A.12       |
 | Incident Response | CC7.4-7.5       | Art. 33, 34   | A.16       |
-| Change Management | CC8.1           | —            | A.12.1     |
+| Change Management | CC8.1           | —             | A.12.1     |
 | Risk Management   | CC3.1-3.4       | Art. 35       | A.6.1      |
 
 5.3 Audit & Assessment
@@ -340,7 +340,7 @@ CYBERCUBE maintains a risk management program that:
 - Monitors residual risk and control effectiveness
 - Reports risk status to leadership
 
-6.2 Risk Acceptance
+  6.2 Risk Acceptance
 
 Risks may only be accepted by authorized personnel:
 
@@ -358,7 +358,7 @@ All risk acceptance decisions SHALL be documented with:
 - Compensating controls (if any)
 - Review date (maximum 12 months)
 
-6.3 Risk Treatment
+  6.3 Risk Treatment
 
 | Treatment | Description                           |
 | --------- | ------------------------------------- |
@@ -378,7 +378,7 @@ All risk acceptance decisions SHALL be documented with:
 - Confidentiality agreements SHALL be signed before access is granted
 - Access SHALL be revoked immediately upon termination
 
-7.2 Security Awareness
+  7.2 Security Awareness
 
 - All personnel SHALL complete security awareness training upon hire
 - Annual security awareness refresher training SHALL be mandatory
@@ -389,7 +389,7 @@ All risk acceptance decisions SHALL be documented with:
 
 - Security Training Policy
 
-7.3 Acceptable Use
+  7.3 Acceptable Use
 
 Personnel SHALL:
 
@@ -419,7 +419,7 @@ Personnel SHALL NOT:
 - Third-party access SHALL be limited to minimum necessary scope
 - Third-party compliance SHALL be monitored throughout engagement
 
-8.2 Contractual Requirements
+  8.2 Contractual Requirements
 
 Third-party agreements SHALL include:
 
@@ -447,7 +447,7 @@ Third-party agreements SHALL include:
 - Equipment SHALL be secured against theft and tampering
 - Environmental controls SHALL protect against damage
 
-9.2 Data Center Security
+  9.2 Data Center Security
 
 - Cloud providers SHALL maintain appropriate certifications (SOC 2, ISO 27001)
 - Data center selection SHALL consider security and compliance requirements
@@ -465,7 +465,7 @@ Third-party agreements SHALL include:
 - Backup procedures SHALL ensure data recoverability
 - Disaster recovery capabilities SHALL be validated annually
 
-10.2 Resilience Requirements
+  10.2 Resilience Requirements
 
 | System Tier | RTO      | RPO      | Backup Frequency |
 | ----------- | -------- | -------- | ---------------- |
@@ -491,7 +491,7 @@ Third-party agreements SHALL include:
 - Technical controls SHALL enforce policy requirements where possible
 - Policy violations SHALL be logged and investigated
 
-11.2 Violations
+  11.2 Violations
 
 Violations of this policy may result in:
 
@@ -528,14 +528,14 @@ All violations SHALL be reported to the CISO and appropriate management.
   - Technology environment
   - Incident findings
 
-12.2 Change Control
+    12.2 Change Control
 
 - Policy changes SHALL follow the Standards Governance Policy
 - Material changes SHALL be approved by Executive Leadership
 - All changes SHALL be communicated to affected personnel
 - Training SHALL be updated to reflect policy changes
 
-12.3 Version Control
+  12.3 Version Control
 
 | Version | Date       | Author | Changes         |
 | ------- | ---------- | ------ | --------------- |
@@ -663,19 +663,19 @@ For leadership reference.
 
 | Control Domain      | Policy Section | Implementing Standard(s)                | SOC 2     | ISO 27001 |
 | ------------------- | -------------- | --------------------------------------- | --------- | --------- |
-| Access Management   | §4.1          | AuthN, AuthZ                            | CC6.1-6.3 | A.9       |
-| Data Protection     | §4.2          | Data Classification, Lifecycle          | C1, P1-8  | A.8       |
-| Cryptography        | §4.3          | Cryptography & Key Mgmt                 | CC6.7     | A.10      |
-| Secure Development  | §4.4          | Secure Coding, API, Testing, Webhooks   | CC8.1     | A.14      |
-| Operations Security | §4.5          | Observability, Release                  | CC7.1-7.2 | A.12      |
-| Incident Management | §4.6          | Incident Response                       | CC7.4-7.5 | A.16      |
-| Compliance          | §5            | All Standards                           | CC2.1-2.3 | A.18      |
-| Risk Management     | §6            | Governance                              | CC3.1-3.4 | A.6.1     |
-| HR Security         | §7            | — (HR Policy)                          | CC1.4     | A.7       |
-| Vulnerability Mgmt  | §4.3          | Vulnerability Management                | CC7.1     | A.12.6    |
-| Third Party         | §8            | Vendor Risk Mgmt, Webhooks, Data Class. | CC9.2     | A.15      |
-| Physical Security   | §9            | — (Facility Policy)                    | CC6.4     | A.11      |
-| Business Continuity | §10           | BCP, Backup & DR, Incident Response     | A1.2      | A.17      |
+| Access Management   | §4.1           | AuthN, AuthZ                            | CC6.1-6.3 | A.9       |
+| Data Protection     | §4.2           | Data Classification, Lifecycle          | C1, P1-8  | A.8       |
+| Cryptography        | §4.3           | Cryptography & Key Mgmt                 | CC6.7     | A.10      |
+| Secure Development  | §4.4           | Secure Coding, API, Testing, Webhooks   | CC8.1     | A.14      |
+| Operations Security | §4.5           | Observability, Release                  | CC7.1-7.2 | A.12      |
+| Incident Management | §4.6           | Incident Response                       | CC7.4-7.5 | A.16      |
+| Compliance          | §5             | All Standards                           | CC2.1-2.3 | A.18      |
+| Risk Management     | §6             | Governance                              | CC3.1-3.4 | A.6.1     |
+| HR Security         | §7             | — (HR Policy)                           | CC1.4     | A.7       |
+| Vulnerability Mgmt  | §4.3           | Vulnerability Management                | CC7.1     | A.12.6    |
+| Third Party         | §8             | Vendor Risk Mgmt, Webhooks, Data Class. | CC9.2     | A.15      |
+| Physical Security   | §9             | — (Facility Policy)                     | CC6.4     | A.11      |
+| Business Continuity | §10            | BCP, Backup & DR, Incident Response     | A1.2      | A.17      |
 
 ---
 
@@ -743,9 +743,9 @@ Document Approval
 
 | Role     | Name                   | Signature | Date       |
 | -------- | ---------------------- | --------- | ---------- |
-| Author   | Security Team          | —        | 2026-01-17 |
-| Reviewer | Engineering Leadership | —        | 2026-01-17 |
-| Approver | Executive Leadership   | —        | 2026-01-17 |
+| Author   | Security Team          | —         | 2026-01-17 |
+| Reviewer | Engineering Leadership | —         | 2026-01-17 |
+| Approver | Executive Leadership   | —         | 2026-01-17 |
 
 ---
 
