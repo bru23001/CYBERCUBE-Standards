@@ -188,8 +188,15 @@
 | **RLE** | Role | Access Control | ACTIVE | `roles` |
 | **PRM** | Permission | Access Control | ACTIVE | `permissions` |
 | **POL** | Policy | Access Control | ACTIVE | `policies` |
+| **ACV** | AI Conversation | AI & Intelligence | ACTIVE | `ai_conversations` |
+| **APR** | AI Prompt | AI & Intelligence | ACTIVE | `ai_prompts` |
+| **ADC** | AI Document | AI & Intelligence | ACTIVE | `ai_documents` |
+| **ACL** | AI Collection | AI & Intelligence | ACTIVE | `ai_collections` |
+| **AMR** | AI Model Registry | AI & Intelligence | ACTIVE | `ai_model_registry` |
+| **ADP** | AI Data Provenance | AI & Intelligence | ACTIVE | `ai_data_provenance` |
+| **AIS** | AI System | AI & Intelligence | ACTIVE | `ai_systems` |
 
-**Total:** 52 entity codes (52 ACTIVE)
+**Total:** 59 entity codes (59 ACTIVE)
 <!-- END:ENTITY_CODES -->
 
 ### 2.2 Test Vectors
@@ -224,11 +231,12 @@
 > **Source of truth:** `registries/products.json` — auto-rendered by `render-registry.mjs`
 
 <!-- BEGIN:PRODUCTS -->
-| ID | Product Name | PCL Code | Domain Tags | Criticality | Owner | Status |
-|----|-------------|----------|-------------|-------------|-------|--------|
-| *(none registered yet — add to `registries/products.json`)* | | | | | | |
+| ID | Product Name | PCL Code | Domain Tags | Owner | Status |
+|----|-------------|----------|-------------|-------|--------|
+| PRD-001 | InFlux | `PCL-3.1.3.2` | Analytics, Data Management | Engineering | Active |
+| PRD-002 | Prism | `PCL-1.6.1.1` | Developer Tools, Security | Engineering | Active |
 
-**Total:** 0 products
+**Total:** 2 products
 <!-- END:PRODUCTS -->
 
 > **Instructions:** Populate per PRCS 1.5. PCL = `PCL-{Layer}.{Delivery}.{Extensibility}.{Criticality}`. Every product MUST be registered before production use.
@@ -268,8 +276,13 @@
 | MOD-026 | `change-management` | Change Management Module | Governance | Global | Stable | Engineering | 5.7 |
 | MOD-027 | `feature-flag` | Feature Flag Module | Platform | Global | Stable | Engineering | 5.6 |
 | MOD-028 | `backup` | Backup Module | Platform | Global | Stable | SRE | 4.2 |
+| MOD-029 | `ai-intelligence` | AI Intelligence Module | Platform | Global | Experimental | Engineering | 7.2 |
+| MOD-030 | `project-analyzer` | Project Analyzer Module | Governance | Product | Experimental | Engineering | 2.2 |
+| MOD-031 | `governance-console-core` | Governance Console Core | Governance | Product | Experimental | Engineering | 5.1 |
+| MOD-032 | `enterprise-governance-engine` | Enterprise Governance Engine | Governance | Product | Experimental | Engineering | 2.2 |
+| MOD-033 | `verification-scoring` | Prisma Verification & Scoring Module (PVSM) | Governance | Product | Experimental | Engineering | 5.5 |
 
-**Total:** 28 modules registered
+**Total:** 33 modules registered
 <!-- END:MODULES -->
 
 ---
@@ -388,6 +401,13 @@
 | Integration | INT | `id` (UUIDv7) | `public_id` | PENDING |
 | Environment | ENV | `id` (UUIDv7) | `public_id` | PENDING |
 | Policy | POL | `id` (UUIDv7) | `public_id` | PENDING |
+| AI Conversation | ACV | `id` (UUIDv7) | `public_id` | PENDING |
+| AI Prompt | APR | `id` (UUIDv7) | `public_id` | PENDING |
+| AI Document | ADC | `id` (UUIDv7) | `public_id` | PENDING |
+| AI Collection | ACL | `id` (UUIDv7) | `public_id` | PENDING |
+| AI Model Registry | AMR | `id` (UUIDv7) | `public_id` | PENDING |
+| AI Data Provenance | ADP | `id` (UUIDv7) | `public_id` | PENDING |
+| AI System | AIS | `id` (UUIDv7) | `public_id` | PENDING |
 <!-- END:UUID_CROSSWALK -->
 
 ---

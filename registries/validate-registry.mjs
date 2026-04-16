@@ -108,7 +108,7 @@ function validateEntityCodes() {
   }
 
   const required = ["code", "name", "category", "description", "dbTable", "status", "ccpidStatus", "createdAt"];
-  const categories = ["Customer & Org", "Support & Comms", "Project Mgmt", "Billing & Finance", "Content & Docs", "System & Integration", "Access Control"];
+  const categories = ["Customer & Org", "Support & Comms", "Project Mgmt", "Billing & Finance", "Content & Docs", "System & Integration", "Access Control", "AI & Intelligence"];
   const statuses = ["ACTIVE", "DEPRECATED"];
   const ccpidStatuses = ["COMPLETE", "MIGRATION READY", "PENDING"];
 

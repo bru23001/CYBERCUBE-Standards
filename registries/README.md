@@ -11,7 +11,7 @@ Machine-readable source of truth for all CYBERCUBE identifiers. JSON files are a
 | File | Namespace | Contents |
 |------|-----------|----------|
 | `entity-codes.json` | B (CC-PID) | 52 public entity codes with status and DB table |
-| `modules.json` | G/M | 28 module records (MOD-001 to MOD-028) |
+| `modules.json` | G/M | 33 module records (MOD-001 to MOD-033) |
 | `products.json` | G | Product records (PRD-XXX) — populate as you register |
 | `projects.json` | — | Project records (PRJ CC-PIDs) — populate as you create |
 | `standards.json` | G | 41 standards/policy/plan/template/framework records |

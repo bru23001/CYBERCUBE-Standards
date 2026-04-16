@@ -934,6 +934,185 @@ async function registerProject() {
 }
 
 // ---------------------------------------------------------------------------
+// Standard Flow — Domain Code Data
+// ---------------------------------------------------------------------------
+
+const STD_TYPES = [
+  { value: "Standard", label: "Standard", desc: "Normative technical requirements. Prefix: STD-" },
+  { value: "Policy", label: "Policy", desc: "Organizational rules and governance directives. Prefix: POL-" },
+  { value: "Plan", label: "Plan", desc: "Operational plans (e.g., BCP). Prefix: PLN-" },
+  { value: "Template", label: "Template", desc: "Reusable document templates (e.g., DPA). Prefix: TPL-" },
+  { value: "Framework", label: "Framework", desc: "Framework definitions and compliance checklists. Prefix: FWK-" },
+];
+
+const STD_TYPE_PREFIX = { Standard: "STD", Policy: "POL", Plan: "PLN", Template: "TPL", Framework: "FWK" };
+
+const STD_DOMAINS = [
+  { value: "Governance", label: "Governance", desc: "1.x — Framework, standards governance, ERM, architecture, PRCS." },
+  { value: "Security", label: "Security", desc: "2.x — Security policy, secure coding, auth, crypto, vuln mgmt, IR, training." },
+  { value: "Data & Privacy", label: "Data & Privacy", desc: "3.x — Privacy, data classification, multi-tenancy, soft-delete, DPA, legal hold, records." },
+  { value: "Operations", label: "Operations", desc: "4.x — BCP, backup/DR, incident response, SRE, observability, service levels." },
+  { value: "Engineering", label: "Engineering", desc: "5.x — Naming, API design, webhooks, IaC, testing, release, change mgmt, docs/RFC." },
+  { value: "Audit & Metrics", label: "Audit & Metrics", desc: "6.x — Internal audit, metrics/KRIs, policy exceptions." },
+  { value: "Policies", label: "Policies", desc: "7.x — Vendor risk, AI ethics, acceptable use." },
+];
+
+const STD_CLASSIFICATIONS = [
+  { value: "PUBLIC", label: "PUBLIC", desc: "Non-sensitive. Can be shared externally." },
+  { value: "INTERNAL", label: "INTERNAL", desc: "Business-only. Authenticated access." },
+  { value: "CONFIDENTIAL", label: "CONFIDENTIAL", desc: "Sensitive. Role-based access, encrypted." },
+  { value: "RESTRICTED", label: "RESTRICTED", desc: "Credentials, secrets, sensitive PII. Need-to-know + MFA." },
+];
+
+// Known domain codes extracted from existing standards
+const KNOWN_DOMAIN_CODES = [
+  { value: "GOV", label: "GOV — Governance", desc: "Standards governance, architecture, PRCS, audit, metrics, exceptions." },
+  { value: "SEC", label: "SEC — Security", desc: "Security policy, coding, auth, authz, crypto, vuln, IR, training." },
+  { value: "DAT", label: "DAT — Data", desc: "Data classification, isolation, soft-delete." },
+  { value: "PRI", label: "PRI — Privacy", desc: "Privacy policies (public and internal handling)." },
+  { value: "LGL", label: "LGL — Legal", desc: "Legal hold, DPA templates." },
+  { value: "REC", label: "REC — Records", desc: "Records management." },
+  { value: "OPS", label: "OPS — Operations", desc: "BCP, backup/DR, incident response, observability, SRE." },
+  { value: "SLP", label: "SLP — Service Levels", desc: "Service level policy." },
+  { value: "ERM", label: "ERM — Enterprise Risk", desc: "Enterprise risk management." },
+  { value: "ENG", label: "ENG — Engineering", desc: "Naming, API, webhooks, IaC, testing, release, docs." },
+  { value: "VEN", label: "VEN — Vendor", desc: "Vendor risk management." },
+  { value: "AI", label: "AI — AI / Ethics", desc: "AI usage and ethics." },
+  { value: "AUP", label: "AUP — Acceptable Use", desc: "Acceptable use policy." },
+  { value: "NEW", label: "(New domain code)", desc: "Enter a new 2-3 letter domain code not listed above." },
+];
+
+// ---------------------------------------------------------------------------
+// Standard Flow
+// ---------------------------------------------------------------------------
+
+async function registerStandard() {
+  const totalSteps = 6;
+
+  step(1, totalSteps, "Document type");
+
+  define("Standard Registry (Namespace G)", [
+    "A governance document registered with a formal identifier.",
+    "Format: <PREFIX>-<DOMAIN>-<NNN>  (e.g., STD-SEC-001, POL-GOV-002)",
+    "",
+    "Prefixes: STD (Standard), POL (Policy), PLN (Plan), TPL (Template), FWK (Framework)",
+    "Domain codes: SEC, DAT, OPS, ENG, GOV, PRI, LGL, ERM, etc.",
+    "",
+    "Create one when: establishing a new normative governance document.",
+    "Per 1.2 Standards Governance: every standard/policy MUST have a formal ID.",
+  ]);
+
+  const existing = loadJson("standards.json");
+  info(`Currently registered: ${existing.length} standards`);
+  console.log();
+
+  const docType = await choose("Document type:", STD_TYPES);
+  const prefix = STD_TYPE_PREFIX[docType];
+
+  step(2, totalSteps, "Domain area");
+
+  const domain = await choose("Framework domain:", STD_DOMAINS);
+
+  step(3, totalSteps, "ID domain code & sequence");
+
+  define("Domain Code", [
+    "The 2-3 letter code in the middle of the ID (e.g., SEC in STD-SEC-001).",
+    "Choose from existing codes or create a new one.",
+  ]);
+
+  let domainCode;
+  const dcChoice = await choose("Domain code:", KNOWN_DOMAIN_CODES);
+  if (dcChoice === "NEW") {
+    while (true) {
+      domainCode = (await ask("New domain code (2-3 uppercase letters)")).toUpperCase();
+      if (/^[A-Z]{2,3}$/.test(domainCode)) break;
+      warn("Must be 2-3 uppercase letters.");
+    }
+  } else {
+    domainCode = dcChoice;
+  }
+
+  // Find next sequential number for this prefix-domain combo
+  const sameGroup = existing.filter((s) => s.id.startsWith(`${prefix}-${domainCode}-`));
+  const usedNums = sameGroup.map((s) => parseInt(s.id.split("-")[2], 10)).filter((n) => !isNaN(n));
+  const nextNum = usedNums.length > 0 ? Math.max(...usedNums) + 1 : 1;
+  const nextId = `${prefix}-${domainCode}-${String(nextNum).padStart(3, "0")}`;
+
+  success(`Generated ID: ${c.cyan}${c.bold}${nextId}${c.reset}`);
+
+  step(4, totalSteps, "Document identity");
+
+  const name = await ask("Document title (e.g., 'CYBERCUBE Secure Coding Standard')");
+  const catalogNumber = await ask("Catalog number (e.g., '2.2', '5.5')");
+
+  // Validate catalog number uniqueness
+  if (existing.some((s) => s.catalogNumber === catalogNumber)) {
+    warn(`Catalog number '${catalogNumber}' already exists. Aborting.`);
+    return;
+  }
+
+  step(5, totalSteps, "Details");
+
+  const version = await ask("Version (e.g., 'v1', 'v1.2')", "v1");
+  const owner = await ask("Owner (which team/role owns this document?)");
+  const effective = await ask("Effective date (YYYY-MM-DD)", today());
+  const classification = await choose("Data classification:", STD_CLASSIFICATIONS);
+
+  // Auto-generate filename
+  const slugName = name
+    .replace(/^CYBERCUBE\s+/i, "")
+    .replace(/[&]/g, "")
+    .replace(/[^a-zA-Z0-9]+/g, "-")
+    .replace(/^-|-$/g, "")
+    .replace(/-+/g, "-");
+  const filename = `${nextId} CYBERCUBE-${slugName}-${version}.md`;
+
+  info(`Generated filename: ${c.cyan}${filename}${c.reset}`);
+
+  step(6, totalSteps, "Confirm & save");
+
+  const entry = {
+    id: nextId,
+    catalogNumber,
+    name,
+    type: docType,
+    domain,
+    version,
+    owner,
+    status: "Active",
+    effective,
+    classification,
+    filename,
+    createdAt: today(),
+  };
+
+  hr();
+  console.log(`  ${c.bold}New standard entry:${c.reset}\n`);
+  prettyJson(entry);
+
+  if (!(await confirm("Add to standards.json?"))) {
+    warn("Cancelled. Nothing was saved.");
+    return;
+  }
+
+  existing.push(entry);
+  // Sort by catalog number for readability
+  existing.sort((a, b) => {
+    const [aMaj, aMin] = a.catalogNumber.split(".").map(Number);
+    const [bMaj, bMin] = b.catalogNumber.split(".").map(Number);
+    return aMaj !== bMaj ? aMaj - bMaj : aMin - bMin;
+  });
+  saveJson("standards.json", existing);
+  success(`Added ${c.cyan}${nextId}${c.reset} (${name}) to standards.json`);
+
+  await runPipeline();
+
+  hr();
+  info(`Create the document file: ${c.cyan}${filename}${c.reset}`);
+  info(`Add ${c.bold}**Standard ID:** ${nextId}${c.reset} to the document metadata block.`);
+}
+
+// ---------------------------------------------------------------------------
 // Pretty JSON printer
 // ---------------------------------------------------------------------------
 
@@ -988,8 +1167,9 @@ async function runPipeline() {
 
   hr();
   console.log(`  ${c.green}${c.bold}All done.${c.reset} Commit these files together:`);
-  console.log(`  ${c.dim}  - The modified JSON registry file${c.reset}`);
+  console.log(`  ${c.dim}  - The modified JSON registry file(s)${c.reset}`);
   console.log(`  ${c.dim}  - CYBERCUBE-Name-Registry.md${c.reset}`);
+  console.log(`  ${c.dim}  - The standard document file (if registering a standard)${c.reset}`);
 }
 
 // ---------------------------------------------------------------------------

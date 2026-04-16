@@ -362,5 +362,83 @@
     "dependencies": [],
     "usedByProducts": [],
     "createdAt": "2026-02-10"
+  },
+  {
+    "id": "MOD-029",
+    "slug": "ai-intelligence",
+    "name": "AI Intelligence Module",
+    "scope": "Platform",
+    "reusability": "Global",
+    "stability": "Experimental",
+    "owner": "Engineering",
+    "sourceStandard": "7.2",
+    "dependencies": ["MOD-002", "MOD-003", "MOD-004", "MOD-005", "MOD-006", "MOD-009", "MOD-010", "MOD-011", "MOD-012", "MOD-013", "MOD-017", "MOD-018", "MOD-019"],
+    "usedByProducts": [],
+    "createdAt": "2026-02-16"
+  },
+  {
+    "id": "MOD-030",
+    "slug": "project-analyzer",
+    "name": "Project Analyzer Module",
+    "scope": "Governance",
+    "reusability": "Product",
+    "stability": "Experimental",
+    "owner": "Engineering",
+    "sourceStandard": "2.2",
+    "dependencies": ["MOD-005", "MOD-011", "MOD-018"],
+    "usedByProducts": ["PRD-002"],
+    "createdAt": "2026-02-18"
+  },
+  {
+    "id": "MOD-031",
+    "slug": "governance-console-core",
+    "name": "Governance Console Core",
+    "scope": "Governance",
+    "reusability": "Product",
+    "stability": "Experimental",
+    "owner": "Engineering",
+    "sourceStandard": "5.1",
+    "dependencies": ["MOD-032"],
+    "usedByProducts": ["PRD-002"],
+    "createdAt": "2026-02-24"
+  },
+  {
+    "id": "MOD-032",
+    "slug": "enterprise-governance-engine",
+    "name": "Enterprise Governance Engine",
+    "scope": "Governance",
+    "reusability": "Product",
+    "stability": "Experimental",
+    "owner": "Engineering",
+    "sourceStandard": "2.2",
+    "dependencies": ["MOD-030"],
+    "usedByProducts": ["PRD-002"],
+    "createdAt": "2026-02-24"
+  },
+  {
+    "id": "MOD-033",
+    "slug": "verification-scoring",
+    "name": "Prisma Verification & Scoring Module (PVSM)",
+    "scope": "Governance",
+    "reusability": "Product",
+    "stability": "Experimental",
+    "owner": "Engineering",
+    "sourceStandard": "5.5",
+    "dependencies": ["MOD-030", "MOD-032"],
+    "usedByProducts": ["PRD-002"],
+    "createdAt": "2026-02-24"
+  },
+  {
+    "id": "MOD-034",
+    "slug": "backend-core-platform",
+    "name": "Backend Core Platform",
+    "scope": "Platform",
+    "reusability": "Global",
+    "stability": "Beta",
+    "owner": "Architecture Team",
+    "sourceStandard": "5.9",
+    "dependencies": [],
+    "usedByProducts": ["PRD-003"],
+    "createdAt": "2026-02-26"
   }
 ]

@@ -1,1 +1,61 @@
-[]
+[
+  {
+    "id": "PRD-001",
+    "name": "InFlux",
+    "pcl": "PCL-3.1.3.2",
+    "domainTags": [
+      "Analytics",
+      "Data Management"
+    ],
+    "functionDescriptors": [
+      "business intelligence",
+      "dashboards",
+      "data visualization",
+      "embedded analytics",
+      "query builder"
+    ],
+    "owner": "Engineering",
+    "status": "Active",
+    "createdAt": "2026-02-10"
+  },
+  {
+    "id": "PRD-002",
+    "name": "Prism",
+    "pcl": "PCL-1.6.1.1",
+    "domainTags": [
+      "Developer Tools",
+      "Security"
+    ],
+    "functionDescriptors": [
+      "static analysis",
+      "code scanning",
+      "security compliance",
+      "CYBERCUBE standards enforcement",
+      "report generation"
+    ],
+    "owner": "Engineering",
+    "status": "Active",
+    "createdAt": "2026-02-18"
+  },
+  {
+    "id": "PRD-003",
+    "name": "Backend Core Platform",
+    "pcl": "PCL-3.1.3.1",
+    "domainTags": [
+      "Infrastructure",
+      "Security",
+      "Identity/Auth",
+      "Developer Tools"
+    ],
+    "functionDescriptors": [
+      "API hosting",
+      "tenant isolation",
+      "persistence orchestration",
+      "extension contracts",
+      "authn/authz"
+    ],
+    "owner": "Architecture Team",
+    "status": "Active",
+    "createdAt": "2026-02-26"
+  }
+]
