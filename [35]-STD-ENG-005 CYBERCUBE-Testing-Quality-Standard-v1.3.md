@@ -1,4 +1,4 @@
-# CYBERCUBE Testing & Quality Assurance Standard (v1.2)
+# CYBERCUBE Testing & Quality Assurance Standard (v1.3)
 
 ## Applicability Tier Table
 
@@ -2319,6 +2319,7 @@ Status vocabulary: `IN PLACE` | `COMPLETE` | `PARTIAL` | `ROADMAP` | `N/A`.
 | v1 | 2026-01-17 | Initial release |
 | v1.1 | 2026-02-07 | Fixed markdown formatting throughout. Added: performance test targets (1.6), test execution time budgets (7.6), flaky test management (7.7), security testing integration (7.8), prohibited practices (10). Added Related Documents. Updated MSW examples to v2 |
 | v1.2 | 2026-04-22 | Unfreeze (Path B): added Applicability Tier Table with 5 T1 clauses (tests-in-CI, critical-path coverage, regression-test-on-fix, flaky quarantine, execution-time budget). Coverage thresholds, dashboards, performance baselines, mutation/property testing reclassified to T2/T3 ROADMAP. Status vocabulary normalized. |
+| v1.3 | 2026-04-22 | **RFC-0002 cross-link (additive).** Related Documents gains [48] STD-AI-001 as the canonical home for AI-feature evaluation harness, golden datasets, regression gates, and red-team protocol. AI evaluation-harness runs in the same CI infrastructure as this standard's T1 #1 suite and is subject to the same deterministic / flaky / execution-budget rules (T1 #4–#5). No existing clauses changed; no tier migrations. |
 
 ---
 
@@ -2330,6 +2331,7 @@ Status vocabulary: `IN PLACE` | `COMPLETE` | `PARTIAL` | `ROADMAP` | `N/A`.
 | 4.5 CYBERCUBE-Observability-Telemetry-Standard-v1 | Production monitoring, test vs. observability boundary |
 | 5.6 CYBERCUBE-Release-Deployment-Standard-v1 | Quality gates in release pipeline |
 | 2.2 CYBERCUBE-Secure-Coding-Standard-v1 | Security testing practices, SAST rules |
+| [48] STD-AI-001 AI Engineering Standard | **Evaluation harness** for AI-powered features — golden datasets, regression gates, red-team protocol (§3 of [48]). Treats the eval harness as a first-class test suite running in the same CI infrastructure as this standard's T1 #1 suite. |
 | 2.6 CYBERCUBE-Vulnerability-Management-Standard-v1 | Dependency scanning, DAST requirements |
 | 5.2 CYBERCUBE-API-Design-Standard-v1 | Contract testing alignment |
 | 5.3 CYBERCUBE-Webhooks-Integrations-Standard-v1 | Webhook testing patterns |

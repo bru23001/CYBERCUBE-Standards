@@ -1,8 +1,8 @@
-# CYBERCUBE Framework Compliance (v1.2)
+# CYBERCUBE Framework Compliance (v1.3)
 
 **Standard ID:** FWK-GOV-001  
 **Status:** Active  
-**Effective:** 2026-01-17 (v1), 2026-04-22 (v1.1), 2026-04-22 (v1.2)  
+**Effective:** 2026-01-17 (v1), 2026-04-22 (v1.1), 2026-04-22 (v1.2), 2026-04-22 (v1.3)  
 **Classification:** INTERNAL  
 **Owner:** Standards Council
 
@@ -491,7 +491,7 @@ Baseline applicable to internal tools, SaaS, and regulated products alike. ~30 d
 
 - **[9] POL-VEN-001** — Vendor register with risk rating; vendor risks in the ERM register; assessment before production data flows.
 - **[10] POL-AUP-001** — Every employee/contractor acknowledges AUP before access; no personal/illegal use of company assets.
-- **[11] POL-AI-001** — AI tools from Approved list; no PII/secrets/customer data to unapproved services; human review of AI output before merge.
+- **[11] POL-AI-001** — AI tools from Approved list; no PII/secrets/customer data to unapproved services; human review of AI output before merge. *(No T1 rules in [48] STD-AI-001 at v1.0 by design — engineering-side MUSTs are T2/T3.)*
 - **[24] STD-SEC-008** — Security-awareness onboarding before access; annual refresh; incident-triggered re-training.
 
 **Privacy & Records**
@@ -557,7 +557,8 @@ Adds to T1. ~25 deliverables — what separates a customer-facing SaaS v1 from a
 
 - **[9]** Annual assessment; DPA signed before data access; named vendor owner; offboarding + sub-processor list.
 - **[10]** AUP integrated into contract; annual re-acknowledgment; documented BYOD / MDM enrollment; automated offboarding.
-- **[11]** Tool approval workflow; usage logging; prompt/model versioning in product AI.
+- **[11]** Tool approval workflow; usage logging; AI-use disclosure in customer-facing features; AUP-aligned training cadence. *Engineering-side T2 deliverables for AI features (registered model identity, prompt versioning, eval harness, prompt-injection mitigations, observability, disclosure-banner pattern) owned by [48] STD-AI-001.*
+- **[48]** Registered model identity (model registry row per production model; owner; version; classification envelope); prompt versioning under `prompts/`; evaluation harness (golden dataset + regression gate in CI); prompt-injection mitigation per [21] STD-SEC-002 §11; observability metrics (unsafe-output rate, drift, refusal rate, token usage); customer-facing AI disclosure banner implementation.
 - **[24]** Quarterly phishing simulations; role-based curricula; LMS-backed tracking.
 
 **Privacy & Records**
@@ -623,7 +624,8 @@ Adds to T1 + T2. ~35 deliverables — kicks in for fintech, healthcare, PCI-adja
 
 - **[9]** SOC-2 Type II attestation required; pen-test evidence; on-site audit rights; multi-vendor contingency for critical dependencies; bi-annual tabletops on vendor-originated incidents.
 - **[10]** Role-based AUP addenda; training completion gate before access; insider-threat monitoring; prohibited-software allowlist/denylist via MDM; disciplinary matrix codified.
-- **[11]** AI Governance Committee; ethics review board; board-approval for critical-risk AI; bias/fairness audits; documented model cards.
+- **[11]** AI Governance Committee (policy body); ethics review board (personnel-side intake); board approval for critical-risk AI use cases.
+- **[48]** Bias / fairness audit protocol (pre-GA + annual + on material model change); model cards per production model (using §Appendix A template); foundation-model provenance (vendor certifications, SBOM, vendor model cards); fine-tune provenance (training-data classification, pipeline attestation, artifact signing); red-team protocol pre-GA for automated-decision features; AI Governance Committee engineering agenda (model-registry review, bias-audit review, KRI trend review, red-team findings review).
 - **[24]** PCI-specific training (Req 12.6); sector-specific modules; executive crisis simulations; bi-annual tabletops.
 
 **Privacy & Records**
@@ -690,3 +692,4 @@ Adds to T1 + T2. ~35 deliverables — kicks in for fintech, healthcare, PCI-adja
 | v1 | 2026-01-17 | Standards Council | Initial framework publication. |
 | v1.1 | 2026-04-22 | Standards Council | Added Applicability Tier Table per POL-GOV-001 §8.8. |
 | v1.2 | 2026-04-22 | Standards Council | Added **Tier Cheat-Sheet** — aggregates T1/T2/T3 deliverables across all 45 standards into a single onboarding reference. Addresses Pass-4 audit finding F4 (coordination cost). Non-normative — no existing clauses changed. |
+| v1.3 | 2026-04-22 | Standards Council | **RFC-0002 execution reflection (additive).** Tier Cheat-Sheet updated to reflect the POL-AI-001 split: [11] T2/T3 rows rescoped to personnel-policy deliverables; new rows for **[48] STD-AI-001** enumerate the engineering-side AI deliverables at T2 (model registry, prompt versioning, eval harness, prompt-injection mitigation, observability, disclosure banner) and T3 (bias audit, model cards, provenance, red-team, governance engineering remit). T1 note clarifies no T1 MUST exists in [48] at v1.0 by design. Portfolio size grows from 45 → 46 standards. |

@@ -1,11 +1,11 @@
-# CYBERCUBE Secure Coding Standard (v1.1)
+# CYBERCUBE Secure Coding Standard (v1.2)
 
 **Standard ID:** STD-SEC-002
 **Status:** Active
-**Effective:** 2026-01-17 (v1), 2026-04-22 (v1.1)
+**Effective:** 2026-01-17 (v1), 2026-04-22 (v1.1), 2026-04-22 (v1.2)
 **Classification:** INTERNAL
 **Owner:** Security Team
-**Applies to:** All CYBERCUBE application code
+**Applies to:** All CYBERCUBE application code (including AI-assisted contributions and prompt-interpreting code)
 
 ## Applicability Tier Table
 
@@ -1666,6 +1666,35 @@ describe('Security: Authorization', () => {
 
 ---
 
+## 11. AI-Assisted Code & Prompt Injection
+
+This section is the **secure-coding-side** home for two AI-adjacent concerns. The personnel rules on what may be input to AI tools are in [11] POL-AI-001; the engineering-practice rules (prompt versioning, eval harness, observability) are in [48] STD-AI-001. This section focuses on what the *secure-coding reviewer* must check.
+
+### 11.1 AI-Assisted Code Review (T2 SHOULD)
+
+For any PR with substantive AI-assisted sections (GitHub Copilot, Cursor AI, Claude, etc.):
+
+- The reviewer applies the same secure-coding checks as for human-authored code (OWASP Top 10 alignment §1, Input Validation §2, Output Encoding §3, etc.).
+- The reviewer explicitly checks for:
+  - **License contamination** — verbatim large blocks that may carry upstream license obligations (GPL, AGPL); suspected cases go to Legal.
+  - **Hallucinated APIs / functions** — methods that compile against an out-of-date type definition but do not exist at runtime in the actually-installed package version.
+  - **Plausible-but-wrong** cryptographic or auth code — AI suggestions that look right but use deprecated algorithms, silent fallback to weak primitives, or incorrect parameter order. Cross-ref §7 Secrets Management and [20] STD-SEC-005.
+- AI-assisted commits SHOULD carry a trailer (commit message or PR description) noting AI assistance; this is a reviewer-aid convention, not a compliance requirement.
+
+### 11.2 Prompt Injection (T2 SHOULD)
+
+Prompt injection is the AI-era analog of SQL injection: untrusted input reaching a privileged interpreter (the LLM) and changing its behavior. The secure-coding defense:
+
+- **Structural separation** — system prompt, user prompt, retrieved context are distinct message parts (role-tagged messages, structured delimiters), not concatenated free text.
+- **Input validation before prompt composition** — untrusted strings pass through [21] §2 Input Validation (length caps, character-class allowlists where applicable, rejection of known-malicious patterns) *before* they are included in a prompt.
+- **Output sanitization when the LLM output reaches an interpreter** — if the LLM output is executed (shell, SQL, code evaluator) or rendered in HTML, the secure-coding posture of the downstream interpreter applies (§3 Output Encoding, §5 Authorization).
+- **Tool / function-call authorization** — when the LLM invokes tools, the authorization check is the same as for a human caller: the model is not a privileged principal. See [48] STD-AI-001 §2.3.
+- **Retrieval grounding** — RAG-fetched text is treated as untrusted input, delimited in the prompt, and the retrieval source is cited in the output.
+
+For the full AI-side engineering pattern (prompt versioning, eval harness, red-team protocol), see **[48] STD-AI-001 §2 Prompt Engineering**. This standard and [48] are deliberately redundant at the cross-ref boundary so neither reviewer pool needs to read the other's standard end-to-end.
+
+---
+
 ## Quick Reference Card
 
 Print it. Keep it handy.
@@ -2040,6 +2069,8 @@ Prevention: Disable external entities
 | Version | Date       | Changes         |
 | ------- | ---------- | --------------- |
 | v1      | 2026-01-17 | Initial release |
+| v1.1    | 2026-04-22 | Added Applicability Tier Table per POL-GOV-001 §8.8. |
+| v1.2    | 2026-04-22 | **RFC-0002 cross-link (additive).** New §11 AI-Assisted Code & Prompt Injection — secure-coding-side checkpoints for AI-assisted PRs (license contamination, hallucinated APIs, plausible-but-wrong crypto) and prompt-injection defenses (structural separation, input validation before prompt composition, output sanitization when LLM output reaches an interpreter, tool-call authorization, retrieval grounding). Cross-refs [48] STD-AI-001 §2 for the engineering-practice home. No existing clauses changed; no T1/T2/T3 tier migrations. |
 
 
 
