@@ -330,9 +330,26 @@ CYBERCUBE supports:
 
 ---
 
-CYBERCUBE Authentication & Identity Standard (v1)
+CYBERCUBE Authentication & Identity Standard (v1.1)
 
-**Standard ID:** STD-SEC-003**Status:** Active**Effective:** 2026-01-17**Classification:** INTERNAL**Owner:** Security Team**Applies to:** All CYBERCUBE products, services, and integrations requiring user authentication
+**Standard ID:** STD-SEC-003
+**Status:** Active
+**Effective:** 2026-01-17 (v1), 2026-04-22 (v1.1)
+**Classification:** INTERNAL
+**Owner:** Security Team
+**Applies to:** All CYBERCUBE products, services, and integrations requiring user authentication
+
+### Applicability Tier Table
+
+| Applicability | Tier | Summary of Clauses in This Standard | Waiver Path |
+| ------------- | ---- | ----------------------------------- | ----------- |
+| All projects | **T1 MUST** | (1) Passwords MUST be stored hashed with Argon2id (or bcrypt cost ≥ 12 for legacy). No cleartext or reversible encoding. (2) Sessions MUST expire (sliding ≤24h, absolute ≤30d) and MUST be invalidated on logout and on credential change. (3) Authentication events (success, failure, lockout, password change) MUST be logged to an append-only store. (4) Rate-limiting MUST be applied on all auth endpoints. (5) Secrets (OAuth client secrets, signing keys) MUST be stored per STD-SEC-005 Cryptography & Key Management. | None (non-waivable) |
+| SaaS / customer-facing | **T2 SHOULD** | Email verification, secure password reset with single-use tokens, TOTP MFA offered to all customer-facing users, refresh-token rotation, account lockout after N failed attempts, WebAuthn as optional passwordless, OAuth/OIDC for social sign-in. | Lightweight waiver per POL-GOV-001 §8.3 |
+| Regulated / high-risk | **T3 MAY** | Enforced MFA (not optional), enterprise SSO (SAML), hardware-backed authenticators (FIDO2 keys), step-up authentication for privileged operations, session-recording for admin actions, IdP federation with SCIM provisioning, continuous auth telemetry (impossible-travel, device-trust). | Formal waiver per STD-GOV-003 |
+
+> Per POL-GOV-001 §8.8.
+
+> **v1.1 (2026-04-22) — Unfreeze (Path B).** T1 reduced to five rules implementable today: password hash algorithm, session expiry/invalidation, auth event logging, rate-limit, secrets in key store. MFA, SSO, WebAuthn, SAML, step-up, SCIM moved to T2/T3 ROADMAP until the relevant product tier requires them.
 
 0. Purpose & Design Principles
 
@@ -1772,22 +1789,28 @@ If user lost MFA device:
 
 ### Core Implementation
 
-| Component                   | Status  | Notes                     |
-| --------------------------- | ------- | ------------------------- |
-| Password Hashing (Argon2id) | PENDING | Implement in auth-service |
-| Session Management          | PARTIAL | Basic sessions exist      |
-| JWT Access Tokens           | PENDING | Design complete           |
-| Refresh Token Rotation      | PENDING | Design complete           |
-| Email Verification          | PARTIAL | Exists, needs audit       |
-| Password Reset              | PARTIAL | Exists, needs audit       |
-| Magic Link                  | PENDING | Not implemented           |
-| OAuth/OIDC                  | PENDING | Provider config needed    |
-| SAML SSO                    | PENDING | Enterprise feature        |
-| WebAuthn                    | PENDING | Passwordless feature      |
-| TOTP MFA                    | PENDING | Priority feature          |
-| Rate Limiting               | PARTIAL | Basic limits exist        |
-| Account Lockout             | PENDING | Design complete           |
-| Audit Logging               | PARTIAL | Extend coverage           |
+| Component                   | Status   | Tier | Notes                                           |
+| --------------------------- | -------- | ---- | ----------------------------------------------- |
+| Password Hashing            | IN PLACE | T1   | Argon2id mandated; bcrypt (cost ≥ 12) accepted for legacy until migrated |
+| Session Management          | PARTIAL  | T1   | Basic sessions exist; expiry/invalidation rules enforced on next auth-service release |
+| Auth event logging          | PARTIAL  | T1   | Exists; append-only guarantee ROADMAP pending logging pipeline hardening |
+| Rate Limiting (auth endpoints) | PARTIAL | T1 | Basic limits in reverse proxy; per-user limiting ROADMAP |
+| Secrets storage for auth    | IN PLACE | T1   | Uses STD-SEC-005 key-store |
+| JWT Access Tokens           | ROADMAP  | T2   | Re-trigger: first product issuing API tokens externally |
+| Refresh Token Rotation      | ROADMAP  | T2   | Paired with JWT rollout |
+| Email Verification          | PARTIAL  | T2   | Exists, needs audit |
+| Password Reset              | PARTIAL  | T2   | Exists, needs audit |
+| TOTP MFA                    | ROADMAP  | T2   | Re-trigger: first customer-facing product launches |
+| Account Lockout             | ROADMAP  | T2   | Re-trigger: public sign-up enabled |
+| Magic Link                  | ROADMAP  | T2   | Optional UX improvement |
+| OAuth/OIDC                  | ROADMAP  | T2   | Re-trigger: first social-login requirement |
+| WebAuthn                    | ROADMAP  | T3   | Only for T3 / enterprise customers |
+| SAML SSO                    | ROADMAP  | T3   | Only for T3 / enterprise customers |
+| Enforced MFA (not optional) | ROADMAP  | T3   | Only for T3 / regulated data access |
+| Step-up authentication      | ROADMAP  | T3   | Only for T3 / privileged operations |
+| SCIM provisioning           | ROADMAP  | T3   | Only for T3 / enterprise SSO |
+
+Status vocabulary: `IN PLACE` | `COMPLETE` | `PARTIAL` | `ROADMAP` | `N/A`.
 
 ### Migration Path
 
@@ -1805,8 +1828,8 @@ If user lost MFA device:
 | --------------- | ------- | ---------- |
 | NIST 800-63B    | PARTIAL | —         |
 | OWASP ASVS v4.0 | PARTIAL | —         |
-| SOC 2 Type II   | PENDING | —         |
-| ISO 27001       | PENDING | —         |
+| SOC 2 Type II   | ROADMAP | —         |
+| ISO 27001       | ROADMAP | —         |
 
 ---
 

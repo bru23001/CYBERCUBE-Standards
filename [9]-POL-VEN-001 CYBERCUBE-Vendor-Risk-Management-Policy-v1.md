@@ -1,4 +1,14 @@
-# CYBERCUBE Vendor Risk Management Policy (v1)
+# CYBERCUBE Vendor Risk Management Policy (v1.1)
+
+## Applicability Tier Table
+
+| Applicability | Tier | Summary of Clauses in This Policy | Waiver Path |
+| ------------- | ---- | --------------------------------- | ----------- |
+| All projects | **T1 MUST** | (1) Every vendor with access to CYBERCUBE data or production systems MUST be recorded in a vendor register with a risk rating. (2) Vendor risks MUST be tracked in the ERM Risk Register with `entry_type = VENDOR_RISK` (per STD-ERM-001 §8.1). (3) Before any production data flows to a new vendor, a documented risk review MUST be completed and its outcome captured in the register. | None (non-waivable) |
+| SaaS / customer-facing | **T2 SHOULD** | Initial + periodic (annual) assessment, DPA signed before data access, named vendor owner, offboarding procedure with credential revocation and data-return verification, sub-processor list maintained. | Lightweight waiver per POL-GOV-001 §8.3 |
+| Regulated / high-risk | **T3 MAY** | SOC-2 Type II attestation required, pen-test evidence, on-site audit rights, multi-vendor contingency for critical dependencies, regulator-facing vendor inventory, bi-annual tabletop on vendor-originated incidents. | Formal waiver per STD-GOV-003 |
+
+> Per POL-GOV-001 §8.8.
 
 ## Glossary
 
@@ -1109,14 +1119,14 @@ Procurement: procurement@cybercube.software
 | Policy document | COMPLETE | This policy |
 | Classification framework | COMPLETE | Defined |
 | Security questionnaire | PARTIAL | Customize SIG |
-| Vendor registry | PENDING | Select tooling |
-| Periodic review schedule | PENDING | Implement calendar |
+| Vendor registry | ROADMAP | Select tooling |
+| Periodic review schedule | ROADMAP | Implement calendar |
 | Offboarding checklist | COMPLETE | Defined |
-| Concentration risk tracking | PENDING | Document T1 vendors |
-| Fourth-party/sub-processor tracking | PENDING | Collect sub-processor lists |
+| Concentration risk tracking | ROADMAP | Document T1 vendors |
+| Fourth-party/sub-processor tracking | ROADMAP | Collect sub-processor lists |
 | Vendor incident response process | COMPLETE | Defined |
 | Expedited onboarding process | COMPLETE | Defined |
-| Training | PENDING | Develop module |
+| Training | ROADMAP | Develop module |
 
 ### Migration Path
 
@@ -1130,12 +1140,26 @@ Procurement: procurement@cybercube.software
 
 ---
 
+## Machine-Readable Vendor Inventory Schema
+
+The vendor inventory is validated against [`schemas/vendor-inventory.schema.json`](../schemas/vendor-inventory.schema.json) (Pass-3 tranche-2, 2026-04-22).
+
+- **Run:** `python tools/validate-schemas.py --path governance/vendor-inventory.json`.
+- **Required fields:** `id` (`VND-####`), `name`, `tier`, `data_sensitivity`, `owner`, `status`, `last_assessed`.
+- **Cross-references:** `tier` maps to PCL criticality in STD-GOV-001; `data_sensitivity` to STD-DAT-001; `dpa_template` may reference TPL-LGL-001; `linked_risks[]` to STD-ERM-001 risk IDs.
+- **Governance:** schema changes follow POL-GOV-001 §8 change-control.
+
+This enables the tier-vs-PCL sanity-check lint and raises Automatability (M) from 2 → 3.
+
+---
+
 ## Version History
 
 | Version | Date | Changes |
 |---------|------|---------|
 | v1 | 2026-01-17 | Initial release |
 | v1.1 | 2026-02-07 | Added: concentration risk (1.5), expedited onboarding (2.6), fourth-party management (2.7), vendor incident response (4.5), prohibited practices (8). Fixed: email domain, breach notification clarity, free-tier SaaS scope, related documents. Added migration path |
+| v1.2 | 2026-04-22 | Pass-3 tranche-2: vendor inventory now has a machine-readable schema (`schemas/vendor-inventory.schema.json`) + validator (`tools/validate-schemas.py`). No rule change; raises Automatability (M) from 2 → 3. |
 
 ---
 

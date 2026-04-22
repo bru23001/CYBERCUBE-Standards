@@ -386,14 +386,26 @@ Standard units:
 
 ---
 
-CYBERCUBE Observability & Telemetry Standard (v1)
+CYBERCUBE Observability & Telemetry Standard (v1.1)
 
 **Standard ID:** STD-OPS-003  
 **Status:** Active  
-**Effective:** 2026-01-17  
+**Effective:** 2026-01-17 (v1), 2026-04-22 (v1.1)  
 **Classification:** INTERNAL  
 **Owner:** Engineering / SRE  
 **Applies to:** All CYBERCUBE services and applications
+
+### Applicability Tier Table
+
+| Applicability | Tier | Summary of Clauses in This Standard | Waiver Path |
+| ------------- | ---- | ----------------------------------- | ----------- |
+| All projects | **T1 MUST** | (1) Every service MUST emit structured logs (JSON or equivalent) with at minimum a timestamp, level, message, and service identifier. (2) Logs MUST NOT contain secrets, passwords, tokens, or unredacted PII — logger-level redaction is required (per STD-SEC-002 T1 clause 4). (3) Every service MUST expose a basic health endpoint (`/healthz` or equivalent) that returns within 1 second. (4) Every service MUST emit at minimum RED metrics (Rate, Errors, Duration) or equivalent; even basic `/metrics` Prometheus exposition suffices. (5) Log retention MUST match the classification of the data they contain (per STD-DAT-001 T1); default retention documented per environment. | None (non-waivable) |
+| SaaS / customer-facing | **T2 SHOULD** | Correlation/request IDs propagated across services, W3C Trace Context adoption, OpenTelemetry SDK instrumentation, standardized log levels (TRACE/DEBUG/INFO/WARN/ERROR), dashboards per service (RED + saturation), alerting rules tied to SLOs (per STD-SLP-001 T2), on-call paging integration. | Lightweight waiver per POL-GOV-001 §8.3 |
+| Regulated / high-risk | **T3 MAY** | Distributed tracing end-to-end across all services, audit log pipeline separated from operational logs (immutable, SIEM-exportable), anomaly detection on key metrics, synthetic monitoring of critical user journeys, executive observability KRIs (per STD-GOV-005), multi-tenant log isolation. | Formal waiver per STD-GOV-003 |
+
+> Per POL-GOV-001 §8.8.
+
+> **v1.1 (2026-04-22) — Unfreeze (Path B).** T1 = five rules every service can meet today: structured logs, redaction-at-logger, `/healthz`, RED metrics, retention matches classification. OpenTelemetry, W3C trace, dashboards, alerting reclassified to T2 ROADMAP; anomaly detection, SIEM pipeline, synthetics to T3. Paired with STD-SLP-001 T2 alerting clauses.
 
 0. Purpose & Design Principles
 
@@ -1753,18 +1765,28 @@ X-Tenant-ID: ACC-9F4K7Q-M
 
 ### Core Implementation
 
-| Component | Status | Notes |
-|-----------|--------|-------|
-| Structured Logging | PARTIAL | JSON format exists |
-| Log Levels | PARTIAL | Needs standardization |
-| PII Redaction | PARTIAL | Basic patterns |
-| Correlation IDs | PARTIAL | Request ID exists |
-| W3C Trace Context | PENDING | Not implemented |
-| OpenTelemetry | PENDING | Not integrated |
-| Metrics (Prometheus) | PARTIAL | Basic metrics |
-| Standard Metrics | PENDING | Need full coverage |
-| Alerting Rules | PENDING | Define alerts |
-| Dashboards | PENDING | Create templates |
+| Component | Status | Tier | Notes |
+|-----------|--------|------|-------|
+| Structured Logging (JSON) | IN PLACE | T1 | Base framework supports it |
+| PII/secret redaction at logger | PARTIAL | T1 | Basic patterns; policy-driven redaction ROADMAP |
+| Health endpoint (`/healthz`) | PARTIAL | T1 | Most services; standardized across all ROADMAP |
+| RED metrics exposure | PARTIAL | T1 | Basic; universal coverage ROADMAP |
+| Retention matches classification | PARTIAL | T1 | Inherits STD-DAT-001; per-env table ROADMAP |
+| Log Levels standardized | PARTIAL | T2 | Needs standardization |
+| Correlation IDs propagated | PARTIAL | T2 | Request ID exists; cross-service propagation ROADMAP |
+| W3C Trace Context | ROADMAP | T2 | Paired with OpenTelemetry |
+| OpenTelemetry SDK instrumentation | ROADMAP | T2 | Re-trigger: OTel collector deployment |
+| Standard Metrics (RED+saturation) | ROADMAP | T2 | Full coverage ROADMAP |
+| Alerting Rules (SLO-tied) | ROADMAP | T2 | Paired with STD-SLP-001 T2 |
+| Dashboards per service | ROADMAP | T2 | Template creation ROADMAP |
+| On-call paging integration | ROADMAP | T2 | Re-trigger: on-call rotation formalization |
+| Distributed tracing end-to-end | ROADMAP | T3 | Regulated projects only |
+| Audit log pipeline (immutable, SIEM) | ROADMAP | T3 | Regulated projects only |
+| Anomaly detection on key metrics | ROADMAP | T3 | Regulated projects only |
+| Synthetic monitoring | ROADMAP | T3 | Regulated projects only |
+| Multi-tenant log isolation | ROADMAP | T3 | Paired with STD-DAT-004 T3 |
+
+Status vocabulary: `IN PLACE` | `COMPLETE` | `PARTIAL` | `ROADMAP` | `N/A`.
 
 ### Migration Path
 
@@ -1782,3 +1804,4 @@ Version History
 | Version | Date | Changes |
 |---------|------|---------|
 | v1 | 2026-01-17 | Initial release |
+| v1.1 | 2026-04-22 | Unfreeze (Path B): Tier Table with 5 T1 rules (structured logs, redaction, `/healthz`, RED metrics, retention matches classification). OpenTelemetry, W3C trace, dashboards, alerting reclassified to T2 ROADMAP; anomaly/SIEM/synthetics to T3. Status vocabulary normalized. |

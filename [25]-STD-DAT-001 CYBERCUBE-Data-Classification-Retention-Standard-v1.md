@@ -1,4 +1,16 @@
-CYBERCUBE Data Classification & Retention Standard (v1)
+CYBERCUBE Data Classification & Retention Standard (v1.1)
+
+### Applicability Tier Table
+
+| Applicability | Tier | Summary of Clauses in This Standard | Waiver Path |
+| ------------- | ---- | ----------------------------------- | ----------- |
+| All projects | **T1 MUST** | (1) Every data entity (table, collection, file class) MUST carry a classification label: `PUBLIC`, `INTERNAL`, `CONFIDENTIAL`, or `RESTRICTED`. (2) Every entity MUST have a declared retention period — either explicit (days/months/years) or `INDEFINITE` with a documented reason. (3) PII fields MUST be flagged and listed in a per-product PII inventory (at minimum a `PII.md` or equivalent). (4) Data deletion (soft or hard) MUST be auditable — who, what, when, via what mechanism. (5) Backup data MUST inherit the classification of the source. | None (non-waivable) |
+| SaaS / customer-facing | **T2 SHOULD** | DSAR (data-subject access request) workflow with SLA, documented lawful basis per field group, encryption at rest (platform-managed), data masking in non-production environments, automated retention enforcement where platform allows, cross-border data transfer register. | Lightweight waiver per POL-GOV-001 §8.3 |
+| Regulated / high-risk | **T3 MAY** | Legal hold system with per-entity flags, customer-managed-keys (BYOK/HYOK), automated DSAR with identity-verification gate, immutable audit trails for data access, tokenization/pseudonymization of PII, cross-jurisdiction data residency controls, regulated certifications (GDPR DPIA, HIPAA BAA, PCI segmentation). | Formal waiver per STD-GOV-003 |
+
+> Per POL-GOV-001 §8.8.
+
+> **v1.1 (2026-04-22) — Unfreeze (Path B).** T1 reduced to five rules documentable today: classification labels, retention periods, PII inventory, deletion audit, backup inheritance. Legal hold, DSAR automation, BYOK, GDPR DPIA reclassified to T2/T3 ROADMAP. This standard is **load-bearing** — [14] POL-REC-001 T1 and [19] STD-SEC-004 T1 both reference this classification schema.
 
 Glossary
 
@@ -1624,17 +1636,32 @@ Credentials/health/finance?  → RESTRICTED
 
 ### Core Implementation
 
-| Component             | Status  | Notes             |
-| --------------------- | ------- | ----------------- |
-| Classification Schema | PENDING | Add to all tables |
-| Retention Policies    | PENDING | Define per type   |
-| Legal Hold System     | PENDING | Not implemented   |
-| DSAR Workflow         | PENDING | Manual process    |
-| Deletion Pipeline     | PARTIAL | Basic soft delete |
-| PII Inventory         | PENDING | Document all PII  |
-| Backup Encryption     | PARTIAL | AWS-managed       |
-| Data Masking          | PARTIAL | Some APIs         |
-| Audit Logging         | PARTIAL | Extend coverage   |
+| Component             | Status   | Tier | Notes             |
+| --------------------- | -------- | ---- | ----------------- |
+| Classification labels (4-level) | IN PLACE | T1 | Defined in this standard §Classification |
+| Retention schedule (canonical) | IN PLACE | T1 | §Retention; referenced by POL-REC-001 T1 |
+| PII Inventory per product | PARTIAL | T1 | `PII.md` template provided; adoption ROADMAP per product |
+| Deletion audit | PARTIAL | T1 | Soft-delete ticks exist; structured audit log ROADMAP |
+| Backup classification inheritance | IN PLACE | T1 | Same platform, same encryption keys |
+| Data masking (non-prod) | PARTIAL | T2 | Some APIs mask; policy-wide enforcement ROADMAP |
+| Encryption at rest (platform-managed) | IN PLACE | T2 | AWS-managed (KMS) |
+| DSAR Workflow (manual) | PARTIAL | T2 | Manual process documented; automation ROADMAP |
+| Retention enforcement automation | ROADMAP | T2 | Re-trigger: when first T2 product has prod data at scale |
+| Cross-border transfer register | ROADMAP | T2 | Re-trigger: first EU/US data flow |
+| Legal Hold System | ROADMAP | T3 | See STD-LGL-001 |
+| BYOK / HYOK (customer-managed keys) | ROADMAP | T3 | Only for T3 / enterprise customers |
+| Automated DSAR with identity verification | ROADMAP | T3 | Regulated projects only |
+| Immutable audit trails (data access) | ROADMAP | T3 | Regulated projects only |
+| Tokenization / pseudonymization | ROADMAP | T3 | Regulated projects only |
+
+Status vocabulary: `IN PLACE` | `COMPLETE` | `PARTIAL` | `ROADMAP` | `N/A`.
+
+| Regulation | Status  | Tier | Notes |
+| ---------- | ------- | ---- | ----- |
+| GDPR       | PARTIAL | T3   | Required only for T3 / EU data subjects |
+| CCPA       | PARTIAL | T3   | Required only for T3 / CA residents |
+| ISO 27001  | ROADMAP | T3   | Required only for T3 / regulated projects |
+| SOC 2      | ROADMAP | T3   | Required only for T3 / enterprise contracts |
 
 ### Migration Path
 
@@ -1647,12 +1674,7 @@ Credentials/health/finance?  → RESTRICTED
 
 ### Compliance Checklist
 
-| Regulation | Status  | Audit Date |
-| ---------- | ------- | ---------- |
-| GDPR       | PARTIAL | —         |
-| CCPA       | PARTIAL | —         |
-| ISO 27001  | PENDING | —         |
-| SOC 2      | PENDING | —         |
+(See the Regulation table in Core Implementation above; compliance attainment is tier-gated.)
 
 ---
 
@@ -1661,6 +1683,7 @@ Version History
 | Version | Date       | Changes         |
 | ------- | ---------- | --------------- |
 | v1      | 2026-01-17 | Initial release |
+| v1.1    | 2026-04-22 | Unfreeze (Path B): added Applicability Tier Table with 5 T1 clauses (classification labels, retention schedule, PII inventory, deletion audit, backup inheritance). Legal hold, DSAR automation, BYOK, regulated certifications reclassified to T2/T3 ROADMAP. Compliance checklist merged into tiered Implementation Status. Status vocabulary normalized. |
 
 
 

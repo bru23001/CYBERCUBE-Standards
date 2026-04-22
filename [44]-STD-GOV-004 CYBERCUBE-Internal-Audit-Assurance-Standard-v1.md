@@ -639,12 +639,26 @@ Status vocabulary: `IN PLACE` | `COMPLETE` | `PARTIAL` | `ROADMAP` | `N/A`. `ROA
 
 ---
 
+## Machine-Readable Audit-Finding Schema
+
+Audit findings (exported as `governance/audit-findings.json` or an equivalent artifact) are validated against [`schemas/audit-finding.schema.json`](../schemas/audit-finding.schema.json) (Pass-3 tranche-2, 2026-04-22).
+
+- **Run:** `python tools/validate-schemas.py --path governance/audit-findings.json`.
+- **Required fields:** `id` (`AF-######`), `audit_id`, `title`, `severity`, `status`, `owner`, `opened`, `control_ids` (min one).
+- **Cross-references:** `control_ids[]` map to STD-GOV-006 UCM; `linked_risks[]` to STD-ERM-001 (`RISK-####`); `linked_exceptions[]` to STD-GOV-003 waiver IDs.
+- **Governance:** schema changes follow POL-GOV-001 §8 change-control.
+
+This raises Automatability (M) for internal audit from 2 → 3 and enables the UCM-control-evidence link the v1.1 Tier Table pointed to.
+
+---
+
 ## Version History
 
 | Version | Date | Changes |
 |---------|------|---------|
 | v1 | 2026-02-07 | Initial release: full rewrite to CYBERCUBE standard format with audit lifecycle, coverage matrix, remediation SLAs, report template, metrics, risk acceptance process |
 | v1.1 | 2026-04-22 | Unfreeze (Path B): added Applicability Tier Table; T1 = findings/CAP tracked in ERM risk register; audit program items (annual plan, tooling, dashboards, metrics baseline) reclassified as T3 ROADMAP. Status vocabulary normalized. |
+| v1.2 | 2026-04-22 | Pass-3 tranche-2: added machine-readable audit-finding schema + validator. No rule change; enables automation. |
 
 ---
 

@@ -6,13 +6,25 @@ Internal Policy — Not for External Distribution
 
 ---
 
-CYBERCUBE Privacy Handling Policy (v1)
+CYBERCUBE Privacy Handling Policy (v1.1)
 
 Standard ID: POL-PRI-002
 Status: Active
-Effective: 2026-01-17
+Effective: 2026-01-17 (v1), 2026-04-22 (v1.1)
 Classification: INTERNAL — Not for External Distribution
 Applies to: All CYBERCUBE employees, contractors, and systems
+
+### Applicability Tier Table
+
+| Applicability | Tier | Summary of Clauses in This Policy | Waiver Path |
+| ------------- | ---- | ---------------------------------- | ----------- |
+| All projects handling personal data | **T1 MUST** | (1) Every project that collects, stores, or processes personal data MUST classify it per STD-DAT-001 T1 (PII inventory). (2) A lawful basis (GDPR) / valid collection purpose (CCPA) MUST be identified and documented before collection. (3) Personal data MUST NOT be used for purposes materially outside the disclosed purpose without re-consent or a new lawful basis. (4) Data-subject-access / deletion / correction requests received via any channel MUST be routed to the named privacy contact within 5 business days. (5) Suspected PII exposures MUST be treated as security incidents per STD-SEC-007 T1 (clause 5 — Legal flag). | None (non-waivable) |
+| SaaS / customer-facing | **T2 SHOULD** | Documented DPIA triage (decide-to-DPIA workflow), consent management platform, data-subject-request (DSR) ticket workflow with SLA tracking, data-processing-agreement (DPA) inventory (per TPL-LGL-001), annual privacy training (paired with STD-SEC-008 T2), sub-processor registry, retention-schedule audit. | Lightweight waiver per POL-GOV-001 §8.3 |
+| Regulated / high-risk (sensitive categories, children, biometrics) | **T3 MAY** | Full DPIAs per Art. 35 GDPR, data-minimization-by-design review, pseudonymization / differential privacy where applicable, binding corporate rules or SCC suite for transfers, privacy engineering reviews on architectural changes, regulator-liaison playbook. | Formal waiver per STD-GOV-003 |
+
+> Per POL-GOV-001 §8.8.
+
+> **v1.1 (2026-04-22) — Tier Table addition.** T1 = five enforceable rules that every product team can follow today: PII classification, lawful basis, no purpose-creep, DSR routing, treat-exposure-as-incident.
 
 0. Purpose & Design Principles
 

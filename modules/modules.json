@@ -1,0 +1,288 @@
+{
+  "schema": "cybercube.modules/v1",
+  "source": "[33] STD-ENG-008 CYBERCUBE-Reusable-Modules-Standard-v1.1.md \u2014 Module Registry",
+  "generated_at": "2026-04-22",
+  "note": "Authoritative catalog of shared modules. The standard (STD-ENG-008) defines RULES for reusable modules; this file is DATA and may be updated without a standard version bump provided governance records the change in modules/CHANGELOG.md.",
+  "modules": [
+    {
+      "id": "M-01",
+      "name": "Identity Module",
+      "group": "core-infrastructure",
+      "source_standard": "2.3 Authentication",
+      "key_components": "User registration, email verification, password hashing (Argon2id), account lockout, MFA (TOTP/WebAuthn)"
+    },
+    {
+      "id": "M-02",
+      "name": "Authentication Module",
+      "group": "core-infrastructure",
+      "source_standard": "2.3 Authentication",
+      "key_components": "Login/logout, session management, OAuth 2.0/OIDC, SAML SSO, magic links, token refresh"
+    },
+    {
+      "id": "M-03",
+      "name": "Authorization Module",
+      "group": "core-infrastructure",
+      "source_standard": "2.4 Access Control",
+      "key_components": "RBAC engine, permission evaluation, policy enforcement, ACL management, tenant isolation"
+    },
+    {
+      "id": "M-04",
+      "name": "API Gateway Module",
+      "group": "core-infrastructure",
+      "source_standard": "5.2 API Design",
+      "key_components": "Rate limiting, request validation, response envelopes, versioning, error handling"
+    },
+    {
+      "id": "M-05",
+      "name": "Identifier Module",
+      "group": "core-infrastructure",
+      "source_standard": "5.1 Naming Standard",
+      "key_components": "CC-PID generation, check digit validation, entity code registry"
+    },
+    {
+      "id": "M-29",
+      "name": "Configuration Module",
+      "group": "core-infrastructure",
+      "source_standard": "5.4 IaC / 12-Factor",
+      "key_components": "Config sources (env/file/remote), schema validation, defaults, per-environment overrides, env var loading"
+    },
+    {
+      "id": "M-30",
+      "name": "Error Handling Module",
+      "group": "core-infrastructure",
+      "source_standard": "2.2 Secure Coding",
+      "key_components": "Error taxonomy, standard error classes, error serialization, i18n-ready messages, implements ICD-5"
+    },
+    {
+      "id": "M-31",
+      "name": "Core Utilities Module",
+      "group": "core-infrastructure",
+      "source_standard": "4.5 Observability",
+      "key_components": "Date/time (ISO 8601 UTC, timezone), string ops (slugify, truncate, PII-safe), math (currency, precision)"
+    },
+    {
+      "id": "M-38",
+      "name": "Localization Module",
+      "group": "core-infrastructure",
+      "source_standard": "1.1 Compliance (Content)",
+      "key_components": "Translation management, locale detection, number/date/currency formatting, pluralization, RTL support, i18n key registry"
+    },
+    {
+      "id": "M-40",
+      "name": "Cache Module",
+      "group": "core-infrastructure",
+      "source_standard": "4.4 SRE / 4.5 Obs",
+      "key_components": "Cache-aside/write-through/write-behind, Redis/Memcached abstraction, TTL management, tenant-scoped keys, invalidation, stampede protection"
+    },
+    {
+      "id": "M-06",
+      "name": "Data Classification Module",
+      "group": "data-management",
+      "source_standard": "3.3 Data Classification",
+      "key_components": "Classification labels (PUBLIC/INTERNAL/CONFIDENTIAL/RESTRICTED), handling rules, encryption triggers"
+    },
+    {
+      "id": "M-07",
+      "name": "Soft-Delete Module",
+      "group": "data-management",
+      "source_standard": "3.5 Soft-Delete",
+      "key_components": "Lifecycle states (ACTIVE\u2192DELETED\u2192PURGED), grace periods, cascade delete, restore API"
+    },
+    {
+      "id": "M-08",
+      "name": "Records Management Module",
+      "group": "data-management",
+      "source_standard": "3.8 Records Management",
+      "key_components": "Retention policies, legal holds, archive management, disposal workflows"
+    },
+    {
+      "id": "M-09",
+      "name": "Audit Log Module",
+      "group": "data-management",
+      "source_standard": "4.5 Observability",
+      "key_components": "Immutable event logging, who/what/when/where capture, tamper detection"
+    },
+    {
+      "id": "M-10",
+      "name": "Multi-Tenancy Module",
+      "group": "data-management",
+      "source_standard": "3.4 Data Isolation",
+      "key_components": "Tenant context, row-level security, cross-tenant query prevention"
+    },
+    {
+      "id": "M-32",
+      "name": "Data Access Module",
+      "group": "data-management",
+      "source_standard": "5.4 IaC / Architecture",
+      "key_components": "Repository base, query builder (filter/sort/page), unit of work, transactions, connection pooling, migrations"
+    },
+    {
+      "id": "M-39",
+      "name": "Search Module",
+      "group": "data-management",
+      "source_standard": "5.2 API Design",
+      "key_components": "Full-text search abstraction (Elasticsearch/Typesense), indexing pipeline, faceted search, relevance tuning, tenant-scoped indices"
+    },
+    {
+      "id": "M-11",
+      "name": "Logging Module",
+      "group": "ops-observability",
+      "source_standard": "4.5 Observability",
+      "key_components": "Structured logging, log levels, PII redaction, correlation IDs"
+    },
+    {
+      "id": "M-12",
+      "name": "Metrics Module",
+      "group": "ops-observability",
+      "source_standard": "4.5 Observability",
+      "key_components": "Golden signals (latency/traffic/errors/saturation), histograms, counters"
+    },
+    {
+      "id": "M-13",
+      "name": "Tracing Module",
+      "group": "ops-observability",
+      "source_standard": "4.5 Observability",
+      "key_components": "Distributed tracing, span context, OpenTelemetry integration"
+    },
+    {
+      "id": "M-14",
+      "name": "Alerting Module",
+      "group": "ops-observability",
+      "source_standard": "4.5 Observability",
+      "key_components": "Threshold alerts, anomaly detection, severity routing, runbook links"
+    },
+    {
+      "id": "M-15",
+      "name": "Health Check Module",
+      "group": "ops-observability",
+      "source_standard": "4.4 SRE",
+      "key_components": "Liveness/readiness probes, dependency checks, status endpoints"
+    },
+    {
+      "id": "M-16",
+      "name": "Cryptography Module",
+      "group": "security",
+      "source_standard": "2.5 Cryptography",
+      "key_components": "Key generation, encryption/decryption, key rotation, envelope encryption"
+    },
+    {
+      "id": "M-17",
+      "name": "Secret Management Module",
+      "group": "security",
+      "source_standard": "2.5 Cryptography",
+      "key_components": "Secret storage, access control, rotation, injection"
+    },
+    {
+      "id": "M-18",
+      "name": "Input Validation Module",
+      "group": "security",
+      "source_standard": "2.2 Secure Coding",
+      "key_components": "Schema validation, sanitization, injection prevention"
+    },
+    {
+      "id": "M-19",
+      "name": "Rate Limiting Module",
+      "group": "security",
+      "source_standard": "5.2 API Design",
+      "key_components": "Request throttling, quota management, backoff headers"
+    },
+    {
+      "id": "M-20",
+      "name": "Security Headers Module",
+      "group": "security",
+      "source_standard": "2.2 Secure Coding",
+      "key_components": "CSP, HSTS, X-Frame-Options, CORS configuration"
+    },
+    {
+      "id": "M-21",
+      "name": "Webhook Module",
+      "group": "communication-integration",
+      "source_standard": "5.3 Webhooks",
+      "key_components": "Event dispatch, retry logic, signature verification, delivery tracking"
+    },
+    {
+      "id": "M-22",
+      "name": "Notification Module",
+      "group": "communication-integration",
+      "source_standard": "4.3 Incident Response",
+      "key_components": "Multi-channel delivery (email/SMS/push), templates, preferences"
+    },
+    {
+      "id": "M-23",
+      "name": "Email Module",
+      "group": "communication-integration",
+      "source_standard": "2.3 Authentication",
+      "key_components": "Transactional emails, templates, delivery tracking, bounce handling"
+    },
+    {
+      "id": "M-24",
+      "name": "File Upload Module",
+      "group": "communication-integration",
+      "source_standard": "5.2 API Design",
+      "key_components": "Presigned URLs, virus scanning, size limits, type validation"
+    },
+    {
+      "id": "M-33",
+      "name": "HTTP Client Module",
+      "group": "communication-integration",
+      "source_standard": "4.5 Observability",
+      "key_components": "Outbound HTTP, retry/backoff, circuit breaker, correlation propagation, mTLS, PII-redacted logging"
+    },
+    {
+      "id": "M-34",
+      "name": "Message Bus Module",
+      "group": "communication-integration",
+      "source_standard": "5.3 Webhooks / 4.5 Obs",
+      "key_components": "Broker-agnostic pub/sub, dead-letter queues, consumer groups, schema validation, at-least-once delivery, backpressure"
+    },
+    {
+      "id": "M-25",
+      "name": "Incident Management Module",
+      "group": "operational-processes",
+      "source_standard": "4.3 Incident Response",
+      "key_components": "Incident declaration, severity classification, escalation, postmortem"
+    },
+    {
+      "id": "M-26",
+      "name": "Change Management Module",
+      "group": "operational-processes",
+      "source_standard": "5.7 Change Management",
+      "key_components": "Change requests, approval workflows, rollback procedures"
+    },
+    {
+      "id": "M-27",
+      "name": "Feature Flag Module",
+      "group": "operational-processes",
+      "source_standard": "5.6 Release",
+      "key_components": "Flag management, gradual rollout, A/B testing, kill switches"
+    },
+    {
+      "id": "M-28",
+      "name": "Backup Module",
+      "group": "operational-processes",
+      "source_standard": "4.2 Backup/DR",
+      "key_components": "Automated backups, retention, restore testing, verification"
+    },
+    {
+      "id": "M-35",
+      "name": "Billing Module",
+      "group": "business-services",
+      "source_standard": "3.3 Data Classification / 2.5 Crypto",
+      "key_components": "Payment gateway abstraction, subscription lifecycle, plan management, usage metering, invoicing, proration, dunning, refunds, payment method vault"
+    },
+    {
+      "id": "M-36",
+      "name": "Workflow Module",
+      "group": "business-services",
+      "source_standard": "5.7 Change Mgmt / 4.3 IR",
+      "key_components": "State machine definition & execution, task assignment, approval chains, SLA tracking, escalation, parallel/sequential steps, compensation (rollback)"
+    },
+    {
+      "id": "M-37",
+      "name": "UI Foundation Module",
+      "group": "frontend-presentation",
+      "source_standard": "1.1 Compliance (Brand) / 5.1 Naming",
+      "key_components": "Design tokens (color/spacing/typography/elevation/motion), theme engine (light/dark/white-label), component library (CYBERCUBE primitives), layout system (responsive grid/page templates/shell), WCAG 2.1 AA accessibility"
+    }
+  ]
+}

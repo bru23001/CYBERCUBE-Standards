@@ -1,11 +1,23 @@
-# CYBERCUBE Naming & Identifier Standard (v1.2)
+# CYBERCUBE Naming & Identifier Standard (v1.3)
 
 **Standard ID:** STD-ENG-001  
 **Status:** Active  
-**Effective:** 2026-02-10  
+**Effective:** 2026-02-10 (v1.2), 2026-04-22 (v1.3)  
 **Classification:** INTERNAL  
 **Owner:** Engineering Lead  
 **Review Cycle:** Annual + on major version change
+
+## Applicability Tier Table
+
+| Applicability | Tier | Summary of Clauses in This Standard | Waiver Path |
+| ------------- | ---- | ----------------------------------- | ----------- |
+| All projects producing artifacts, IDs, or modules | **T1 MUST** | (1) All standards, policies, and governance artifacts MUST follow the Namespace-A and Namespace-G naming conventions defined here (filenames, IDs, and identifiers). (2) Public entity identifiers exposed to external systems (APIs, URLs, logs) MUST follow the CC-PID format; raw database primary keys MUST NOT be exposed. (3) CC-PIDs MUST NOT be used for authentication or authorization — per STD-SEC-003/004 T1. (4) All new modules/components MUST follow Namespace-M conventions (directory, file, export naming). (5) Entity-code registration MUST precede first use in code; unregistered entity codes MUST NOT appear in production. | None (non-waivable — naming is a coordination standard) |
+| SaaS / customer-facing | **T2 SHOULD** | Automated lint for component-type vocabulary (file/class suffixes), directory-structure CI check, module-boundary import lint, CC-PID format validator in API middleware, developer quick-reference cards, onboarding training on namespaces. | Lightweight waiver per POL-GOV-001 §8.3 |
+| Regulated / high-risk | **T3 MAY** | CC-PID integrity signature (tamper-evidence), per-tenant namespace partitioning in IDs, identifier audit trail (who created which CC-PID, when), identifier-change workflow with approval, code-generation tools emitting conformant IDs only, pre-commit hooks blocking non-conformant identifiers. | Formal waiver per STD-GOV-003 |
+
+> Per POL-GOV-001 §8.8.
+
+> **v1.3 (2026-04-22) — Applicability Tier Table + status vocabulary normalization.** T1 = five rules enforceable today. Pre-existing non-canonical statuses (`PENDING`, `PARTIAL         `) remapped to `ROADMAP` and `PARTIAL` respectively.
 
 **Quick links:** [Glossary](#glossary) · [0. Purpose](#0-purpose--design-principles) · [1. Artifact Naming](#1-namespace-a--artifact-naming) · [2. Public Entity IDs](#2-namespace-b--public-entity-ids-cc-pid-v1) · [3. Governance Registry IDs](#3-namespace-g--governance-registry-identifiers) · [4. Module, Component & File Naming](#4-namespace-m--module-component--file-naming) · [5. CC-PID Implementation](#5-cc-pid-implementation-guidelines) · [6. Tables](#6-tables) · [7. Tickets vs WOE](#7-ticket-vs-issue-woe-separation) · [8. Version History](#8-version-history) · [Cheat Sheet](#developer-cheat-sheet) · [Appendix A: Support SOP](#appendix-a-support-sop--reading-and-collecting-public-entity-ids-cc-pid) · [Implementation Status](#implementation-status)
 
@@ -3183,10 +3195,10 @@ Note: Token alphabet excludes I and O to reduce confusion.
 |-----------|--------|
 | Namespace G standard (Section 3) | COMPLETE |
 | Namespace M standard (Section 4) | COMPLETE |
-| Module Registry population | PENDING |
-| Component type vocabulary enforcement (lint rule) | PENDING |
-| Directory structure validation (CI check) | PENDING |
-| Module boundary enforcement (import lint) | PENDING |
+| Module Registry population | ROADMAP |
+| Component type vocabulary enforcement (lint rule) | ROADMAP |
+| Directory structure validation (CI check) | ROADMAP |
+| Module boundary enforcement (import lint) | ROADMAP |
 
 ### Core Implementation (CC-PID)
 
@@ -3209,16 +3221,16 @@ Note: Token alphabet excludes I and O to reduce confusion.
 | Milestone    | MLN  | `MilestoneRepository.ts`   | `tasks.ts`        | COMPLETE        |
 | Invoice      | INV  | `InvoiceRepository.ts`     | `billing.ts`      | COMPLETE        |
 | Deliverable  | DLV  | `DeliverableRepository.ts` | `deliverables.ts` | COMPLETE        |
-| User         | USR  | -                            | -                   | MIGRATION READY |
-| Message      | MSG  | -                            | -                   | MIGRATION READY |
-| Time Entry   | TEN  | -                            | -                   | MIGRATION READY |
-| Audit Log    | AUD  | -                            | -                   | MIGRATION READY |
-| Activity     | ACT  | -                            | -                   | MIGRATION READY |
-| Session      | SES  | -                            | -                   | MIGRATION READY |
-| Role         | RLE  | -                            | -                   | MIGRATION READY |
-| Permission   | PRM  | -                            | -                   | MIGRATION READY |
-| Notification | NTF  | -                            | -                   | MIGRATION READY |
-| Team Member  | TMB  | -                            | -                   | MIGRATION READY |
+| User         | USR  | -                            | -                   | PARTIAL          |
+| Message      | MSG  | -                            | -                   | PARTIAL          |
+| Time Entry   | TEN  | -                            | -                   | PARTIAL          |
+| Audit Log    | AUD  | -                            | -                   | PARTIAL          |
+| Activity     | ACT  | -                            | -                   | PARTIAL          |
+| Session      | SES  | -                            | -                   | PARTIAL          |
+| Role         | RLE  | -                            | -                   | PARTIAL          |
+| Permission   | PRM  | -                            | -                   | PARTIAL          |
+| Notification | NTF  | -                            | -                   | PARTIAL          |
+| Team Member  | TMB  | -                            | -                   | PARTIAL          |
 
 ### Deployment Steps
 

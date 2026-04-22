@@ -500,6 +500,15 @@ Per POL-GOV-001 §8.8, every standard MUST populate this table. Clauses in the b
 ## Implementation Status
 {Tracking adoption}
 
+Per POL-GOV-001 §8.9, every row MUST use one of the canonical status values:
+`COMPLETE` | `IN PLACE` | `PARTIAL` | `ROADMAP` | `N/A`.
+
+`ROADMAP` rows MUST state (a) the tier at which they become enforceable, and (b) the re-trigger condition that will promote them to `IN PLACE`.
+
+| Component | Status | Tier | Notes |
+|-----------|--------|------|-------|
+| {...} | {IN PLACE \| COMPLETE \| PARTIAL \| ROADMAP \| N/A} | {T1\|T2\|T3} | {Re-trigger condition if ROADMAP} |
+
 ---
 
 ## Version History
@@ -1680,6 +1689,37 @@ Write → PR → Review → Merge → Maintain
 ✅ Review cycles scheduled
 ✅ Deprecate, don't delete
 ✅ Docs live with code
+
+---
+
+## Appendix X: Shared Roles (Named Approvers)
+
+Many standards reference the same small set of approvers under different names (CAB member, change approver, security reviewer, incident commander, audit sponsor). To avoid divergence, the canonical role bindings below are the default referenced across the portfolio. A standard that needs a different binding MUST state so explicitly.
+
+### X.1 Canonical Approver Trio
+
+| Role Key | Default Holder | Backup | Used by |
+|----------|----------------|--------|---------|
+| `eng-lead` | Engineering Lead | Deputy Engineering Lead | Change approval (POL-ENG-001), architectural decisions, RFC acceptance |
+| `sec-lead` | Security Lead | Deputy Security Lead | Security review, incident commander (SEV1/SEV2), exceptions gate, vulnerability triage |
+| `oncall-sre` | Current on-call SRE (rotation) | Secondary on-call | Production change sign-off, incident response paging target, runbook ownership |
+
+### X.2 Binding rules
+
+1. Every CYBERCUBE project MUST publish a `roles.md` (or equivalent) that binds these three keys to named people for that project.
+2. Changes to the binding MUST be logged (who, when, why) and communicated at least 5 business days before effect, except in emergency (documented post-hoc within 2 business days).
+3. If a standard references a role not in the canonical set (e.g. `records-custodian`, `dpo`, `records-manager`), it MUST either (a) define the new role locally with scope and escalation path, or (b) map it to one of the canonical three.
+4. The trio is **load-bearing** for change, incident, and security decisions. Projects that cannot name all three (e.g. solo projects) MUST escalate at least one role to a CYBERCUBE-wide default holder.
+
+### X.3 Standards that reference this appendix
+
+- `POL-ENG-001` Change Management (CAB composition)
+- `STD-OPS-004` Incident Response (incident commander, on-call target)
+- `STD-GOV-004` Internal Audit & Assurance (audit sponsor = `eng-lead`)
+- `POL-AI-001` AI Usage & Ethics (T3 approval gate)
+- `POL-GOV-001` Standards Governance (exception approvers per §8.3)
+
+> Adding a standard to this list requires only referencing Appendix X by tag `[roles:X.1]`; no local re-definition needed.
 
 ---
 

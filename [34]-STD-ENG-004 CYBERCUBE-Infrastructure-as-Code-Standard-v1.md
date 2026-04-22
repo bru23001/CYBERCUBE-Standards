@@ -335,16 +335,28 @@ Use case: Environment separation (alternative to directories)
 
 ---
 
-# CYBERCUBE Infrastructure as Code (IaC) Standard (v1)
+# CYBERCUBE Infrastructure as Code (IaC) Standard (v1.1)
 
 **Standard ID:** STD-ENG-004  
 **Status:** Active  
-**Effective:** 2026-02-01  
+**Effective:** 2026-02-01 (v1), 2026-04-22 (v1.1)  
 **Classification:** INTERNAL  
 **Owner:** SRE / Platform Engineering  
 **Approver:** VP Engineering  
 **Applies to:** All CYBERCUBE infrastructure, platforms, and engineering teams  
 **Review Cycle:** Annual + after major tooling changes
+
+## Applicability Tier Table
+
+| Applicability | Tier | Summary of Clauses in This Standard | Waiver Path |
+| ------------- | ---- | ----------------------------------- | ----------- |
+| All projects with cloud infrastructure | **T1 MUST** | (1) All cloud infrastructure MUST be declared in code (Terraform, OpenTofu, or equivalent); manual console changes are considered drift and MUST be reconciled or reverted. (2) IaC state MUST be stored in a remote backend with locking (S3+DynamoDB, GCS+locks, or Terraform Cloud) — no local `terraform.tfstate`. (3) State backend MUST be encrypted at rest and access MUST be role-gated. (4) Every IaC change MUST go through code review and the CI pipeline (`fmt` + `validate` at minimum); direct `terraform apply` from a developer laptop against production is prohibited. (5) Secrets MUST NOT be committed to IaC repositories — reference a secret manager (per STD-SEC-005 T1). | None (non-waivable) |
+| SaaS / customer-facing | **T2 SHOULD** | IaC security scanning in CI (tfsec, Checkov, or equivalent), provider and module version pinning via lock files, CODEOWNERS on sensitive modules (network, IAM, database), shared internal module registry, required-tag module (env, service, owner, cost-center), drift-detection scheduled plans, Infracost estimates in PR. | Lightweight waiver per POL-GOV-001 §8.3 |
+| Regulated / high-risk | **T3 MAY** | Policy-as-code enforcement (OPA, Sentinel, Conftest) with blocking gates, approval workflow for production applies, break-glass procedure for emergency infrastructure changes, state-recovery runbook with tested restore, cost-budget guardrails enforced in code, multi-region state redundancy, separation-of-duties between plan reviewers and apply executors. | Formal waiver per STD-GOV-003 |
+
+> Per POL-GOV-001 §8.8.
+
+> **v1.1 (2026-04-22) — Unfreeze (Path B).** T1 = five rules every cloud team can follow today: everything-in-code, remote encrypted state with locking, role-gated state access, CI-gated changes, no committed secrets. Drift detection, OPA policy, Infracost, break-glass reclassified to T2/T3 ROADMAP.
 
 ---
 
@@ -1419,23 +1431,30 @@ source = "..."  # Unpinned
 
 ### Core Implementation
 
-| Component | Status | Notes |
-|-----------|--------|-------|
-| Terraform adoption | PARTIAL | Primary tool in use |
-| Remote state backend | COMPLETE | S3/GCS configured |
-| State locking | COMPLETE | DynamoDB/GCS |
-| State encryption | COMPLETE | KMS encryption |
-| CI pipeline | PARTIAL | Add security scanning |
-| Drift detection | PENDING | Implement scheduled plans |
-| Module registry | PENDING | Centralize modules |
-| Policy enforcement | PENDING | OPA/Sentinel |
-| Secret management | PARTIAL | Migrate remaining secrets |
-| CODEOWNERS | PENDING | Define ownership |
-| Cost estimation | PENDING | Add Infracost |
-| Resource tagging enforcement | PENDING | Define default tags module |
-| Provider version pinning | PARTIAL | Add lock file to Git |
-| Break-glass procedure | PENDING | Document emergency access |
-| State recovery runbook | PENDING | Test versioned restore |
+| Component | Status | Tier | Notes |
+|-----------|--------|------|-------|
+| Infrastructure declared in code (Terraform/OpenTofu) | IN PLACE | T1 | Primary tool in use |
+| Remote state backend | COMPLETE | T1 | S3/GCS configured |
+| State locking | COMPLETE | T1 | DynamoDB/GCS |
+| State encryption at rest + role-gated access | COMPLETE | T1 | KMS encryption |
+| CI-gated changes (fmt + validate) | IN PLACE | T1 | Enforced on all IaC repos |
+| No secrets in IaC repos | IN PLACE | T1 | Defers to STD-SEC-005 T1 |
+| IaC security scanning in CI (tfsec/Checkov) | ROADMAP | T2 | Re-trigger: tool selection finalised |
+| Provider version pinning (lock file in Git) | PARTIAL | T2 | Lock file present on most repos |
+| CODEOWNERS on sensitive modules | ROADMAP | T2 | Re-trigger: after module split |
+| Internal module registry | ROADMAP | T2 | Centralize modules |
+| Required-tag module | ROADMAP | T2 | Define default tags module |
+| Drift detection (scheduled plans) | ROADMAP | T2 | Re-trigger: scheduled-plan infra chosen |
+| Infracost in PR | ROADMAP | T2 | Optional tooling |
+| Policy enforcement (OPA/Sentinel) | ROADMAP | T3 | Regulated projects only |
+| Approval workflow for prod applies | ROADMAP | T3 | Regulated projects only |
+| Break-glass procedure | ROADMAP | T3 | Regulated projects only |
+| State recovery runbook + test | ROADMAP | T3 | Regulated projects only |
+| Cost-budget guardrails in code | ROADMAP | T3 | Regulated projects only |
+| Multi-region state redundancy | ROADMAP | T3 | Regulated projects only |
+| Separation-of-duties (plan/apply) | ROADMAP | T3 | Regulated projects only |
+
+Status vocabulary: `IN PLACE` | `COMPLETE` | `PARTIAL` | `ROADMAP` | `N/A`.
 
 ### Migration Path
 
@@ -1456,6 +1475,7 @@ source = "..."  # Unpinned
 | Version | Date | Changes |
 |---------|------|---------|
 | v1 | 2026-02-01 | Initial release |
+| v1.1 | 2026-04-22 | Unfreeze (Path B): Tier Table with 5 T1 rules (code, remote encrypted state + locking, role-gated access, CI gate, no secrets). tfsec/Checkov, OPA, drift detection, Infracost, break-glass, state-recovery reclassified to T2/T3 ROADMAP. Status vocabulary normalized. |
 
 ---
 

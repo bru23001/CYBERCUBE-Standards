@@ -135,15 +135,27 @@ Types: Employees, contractors, vendors
 
 ---
 
-# CYBERCUBE Acceptable Use Policy (v1)
+# CYBERCUBE Acceptable Use Policy (v1.1)
 
 **Standard ID:** POL-AUP-001  
 **Status:** Active  
-**Effective:** 2026-01-17  
+**Effective:** 2026-01-17 (v1), 2026-04-22 (v1.1)  
 **Owner:** Director of Engineering  
 **Next Review:** 2027-01-17  
 **Classification:** INTERNAL  
 **Applies to:** All employees, contractors, and authorized users
+
+## Applicability Tier Table
+
+| Applicability | Tier | Summary of Clauses in This Policy | Waiver Path |
+| ------------- | ---- | ---------------------------------- | ----------- |
+| All personnel (employees / contractors / authorized users) | **T1 MUST** | (1) Every employee and contractor MUST acknowledge this policy in writing before being granted access to company systems. (2) Company credentials, devices, and data MUST NOT be used for personal commercial activity, illegal activity, or activities violating other CYBERCUBE standards. (3) Company data MUST NOT be stored in unauthorized personal accounts or cloud storage. (4) Incidents of misuse (suspected or confirmed) MUST be reportable to a named channel (`security@` or HR) without fear of reprisal. (5) Separation (resignation, termination, contract end) MUST trigger access revocation per the offboarding checklist. | None (non-waivable — personnel policy) |
+| All projects with company-managed devices / accounts | **T2 SHOULD** | Written acceptable-use statement integrated into employment contract, annual re-acknowledgment cadence, documented BYOD policy if personal devices access company data, MDM enrollment for company-issued devices, automated offboarding pipeline (identity system → app deprovisioning). | Lightweight waiver per POL-GOV-001 §8.3 |
+| Regulated environments / roles handling regulated data | **T3 MAY** | Role-based acceptable-use addenda (e.g. financial data handling, admin duties), mandatory security training completion before access (per STD-SEC-008 T3), insider-threat monitoring program, prohibited-software allowlist / denylist enforced by MDM, disciplinary matrix for violations codified in HR policy. | Formal waiver per STD-GOV-003 |
+
+> Per POL-GOV-001 §8.8.
+
+> **v1.1 (2026-04-22) — Unfreeze (Path B).** T1 reduced to five personnel-policy essentials: acknowledgment, use-restriction categories, unauthorized-storage ban, reporting channel, offboarding. Training modules, annual review, MDM policy, insider-threat monitoring reclassified to T2/T3 ROADMAP.
 
 ---
 
@@ -892,14 +904,24 @@ IT help: it-help@cybercube.io
 
 ### Core Implementation
 
-| Component | Status | Notes |
-|-----------|--------|-------|
-| Policy document | COMPLETE | This policy |
-| Acknowledgment process | PARTIAL | Add to onboarding |
-| Training module | PENDING | Develop content |
-| Monitoring capability | PARTIAL | Basic logging in place |
-| Enforcement process | PARTIAL | Document procedures |
-| Annual review | PENDING | Schedule |
+| Component | Status | Tier | Notes |
+|-----------|--------|------|-------|
+| Policy document | COMPLETE | T1 | This policy |
+| Written acknowledgment (onboarding) | PARTIAL | T1 | Integrated in offer-letter process for employees; contractor workflow ROADMAP |
+| Reporting channel for misuse | IN PLACE | T1 | `security@` + HR channel |
+| Offboarding access revocation | PARTIAL | T1 | Checklist exists; automation ROADMAP |
+| Use-restriction enforcement | PARTIAL | T1 | Documented procedures; monitoring basic |
+| Annual re-acknowledgment | ROADMAP | T2 | Schedule |
+| BYOD policy | ROADMAP | T2 | Re-trigger: first BYOD permission request |
+| MDM enrollment (company devices) | ROADMAP | T2 | Re-trigger: fleet size ≥ 10 |
+| Automated offboarding pipeline | ROADMAP | T2 | Re-trigger: identity system integration |
+| Training module | ROADMAP | T2 | Paired with STD-SEC-008 T2 |
+| Role-based addenda (regulated data) | ROADMAP | T3 | Regulated projects only |
+| Insider-threat monitoring | ROADMAP | T3 | Regulated projects only |
+| Allowlist/denylist enforcement via MDM | ROADMAP | T3 | Regulated projects only |
+| Disciplinary matrix codified in HR | ROADMAP | T3 | HR partnership required |
+
+Status vocabulary: `IN PLACE` | `COMPLETE` | `PARTIAL` | `ROADMAP` | `N/A`.
 
 ---
 
@@ -908,6 +930,7 @@ IT help: it-help@cybercube.io
 | Version | Date | Changes |
 |---------|------|---------|
 | v1 | 2026-01-17 | Initial release |
+| v1.1 | 2026-04-22 | Unfreeze (Path B): Tier Table with 5 T1 rules (acknowledgment, use-restriction, unauthorized-storage ban, reporting channel, offboarding revocation). Annual review, MDM, training, insider-threat monitoring reclassified to T2/T3 ROADMAP. Status vocabulary normalized. |
 
 ---
 

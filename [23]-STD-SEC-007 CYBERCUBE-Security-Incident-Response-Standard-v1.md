@@ -333,9 +333,26 @@ Response: Compensating controls, vendor notification
 
 ---
 
-CYBERCUBE Security Incident Response Standard (v1)
+CYBERCUBE Security Incident Response Standard (v1.1)
 
-**Standard ID:** STD-SEC-007**Status:** Active**Effective:** 2026-01-17**Classification:** INTERNAL**Owner:** Security Team**Applies to:** All security incidents affecting CYBERCUBE systems or data
+**Standard ID:** STD-SEC-007
+**Status:** Active
+**Effective:** 2026-01-17 (v1), 2026-04-22 (v1.1)
+**Classification:** INTERNAL
+**Owner:** Security Team
+**Applies to:** All security incidents affecting CYBERCUBE systems or data
+
+### Applicability Tier Table
+
+| Applicability | Tier | Summary of Clauses in This Standard | Waiver Path |
+| ------------- | ---- | ----------------------------------- | ----------- |
+| All projects | **T1 MUST** | (1) Every security-class incident MUST follow STD-OPS-004 severity taxonomy (SEV1–SEV4) and MUST be declared in the same incident channel/tool as operational incidents. (2) The SIRT primary contact MUST be the `sec-lead` role per STD-ENG-007 Appendix X; a backup contact MUST be named. (3) Evidence preservation MUST begin at incident declaration (freeze logs, snapshot affected systems, do not mutate artifacts). (4) A written post-incident report MUST be produced for every SEV1/SEV2 security incident within 5 business days. (5) Any incident that may trigger breach-notification obligations (PII exposure, customer-data loss, credential theft) MUST be flagged to Legal (`general-counsel`) at declaration time. | None (non-waivable) |
+| SaaS / customer-facing | **T2 SHOULD** | Per-category playbooks (credential compromise, data exfiltration, DDoS, ransomware, insider), tabletop exercises at least annually, notification templates legal-reviewed, incident metrics reported quarterly, automated evidence collection (log pull, snapshot automation), defined IR roles beyond commander (communicator, scribe, investigator). | Lightweight waiver per POL-GOV-001 §8.3 |
+| Regulated / high-risk | **T3 MAY** | External IR retainer under contract with defined SLA, chain-of-custody forms for forensic handling, 24×7 on-call security coverage, executive-briefing cadence during active SEV1, dedicated forensic toolchain (EDR, memory-capture, disk imaging), regulator-notification clocks automated (GDPR 72h, HIPAA 60d, etc.), specialist legal counsel on retainer. | Formal waiver per STD-GOV-003 |
+
+> Per POL-GOV-001 §8.8.
+
+> **v1.1 (2026-04-22) — Unfreeze (Path B).** T1 = five enforceable rules using STD-OPS-004 infrastructure: severity taxonomy, SIRT named contact, evidence-preservation-on-declare, 5-BD post-mortem, Legal flag for notification triggers. Playbooks, tabletops, IR retainer, forensic tools reclassified to T2/T3 ROADMAP. Heavy deference to STD-OPS-004 — this standard now only carries the *security-specific* incident deltas.
 
 0. Purpose & Design Principles
 
@@ -1508,18 +1525,26 @@ DETECT → TRIAGE → CONTAIN → INVESTIGATE
 
 ### Core Implementation
 
-| Component               | Status   | Notes                |
-| ----------------------- | -------- | -------------------- |
-| SIRT defined            | PARTIAL  | Formalize roles      |
-| Incident classification | COMPLETE | This standard        |
-| Evidence procedures     | PENDING  | Train team           |
-| Chain of custody forms  | PENDING  | Create templates     |
-| Notification procedures | PENDING  | Legal review         |
-| Forensic tools          | PARTIAL  | Evaluate needs       |
-| IR retainer             | PENDING  | Contract firm        |
-| Playbooks               | PENDING  | Develop per category |
-| Training                | PENDING  | Schedule exercises   |
-| Metrics/reporting       | PENDING  | Define dashboards    |
+| Component               | Status   | Tier | Notes                |
+| ----------------------- | -------- | ---- | -------------------- |
+| Severity taxonomy (inherits STD-OPS-004) | IN PLACE | T1 | Same SEV1–SEV4 model |
+| SIRT named primary + backup (sec-lead)   | IN PLACE | T1 | Per STD-ENG-007 Appendix X |
+| Incident classification                  | COMPLETE | T1 | This standard §Classification |
+| Evidence-preservation-on-declare         | PARTIAL | T1 | Documented; automation ROADMAP |
+| 5-BD post-incident report for SEV1/SEV2  | IN PLACE | T1 | Template in STD-OPS-004 adopted |
+| Legal flag on notification-trigger incidents | IN PLACE | T1 | Runbook step |
+| Per-category playbooks                   | ROADMAP | T2 | Credential / data / DDoS / ransomware / insider |
+| Annual tabletop exercise                 | ROADMAP | T2 | Re-trigger: Year-1 compliance cycle |
+| Notification templates (legal-reviewed)  | ROADMAP | T2 | Paired with STD-LGL-001 T3 |
+| Automated evidence collection            | ROADMAP | T2 | Re-trigger: after log-pipeline hardening (STD-OPS-003) |
+| Quarterly incident metrics               | ROADMAP | T2 | Paired with STD-GOV-005 |
+| Chain-of-custody forms                   | ROADMAP | T3 | Regulated projects only |
+| External IR retainer                     | ROADMAP | T3 | Regulated projects only |
+| 24×7 security on-call                    | ROADMAP | T3 | Regulated projects only |
+| Regulator-clock automation (GDPR 72h…)   | ROADMAP | T3 | Regulated projects only |
+| Forensic toolchain (EDR / memory / disk) | ROADMAP | T3 | Regulated projects only |
+
+Status vocabulary: `IN PLACE` | `COMPLETE` | `PARTIAL` | `ROADMAP` | `N/A`.
 
 ### Migration Path
 
@@ -1537,6 +1562,7 @@ Version History
 | Version | Date       | Changes         |
 | ------- | ---------- | --------------- |
 | v1      | 2026-01-17 | Initial release |
+| v1.1    | 2026-04-22 | Unfreeze (Path B): Tier Table added (5 T1 rules leveraging STD-OPS-004 infrastructure). Playbooks, IR retainer, forensic toolchain reclassified to T2/T3 ROADMAP. Status vocabulary normalized. |
 
 
 

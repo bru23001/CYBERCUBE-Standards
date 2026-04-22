@@ -1,5 +1,7 @@
 # CYBERCUBE Unified Name Registry
 
+> **META-EXEMPT (POL-GOV-001 §8.8.1).** This document is a portfolio-level identifier registry; it carries no normative clauses applicable to delivery projects. All normative content is in STD-ENG-001 (Naming & Identifier Standard). No Applicability Tier Table is required.
+
 **Status:** Active
 **Effective:** 2026-02-10
 **Classification:** INTERNAL

@@ -277,14 +277,26 @@ RTO: Hours to days
 
 ---
 
-CYBERCUBE Backup & Disaster Recovery Standard (v1)
+CYBERCUBE Backup & Disaster Recovery Standard (v1.1)
 
 **Standard ID:** STD-OPS-002  
 **Status:** Active  
-**Effective:** 2026-01-17  
+**Effective:** 2026-01-17 (v1), 2026-04-22 (v1.1)  
 **Classification:** INTERNAL  
 **Owner:** SRE / Platform Engineering  
 **Applies to:** All CYBERCUBE production systems and data
+
+### Applicability Tier Table
+
+| Applicability | Tier | Summary of Clauses in This Standard | Waiver Path |
+| ------------- | ---- | ----------------------------------- | ----------- |
+| All production systems holding customer or business data | **T1 MUST** | (1) Every production datastore MUST have an automated backup running at least daily; ad-hoc manual backups do not satisfy this clause. (2) At least one backup copy MUST be stored on a different storage account / region from the source (immutable or cross-account; no single-point-of-failure). (3) A documented restore procedure MUST exist for every datastore; "restore procedure" means at minimum: how to request, who runs it, expected time. (4) Backups MUST be encrypted at rest per STD-SEC-005 T1 (no clear-text backups). (5) Each production datastore MUST declare an RPO (recovery-point-objective) and RTO (recovery-time-objective) aligned with its STD-SLP-001 service tier. | None (non-waivable) |
+| SaaS / customer-facing | **T2 SHOULD** | Quarterly backup-restore tests (pick one datastore, restore to isolated environment, verify integrity), backup integrity verification (checksums, test-restores), retention-policy enforced per STD-DAT-001 T1 (classification-based), documented DR runbook per service, backup monitoring alerts (failed-job pager), point-in-time recovery (PITR) for critical databases. | Lightweight waiver per POL-GOV-001 §8.3 |
+| Regulated / high-risk | **T3 MAY** | Quarterly full-DR gameday (production-like failover to DR region), 3-2-1 backup rule (3 copies, 2 media, 1 offsite), hardened immutable / WORM backup tier, regulatory-retention evidence (legal-hold-compatible backups per STD-LGL-001 T3), per-tenant restore capability, DR-audit reports produced for executive review (per STD-GOV-005). | Formal waiver per STD-GOV-003 |
+
+> Per POL-GOV-001 §8.8.
+
+> **v1.1 (2026-04-22) — Tier Table addition.** T1 = five rules every production system can follow: daily automated backups, cross-region copy, documented restore, encryption at rest, declared RPO/RTO.
 
 ---
 
@@ -1226,10 +1238,10 @@ Q4: Database PITR + tabletop
 | Database backup | COMPLETE | PostgreSQL + PITR |
 | Cross-region replication | COMPLETE | GCS CRR |
 | DR region setup | PARTIAL | Infrastructure ready, needs validation |
-| Automated restore testing | PENDING | Implement daily tests |
-| DR drill program | PENDING | Schedule first drill |
+| Automated restore testing | ROADMAP | Implement daily tests |
+| DR drill program | ROADMAP | Schedule first drill |
 | Runbook documentation | PARTIAL | Core procedures documented |
-| Immutable backups | PENDING | Implement object lock |
+| Immutable backups | ROADMAP | Implement object lock |
 | Monitoring/alerting | PARTIAL | Basic alerts, enhance |
 
 ---

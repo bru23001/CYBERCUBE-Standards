@@ -13,6 +13,18 @@
 | **Classification** | INTERNAL |
 | **Compliance Level** | Mandatory |
 | **Next Review** | 2026-07-15 |
+
+## Applicability Tier Table
+
+| Applicability | Tier | Summary of Clauses in This Standard | Waiver Path |
+| ------------- | ---- | ----------------------------------- | ----------- |
+| All new CYBERCUBE projects | **T1 MUST** | (1) Every new project MUST declare its technology stack in its README against the radar (ADOPT / TRIAL / ASSESS / HOLD). (2) Technologies on HOLD MUST NOT be used for new projects without an approved ADR per POL-GOV-002. (3) Runtime language + framework versions MUST be within the supported-version window stated in this standard; known-EOL versions MUST NOT ship to production. (4) Any deviation from the ADOPT stack MUST be captured in an ADR (POL-GOV-002 T1) that lists risks, alternatives, and rollback. (5) Package provenance: third-party dependencies MUST be resolved from the trusted registry list; direct installs from untrusted sources are prohibited. | None (non-waivable) |
+| SaaS / customer-facing | **T2 SHOULD** | Radar refresh on quarterly cadence, Technology Radar published internally, compatibility matrix maintained (service × language version), SBOM generation at build, runtime version pinning in lockfiles, license-policy enforcement in CI, TRIAL-to-ADOPT progression criteria documented. | Lightweight waiver per POL-GOV-001 §8.3 |
+| Regulated / high-risk | **T3 MAY** | Formal architecture review for each new stack entry, vendor-risk assessment on each adopted technology (per POL-VEN-001 T3), supply-chain attestation (SLSA level or equivalent), reproducible builds, FIPS-validated crypto libraries, golden-image / blessed-runtime requirement. | Formal waiver per STD-GOV-003 |
+
+> Per POL-GOV-001 §8.8.
+
+> **v2.2 (2026-04-22) — Tier Table addition** (staying at v2 major; micro-bump).
 | **Audience** | Engineering Team, Technical Leadership, New Hires |
 
 > **Supersedes:** STD-ENG-009 v1 (2026-01-13). All references to the previous version should be updated.

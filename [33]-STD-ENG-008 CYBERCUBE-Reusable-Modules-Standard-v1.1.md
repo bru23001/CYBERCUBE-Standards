@@ -4,12 +4,26 @@
 |----------|-------|
 | **Standard ID** | STD-ENG-008 |
 | **Catalog Number** | 5.9 |
-| **Version** | 1.4 |
+| **Version** | 1.6 |
 | **Status** | Active |
 | **Owner** | Architecture Team |
-| **Last Updated** | 2026-02-11 |
+| **Last Updated** | 2026-04-22 |
 | **Compliance Level** | Mandatory |
-| **Total Modules** | 40 |
+| **Total Modules** | 40 (authoritative data in `modules/modules.json`) |
+
+## Applicability Tier Table
+
+| Applicability | Tier | Summary of Clauses in This Standard | Waiver Path |
+| ------------- | ---- | ----------------------------------- | ----------- |
+| All projects building or consuming shared code | **T1 MUST** | (1) Any piece of functionality reused across ≥ 2 projects MUST be a registered module in this standard (not copy-pasted). (2) Every registered module MUST have a named owner, a single public interface contract (ICD), and a version in its package manifest. (3) Breaking changes to a registered module MUST bump the major version and MUST be preceded by a deprecation note on the prior stable version. (4) Registered modules MUST follow Namespace-M naming per STD-ENG-001 T1 (clause 4). (5) Production code MUST NOT depend on unregistered ("local-only") modules that leak across project boundaries. | None (non-waivable — coordination standard) |
+| SaaS / customer-facing | **T2 SHOULD** | Internal module registry (machine-readable `modules.json`), semver compatibility tests, contract tests per public interface, shared changelog per module, automated version-bump PRs across consumers, module-documentation site published internally. | Lightweight waiver per POL-GOV-001 §8.3 |
+| Regulated / high-risk | **T3 MAY** | Module-level SBOM + provenance attestation, license-compatibility policy enforced per consumer, signed artifacts for each release, long-term-support (LTS) branches for stable modules, formal RFC required for new module addition, cross-module dependency graph reviewed by ARB. | Formal waiver per STD-GOV-003 |
+
+> Per POL-GOV-001 §8.8.
+
+> **v1.5 (2026-04-22) — Tier Table addition** (micro-bump on v1.4).
+>
+> **v1.6 (2026-04-22) — Pass-3 data/rules split.** The 40-module catalog is now data, in `modules/modules.json`, governed by `modules/CHANGELOG.md`. The inline registry tables in this standard collapse to an id + name + source-standard index; full key-components and interface schemas are in `modules.json` and §ICD. Catalog additions/renames no longer require a version bump of STD-ENG-008 — only rule changes do. No semantic change to the T1 baseline.
 
 > **Purpose:** Canonical registry of all reusable CYBERCUBE modules with interface contracts, dependency maps, and skeleton implementations.
 
@@ -54,99 +68,110 @@
 
 ## Module Registry
 
+> **Authoritative catalog: [`modules/modules.json`](modules/modules.json).**
+>
+> The registry *data* lives in `modules/modules.json` (40 modules). Catalog
+> updates (add/rename/regroup) are governed by `modules/CHANGELOG.md` and do
+> **not** require a version bump of this standard — only rule changes do.
+>
+> The tables below are a reading index grouped by domain. They are
+> **generated** from `modules.json` and kept minimal (id + name + source
+> standard). For full key-components and interface details, read
+> `modules.json` and the ICD section below.
+
 ### **CORE INFRASTRUCTURE**
 
-| #              | Module                          | Source Standard     | Key Components                                                                                           |
-| -------------- | ------------------------------- | ------------------- | -------------------------------------------------------------------------------------------------------- |
-| **M-01** | **Identity Module**       | 2.3 Authentication  | User registration, email verification, password hashing (Argon2id), account lockout, MFA (TOTP/WebAuthn) |
-| **M-02** | **Authentication Module** | 2.3 Authentication  | Login/logout, session management, OAuth 2.0/OIDC, SAML SSO, magic links, token refresh                   |
-| **M-03** | **Authorization Module**  | 2.4 Access Control  | RBAC engine, permission evaluation, policy enforcement, ACL management, tenant isolation                 |
-| **M-04** | **API Gateway Module**    | 5.2 API Design      | Rate limiting, request validation, response envelopes, versioning, error handling                        |
-| **M-05** | **Identifier Module**     | 5.1 Naming Standard | CC-PID generation, check digit validation, entity code registry                                          |
-| **M-29** | **Configuration Module**  | 5.4 IaC / 12-Factor | Config sources (env/file/remote), schema validation, defaults, per-environment overrides, env var loading |
-| **M-30** | **Error Handling Module** | 2.2 Secure Coding   | Error taxonomy, standard error classes, error serialization, i18n-ready messages, implements ICD-5        |
-| **M-31** | **Core Utilities Module** | 4.5 Observability   | Date/time (ISO 8601 UTC, timezone), string ops (slugify, truncate, PII-safe), math (currency, precision) |
-| **M-38** | **Localization Module**   | 1.1 Compliance (Content) | Translation management, locale detection, number/date/currency formatting, pluralization, RTL support, i18n key registry |
-| **M-40** | **Cache Module**          | 4.4 SRE / 4.5 Obs  | Cache-aside/write-through/write-behind, Redis/Memcached abstraction, TTL management, tenant-scoped keys, invalidation, stampede protection |
+| # | Module | Source Standard |
+|---|--------|-----------------|
+| M-01 | Identity Module | STD-SEC-003 Authentication |
+| M-02 | Authentication Module | STD-SEC-003 Authentication |
+| M-03 | Authorization Module | STD-SEC-004 Access Control |
+| M-04 | API Gateway Module | STD-ENG-002 API Design |
+| M-05 | Identifier Module | STD-ENG-001 Naming |
+| M-29 | Configuration Module | STD-ENG-004 IaC / 12-Factor |
+| M-30 | Error Handling Module | STD-SEC-002 Secure Coding |
+| M-31 | Core Utilities Module | STD-OPS-003 Observability |
+| M-38 | Localization Module | STD-ENG-009 Tech Stack |
+| M-40 | Cache Module | STD-OPS-005 SRE / STD-OPS-003 Obs |
 
 ---
 
 ### **DATA MANAGEMENT**
 
-| #              | Module                               | Source Standard         | Key Components                                                                                       |
-| -------------- | ------------------------------------ | ----------------------- | ---------------------------------------------------------------------------------------------------- |
-| **M-06** | **Data Classification Module** | 3.3 Data Classification | Classification labels (PUBLIC/INTERNAL/CONFIDENTIAL/RESTRICTED), handling rules, encryption triggers |
-| **M-07** | **Soft-Delete Module**         | 3.5 Soft-Delete         | Lifecycle states (ACTIVE→DELETED→PURGED), grace periods, cascade delete, restore API               |
-| **M-08** | **Records Management Module**  | 3.8 Records Management  | Retention policies, legal holds, archive management, disposal workflows                              |
-| **M-09** | **Audit Log Module**           | 4.5 Observability       | Immutable event logging, who/what/when/where capture, tamper detection                               |
-| **M-10** | **Multi-Tenancy Module**       | 3.4 Data Isolation      | Tenant context, row-level security, cross-tenant query prevention                                    |
-| **M-32** | **Data Access Module**         | 5.4 IaC / Architecture  | Repository base, query builder (filter/sort/page), unit of work, transactions, connection pooling, migrations |
-| **M-39** | **Search Module**              | 5.2 API Design          | Full-text search abstraction (Elasticsearch/Typesense), indexing pipeline, faceted search, relevance tuning, tenant-scoped indices |
+| # | Module | Source Standard |
+|---|--------|-----------------|
+| M-06 | Data Classification Module | STD-DAT-001 Classification |
+| M-07 | Soft-Delete Module | STD-DAT-002 Soft-Delete |
+| M-08 | Records Management Module | POL-REC-001 Records |
+| M-09 | Audit Log Module | STD-OPS-003 Observability |
+| M-10 | Multi-Tenancy Module | STD-DAT-004 Isolation |
+| M-32 | Data Access Module | STD-ENG-004 IaC / Architecture |
+| M-39 | Search Module | STD-ENG-002 API Design |
 
 ---
 
 ### **OPERATIONS & OBSERVABILITY**
 
-| #              | Module                        | Source Standard   | Key Components                                                           |
-| -------------- | ----------------------------- | ----------------- | ------------------------------------------------------------------------ |
-| **M-11** | **Logging Module**      | 4.5 Observability | Structured logging, log levels, PII redaction, correlation IDs           |
-| **M-12** | **Metrics Module**      | 4.5 Observability | Golden signals (latency/traffic/errors/saturation), histograms, counters |
-| **M-13** | **Tracing Module**      | 4.5 Observability | Distributed tracing, span context, OpenTelemetry integration             |
-| **M-14** | **Alerting Module**     | 4.5 Observability | Threshold alerts, anomaly detection, severity routing, runbook links     |
-| **M-15** | **Health Check Module** | 4.4 SRE           | Liveness/readiness probes, dependency checks, status endpoints           |
+| # | Module | Source Standard |
+|---|--------|-----------------|
+| M-11 | Logging Module | STD-OPS-003 Observability |
+| M-12 | Metrics Module | STD-OPS-003 Observability |
+| M-13 | Tracing Module | STD-OPS-003 Observability |
+| M-14 | Alerting Module | STD-OPS-003 Observability |
+| M-15 | Health Check Module | STD-OPS-005 SRE |
 
 ---
 
 ### **SECURITY**
 
-| #              | Module                             | Source Standard   | Key Components                                                           |
-| -------------- | ---------------------------------- | ----------------- | ------------------------------------------------------------------------ |
-| **M-16** | **Cryptography Module**      | 2.5 Cryptography  | Key generation, encryption/decryption, key rotation, envelope encryption |
-| **M-17** | **Secret Management Module** | 2.5 Cryptography  | Secret storage, access control, rotation, injection                      |
-| **M-18** | **Input Validation Module**  | 2.2 Secure Coding | Schema validation, sanitization, injection prevention                    |
-| **M-19** | **Rate Limiting Module**     | 5.2 API Design    | Request throttling, quota management, backoff headers                    |
-| **M-20** | **Security Headers Module**  | 2.2 Secure Coding | CSP, HSTS, X-Frame-Options, CORS configuration                           |
+| # | Module | Source Standard |
+|---|--------|-----------------|
+| M-16 | Cryptography Module | STD-SEC-005 Cryptography |
+| M-17 | Secret Management Module | STD-SEC-005 Cryptography |
+| M-18 | Input Validation Module | STD-SEC-002 Secure Coding |
+| M-19 | Rate Limiting Module | STD-ENG-002 API Design |
+| M-20 | Security Headers Module | STD-SEC-002 Secure Coding |
 
 ---
 
 ### **COMMUNICATION & INTEGRATION**
 
-| #              | Module                        | Source Standard       | Key Components                                                         |
-| -------------- | ----------------------------- | --------------------- | ---------------------------------------------------------------------- |
-| **M-21** | **Webhook Module**      | 5.3 Webhooks          | Event dispatch, retry logic, signature verification, delivery tracking |
-| **M-22** | **Notification Module** | 4.3 Incident Response | Multi-channel delivery (email/SMS/push), templates, preferences        |
-| **M-23** | **Email Module**        | 2.3 Authentication    | Transactional emails, templates, delivery tracking, bounce handling    |
-| **M-24** | **File Upload Module**  | 5.2 API Design        | Presigned URLs, virus scanning, size limits, type validation           |
-| **M-33** | **HTTP Client Module**  | 4.5 Observability     | Outbound HTTP, retry/backoff, circuit breaker, correlation propagation, mTLS, PII-redacted logging |
-| **M-34** | **Message Bus Module**  | 5.3 Webhooks / 4.5 Obs | Broker-agnostic pub/sub, dead-letter queues, consumer groups, schema validation, at-least-once delivery, backpressure |
+| # | Module | Source Standard |
+|---|--------|-----------------|
+| M-21 | Webhook Module | STD-ENG-003 Webhooks |
+| M-22 | Notification Module | STD-OPS-004 Incident Response |
+| M-23 | Email Module | STD-SEC-003 Authentication |
+| M-24 | File Upload Module | STD-ENG-002 API Design |
+| M-33 | HTTP Client Module | STD-OPS-003 Observability |
+| M-34 | Message Bus Module | STD-ENG-003 Webhooks / STD-OPS-003 |
 
 ---
 
 ### **OPERATIONAL PROCESSES**
 
-| #              | Module                               | Source Standard       | Key Components                                                        |
-| -------------- | ------------------------------------ | --------------------- | --------------------------------------------------------------------- |
-| **M-25** | **Incident Management Module** | 4.3 Incident Response | Incident declaration, severity classification, escalation, postmortem |
-| **M-26** | **Change Management Module**   | 5.7 Change Management | Change requests, approval workflows, rollback procedures              |
-| **M-27** | **Feature Flag Module**        | 5.6 Release           | Flag management, gradual rollout, A/B testing, kill switches          |
-| **M-28** | **Backup Module**              | 4.2 Backup/DR         | Automated backups, retention, restore testing, verification           |
+| # | Module | Source Standard |
+|---|--------|-----------------|
+| M-25 | Incident Management Module | STD-OPS-004 Incident Response |
+| M-26 | Change Management Module | POL-ENG-001 Change Management |
+| M-27 | Feature Flag Module | STD-ENG-006 Release |
+| M-28 | Backup Module | STD-OPS-002 Backup/DR |
 
 ---
 
 ### **BUSINESS SERVICES**
 
-| #              | Module                           | Source Standard                | Key Components                                                                     |
-| -------------- | -------------------------------- | ------------------------------ | ---------------------------------------------------------------------------------- |
-| **M-35** | **Billing Module**         | 3.3 Data Classification / 2.5 Crypto | Payment gateway abstraction, subscription lifecycle, plan management, usage metering, invoicing, proration, dunning, refunds, payment method vault |
-| **M-36** | **Workflow Module**        | 5.7 Change Mgmt / 4.3 IR      | State machine definition & execution, task assignment, approval chains, SLA tracking, escalation, parallel/sequential steps, compensation (rollback) |
+| # | Module | Source Standard |
+|---|--------|-----------------|
+| M-35 | Billing Module | STD-DAT-001 Classification / STD-SEC-005 Crypto |
+| M-36 | Workflow Module | POL-ENG-001 Change Mgmt / STD-OPS-004 IR |
 
 ---
 
 ### **FRONTEND & PRESENTATION**
 
-| #              | Module                           | Source Standard                     | Key Components                                                                     |
-| -------------- | -------------------------------- | ----------------------------------- | ---------------------------------------------------------------------------------- |
-| **M-37** | **UI Foundation Module**   | 1.1 Compliance (Brand) / 5.1 Naming | Design tokens (color/spacing/typography/elevation/motion), theme engine (light/dark/white-label), component library (CYBERCUBE primitives), layout system (responsive grid/page templates/shell), WCAG 2.1 AA accessibility |
+| # | Module | Source Standard |
+|---|--------|-----------------|
+| M-37 | UI Foundation Module | STD-ENG-009 Tech Stack / STD-ENG-001 Naming |
 
 ---
 
@@ -598,6 +623,8 @@ For any new CYBERCUBE-compliant project, these modules are **required**:
 ## Interface Control Document (ICD)
 
 > **Purpose**: Define precise contracts between modules to ensure components fit together during integration.
+
+> **Per-module contracts extracted (2026-04-22).** The 40 per-module ICD-3.x sections below are mirrored to `modules/contracts/M-NN-<slug>.md` — see `modules/contracts/README.md`. Until `[33]` v2.0, the sections below remain authoritative; regenerate the mirror via `python3 tools/extract-icds.py`. Shared contracts (ICD-4 through ICD-9) remain inline and bump with STD-ENG-008.
 
 ---
 

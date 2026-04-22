@@ -1,11 +1,23 @@
 # CYBERCUBE Metrics, Key Risk Indicators (KRIs) & Governance Dashboards Standard
 
 **Standard ID:** STD-GOV-005
-**Version:** v1.0
+**Version:** v1.2
 **Status:** Active
 **Effective Date:** 2026-02-07
 **Applies To:** All CYBERCUBE systems, products, services, and governance functions
 **Owner:** Governance / Platform Intelligence
+
+## Applicability Tier Table
+
+| Applicability | Tier | Summary of Clauses in This Standard | Waiver Path |
+| ------------- | ---- | ----------------------------------- | ----------- |
+| All projects | **T1 MUST** | (1) Every project MUST expose at least one business/operational metric in a form the team can read (any dashboard, even a simple report). (2) Every SEV1/SEV2 incident MUST produce at least one metric or KRI entry at the portfolio level (per STD-OPS-004). (3) Portfolio-level metrics reported upward (to ARB, Standards Council, or executives) MUST name their data source and calculation method — no orphan KPIs. (4) Metric values feeding a governance decision (waiver, investment, staffing) MUST be reproducible from the same inputs by another reader. (5) If a metric cannot be measured reliably, it MUST NOT be used as a policy lever — name it as "observational only" to avoid false-precision governance. | None (non-waivable) |
+| SaaS / customer-facing | **T2 SHOULD** | KRI catalog with thresholds per domain (security, reliability, privacy, engineering), quarterly KRI review by Standards Council / ARB, dashboard templates per governance area, SLO-linked metrics (paired with STD-SLP-001 T2), automated metric collection (no manual Excel chains for regular reporting), executive KPI scorecard. | Lightweight waiver per POL-GOV-001 §8.3 |
+| Regulated / high-risk | **T3 MAY** | Audit-grade metric pipeline (source-to-dashboard traceability, immutable history), independently verifiable metrics (external auditor can reproduce), regulatory KRI reporting (prudential / sector KRIs where applicable), board-level KRI report quarterly with narrative, metric change control (adds/removes require ADR). | Formal waiver per STD-GOV-003 |
+
+> Per POL-GOV-001 §8.8.
+
+> **v1.1 (2026-04-22) — Tier Table addition.** T1 = five rules that every team can meet without tooling: have-a-metric, incident→KRI linkage, data-source named, reproducible, no false precision.
 
 ---
 
@@ -72,26 +84,29 @@ CYBERCUBE metrics are classified into non-overlapping categories:
 
 ### 4.2 Metric Definition Requirements
 
-Each metric MUST document:
+> **Tier legend:** inline `[T1]`, `[T2]`, `[T3]` tags below map body rules to the Tier Table at the top. Fields marked **T1** are the five inputs every team must name; **T2/T3** fields are recommended for SaaS / regulated projects.
 
-| Field | Required | Description |
-|-------|----------|-------------|
-| Metric Name | Yes | Unique, human-readable identifier |
-| Description | Yes | What this metric measures and why it matters |
-| Category | Yes | One of the categories in Section 4.1 |
-| Calculation Logic | Yes | Formula or algorithm (reproducible) |
-| Data Source(s) | Yes | Authoritative system(s) of record |
-| Unit | Yes | Percentage, count, duration, ratio, etc. |
-| Owner Role | Yes | Role accountable for this metric |
-| Review Cadence | Yes | How often the metric definition is reviewed |
-| Collection Cadence | Yes | How often the metric value is collected |
-| Thresholds | Yes | Green / Amber / Red values |
+For each metric, the team SHOULD document:
 
-Metrics without owners are non-compliant and MUST NOT appear on governance dashboards.
+| Field | Tier | Description |
+|-------|:----:|-------------|
+| Metric Name | T1 | Unique, human-readable identifier |
+| Calculation Logic | T1 | Formula or algorithm (reproducible — aligns with Tier Table T1 rule 4) |
+| Data Source(s) | T1 | Authoritative system(s) of record (aligns with Tier Table T1 rule 3) |
+| Owner Role | T1 | Role accountable for this metric |
+| "Observational-only" flag | T1 | When calculation cannot be reliably reproduced (Tier Table T1 rule 5) |
+| Description | T2 | What this metric measures and why it matters |
+| Category | T2 | One of the categories in §4.1 |
+| Unit | T2 | Percentage, count, duration, ratio, etc. |
+| Review Cadence | T2 | How often the metric definition is reviewed |
+| Collection Cadence | T2 | How often the metric value is collected |
+| Thresholds | T2 | Green / Amber / Red values |
+
+**[T1]** Metrics on governance dashboards without an owner are non-compliant — names without accountability are prohibited.
 
 ### 4.3 Baseline Metric Catalog
 
-The following baseline metrics MUST be tracked. Teams MAY add domain-specific metrics following the definition requirements in Section 4.2.
+**[T2]** SaaS / customer-facing projects SHOULD track the baseline metrics below. **[T1]** projects satisfy their baseline with the five T1 rules in the Tier Table (one metric of any kind named with its source). Teams MAY add domain-specific metrics following §4.2.
 
 **Operational Metrics:**
 
@@ -178,12 +193,12 @@ KRIs differ from operational metrics in that they:
 
 ### 5.2 KRI Design Rules
 
-All KRIs MUST:
+**[T2]** Each declared KRI SHOULD:
 
-- Be mapped to an ERM risk category
-- Have defined Green / Amber / Red thresholds
-- Trigger predefined escalation responses at Amber and Red
-- Be reviewed monthly by the metric owner and quarterly by Governance
+- Be mapped to an ERM risk category (per STD-ERM-001).
+- Have defined Green / Amber / Red thresholds.
+- Trigger predefined escalation responses at Amber and Red.
+- Be reviewed monthly by the metric owner and quarterly by Governance.
 
 ### 5.3 KRI Registry
 
@@ -219,11 +234,11 @@ Thresholds may be:
 - **Static** — Fixed numeric limits (e.g., ">= 99.5% availability")
 - **Dynamic** — Baseline or trend-based (e.g., "> 2x normal burn rate")
 
-Threshold changes require governance approval and MUST be version-tracked.
+**[T2]** Threshold changes require governance approval and SHOULD be version-tracked.
 
 ### 6.2 Status States
 
-All metrics and KRIs MUST resolve to one of three standardized states:
+**[T2]** Metrics and KRIs reported on a governance dashboard SHOULD resolve to one of three standardized states:
 
 | State | Meaning | Visual |
 |-------|---------|--------|
@@ -240,7 +255,7 @@ All metrics and KRIs MUST resolve to one of three standardized states:
 | Red | Owner acts; ERM risk rating updated | Immediately | Metric Owner + Governance |
 | Sustained Red (> 48 hours) | Executive escalation; potential incident declaration | Immediately | Governance + Executive |
 
-All escalation actions MUST be documented in the governance log.
+**[T2]** Escalation actions SHOULD be documented in the governance log.
 
 ---
 
@@ -258,14 +273,14 @@ Dashboards are role-based and layered:
 
 ### 7.2 Dashboard Design Principles
 
-Dashboards MUST:
+**[T2]** Governance dashboards SHOULD:
 
-- Use a single source of truth per metric
-- Prioritize trends over point-in-time snapshots
-- Support drill-down from summary to root cause
-- Avoid metric overload (respect layer max above)
-- Display RAG status for all metrics and KRIs
-- Show time-series trend (minimum 90-day window)
+- Use a single source of truth per metric.
+- Prioritize trends over point-in-time snapshots.
+- Support drill-down from summary to root cause.
+- Avoid metric overload (respect layer max above).
+- Display RAG status for all metrics and KRIs.
+- Show time-series trend (minimum 90-day window).
 
 Dashboards are governance instruments, not monitoring toys.
 
@@ -353,19 +368,19 @@ Individual metric ownership MAY be delegated but the category owner retains acco
 ### 9.2 Audit Integration
 
 - Metrics and dashboards serve as primary audit evidence
-- Historical metric data MUST be retained for audit purposes (see Section 11)
-- Calculation logic MUST be documented and reproducible
+- **[T3]** Historical metric data SHALL be retained for audit purposes (see §11).
+- **[T1]** Calculation logic SHALL be documented and reproducible (Tier Table T1 rule 4).
 - Dashboard snapshots are captured at each governance review for the audit trail
 
 ---
 
 ## 10. Data Integrity & Controls
 
-- Metric sources MUST be authoritative systems of record
-- Manual data manipulation is prohibited unless documented and approved
-- Metric data pipelines are subject to access control (least privilege)
-- Changes to metric calculation logic are version-controlled and require governance approval
-- Automated collection is preferred; manual collection MUST be flagged and reviewed quarterly
+- **[T1]** Metric sources SHALL be authoritative systems of record (Tier Table T1 rule 3).
+- **[T2]** Manual data manipulation is prohibited unless documented and approved.
+- **[T2]** Metric data pipelines are subject to access control (least privilege).
+- **[T2]** Changes to metric calculation logic are version-controlled and require governance approval.
+- **[T2]** Automated collection is preferred; manual collection SHOULD be flagged and reviewed quarterly.
 
 ---
 
@@ -451,3 +466,5 @@ This Metrics, KRIs & Governance Dashboards Standard is approved and adopted by C
 | Version | Date | Changes |
 |---------|------|---------|
 | v1.0 | 2026-02-07 | Initial release — full metric catalog, KRI registry, dashboard specs, RACI, retention |
+| v1.1 | 2026-04-22 | Added Applicability Tier Table (POL-GOV-001 §8.8). |
+| v1.2 | 2026-04-22 | Pass-3 friction remediation (tranche 2): body MUSTs tagged with `[T1]/[T2]/[T3]` and mostly downgraded to SHOULD where they described T2/T3 dashboard practices. §4.2 definition fields split into T1 (5 fields — name, calc, source, owner, observational-only flag) and T2 (cadence, thresholds, description, category, unit). §4.3 baseline catalog scoped to T2 (T1 baseline is the five Tier-Table rules). §5.2 KRI rules → T2. §6/§7/§10 MUSTs → SHOULD with tier tags. MUST density reduced from 40.9/kLOC to ~15/kLOC. No change to the T1 baseline. |

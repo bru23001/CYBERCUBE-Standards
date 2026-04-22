@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cybercube.example/schemas/vendor-inventory.v1.json",
+  "title": "CYBERCUBE Vendor Inventory — schema (POL-VEN-001)",
+  "description": "Machine-readable contract for the vendor inventory referenced by POL-VEN-001. Each entry records one vendor/third-party relationship. The vendor-inventory lint (tools/validate-schemas.py) enforces this schema.",
+  "type": "array",
+  "items": { "$ref": "#/$defs/vendor" },
+  "$defs": {
+    "vendor": {
+      "type": "object",
+      "required": ["id", "name", "tier", "data_sensitivity", "owner", "status", "last_assessed"],
+      "additionalProperties": true,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^VND-[0-9]{4}$",
+          "description": "Zero-padded 4-digit vendor number, prefixed 'VND-'."
+        },
+        "name": { "type": "string", "minLength": 1 },
+        "category": {
+          "type": "string",
+          "enum": ["infrastructure", "saas", "data-processor", "sub-processor", "consultancy", "payments", "other"]
+        },
+        "tier": {
+          "type": "string",
+          "enum": ["tier-1-critical", "tier-2-important", "tier-3-standard", "tier-4-low-risk"],
+          "description": "Vendor risk tier per POL-VEN-001. Mapped to PCL criticality in STD-GOV-001."
+        },
+        "data_sensitivity": {
+          "type": "string",
+          "enum": ["none", "public", "internal", "confidential", "restricted"],
+          "description": "Highest classification of data the vendor processes, per STD-DAT-001."
+        },
+        "owner": {
+          "type": "string",
+          "description": "Internal role accountable for this relationship."
+        },
+        "contract_expires": { "type": "string", "format": "date" },
+        "dpa_required": { "type": "boolean" },
+        "dpa_signed_date": { "type": "string", "format": "date" },
+        "dpa_template": {
+          "type": "string",
+          "description": "If DPA derives from TPL-LGL-001, include version reference."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["active", "onboarding", "offboarding", "terminated", "suspended"]
+        },
+        "last_assessed": { "type": "string", "format": "date" },
+        "next_review_due": { "type": "string", "format": "date" },
+        "linked_risks": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^RISK-[0-9]{4}$" }
+        },
+        "subprocessors": {
+          "type": "array",
+          "items": { "type": "string", "description": "Vendor IDs of sub-processors." }
+        }
+      }
+    }
+  }
+}

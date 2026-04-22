@@ -1,4 +1,16 @@
-CYBERCUBE Release & Deployment Standard (v1)
+CYBERCUBE Release & Deployment Standard (v1.1)
+
+### Applicability Tier Table
+
+| Applicability | Tier | Summary of Clauses in This Standard | Waiver Path |
+| ------------- | ---- | ----------------------------------- | ----------- |
+| All projects | **T1 MUST** | (1) All code MUST be in version control (Git) with a protected default branch that blocks force-push and requires at least one reviewer. (2) Production deploys MUST be produced from versioned, immutable artifacts (not rebuilt from the branch at deploy time). (3) Every deploy MUST have an identifiable version and an attributable author. (4) A documented rollback plan MUST exist for every production deploy (per POL-ENG-001 T1); rollback steps MUST be executable without re-building. (5) Database migrations MUST be reversible or accompanied by a documented forward-fix plan. | None (non-waivable) |
+| SaaS / customer-facing | **T2 SHOULD** | CI pipeline with automated tests + basic security scan gating merge, staging environment with production parity ≥80%, standard health endpoints (`/healthz`, `/readyz`), release branch workflow, change notification to affected teams, artifact registry, feature flag system for risky rollouts. | Lightweight waiver per POL-GOV-001 §8.3 |
+| Regulated / high-risk | **T3 MAY** | Artifact signing (cosign/sigstore) with policy-enforced verification at deploy, SBOM generation per release, segregation-of-duties between build and deploy, canary / blue-green deploy mechanics, automated rollback on health-check regression, deploy-time audit trail exported to SIEM, approval gates tied to STD-GOV-006 UCM controls. | Formal waiver per STD-GOV-003 |
+
+> Per POL-GOV-001 §8.8.
+
+> **v1.1 (2026-04-22) — Unfreeze (Path B).** T1 reduced to five rules enforceable today: Git + branch protection, immutable artifacts, versioned/attributable deploys, rollback plan, reversible migrations. Artifact signing, canary, feature flags, SBOM reclassified to T2/T3 ROADMAP. Tight coupling with POL-ENG-001 v1.1 (change request per T1 row) preserved.
 
 Glossary
 
@@ -1993,22 +2005,31 @@ flags.disable('release_feature')
 
 ### Core Implementation
 
-| Component | Status | Notes |
-|-----------|--------|-------|
-| Environment separation | PARTIAL | Needs network isolation |
-| Version control (Git) | COMPLETE | GitHub in use |
-| Branch protection | PARTIAL | Add CODEOWNERS |
-| Release branch workflow | PENDING | Adopt release/* branches |
-| CI pipeline | PARTIAL | Needs security scan |
-| Artifact signing (cosign) | PENDING | Phase 2 — recommended, not required |
-| Artifact registry | PENDING | Select provider |
-| Staging environment | PARTIAL | Needs parity check |
-| Health endpoints | PARTIAL | Standardize format |
-| Feature flag system | PENDING | Select provider |
-| Rollback automation | PENDING | Document procedures |
-| Change management | PENDING | Define process |
-| Database migrations | PARTIAL | Add safety checks |
-| Release documentation | PENDING | Create templates |
+| Component | Status | Tier | Notes |
+|-----------|--------|------|-------|
+| Version control (Git) | COMPLETE | T1 | GitHub in use |
+| Branch protection (≥1 reviewer, no force push) | IN PLACE | T1 | Enforced on default branch |
+| Immutable artifact model (no rebuild on deploy) | IN PLACE | T1 | Pipeline outputs tagged artifacts |
+| Versioned & attributable deploys | IN PLACE | T1 | Git SHA + pipeline run ID recorded |
+| Rollback plan required per deploy | IN PLACE | T1 | Per POL-ENG-001 v1.1 change-request template |
+| Reversible DB migrations (or fwd-fix plan) | PARTIAL | T1 | Pattern documented; enforcement via code review |
+| Environment separation | PARTIAL | T2 | Needs network isolation |
+| CI pipeline with security scan | PARTIAL | T2 | Dependency scan live; SAST ROADMAP (STD-ENG-005) |
+| Staging with prod parity ≥80% | PARTIAL | T2 | Parity check ROADMAP |
+| Standard health endpoints | PARTIAL | T2 | Standardize `/healthz`, `/readyz` format |
+| Change notification | IN PLACE | T2 | Uses POL-ENG-001 ticketing + customer channel |
+| Release branch workflow | ROADMAP | T2 | Re-trigger: first multi-release cadence team |
+| Artifact registry | ROADMAP | T2 | Select provider |
+| Feature flag system | ROADMAP | T2 | Select provider |
+| Release documentation templates | ROADMAP | T2 | Changelog + release notes in template set |
+| Artifact signing (cosign) + enforced verification | ROADMAP | T3 | Regulated projects only |
+| SBOM per release | ROADMAP | T3 | Regulated projects only |
+| Segregation-of-duties build/deploy | ROADMAP | T3 | Regulated projects only |
+| Canary / blue-green deploys | ROADMAP | T3 | Regulated projects only |
+| Automated rollback on health regression | ROADMAP | T3 | Paired with SLO telemetry (STD-SLP-001 T3) |
+| SIEM-exported deploy audit trail | ROADMAP | T3 | Regulated projects only |
+
+Status vocabulary: `IN PLACE` | `COMPLETE` | `PARTIAL` | `ROADMAP` | `N/A`.
 
 ### Migration Path
 
@@ -2026,3 +2047,4 @@ Version History
 | Version | Date | Changes |
 |---------|------|---------|
 | v1 | 2026-01-17 | Initial release |
+| v1.1 | 2026-04-22 | Unfreeze (Path B): added Applicability Tier Table with 5 T1 clauses (Git + branch protection, immutable artifacts, versioned/attributable deploys, rollback plan, reversible migrations). Artifact signing, canary, feature flags, SBOM reclassified to T2/T3 ROADMAP. Cross-linked with POL-ENG-001 v1.1. Status vocabulary normalized. |

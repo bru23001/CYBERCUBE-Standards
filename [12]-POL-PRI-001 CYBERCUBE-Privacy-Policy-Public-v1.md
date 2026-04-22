@@ -1,8 +1,20 @@
-# CYBERCUBE Privacy Policy
+# CYBERCUBE Privacy Policy (v1.1)
 
 **Standard ID:** POL-PRI-001
-**Last Updated:** January 17, 2026
+**Last Updated:** 2026-04-22 (v1.1; was 2026-01-17)
 **Effective Date:** January 17, 2026
+
+## Applicability Tier Table
+
+| Applicability | Tier | Summary of Clauses in This Policy | Waiver Path |
+| ------------- | ---- | ---------------------------------- | ----------- |
+| All customer-facing CYBERCUBE products / websites | **T1 MUST** | (1) A current, version-dated Privacy Policy MUST be published at a stable URL before any PII is collected. (2) The policy MUST name: categories of data collected, purposes, legal bases (GDPR) / notice-at-collection (CCPA), retention summary, contact for data-subject requests. (3) Material changes MUST be version-bumped, re-dated, and communicated to users (in-app notice or email) per POL-PRI-002 T1. (4) Data-subject-access / deletion / correction requests MUST be accepted at the named contact and MUST be honored within statutory windows (GDPR 30d, CCPA 45d). (5) Cross-border data transfers (if any) MUST be disclosed and MUST rely on a documented transfer mechanism (SCCs, adequacy, etc.). | None (non-waivable — public-facing legal document) |
+| SaaS / regulated customers (EU, CA, UK, BR, etc.) | **T2 SHOULD** | Per-jurisdiction supplemental notices (GDPR, CCPA, LGPD, UK-DPA), cookie banner with granular consent, privacy notice in customer onboarding flow, auto-versioned policy archive (every revision downloadable by date), named DPO (or equivalent) contact listed. | Lightweight waiver per POL-GOV-001 §8.3 (only for supplemental notices; core disclosure is T1) |
+| Regulated / high-risk processing (health, finance, children's data) | **T3 MAY** | Sector-specific disclosures (HIPAA NPP, COPPA notice, GLBA privacy notice), layered notice (short-form + long-form), DPIA summary referenced, data-broker registrations (where applicable), automated data-subject-request portal, privacy engineering change log. | Formal waiver per STD-GOV-003 |
+
+> Per POL-GOV-001 §8.8.
+
+> **v1.1 (2026-04-22) — Tier Table addition.** Public-facing legal document; T1 rules are legal-disclosure minimums applicable to every CYBERCUBE product that collects PII.
 
 ---
 

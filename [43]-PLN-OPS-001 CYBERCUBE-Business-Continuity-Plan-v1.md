@@ -173,14 +173,26 @@ Protection: Backup, off-site storage, redundancy
 
 ---
 
-# CYBERCUBE Business Continuity Plan (v1)
+# CYBERCUBE Business Continuity Plan (v1.1)
 
 **Standard ID:** PLN-OPS-001  
 **Status:** Active  
-**Effective:** 2026-01-17  
+**Effective:** 2026-01-17 (v1), 2026-04-22 (v1.1)  
 **Classification:** CONFIDENTIAL  
 **Owner:** Chief Operating Officer  
 **Review Cycle:** Annual + after any activation
+
+## Applicability Tier Table
+
+| Applicability | Tier | Summary of Clauses in This Plan | Waiver Path |
+| ------------- | ---- | -------------------------------- | ----------- |
+| All projects / business units | **T1 MUST** | (1) A named Business Continuity owner (COO or delegate) MUST exist and a single backup MUST be designated. (2) Every business-critical system MUST be listed in a Critical Systems register with owner, dependencies, and declared RTO. (3) The COO or delegate MUST have the authority to declare a business-disruption event and invoke this plan. (4) On invocation, communications MUST follow a documented notification tree (executives → staff → customers → regulators as applicable). (5) Every invocation (planned drill or real event) MUST produce a post-event review within 10 business days. | None (non-waivable — plan is the authority of record for continuity) |
+| SaaS / customer-facing | **T2 SHOULD** | Annual business-continuity drill (tabletop at minimum), Business Impact Analysis (BIA) per business unit, alternate-workspace / remote-work fallback documented, vendor-contingency list (key suppliers, backup suppliers), customer-notification templates pre-drafted, continuity KPIs tracked (per STD-GOV-005). | Lightweight waiver per POL-GOV-001 §8.3 |
+| Regulated / high-risk | **T3 MAY** | Annual live-exercise (not just tabletop), alternate-site arranged and tested, regulatory continuity-report obligations tracked (financial, health-sector), ISO 22301-aligned BCMS, board-level reporting cadence, insurance (business-interruption policy) aligned to RTO assumptions, BIA refresh cadence ≤ annual. | Formal waiver per STD-GOV-003 |
+
+> Per POL-GOV-001 §8.8.
+
+> **v1.1 (2026-04-22) — Tier Table addition.** T1 = five rules usable by any organization regardless of size: named owner, critical-systems register, declaration authority, notification tree, post-event review.
 
 ---
 
@@ -1159,8 +1171,8 @@ HR Emergency: [Number]
 | Vendor alternatives | PARTIAL | 2026-03-17 | Document all critical vendor contacts |
 | Remote work capability | COMPLETE | — | Tested during prior events |
 | Communication templates | COMPLETE | — | This plan |
-| Testing schedule | PENDING | 2026-04-17 | First tabletop within 90 days |
-| Training program | PENDING | 2026-04-17 | Develop materials |
+| Testing schedule | ROADMAP | 2026-04-17 | First tabletop within 90 days |
+| Training program | ROADMAP | 2026-04-17 | Develop materials |
 
 ---
 

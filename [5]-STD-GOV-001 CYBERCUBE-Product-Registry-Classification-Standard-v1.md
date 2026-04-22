@@ -1,4 +1,14 @@
-# CYBERCUBE Product Registry & Classification Standard (v1)
+# CYBERCUBE Product Registry & Classification Standard (v1.1)
+
+## Applicability Tier Table
+
+| Applicability | Tier | Summary of Clauses in This Standard | Waiver Path |
+| ------------- | ---- | ----------------------------------- | ----------- |
+| All projects | **T1 MUST** | (1) Every CYBERCUBE product MUST be registered with a PCL (Layer.Delivery.Extensibility.Criticality) code before first production deployment. (2) The PCL MUST be reviewed and updated on any architectural change that affects a facet. (3) Criticality tier (`C`) MUST be used to drive Applicability Tier selection in downstream standards (C1 → T3; C2/C3 → T2; internal/POC → T1 only). | None (non-waivable) |
+| SaaS / customer-facing | **T2 SHOULD** | Automated registry sync from source repositories, public-or-internal product list maintained by the Standards Council, CMDB integration, quarterly PCL recertification. | Lightweight waiver per POL-GOV-001 §8.3 |
+| Regulated / high-risk | **T3 MAY** | Regulator-facing product inventory and classification attestation, external validation of PCL assignments, linkage to authoritative asset management systems. | Formal waiver per STD-GOV-003 |
+
+> Per POL-GOV-001 §8.8. **Note:** This standard is load-bearing for the whole tiering model (POL-GOV-001 §8.7.2 inherits tier from PCL criticality).
 
 ## Glossary
 
@@ -1010,10 +1020,10 @@ Safety (4)    → CTO sign-off + external audit
 | Product Record template      | COMPLETE | With 2 examples                         |
 | Registry index template      | COMPLETE | Markdown-based                          |
 | Work type tags (Layer 2)     | COMPLETE | 14 parents, 55 subtypes, boundary notes |
-| Product registry population  | PENDING  | Register existing products              |
-| Annual review process        | PENDING  | Schedule first review                   |
-| Automated PCL validation     | PENDING  | CI check for format compliance          |
-| Portfolio dashboard          | PENDING  | Query layer over registry               |
+| Product registry population  | ROADMAP  | Register existing products              |
+| Annual review process        | ROADMAP  | Schedule first review                   |
+| Automated PCL validation     | ROADMAP  | CI check for format compliance          |
+| Portfolio dashboard          | ROADMAP  | Query layer over registry               |
 
 ### Migration Path
 

@@ -1,11 +1,23 @@
-# Enterprise Risk Management (ERM) Policy
+# Enterprise Risk Management (ERM) Policy (v1.1)
 
 **Standard ID:** STD-ERM-001
-**Version:** v1.0
+**Version:** v1.1
 **Status:** Approved
 **Applies To:** All CYBERCUBE personnel, contractors, systems, and operations
 **Owner:** Executive Leadership
-**Effective Date:** 2026-02-05
+**Effective Date:** 2026-02-05 (v1), 2026-04-22 (v1.1)
+
+---
+
+## Applicability Tier Table
+
+| Applicability | Tier | Summary of Clauses in This Policy | Waiver Path |
+| ------------- | ---- | --------------------------------- | ----------- |
+| All projects | **T1 MUST** | (1) Every project MUST use the canonical ERM Risk Register (schema in §8.1). (2) Risk acceptance at residual rating `HIGH` or `CRITICAL` MUST be documented with a named approver. (3) Undocumented risk acceptance is prohibited. | None (non-waivable) |
+| SaaS / customer-facing | **T2 SHOULD** | Periodic (at least semi-annual) risk review per product, KRI tracking per §9, register kept in a controlled governance artifact with access logged. | Lightweight waiver per POL-GOV-001 §8.3 |
+| Regulated / high-risk | **T3 MAY** | Executive-level risk committee, independent review of residual ratings, board-level reporting cadence, integration with external ERM / GRC platform. | Formal waiver per STD-GOV-003 |
+
+> Per POL-GOV-001 §8.8.
 
 ---
 
@@ -169,14 +181,39 @@ A combination of strategies may be applied to a single risk. The chosen strategy
 
 ## 8. Risk Register and Documentation
 
-CYBERCUBE maintains a centralized Risk Register that includes:
+CYBERCUBE maintains a **single centralized Risk Register** that serves three distinct workloads: (a) enterprise risks (this policy), (b) internal-audit findings and Corrective Action Plans (STD-GOV-004), and (c) vendor risks (POL-VEN-001). A single register avoids parallel tracking systems, duplicate reporting, and status drift.
 
-- Risk description and category
-- Inherent and residual risk ratings
-- Assigned risk owner
-- Mitigating controls
-- Acceptance status and approvals
-- Review dates and status
+### 8.1 Canonical Register Schema (v1.1)
+
+Every Risk Register entry MUST populate the fields below. Fields marked *(finding)* are required only when `entry_type = AUDIT_FINDING`; fields marked *(vendor)* are required only when `entry_type = VENDOR_RISK`.
+
+| Field                 | Type / values                                         | Description                                                                 |
+| --------------------- | ----------------------------------------------------- | --------------------------------------------------------------------------- |
+| `risk_id`             | `RISK-YYYY-NNNN`                                      | Primary identifier (immutable).                                             |
+| `entry_type`          | `ENTERPRISE_RISK` \| `AUDIT_FINDING` \| `VENDOR_RISK` | Routing discriminator — determines which conditional fields apply.          |
+| `title`               | string                                                | Short human-readable label.                                                 |
+| `description`         | text                                                  | Risk / finding / vendor-risk description.                                   |
+| `category`            | enum (Security, Operational, Privacy, Vendor, …)      | Taxonomy — see §2 of this policy.                                           |
+| `inherent_rating`     | L / M / H / C                                         | Pre-mitigation risk rating.                                                 |
+| `residual_rating`     | L / M / H / C                                         | Post-mitigation risk rating.                                                |
+| `owner`               | role key (see STD-ENG-007 Appendix X)                 | Named accountable individual. Default `eng-lead` \| `sec-lead` \| `oncall-sre` unless domain-specific. |
+| `controls`            | list                                                  | Mitigating controls in place or planned.                                    |
+| `status`              | `OPEN` \| `IN_PROGRESS` \| `ACCEPTED` \| `CLOSED`     | Lifecycle state.                                                            |
+| `acceptance_approver` | role key                                              | Required if `status = ACCEPTED`.                                            |
+| `review_date`         | ISO date                                              | Next scheduled review.                                                      |
+| `finding_id` *(finding)*   | `FND-YYYY-NNNN`                                  | Links the entry to the audit report that generated it (STD-GOV-004 §6.3).   |
+| `audit_scope` *(finding)*  | string                                           | Audit domain (e.g. "Security controls — access management").                |
+| `cap_owner` *(finding)*    | role key                                         | Corrective-Action-Plan owner. Often but not necessarily `owner`.            |
+| `cap_due` *(finding)*      | ISO date                                         | Target remediation date. SLA from STD-GOV-004 §5 applies.                   |
+| `vendor_id` *(vendor)*     | `VND-NNNN`                                       | Links to vendor record per POL-VEN-001.                                     |
+| `links`               | list of URLs                                          | Tickets, runbooks, evidence artifacts.                                      |
+
+### 8.2 Operational Rules
+
+1. Audit findings from STD-GOV-004 MUST be filed in this register (not a separate tracker); this is the T1 clause for that standard.
+2. Vendor risks from POL-VEN-001 MUST use the same register with `entry_type = VENDOR_RISK`.
+3. Views, filters, and dashboards may present `entry_type`-specific cuts, but the underlying record is one and the same.
+4. Schema changes are breaking; increment this standard's minor version and update STD-GOV-004 + POL-VEN-001 references in the same revision.
 
 The Risk Register is a controlled governance artifact.
 
@@ -257,11 +294,24 @@ This policy is approved and adopted by CYBERCUBE executive leadership and is eff
 
 ---
 
+## 9. Machine-Readable Schema
+
+The canonical Risk Register (§8) is validated by [`schemas/risk-register.schema.json`](../schemas/risk-register.schema.json). The schema is the **authoritative contract** for the register's structure.
+
+- **Run:** `python tools/validate-schemas.py --path governance/risk-register.json`.
+- **Required fields:** `id` (`RISK-####`), `title`, `category`, `owner`, `inherent_rating`, `residual_rating`, `status`, `last_reviewed`.
+- **Cross-references:** `controls[]` map to STD-GOV-006 UCM IDs; `kri_ids[]` to STD-GOV-005 KRIs; `linked_incidents[]` to STD-OPS-004; `linked_exceptions[]` to STD-GOV-003 waivers.
+- **Governance:** schema changes follow POL-GOV-001 §8 change-control. Breaking changes bump `$id` to `.v2.json`.
+
+---
+
 ## Version History
 
 | Version | Date       | Changes         | Author               |
 | ------- | ---------- | --------------- | -------------------- |
 | v1.0    | 2026-02-05 | Initial release | Executive Leadership |
+| v1.1    | 2026-04-22 | §8 extended with canonical Risk Register schema supporting three entry types: `ENTERPRISE_RISK`, `AUDIT_FINDING`, `VENDOR_RISK`. Added fields `entry_type`, `finding_id`, `audit_scope`, `cap_owner`, `cap_due`, `vendor_id` to enable reuse by STD-GOV-004 (audit findings/CAP) and POL-VEN-001 (vendor risks) without a separate tracker. Owner field now aligns with STD-ENG-007 Appendix X role keys. | Executive Leadership |
+| v1.2    | 2026-04-22 | Pass-3 tranche-2: canonical Risk Register is now machine-validated against [`schemas/risk-register.schema.json`](../schemas/risk-register.schema.json). Validator: `python tools/validate-schemas.py --path governance/risk-register.json`. Enables CI enforcement of `id` pattern (`RISK-####`), required fields (`owner`, ratings, `status`, `last_reviewed`), and enum constraints on `category` / `treatment` / `status`. No rule change; raises Automatability (M) from 2 → 3. | Executive Leadership |
 
 
 ```

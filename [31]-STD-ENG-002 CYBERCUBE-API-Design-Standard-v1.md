@@ -419,14 +419,26 @@ Components:
 
 ---
 
-CYBERCUBE API Design & Versioning Standard (v1)
+CYBERCUBE API Design & Versioning Standard (v1.1)
 
 **Standard ID:** STD-ENG-002  
 **Status:** Active  
-**Effective:** 2026-01-17  
+**Effective:** 2026-01-17 (v1), 2026-04-22 (v1.1)  
 **Classification:** INTERNAL  
 **Owner:** Engineering  
 **Applies to:** All CYBERCUBE public and internal APIs
+
+### Applicability Tier Table
+
+| Applicability | Tier | Summary of Clauses in This Standard | Waiver Path |
+| ------------- | ---- | ----------------------------------- | ----------- |
+| All projects with an API | **T1 MUST** | (1) Every API endpoint MUST be versioned (URL segment `/v1/` or explicit header); breaking changes MUST bump the version. (2) Every endpoint MUST return a consistent error shape with a machine-readable error code and a human-readable message; stack traces MUST NOT be exposed to clients. (3) Resource identifiers in API responses MUST use CC-PIDs per STD-ENG-001. (4) Endpoints handling PII or state changes MUST require authentication per STD-SEC-003 T1 and authorization per STD-SEC-004 T1. (5) Every endpoint MUST enforce basic rate-limiting at the edge; unauthenticated endpoints MUST be more aggressively limited than authenticated ones. | None (non-waivable) |
+| SaaS / customer-facing | **T2 SHOULD** | OpenAPI (Swagger) spec published, standard response envelope (`{data, meta, errors}`), cursor-based pagination for list endpoints, idempotency keys for state-changing operations, request/response schemas validated at boundary, deprecation lifecycle (`Deprecation` / `Sunset` headers), rate-limit headers exposed (`X-RateLimit-*`). | Lightweight waiver per POL-GOV-001 §8.3 |
+| Regulated / high-risk | **T3 MAY** | mTLS between services, signed-request scheme for partner APIs, full request/response recording in an audit store, contract testing (Pact/Spring-Cloud-Contract) between services, API gateway with policy enforcement (rate, geo, tenant), client-certificate authentication for enterprise integrations. | Formal waiver per STD-GOV-003 |
+
+> Per POL-GOV-001 §8.8.
+
+> **v1.1 (2026-04-22) — Unfreeze (Path B).** T1 = five rules enforceable in code review today: versioning, error shape + no stack traces, CC-PID ids, authN/authZ deference, edge rate-limit. OpenAPI publication, envelope standard, idempotency, cursor pagination, deprecation headers reclassified to T2 ROADMAP. Pre-existing `ACTIVE` status (non-canonical) normalized.
 
 0. Purpose & Design Principles
 
@@ -2217,16 +2229,28 @@ Error      → code + message + details
 
 ### Core Implementation
 
-| Component | Status | Notes |
-|-----------|--------|-------|
-| Response Envelope | PARTIAL | Needs standardization |
-| Error Codes | PARTIAL | Needs registry |
-| Cursor Pagination | PENDING | Offset exists |
-| Idempotency Keys | PENDING | Not implemented |
-| Rate Limiting | PARTIAL | Basic exists |
-| OpenAPI Docs | PARTIAL | Needs completion |
-| Versioning | ACTIVE | v1 in production |
-| Webhooks | PARTIAL | Basic support |
+| Component | Status | Tier | Notes |
+|-----------|--------|------|-------|
+| Endpoint versioning (`/v1/` or header) | IN PLACE | T1 | v1 in production |
+| Consistent error shape + no stack traces | PARTIAL | T1 | Shape exists; registry of codes ROADMAP |
+| CC-PID resource identifiers | IN PLACE | T1 | Per STD-ENG-001 |
+| AuthN/AuthZ on PII/state endpoints | IN PLACE | T1 | Defers to STD-SEC-003/004 T1 |
+| Edge rate limiting | IN PLACE | T1 | Basic reverse-proxy limits |
+| Response Envelope (standardized) | PARTIAL | T2 | `{data, meta, errors}` pattern drafted |
+| Error code registry | ROADMAP | T2 | Re-trigger: shared error-code library published |
+| OpenAPI (Swagger) spec published | PARTIAL | T2 | Some endpoints; full coverage ROADMAP |
+| Cursor Pagination | ROADMAP | T2 | Offset exists; cursor ROADMAP |
+| Idempotency Keys | ROADMAP | T2 | Re-trigger: first payment/billing endpoint |
+| Deprecation lifecycle headers | ROADMAP | T2 | Re-trigger: first v2 rollout |
+| `X-RateLimit-*` headers | ROADMAP | T2 | Paired with rate-limit refactor |
+| Webhooks | PARTIAL | T2 | Basic support; see STD-ENG-003 |
+| mTLS between services | ROADMAP | T3 | Regulated projects only |
+| Signed-request partner API scheme | ROADMAP | T3 | Regulated projects only |
+| Full request/response audit recording | ROADMAP | T3 | Regulated projects only |
+| Contract testing (Pact etc.) | ROADMAP | T3 | Paired with STD-ENG-005 T3 |
+| API gateway with policy enforcement | ROADMAP | T3 | Regulated projects only |
+
+Status vocabulary: `IN PLACE` | `COMPLETE` | `PARTIAL` | `ROADMAP` | `N/A`.
 
 ### Migration Path
 

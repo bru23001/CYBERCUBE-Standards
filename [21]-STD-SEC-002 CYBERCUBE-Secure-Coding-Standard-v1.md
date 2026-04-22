@@ -1,11 +1,21 @@
-# CYBERCUBE Secure Coding Standard (v1)
+# CYBERCUBE Secure Coding Standard (v1.1)
 
 **Standard ID:** STD-SEC-002
 **Status:** Active
-**Effective:** 2026-01-17
+**Effective:** 2026-01-17 (v1), 2026-04-22 (v1.1)
 **Classification:** INTERNAL
 **Owner:** Security Team
 **Applies to:** All CYBERCUBE application code
+
+## Applicability Tier Table
+
+| Applicability | Tier | Summary of Clauses in This Standard | Waiver Path |
+| ------------- | ---- | ----------------------------------- | ----------- |
+| All projects | **T1 MUST** | (1) All user-supplied input MUST be validated at trust boundaries (API, form, queue consumer) before use. (2) SQL MUST use parameterized queries / prepared statements — string concatenation into SQL is prohibited. (3) Output that lands in HTML MUST be escaped by the template/framework; manual string concatenation into HTML is prohibited. (4) Secrets MUST NOT appear in log output (redact token / password / cookie / Authorization header at the logger level). (5) Error responses to users MUST NOT leak stack traces, SQL text, file paths, or internal hostnames. | None (non-waivable) |
+| SaaS / customer-facing | **T2 SHOULD** | Language-specific linter + security rules in CI (per STD-ENG-005 T2), dependency-vuln scan in CI, centralized input-validation library (Zod/pydantic/similar), output-encoding library, secure cookie flags (`Secure` / `HttpOnly` / `SameSite`), CSP headers on HTML responses, rate limiting on sensitive endpoints, anti-CSRF tokens on state-changing form posts. | Lightweight waiver per POL-GOV-001 §8.3 |
+| Regulated / high-risk | **T3 MAY** | SAST on every PR with blocking gate, IAST/DAST in staging, manual secure-code review for privileged modules, threat modeling for new surfaces, language-subset policies (e.g. "no `unsafe` Rust outside vetted crates"), memory-safety-first language preference for new services. | Formal waiver per STD-GOV-003 |
+
+> Per POL-GOV-001 §8.8.
 
 ---
 
@@ -1767,8 +1777,8 @@ Print it. Keep it handy.
 | Security headers          | COMPLETE | Helmet middleware    |
 | SAST integration          | PARTIAL  | Add CodeQL           |
 | Security tests            | PARTIAL  | Expand coverage      |
-| ESLint security rules     | PENDING  | Configure            |
-| Developer training        | PENDING  | Create materials     |
+| ESLint security rules     | ROADMAP  | Configure            |
+| Developer training        | ROADMAP  | Create materials     |
 
 ---
 

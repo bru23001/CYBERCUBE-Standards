@@ -1,0 +1,55 @@
+name: freeze-check
+
+on:
+  pull_request:
+    paths:
+      - '[[]*[]]-*.md'
+      - 'tools/freeze-check.py'
+      - '.github/workflows/freeze-check.yml'
+  push:
+    branches: [main]
+    paths:
+      - '[[]*[]]-*.md'
+      - 'tools/freeze-check.py'
+
+permissions:
+  contents: read
+
+jobs:
+  freeze-check:
+    # Gate policy (tightened 2026-04-22, Week-5):
+    #   BLOCK on FROZEN, UNKNOWN_STATUS, MISSING_TIER_TABLE (baseline = 0).
+    #   WARN on DEPRECATED_PENDING (safety valve during author migration).
+    name: POL-GOV-001 §8.9 Freeze-Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run freeze-check linter
+        run: |
+          python tools/freeze-check.py --json
+          echo "---"
+          echo "Summary written to freeze-check-report.json"
+
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: freeze-check-report
+          path: freeze-check-report.json
+          if-no-files-found: ignore
+
+      - name: Post summary to PR
+        if: always()
+        run: |
+          {
+            echo "## POL-GOV-001 §8.9 Freeze-Check"
+            echo ""
+            python tools/freeze-check.py | head -30
+          } >> "$GITHUB_STEP_SUMMARY"

@@ -1,12 +1,22 @@
-CYBERCUBE Security Policy (v1)
+CYBERCUBE Security Policy (v1.1)
 
 **Standard ID:** STD-SEC-001
 **Classification:** INTERNAL
 **Status:** Active
-**Effective Date:** 2026-01-17
-**Version:** 1.0
+**Effective Date:** 2026-01-17 (v1), 2026-04-22 (v1.1)
+**Version:** 1.1
 **Owner:** Chief Information Security Officer (CISO)
 **Approver:** Executive Leadership
+
+### Applicability Tier Table
+
+| Applicability | Tier | Summary of Clauses in This Standard | Waiver Path |
+| ------------- | ---- | ----------------------------------- | ----------- |
+| All projects | **T1 MUST** | (1) Confidentiality / Integrity / Availability of customer data are the primary objectives; any design decision that materially weakens them without a waiver is non-compliant. (2) Every product MUST have a named security owner (defaults to `sec-lead` per STD-ENG-007 Appendix X). (3) Security incidents MUST follow STD-OPS-004 and STD-SEC-007 notification and escalation rules. (4) Access to production systems MUST be role-gated and auditable (per STD-SEC-003 T1 and STD-SEC-004 T1). (5) Every project MUST enumerate its applicable child security standards (003, 004, 005, 006, 007, 008) and declare which tier it is honoring. | None (non-waivable — this is the umbrella policy) |
+| SaaS / customer-facing | **T2 SHOULD** | Security training cadence (per STD-SEC-008 T2), vulnerability management program (per STD-SEC-006 T2), threat modeling for new services, dependency scanning, security review of high-risk changes in addition to POL-ENG-001 change approval. | Lightweight waiver per POL-GOV-001 §8.3 |
+| Regulated / high-risk | **T3 MAY** | Continuous controls monitoring mapped to UCM (STD-GOV-006), dedicated CISO-owned risk register (inherits STD-ERM-001 v1.1 schema), third-party penetration tests on a scheduled cadence, executive-reported security KRIs (STD-GOV-005). | Formal waiver per STD-GOV-003 |
+
+> Per POL-GOV-001 §8.8. This is the umbrella security policy; child standards (STD-SEC-003 / 004 / 005 / 006 / 007 / 008) carry the concrete controls with their own Tier Tables.
 
 ---
 
@@ -709,33 +719,33 @@ For auditor reference — evidence locations.
 
 | Domain            | Standard                      | Status | Notes       |
 | ----------------- | ----------------------------- | ------ | ----------- |
-| Identity & Access | Authentication                | ACTIVE | Implemented |
-| Identity & Access | Authorization                 | ACTIVE | Implemented |
-| API Security      | API Design                    | ACTIVE | Implemented |
-| Integration       | Webhooks                      | ACTIVE | Implemented |
-| Data Protection   | Classification                | ACTIVE | Implemented |
-| Data Protection   | Lifecycle                     | ACTIVE | Implemented |
-| Operations        | Observability                 | ACTIVE | Implemented |
-| Operations        | Incident Response             | ACTIVE | Implemented |
-| Development       | Testing                       | ACTIVE | Implemented |
-| Development       | Release                       | ACTIVE | Implemented |
-| Governance        | Documentation                 | ACTIVE | Implemented |
-| Governance        | Standards                     | ACTIVE | Implemented |
-| Security          | Secure Coding                 | ACTIVE | Implemented |
-| Security          | Cryptography & Key Management | ACTIVE | Implemented |
-| Security          | Vulnerability Management      | ACTIVE | Implemented |
-| Security          | Security Incident Response    | ACTIVE | Implemented |
-| Security          | Security Training             | ACTIVE | Implemented |
-| Foundation        | Naming                        | ACTIVE | Implemented |
+| Identity & Access | Authentication                | IN PLACE | Implemented |
+| Identity & Access | Authorization                 | IN PLACE | Implemented |
+| API Security      | API Design                    | IN PLACE | Implemented |
+| Integration       | Webhooks                      | IN PLACE | Implemented |
+| Data Protection   | Classification                | IN PLACE | Implemented |
+| Data Protection   | Lifecycle                     | IN PLACE | Implemented |
+| Operations        | Observability                 | IN PLACE | Implemented |
+| Operations        | Incident Response             | IN PLACE | Implemented |
+| Development       | Testing                       | IN PLACE | Implemented |
+| Development       | Release                       | IN PLACE | Implemented |
+| Governance        | Documentation                 | IN PLACE | Implemented |
+| Governance        | Standards                     | IN PLACE | Implemented |
+| Security          | Secure Coding                 | IN PLACE | Implemented |
+| Security          | Cryptography & Key Management | IN PLACE | Implemented |
+| Security          | Vulnerability Management      | IN PLACE | Implemented |
+| Security          | Security Incident Response    | IN PLACE | Implemented |
+| Security          | Security Training             | IN PLACE | Implemented |
+| Foundation        | Naming                        | IN PLACE | Implemented |
 
 ### Certification Roadmap
 
 | Certification   | Status      | Target Date |
 | --------------- | ----------- | ----------- |
-| SOC 2 Type II   | IN PROGRESS | 2026-Q2     |
-| ISO 27001       | PLANNED     | 2026-Q4     |
-| GDPR Compliance | ACTIVE      | Ongoing     |
-| CCPA Compliance | ACTIVE      | Ongoing     |
+| SOC 2 Type II   | PARTIAL     | 2026-Q2     |
+| ISO 27001       | ROADMAP     | 2026-Q4     |
+| GDPR Compliance | IN PLACE    | Ongoing     |
+| CCPA Compliance | IN PLACE    | Ongoing     |
 
 ---
 

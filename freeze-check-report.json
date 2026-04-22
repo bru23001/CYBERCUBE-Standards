@@ -1,0 +1,731 @@
+{
+  "summary": {
+    "scanned": 45,
+    "frozen": 0,
+    "missing_tier_table": 0,
+    "legacy_pending": 0,
+    "unknown_status": 0
+  },
+  "standards": [
+    {
+      "file": "[1]-CYBERCUBE-Name-Registry.md",
+      "number": 1,
+      "has_tier_table": true,
+      "meta_exempt": true,
+      "counts": {
+        "ROADMAP": 0,
+        "IN PLACE": 0,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 0
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[2]-POL-GOV-001 CYBERCUBE-Standards-Governance-Policy-v1.md",
+      "number": 2,
+      "has_tier_table": true,
+      "meta_exempt": true,
+      "counts": {
+        "ROADMAP": 0,
+        "IN PLACE": 0,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 0
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[3]-POL-GOV-002 CYBERCUBE-Architecture-Governance-Policy-v1.md",
+      "number": 3,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 0,
+        "IN PLACE": 0,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 0
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[4]-FWK-GOV-001 CYBERCUBE-Framework-Compliance-v1.md",
+      "number": 4,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 0,
+        "IN PLACE": 0,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 0
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[5]-STD-GOV-001 CYBERCUBE-Product-Registry-Classification-Standard-v1.md",
+      "number": 5,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 4,
+        "IN PLACE": 0,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 6,
+        "PARTIAL": 0
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[6]-STD-GOV-003 CYBERCUBE-Policy-Exception-Waiver-Standard-v1.md",
+      "number": 6,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 4,
+        "IN PLACE": 0,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 4,
+        "PARTIAL": 0
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[7]-STD-GOV-006 CYBERCUBE-Unified-Control-Matrix-v1.md",
+      "number": 7,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 0,
+        "IN PLACE": 0,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 0
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[8]-STD-ERM-001 CYBERCUBE-Enterprise-Risk-Management-ERM-Policy-v1.md",
+      "number": 8,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 0,
+        "IN PLACE": 0,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 0
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[9]-POL-VEN-001 CYBERCUBE-Vendor-Risk-Management-Policy-v1.md",
+      "number": 9,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 5,
+        "IN PLACE": 0,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 5,
+        "PARTIAL": 1
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[10]-POL-AUP-001 CYBERCUBE-Acceptable-Use-Policy-v1.md",
+      "number": 10,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 9,
+        "IN PLACE": 1,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 1,
+        "PARTIAL": 3
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[11]-POL-AI-001 CYBERCUBE-AI-Usage-Ethics-Policy-v1.md",
+      "number": 11,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 5,
+        "IN PLACE": 4,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 0
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[12]-POL-PRI-001 CYBERCUBE-Privacy-Policy-Public-v1.md",
+      "number": 12,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 0,
+        "IN PLACE": 0,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 0
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[13]-POL-PRI-002 CYBERCUBE-Privacy-Handling-Policy-v1.md",
+      "number": 13,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 0,
+        "IN PLACE": 0,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 0
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[14]-POL-REC-001 CYBERCUBE-Records-Management-Policy-v1.md",
+      "number": 14,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 5,
+        "IN PLACE": 5,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 1
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[15]-STD-LGL-001 CYBERCUBE-Legal-Hold-eDiscovery-Standard-v1.md",
+      "number": 15,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 9,
+        "IN PLACE": 2,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 3,
+        "PARTIAL": 2
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[16]-TPL-LGL-001 CYBERCUBE-DPA-Standard-Template-v1.md",
+      "number": 16,
+      "has_tier_table": true,
+      "meta_exempt": true,
+      "counts": {
+        "ROADMAP": 0,
+        "IN PLACE": 0,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 0
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[17]-STD-SEC-001 CYBERCUBE-Security-Policy-v1.md",
+      "number": 17,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 1,
+        "IN PLACE": 20,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 1
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[18]-STD-SEC-003 CYBERCUBE-Authentication-Identity-Standard-v1.md",
+      "number": 18,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 13,
+        "IN PLACE": 2,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 7
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[19]-STD-SEC-004 CYBERCUBE-Authorization-Access-Control-Standard-v1.md",
+      "number": 19,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 9,
+        "IN PLACE": 4,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 3
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[20]-STD-SEC-005 CYBERCUBE-Cryptography-Key-Management-Standard-v1.md",
+      "number": 20,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 0,
+        "IN PLACE": 0,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 0
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[21]-STD-SEC-002 CYBERCUBE-Secure-Coding-Standard-v1.md",
+      "number": 21,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 2,
+        "IN PLACE": 0,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 5,
+        "PARTIAL": 3
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[22]-STD-SEC-006 CYBERCUBE-Vulnerability-Management-Standard-v1.md",
+      "number": 22,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 9,
+        "IN PLACE": 4,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 2,
+        "PARTIAL": 3
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[23]-STD-SEC-007 CYBERCUBE-Security-Incident-Response-Standard-v1.md",
+      "number": 23,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 10,
+        "IN PLACE": 4,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 1,
+        "PARTIAL": 1
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[24]-STD-SEC-008 CYBERCUBE-Security-Training-Policy-v1.md",
+      "number": 24,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 5,
+        "IN PLACE": 4,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 1
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[25]-STD-DAT-001 CYBERCUBE-Data-Classification-Retention-Standard-v1.md",
+      "number": 25,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 9,
+        "IN PLACE": 4,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 6
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[26]-STD-DAT-002 CYBERCUBE-Soft-Delete-Lifecycle-Standard-v1.md",
+      "number": 26,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 8,
+        "IN PLACE": 2,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 5
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[27]-STD-DAT-004 CYBERCUBE-Customer-Data-Isolation-Multi-Tenancy-Standard-v1.md",
+      "number": 27,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 9,
+        "IN PLACE": 3,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 3
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[28]-STD-ENG-009 CYBERCUBE-Technology-Stack-Standard-v2.md",
+      "number": 28,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 0,
+        "IN PLACE": 0,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 0
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[29]-STD-ENG-001 CYBERCUBE-Naming-Identifier-Standard-v1.2.md",
+      "number": 29,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 4,
+        "IN PLACE": 0,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 14,
+        "PARTIAL": 10
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[30]-STD-ENG-007 CYBERCUBE-Documentation-RFC-Standard-v1.md",
+      "number": 30,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 0,
+        "IN PLACE": 0,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 0
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[31]-STD-ENG-002 CYBERCUBE-API-Design-Standard-v1.md",
+      "number": 31,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 10,
+        "IN PLACE": 4,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 4
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[32]-STD-ENG-003 CYBERCUBE-Webhooks-Integrations-Standard-v1.md",
+      "number": 32,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 8,
+        "IN PLACE": 4,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 0
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[33]-STD-ENG-008 CYBERCUBE-Reusable-Modules-Standard-v1.1.md",
+      "number": 33,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 0,
+        "IN PLACE": 0,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 0
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[34]-STD-ENG-004 CYBERCUBE-Infrastructure-as-Code-Standard-v1.md",
+      "number": 34,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 13,
+        "IN PLACE": 3,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 3,
+        "PARTIAL": 1
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[35]-STD-ENG-005 CYBERCUBE-Testing-Quality-Standard-v1.md",
+      "number": 35,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 10,
+        "IN PLACE": 3,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 7
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[36]-POL-ENG-001 CYBERCUBE-Change-Management-Policy-v1.md",
+      "number": 36,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 3,
+        "IN PLACE": 6,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 1
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[37]-STD-ENG-006 CYBERCUBE-Release-Deployment-Standard-v1.md",
+      "number": 37,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 10,
+        "IN PLACE": 5,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 1,
+        "PARTIAL": 5
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[38]-STD-OPS-003 CYBERCUBE-Observability-Telemetry-Standard-v1.md",
+      "number": 38,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 11,
+        "IN PLACE": 1,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 6
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[39]-STD-OPS-005 CYBERCUBE-Platform-Reliability-SRE-Standard-v1.md",
+      "number": 39,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 11,
+        "IN PLACE": 1,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 3,
+        "PARTIAL": 7
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[40]-STD-SLP-001 CYBERCUBE-Service-Level-Policy-v1.md",
+      "number": 40,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 6,
+        "IN PLACE": 5,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 2
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[41]-STD-OPS-004 CYBERCUBE-Incident-Response-Standard-v1.md",
+      "number": 41,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 7,
+        "IN PLACE": 5,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 1
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[42]-STD-OPS-002 CYBERCUBE-Backup-Disaster-Recovery-Standard-v1.md",
+      "number": 42,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 3,
+        "IN PLACE": 0,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 3,
+        "PARTIAL": 3
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[43]-PLN-OPS-001 CYBERCUBE-Business-Continuity-Plan-v1.md",
+      "number": 43,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 2,
+        "IN PLACE": 0,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 3,
+        "PARTIAL": 3
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[44]-STD-GOV-004 CYBERCUBE-Internal-Audit-Assurance-Standard-v1.md",
+      "number": 44,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 4,
+        "IN PLACE": 5,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 0
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[45]-STD-GOV-005 CYBERCUBE-Metrics-KRIs-Governance-Dashboards-Standard-v1.md",
+      "number": 45,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "ROADMAP": 0,
+        "IN PLACE": 0,
+        "N/A": 0,
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 0
+      },
+      "frozen": false,
+      "findings": []
+    }
+  ]
+}

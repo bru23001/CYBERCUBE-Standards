@@ -1,0 +1,16 @@
+[
+  {
+    "id": "VND-0001",
+    "name": "Bootstrap Vendor — validator seed, replace before v1 freeze",
+    "category": "other",
+    "tier": "tier-4-low-risk",
+    "data_sensitivity": "none",
+    "owner": "eng-lead",
+    "dpa_required": false,
+    "status": "active",
+    "last_assessed": "2026-04-22",
+    "next_review_due": "2027-04-22",
+    "linked_risks": [],
+    "subprocessors": []
+  }
+]

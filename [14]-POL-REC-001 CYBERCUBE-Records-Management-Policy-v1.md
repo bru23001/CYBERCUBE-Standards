@@ -1,6 +1,14 @@
-# CYBERCUBE Records Management Policy (v1)
+# CYBERCUBE Records Management Policy (v1.1)
 
-> **FROZEN — MUST language suspended.** Per POL-GOV-001 §8.8 (ratified 2026-04-22), this standard's Implementation Status section is majority-PENDING. All normative MUST/SHALL clauses are temporarily downgraded to SHOULD until Implementation Status reaches majority IN-PLACE/COMPLETE. This status blocks advancement to Active per POL-GOV-001 §2.2. Lift the freeze by: (a) completing PENDING components, or (b) formally downgrading MUST language and re-submitting for review.
+## Applicability Tier Table
+
+| Applicability | Tier | Summary of Clauses in This Policy | Waiver Path |
+| ------------- | ---- | --------------------------------- | ----------- |
+| All projects | **T1 MUST** | (1) Records MUST be classified per STD-DAT-001. (2) Retention periods MUST follow the canonical retention schedule in STD-DAT-001. (3) Records under legal hold MUST NOT be deleted. (4) Destruction of records past retention MUST be logged (who, what, when, method). | None (non-waivable) |
+| SaaS / customer-facing | **T2 SHOULD** | Named records custodian per department, standardized repositories, automated retention/disposal where platform allows, periodic (annual) inventory. | Lightweight waiver per POL-GOV-001 §8.3 |
+| Regulated / high-risk | **T3 MAY** | Formal records-management training module, DLP coverage of records repositories, tiered backup/archive with immutable storage, certified media sanitization, quarterly monitoring program, external records-retention attestation. | Formal waiver per STD-GOV-003 |
+
+> **v1.1 (2026-04-22) — MUST scope narrowed.** T1 reduced to four enforceable rules tied to existing artifacts (classification standard + retention schedule + legal-hold policy + destruction log). Custodians, monitoring program, training, media sanitization, DLP, immutable storage reclassified as T2/T3 ROADMAP.
 
 ## Glossary
 
@@ -895,15 +903,21 @@ Legal: legal@cybercube.software
 
 ### Core Implementation
 
-| Component | Status | Notes |
-|-----------|--------|-------|
-| Policy document | COMPLETE | This policy |
-| Retention schedule | COMPLETE | Data Classification Standard |
-| Records custodian assignments | PENDING | Assign per department |
-| Training | PENDING | Develop module |
-| Storage locations | PARTIAL | Standardize repositories |
-| Destruction process | PENDING | Formalize procedure |
-| Monitoring program | PENDING | Establish schedule |
+| Component | Status | Tier | Notes |
+|-----------|--------|------|-------|
+| Policy document | IN PLACE | T1 | This policy |
+| Retention schedule | IN PLACE | T1 | STD-DAT-001 canonical schedule |
+| Classification mapping to records | IN PLACE | T1 | STD-DAT-001 §Classification |
+| Legal-hold preservation rule | IN PLACE | T1 | Enforced via STD-LGL-001 |
+| Destruction log (manual, per-event) | IN PLACE | T1 | Ticketing system ticket per destruction event |
+| Storage locations inventory | PARTIAL | T2 | Standardize repositories — in progress |
+| Records custodian assignments | ROADMAP | T2 | Per-department assignment when org structure formalized |
+| Monitoring program | ROADMAP | T2 | Annual inventory cadence |
+| Training module | ROADMAP | T3 | Bundle into STD-SEC-008 expansion |
+| Certified media sanitization | ROADMAP | T3 | Required for T3 projects |
+| Immutable archive / DLP coverage | ROADMAP | T3 | Required for T3 projects |
+
+Status vocabulary: `IN PLACE` | `COMPLETE` | `PARTIAL` | `ROADMAP` | `N/A`.
 
 ---
 
@@ -912,6 +926,7 @@ Legal: legal@cybercube.software
 | Version | Date | Changes |
 |---------|------|---------|
 | v1 | 2026-01-17 | Initial release |
+| v1.1 | 2026-04-22 | Unfreeze (Path B/C): added Applicability Tier Table; T1 reduced to classification + retention schedule + legal hold + destruction log. Custodians, monitoring, training, media sanitization, DLP, immutable archive reclassified as T2/T3 ROADMAP. Status vocabulary normalized. |
 
 ---
 

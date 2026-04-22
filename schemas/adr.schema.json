@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cybercube.example/schemas/adr.v1.json",
+  "title": "CYBERCUBE ADR (Architecture Decision Record) — minimal schema",
+  "description": "Machine-readable contract for ADRs referenced by POL-GOV-002 and the ADR index generator. The schema validates the front-matter of an ADR Markdown file (YAML or the Metadata table equivalent). The Markdown body is free-form.",
+  "type": "object",
+  "required": ["id", "title", "status", "date", "owner", "context", "decision"],
+  "additionalProperties": true,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^ADR-[0-9]{4}$",
+      "description": "Zero-padded 4-digit ADR number, prefixed 'ADR-' (e.g. ADR-0042)."
+    },
+    "title": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 120
+    },
+    "status": {
+      "type": "string",
+      "enum": ["proposed", "accepted", "superseded", "deprecated", "rejected"]
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "ISO 8601 date of the status transition."
+    },
+    "owner": {
+      "type": "string",
+      "description": "Named role or individual accountable (e.g. 'eng-lead', 'sec-lead')."
+    },
+    "supersedes": {
+      "type": ["string", "array"],
+      "items": { "type": "string", "pattern": "^ADR-[0-9]{4}$" },
+      "description": "ADR ID(s) this one supersedes."
+    },
+    "superseded_by": {
+      "type": "string",
+      "pattern": "^ADR-[0-9]{4}$"
+    },
+    "standards_affected": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^(STD|POL|FWK|TPL|PLN)-[A-Z]{2,4}-[0-9]{3}$"
+      },
+      "description": "Standards whose rules this ADR changes or interprets."
+    },
+    "applicability_tier": {
+      "type": "string",
+      "enum": ["T1", "T2", "T3", "portfolio"],
+      "description": "Scope of the decision per POL-GOV-001 §8.7."
+    },
+    "context": { "type": "string", "minLength": 20 },
+    "decision": { "type": "string", "minLength": 20 },
+    "consequences": { "type": "string" }
+  }
+}

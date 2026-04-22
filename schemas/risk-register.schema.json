@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cybercube.example/schemas/risk-register.v1.json",
+  "title": "CYBERCUBE Risk Register — unified schema (STD-ERM-001)",
+  "description": "Machine-readable contract for enterprise-risk-register entries referenced by STD-ERM-001. Implementations may store the register as a single JSON array, one-file-per-risk in a directory, or a spreadsheet export — provided each row validates against this schema.",
+  "type": "array",
+  "items": { "$ref": "#/$defs/risk" },
+  "$defs": {
+    "risk": {
+      "type": "object",
+      "required": ["id", "title", "category", "owner", "inherent_rating", "residual_rating", "status", "last_reviewed"],
+      "additionalProperties": true,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^RISK-[0-9]{4}$",
+          "description": "Zero-padded 4-digit risk number, prefixed 'RISK-' (e.g. RISK-0007)."
+        },
+        "title": { "type": "string", "minLength": 3, "maxLength": 160 },
+        "description": { "type": "string" },
+        "category": {
+          "type": "string",
+          "enum": [
+            "security", "privacy", "availability", "compliance", "legal",
+            "financial", "operational", "reputational", "strategic",
+            "vendor", "ai-model", "personnel", "other"
+          ]
+        },
+        "owner": {
+          "type": "string",
+          "description": "Named role accountable for the risk (e.g. 'sec-lead', 'privacy-lead')."
+        },
+        "inherent_rating": { "$ref": "#/$defs/rating" },
+        "residual_rating": { "$ref": "#/$defs/rating" },
+        "treatment": {
+          "type": "string",
+          "enum": ["accept", "mitigate", "transfer", "avoid"]
+        },
+        "controls": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "Control identifier from the Unified Control Matrix (STD-GOV-006) or a free-form control name."
+          }
+        },
+        "kri_ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "KRIs tracking this risk per STD-GOV-005 §5.3."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["open", "in-treatment", "accepted", "closed", "superseded"]
+        },
+        "last_reviewed": { "type": "string", "format": "date" },
+        "next_review_due": { "type": "string", "format": "date" },
+        "linked_incidents": {
+          "type": "array",
+          "items": { "type": "string", "description": "Incident IDs from STD-OPS-004." }
+        },
+        "linked_exceptions": {
+          "type": "array",
+          "items": { "type": "string", "description": "Waiver IDs from STD-GOV-003." }
+        }
+      }
+    },
+    "rating": {
+      "type": "object",
+      "required": ["likelihood", "impact"],
+      "additionalProperties": false,
+      "properties": {
+        "likelihood": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "impact":     { "type": "integer", "minimum": 1, "maximum": 5 },
+        "rationale":  { "type": "string" }
+      }
+    }
+  }
+}

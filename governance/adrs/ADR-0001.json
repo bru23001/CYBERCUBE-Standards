@@ -1,0 +1,11 @@
+{
+  "id": "ADR-0001",
+  "title": "Bootstrap ADR — seed the ADR registry",
+  "status": "accepted",
+  "date": "2026-04-22",
+  "owner": "eng-lead",
+  "context": "POL-GOV-002 now references schemas/adr.schema.json. An empty governance/adrs/ directory would cause tools/validate-schemas.py --strict to fail. This bootstrap ADR seeds the registry and documents the schema adoption itself.",
+  "decision": "Adopt schemas/adr.schema.json v1 as the authoritative front-matter contract for all future ADRs. Use JSON sidecar files (ADR-NNNN.json) alongside ADR-NNNN.md Markdown bodies. Validator runs in CI (schema-validate job).",
+  "supersedes": [],
+  "standards_affected": ["POL-GOV-002"]
+}

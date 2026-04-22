@@ -1,15 +1,23 @@
-# CYBERCUBE Service Level Policy (v1)
-
-> **FROZEN — MUST language suspended.** Per POL-GOV-001 §8.8 (ratified 2026-04-22), this standard's Implementation Status section is majority-PENDING. All normative MUST/SHALL clauses are temporarily downgraded to SHOULD until Implementation Status reaches majority IN-PLACE/COMPLETE. This status blocks advancement to Active per POL-GOV-001 §2.2. Lift the freeze by: (a) completing PENDING components, or (b) formally downgrading MUST language and re-submitting for review.
+# CYBERCUBE Service Level Policy (v1.1)
 
 **Standard ID:** STD-SLP-001  
-**Status:** Frozen (was: Active)  
-**Effective:** 2026-01-17  
-**Version:** 1.0  
+**Status:** Active  
+**Effective:** 2026-01-17 (v1), 2026-04-22 (v1.1)  
+**Version:** 1.1  
 **Classification:** INTERNAL (SLOs), PUBLIC (SLAs)  
 **Owner:** VP Engineering  
 **Approver:** CTO  
 **Applies to:** All CYBERCUBE production services
+
+## Applicability Tier Table
+
+| Applicability | Tier | Summary of Clauses in This Policy | Waiver Path |
+| ------------- | ---- | --------------------------------- | ----------- |
+| All projects | **T1 MUST** | (1) Every production service MUST have a written service description and a named SLO owner. (2) Planned maintenance MUST be announced to affected users in advance. (3) Any public SLA commitment MUST be reviewed by Legal before publication. *No numeric availability / latency targets are T1.* | None (non-waivable) |
+| SaaS / customer-facing | **T2 SHOULD** | Public SLA document (template in this policy), status page, customer-visible incident communication, quarterly service review, SLI definitions per service. | Lightweight waiver per POL-GOV-001 §8.3 |
+| Regulated / high-risk | **T3 MAY** | Measured SLO engineering discipline (SLI instrumentation, burn-rate alerting, error-budget policy driving change-freeze decisions), service credits billing integration, customer reporting portal, contractual SLA with remedies. | Formal waiver per STD-GOV-003 |
+
+> **v1.1 (2026-04-22) — SPLIT applied.** Numeric availability/latency targets are **removed from T1** because none are currently measured. T2 covers the *public SLA template* (what customers see). T3 covers *SLO engineering* (what we measure internally with error budgets and burn-rate alerts). The two were previously conflated, which is why the policy could not be honored. Error-budget policy, burn-rate alerting, service credits, customer reporting, review cadence — all T3 ROADMAP until telemetry is wired.
 
 ---
 
@@ -1006,17 +1014,23 @@ Status Page: status.cybercube.io
 
 ### Core Implementation
 
-| Component | Status | Notes |
-|-----------|--------|-------|
-| SLI definitions | COMPLETE | This policy |
-| SLO targets | COMPLETE | Per service |
-| SLA terms | PARTIAL | Finalize legal review |
-| Error budget tracking | PENDING | Implement dashboards |
-| Burn rate alerting | PENDING | Configure alerts |
-| Service credits process | PENDING | Billing integration |
-| Status page | PARTIAL | Enhance automation |
-| Customer reporting | PENDING | Portal integration |
-| Review cadence | PENDING | Schedule meetings |
+| Component | Status | Tier | Notes |
+|-----------|--------|------|-------|
+| Policy document | IN PLACE | T1 | This policy |
+| Service description + named SLO owner (per service) | IN PLACE | T1 | Required for every production service |
+| Planned-maintenance announcement process | IN PLACE | T1 | Uses existing customer-notification channel |
+| Legal review gate on public SLAs | IN PLACE | T1 | STD-LGL-001 process |
+| SLI definitions (reference list) | IN PLACE | T2 | Section defines common SLIs; per-service mapping is T2 |
+| SLO numeric targets per service | ROADMAP | T2 | Removed from MUST until measured; set per service when SLI telemetry exists |
+| Public SLA template | PARTIAL | T2 | SLA template present; first-customer instantiation pending Legal review |
+| Status page | PARTIAL | T2 | Manual updates in place; automation ROADMAP |
+| Quarterly service review | ROADMAP | T2 | Schedule when two+ production services live |
+| Error-budget policy | ROADMAP | T3 | Requires SLI telemetry |
+| Burn-rate alerting | ROADMAP | T3 | Requires SLI telemetry |
+| Service credits billing integration | ROADMAP | T3 | Only when paid-tier customers with SLA contracts |
+| Customer reporting portal | ROADMAP | T3 | Only when paid-tier customers with SLA contracts |
+
+Status vocabulary: `IN PLACE` | `COMPLETE` | `PARTIAL` | `ROADMAP` | `N/A`.
 
 ---
 
@@ -1035,6 +1049,7 @@ Status Page: status.cybercube.io
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
 | v1 | 2026-01-17 | Engineering Operations | Initial release |
+| v1.1 | 2026-04-22 | Engineering Operations | Unfreeze (Path C — SPLIT): added Applicability Tier Table; Status restored to Active. T1 reduced to service description + named SLO owner + planned-maintenance announcement + Legal review on public SLAs. Numeric SLO targets **removed from MUST** (ROADMAP T2) until SLI telemetry exists. SLA template is T2; SLO engineering (error budgets, burn-rate alerting, customer reporting, service credits) is T3 ROADMAP. Status vocabulary normalized. |
 
 ---
 

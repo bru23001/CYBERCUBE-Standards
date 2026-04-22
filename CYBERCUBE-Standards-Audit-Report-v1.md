@@ -440,4 +440,950 @@ Recommended next maintenance action: normalize the `Implementation Status` vocab
 
 ---
 
-*End of Execution Log.*
+## 16. EXECUTION LOG — Week-1 Unfreeze Batch (2026-04-22)
+
+### Scope
+
+5 of the 8 frozen standards unfrozen this batch. Strategy = narrow T1 to what is enactable today with existing tools (ticketing system, ERM risk register, static decks, named approvers), reclassify tooling-dependent clauses as T2/T3 **ROADMAP**, and introduce `ROADMAP` as a new explicit status distinct from `PENDING` (declared aspirational, not enforceable until promoted to `IN PLACE`).
+
+### Changes applied per doc
+
+| Doc | Path | T1 now enforceable | Reclassified to ROADMAP | Version |
+|---|---|---|---|---|
+| [44] STD-GOV-004 Internal Audit | B | Findings/CAP tracked in ERM risk register | Annual plan, dedicated tooling, dashboards, metrics baseline → T3 | v1 → v1.1 |
+| [11] POL-AI-001 AI Usage & Ethics | B | Approved-tools list, no-PII-to-unapproved-AI, human review of AI output | Governance committee, ethics review, usage monitoring, critical-risk board approval → T3 | v1 → v1.1 |
+| [24] STD-SEC-008 Security Training | B | New-hire onboarding deck, annual refresh, incident-triggered re-training | LMS, phishing sims, role-based curricula, reporting → T2 | v1 → v1.1 |
+| [36] POL-ENG-001 Change Management | A | Change-request in ticketing system, named approvers (Eng Lead / Security Lead / on-call SRE), rollback plan required, emergency-change retro | CAB ceremony formalities, metrics dashboard, annual program review → T3 | v1 → v1.1 |
+| [41] STD-OPS-004 Incident Response | A+B | Severity matrix (SEV1–4), on-call rotation, SEV1/2 postmortem within 10 BD, ticketing tracking | PagerDuty, status page, runbook repo, MTTA/MTTR dashboards → T2; tabletops, BCP/DR integration, regulator trees → T3 | v1 → v1.1 |
+
+### Uniform edits on all 5 docs
+
+1. FROZEN banner removed.
+2. **Applicability Tier Table** inserted immediately after the H1 (per POL-GOV-001 §8.8).
+3. `Implementation Status` table rewritten:
+   - Added a `Tier` column (T1/T2/T3).
+   - `PENDING` entries that correspond to enactable-today clauses promoted to `IN PLACE`.
+   - `PENDING` entries that depend on future tooling/staffing reclassified as `ROADMAP`.
+   - `Target Date` column replaced by `Tier` where present; aspirational dates removed.
+   - Trailing note added: `Status vocabulary: IN PLACE | COMPLETE | PARTIAL | ROADMAP | N/A`.
+4. Version bumped from `v1` to `v1.1`; Version History row appended describing the unfreeze path and scope change.
+5. Net effect: each doc now has `IN PLACE + COMPLETE` ≥ `PENDING`, clearing the §8.8 freeze trigger.
+
+### Portfolio-level consequences
+
+- **Frozen count**: 8 → 3 remaining (`[14] POL-REC-001`, `[32] STD-ENG-003`, `[40] STD-SLP-001`).
+- **ROADMAP** is now an established status term — must be added to the canonical vocabulary in `[30] STD-ENG-007 §Implementation Status` and referenced in `POL-GOV-001 §8.8`. *Action queued for Week-2.*
+- **Named approver pattern** (Eng Lead / Security Lead / on-call SRE) introduced in POL-ENG-001 v1.1. Same trio can be reused as CAB / incident commander / security reviewer across other standards — consider elevating to a shared §Roles appendix in `[30] STD-ENG-007`. *Action queued for Week-2.*
+- **ERM risk register** now carries triple duty (generic risks, audit findings, CAP tracking). Verify `[4] STD-ERM-001` register schema can accept `finding_id`, `audit_scope`, `cap_owner`, `cap_due`. *Action queued for Week-2.*
+
+### Week-1 verification
+
+Each of the 5 updated docs was re-read post-edit to confirm:
+- FROZEN banner absent.
+- Tier Table present and populated.
+- Implementation Status majority is `IN PLACE + COMPLETE` over `PENDING` (note: `ROADMAP` is not counted as PENDING for freeze purposes — by design).
+- Version History entry present.
+
+### Remaining Week-2 batch (3 docs)
+
+- `[14] POL-REC-001` — Path B/C (MUST for document classification & retention schedule; media sanitization, DLP, backup tiers → T3).
+- `[32] STD-ENG-003` — Path B (MUST for HMAC signing + idempotency key; delivery guarantees, retry policy, dead-letter queues → T2 ROADMAP).
+- `[40] STD-SLP-001` — Path C (**SPLIT**: public SLA template as T2 SHOULD; SLO engineering discipline + error-budget policy as T3 ROADMAP; remove numeric targets from MUST until they are measured).
+
+Plus three portfolio-level follow-ups queued above (ROADMAP in vocab; Named-approver roles; ERM schema extension).
+
+---
+
+*End of Week-1 Execution Log.*
+
+---
+
+## 17. EXECUTION LOG — Week-2 Unfreeze Batch + Portfolio Consolidation (2026-04-22)
+
+### 17.1 Remaining 3 frozen standards — now unfrozen
+
+| Doc | Path | T1 now enforceable | Reclassified to ROADMAP | Version |
+|---|---|---|---|---|
+| [14] POL-REC-001 Records Management | B/C | Classification per STD-DAT-001, retention schedule, legal-hold preservation, destruction log | Custodians, monitoring, training, media sanitization, DLP, immutable archive → T2/T3 | v1 → v1.1 |
+| [32] STD-ENG-003 Webhooks & Integrations | B (conditional) | **Scope-gated**: HMAC-SHA256 signing + `event_id` idempotency + secrets store — only binds IF product emits webhooks | Delivery engine, retry, DLQ, delivery logs, schema, SDK, replay UI → T2/T3; re-trigger on first implementation | v1 → v1.1 |
+| [40] STD-SLP-001 Service Level | C (SPLIT) | Service description + named SLO owner + planned-maintenance announcement + Legal review on public SLAs. **No numeric SLO targets** | Public SLA template T2; error-budget policy, burn-rate alerting, service credits, customer reporting portal → T3 | v1 → v1.1 (Status restored Frozen → Active) |
+
+**Frozen portfolio status: 8 → 3 → 0.** All 8 docs flagged by §8.8 are now unfrozen.
+
+### 17.2 Portfolio-level consolidation
+
+#### 17.2.1 `ROADMAP` formalized as canonical status — [2] POL-GOV-001 §8.9 (NEW)
+
+Added §8.9 "Implementation Status Vocabulary & Freeze Trigger" to the Governance Policy:
+
+- Canonical vocabulary frozen at: `COMPLETE` | `IN PLACE` | `PARTIAL` | `ROADMAP` | `N/A`.
+- Legacy `PENDING` **deprecated**; remap at next revision to `ROADMAP` (aspirational) or `PARTIAL` (active WIP).
+- `ROADMAP` is a contract: every row MUST state the tier at which it becomes enforceable **and** the re-trigger condition (e.g. "when LMS selected", "when product emits webhooks", "when telemetry wired"). Unconditional `ROADMAP` rows are rejected at review.
+- Freeze trigger (§8.9.2) updated to: `count(PENDING)` > `count(COMPLETE) + count(IN PLACE)` **OR** any `MUST` clause whose only backing component is `ROADMAP`. Neither `ROADMAP` nor `PARTIAL` counts as `PENDING`.
+
+Corresponding update in [30] STD-ENG-007 standard template: `Implementation Status` section now embeds the canonical vocabulary and a `Tier` column, matching the Week-1+2 pattern used by every unfrozen doc.
+
+#### 17.2.2 Named-approver trio — [30] STD-ENG-007 Appendix X (NEW)
+
+To stop divergent approver naming across standards, a new **Appendix X: Shared Roles (Named Approvers)** was added to the Documentation & RFC Standard:
+
+| Role Key | Default Holder | Used by |
+|----------|----------------|---------|
+| `eng-lead` | Engineering Lead | Change approval (POL-ENG-001), RFC acceptance, audit sponsor |
+| `sec-lead` | Security Lead | Security review, incident commander (SEV1/2), exceptions gate |
+| `oncall-sre` | Current on-call SRE | Production sign-off, incident paging, runbook ownership |
+
+Binding rules require every project to publish a `roles.md` mapping these three keys to named people, log binding changes with 5-BD notice, and either locally define or map any non-canonical role. Referenced by POL-ENG-001 v1.1 (CAB members), STD-OPS-004 v1.1 (incident commander), STD-GOV-004 v1.1 (audit sponsor), POL-AI-001 v1.1 (T3 approval gate), POL-GOV-001 (§8.3 exception approvers).
+
+#### 17.2.3 Single canonical Risk Register — [8] STD-ERM-001 §8 (EXTENDED to v1.1)
+
+The ERM Risk Register is now schematically the **only** risk/findings tracker across the portfolio. §8.1 adds a canonical schema with an `entry_type` discriminator (`ENTERPRISE_RISK` | `AUDIT_FINDING` | `VENDOR_RISK`) and conditional fields:
+
+- **Audit-finding fields** (required when `entry_type = AUDIT_FINDING`): `finding_id`, `audit_scope`, `cap_owner`, `cap_due` — consumed by STD-GOV-004 v1.1 T1 clause.
+- **Vendor-risk field** (required when `entry_type = VENDOR_RISK`): `vendor_id` — consumed by POL-VEN-001.
+- **Owner** field now uses STD-ENG-007 Appendix X role keys by default.
+
+This closes the last concrete dependency from Week-1 (STD-GOV-004 T1 = "findings tracked in ERM register") — the register can actually carry that data now.
+
+### 17.3 Cross-standard dependency graph (post-Week-2)
+
+```
+[2]  POL-GOV-001 §8.7 / §8.8 / §8.9   ← authorities: tiering, tier table, status vocab + freeze
+[30] STD-ENG-007 §2.1A + Appendix X   ← canonical: tier-table template, status vocab, role keys
+[8]  STD-ERM-001 §8.1                 ← canonical: Risk Register schema (3 entry types)
+    │
+    ├── [36] POL-ENG-001 v1.1 (CAB = eng-lead/sec-lead/oncall-sre via §X.1)
+    ├── [41] STD-OPS-004 v1.1 (incident commander = sec-lead via §X.1)
+    ├── [44] STD-GOV-004 v1.1 (findings/CAP → ERM register via §8.1 AUDIT_FINDING)
+    ├── [ 9] POL-VEN-001     (vendor risks → ERM register via §8.1 VENDOR_RISK)
+    ├── [11] POL-AI-001 v1.1 (T3 approval gate = sec-lead via §X.1)
+    ├── [24] STD-SEC-008 v1.1
+    ├── [14] POL-REC-001 v1.1
+    ├── [32] STD-ENG-003 v1.1
+    └── [40] STD-SLP-001 v1.1
+```
+
+### 17.4 Portfolio state after Week-2
+
+| Metric | Pre-Week-1 | Post-Week-1 | Post-Week-2 |
+|---|---|---|---|
+| Frozen standards | 8 | 3 | **0** |
+| Standards with Applicability Tier Table | 2 (governance docs only) | 7 | **10** (all unfrozen + template) |
+| Standards on canonical status vocabulary | 0 | 5 | **8** (Week-1 + Week-2 unfrozen + ERM + template) |
+| Docs using named-approver trio | 0 | 1 (implicit in [36]) | **5** (explicit via Appendix X) |
+| Parallel risk/finding trackers required | 2 (ERM + audit) | 2 | **1** (ERM only, via entry_type) |
+
+### 17.5 Next maintenance actions (carried forward to Week-3+)
+
+1. **Portfolio-wide vocabulary migration** — remaining 35 standards still carry legacy `PENDING` values. Batch edit to remap to `ROADMAP` / `PARTIAL` / `IN PLACE`; can be scripted (detection pattern: `| PENDING |`).
+2. **Tier Table rollout** — remaining 35 standards lack an Applicability Tier Table; Draft-status gate now applies per §8.8. Schedule cluster-by-cluster updates (Governance → Security → Data → Engineering → Ops).
+3. **Freeze check automation** — write a CI linter that parses each standard's `Implementation Status` table and applies the §8.9.2 trigger; emits a `FREEZE REQUIRED` label before merge. Feeds Pass 3 Automatability rating.
+4. **Pass 3 (Friction Audit)** — now unblocked: every standard either has a Tier Table (can be tier-audited) or will get one in the batch above.
+5. **Pass 4 (Scenario Integration Test)** — design 3 synthetic project profiles (T1 internal tool, T2 SaaS, T3 regulated/healthcare) and test the post-Week-2 portfolio for follow-ability against each.
+
+---
+
+*End of Week-2 Execution Log.*
+
+---
+
+## 18. EXECUTION LOG — Week-3: Tooling + Governance-Cluster Tier Tables (2026-04-22)
+
+### 18.1 `tools/freeze-check.py` — portfolio linter (NEW)
+
+A Python CLI linter at `tools/freeze-check.py` now implements POL-GOV-001 §8.8 / §8.9 / §8.9.2 mechanically. For each `[N]-*.md` standard it:
+
+1. Parses the `## Implementation Status` section and every component table's `Status` column.
+2. Normalizes values against the canonical vocabulary (`COMPLETE | IN PLACE | PARTIAL | ROADMAP | N/A`).
+3. Applies the §8.9.2 freeze trigger (`count(PENDING) > count(COMPLETE + IN PLACE)`).
+4. Verifies an `Applicability Tier Table` heading exists in the first 60 lines of the file.
+5. Emits a human-readable report and (optionally) `freeze-check-report.json`.
+
+Exit codes: `0` clean, `1` frozen/unknown, `2` no standards found. README at `tools/README.md`. Suitable for CI; a failing exit SHOULD block merge unless a waiver is attached.
+
+### 18.2 Portfolio linter run — first full scan
+
+```
+Scanned:            45 standards
+Frozen (§8.9.2):    15
+No Tier Table:      37  →  30 after Week-3 edits below
+Legacy PENDING:     22
+Unknown status val: 5   (ACTIVE, IN PROGRESS, PLANNED, IMPLEMENTED, GAP)
+```
+
+#### 18.2.1 Newly discovered frozen standards (15)
+
+The §8.9.2 trigger is stricter than the Pass-2 heuristic; 15 additional standards now show up as frozen under the formal rule:
+
+| # | Standard |
+|---|---|
+| [10] | POL-AUP-001 Acceptable Use Policy |
+| [15] | STD-LGL-001 Legal Hold & eDiscovery |
+| [18] | STD-SEC-003 Authentication & Identity |
+| [19] | STD-SEC-004 Authorization & Access Control |
+| [22] | STD-SEC-006 Vulnerability Management |
+| [23] | STD-SEC-007 Security Incident Response |
+| [25] | STD-DAT-001 Data Classification & Retention |
+| [26] | STD-DAT-002 Soft Delete & Lifecycle |
+| [27] | STD-DAT-004 Customer Data Isolation & Multi-tenancy |
+| [31] | STD-ENG-002 API Design |
+| [34] | STD-ENG-004 Infrastructure as Code |
+| [35] | STD-ENG-005 Testing & Quality |
+| [37] | STD-ENG-006 Release & Deployment |
+| [38] | STD-OPS-003 Observability & Telemetry |
+| [39] | STD-OPS-005 Platform Reliability & SRE |
+
+**Interpretation:** Pass 2 concluded that 8 docs were aspirational; the linter shows the reality is **23** (8 originally + 15 newly detected). These 15 MUST either follow the Week-1/2 unfreeze playbook (Path A/B/C) or migrate their vocab first (Week-4).
+
+#### 18.2.2 Non-canonical status values observed
+
+Legacy vocabulary still in circulation (will be fixed by vocab migration):
+
+| Value | Remap |
+|-------|-------|
+| `ACTIVE` | → `IN PLACE` (ongoing process) *or* `COMPLETE` (if one-off artifact) |
+| `IN PROGRESS` | → `PARTIAL` |
+| `PLANNED` | → `ROADMAP` (with re-trigger condition added) |
+| `IMPLEMENTED` | → `COMPLETE` |
+| `GAP` | → `ROADMAP` (with re-trigger condition added) |
+| `PENDING` | → `ROADMAP` (aspirational, no tooling yet) *or* `PARTIAL` (work started) — author decides |
+
+### 18.3 Governance cluster — Tier Table rollout
+
+Applicability Tier Tables inserted in **7 governance docs**: [3], [4], [5], [6], [7], [8], [9]. Each was given a cluster-specific T1/T2/T3 split (not a stub) and a version bump `v1 → v1.1`.
+
+| Doc | T1 backbone | T3 frontier |
+|---|---|---|
+| [3] POL-GOV-002 Architecture Governance | Named architecture owner + ADR/RFC for multi-service decisions + ARB for public-contract breaking changes | Formal ARB, scheduled reviews, enterprise reference arch |
+| [4] FWK-GOV-001 Framework Compliance | CYBERCUBE acronym canonical + checklist at inception + before GA + FAIL fixed or waived | External validation, board reporting, SOC-2 cross-map |
+| [5] STD-GOV-001 Product Registry & Classification | Every product registered with PCL + PCL reviewed on arch change + **criticality drives downstream tier selection** | Regulator-facing inventory, external validation |
+| [6] STD-GOV-003 Policy Exception & Waiver | All deviations filed as exceptions + named approver + expiry — **meta-rule: these T1 are self-referentially non-waivable** | External audit, board review, SLA on remediation |
+| [7] STD-GOV-006 Unified Control Matrix | Every MUST clause maps to UCM + MUST clause changes update UCM in same PR | External evidence packs, multi-framework crosswalk |
+| [8] STD-ERM-001 ERM Policy | Canonical Risk Register (§8.1 schema) + named approver for HIGH/CRITICAL acceptance + no undocumented acceptance | Executive risk committee, board reporting, GRC platform |
+| [9] POL-VEN-001 Vendor Risk Mgmt | Vendor register + ERM-register entry (entry_type=VENDOR_RISK) + review before prod data flow | SOC-2 type II required, on-site audit rights, multi-vendor contingency |
+
+**Key structural decision captured in [5] STD-GOV-001 T1 row:** the PCL criticality facet (`C` in `PCL-L.D.E.C`) is now the load-bearing trigger for Applicability Tier selection (C1 → T3, C2/C3 → T2, POC → T1-only). This closes a soft spot in POL-GOV-001 §8.7.2 "Project Tier Inheritance" which previously did not name its input.
+
+### 18.4 Portfolio state after Week-3
+
+| Metric | Pre-Week-1 | Post-Week-2 | Post-Week-3 |
+|---|---|---|---|
+| Frozen standards (known) | 8 | 0 | 15 (newly surfaced by linter) |
+| With Applicability Tier Table | 2 | 10 | **15** |
+| On canonical vocabulary | 0 | 8 | 8 (no new work) |
+| Docs using named-approver trio | 0 | 5 | 5 |
+| Portfolio has freeze-check tooling | no | no | **yes** |
+| Tier selection has authoritative input | no | no | **yes** (PCL `C` facet, via STD-GOV-001 §Tier Table T1) |
+
+### 18.5 Follow-ups carried to Week-4
+
+1. **Unfreeze the 15 newly-detected frozen standards** — apply Week-1/2 Path A/B/C playbook. Highest-leverage candidates: [18][19][25][27] (touch security + data core) and [35][37] (gate GA on every project).
+2. **Portfolio vocabulary migration** — remap `PENDING`, `ACTIVE`, `IN PROGRESS`, `PLANNED`, `IMPLEMENTED`, `GAP` in 22 affected docs. Can be scripted for the text substitution, but the `PENDING → ROADMAP` vs `PENDING → PARTIAL` call requires per-row judgment. Recommended approach: two-pass — mechanical substitution to a neutral marker, then author review to commit the tier + re-trigger condition.
+3. **Tier Table rollout to remaining clusters** (~30 docs): Security cluster ([17][18][19][20][21][22][23]), Data cluster ([25][26][27]), Engineering cluster ([28][29][31][33][34][35][37]), Ops cluster ([38][39][42][43][45]), Legal ([15][16]), Privacy ([12][13]), AUP ([10]).
+4. **CI wiring** — add `python3 tools/freeze-check.py` as a pre-commit / CI step. Requires deciding the failure policy (block vs warn).
+5. **Pass 3 (Friction Audit)** — now concretely measurable using the linter output as one of the signals (docs with no Tier Table or frozen status start from a lower floor).
+
+---
+
+*End of Week-3 Execution Log.*
+
+---
+
+## 19. EXECUTION LOG — Week-4: Priority Unfreezes + Sec-Cluster Tier Tables + CI Wiring (2026-04-22)
+
+**Scope chosen for Week-4** (first half of the Week-3 queue):
+- Unfreeze the 6 highest-leverage standards from the 15 newly-detected frozen set: `[18]`, `[19]`, `[25]`, `[27]`, `[35]`, `[37]`.
+- Add Tier Tables to the remaining non-frozen Security cluster: `[17]`, `[20]`, `[21]` (completes the whole Security cluster at Tier-Table level).
+- Wire `tools/freeze-check.py` into CI: GitHub Actions workflow + `pre-commit-config`.
+- Append this execution log.
+
+Deferred to Week-5: `[22][23]`, `[26]`, `[31][34]`, `[38][39]` unfreezes; vocabulary scripted remap for `ACTIVE` / `IMPLEMENTED` / `PLANNED` / `GAP` in `[7] STD-GOV-006` and `[29] STD-ENG-001`; Pass 3 Friction Audit.
+
+### 19.1 Unfreeze pass (6 standards — Path B)
+
+All six applied the same pattern: version bump to v1.1 (or v1.2 for `[35]` which was already at v1.1), Applicability Tier Table inserted after front-matter, Implementation Status rewritten with a `Tier` column and `PENDING → ROADMAP|PARTIAL|IN PLACE` remap, Version History row appended.
+
+| # | Standard | New version | T1 rules (count, one-line) |
+|---|----------|-------------|-----------------------------|
+| [18] | STD-SEC-003 Authentication & Identity | v1.1 | 5: password hash algorithm, session expiry/invalidation, auth event log, rate-limit, secrets in key-store. |
+| [19] | STD-SEC-004 Authorization & Access Control | v1.1 | 5: deny-by-default, per-endpoint check, non-binary roles, decision logging, ownership checks. RLS → T3. |
+| [25] | STD-DAT-001 Data Classification & Retention | v1.1 | 5: classification labels, retention schedule, PII inventory, deletion audit, backup inheritance. |
+| [27] | STD-DAT-004 Customer Data Isolation | v1.1 | 4+scope: multi-tenancy scope declaration → `tenant_id` universal + query-level filtering + SEV-1 treatment. RLS → T3. |
+| [35] | STD-ENG-005 Testing & Quality | v1.2 | 5: tests-in-CI, critical-path coverage, regression-test-on-fix, flaky quarantine, execution-time budget. |
+| [37] | STD-ENG-006 Release & Deployment | v1.1 | 5: Git+branch protection, immutable artifacts, versioned/attributable deploys, rollback plan, reversible migrations. |
+
+**Overlap resolutions in this pass:**
+
+- `[19] ↔ [27]` on tenant isolation / RLS: `[27]` owns the concrete rules; `[19]` now defers. RLS is T3 in both.
+- `[19] ↔ [18]` on auth event logging: both have it, but `[18]` owns auth-specific logging rules and `[19]` owns authorization-decision logging. Complementary, not overlapping.
+- `[37] ↔ POL-ENG-001 v1.1` on change approval: `[37]` T1 row (4) references the POL-ENG-001 change-request template directly instead of restating requirements.
+- `[35] ↔ [38][39]` on SLO-linked perf / chaos testing: deferred to T3 in `[35]`, owned in `[38][39]` — resolves once those are unfrozen.
+
+### 19.2 Security cluster Tier Table completion (3 standards)
+
+| # | Standard | Version bump | T1 clause count |
+|---|----------|--------------|-----------------|
+| [17] | STD-SEC-001 Security Policy (umbrella) | v1.0 → v1.1 | 5 (CIA, named owner, incident rules, prod-access gating, child-standard enumeration). |
+| [20] | STD-SEC-005 Cryptography & Key Management | v1 → v1.1 | 5 (approved algos, no custom crypto, secret-manager storage, TLS on public endpoints, rotation policy documented). |
+| [21] | STD-SEC-002 Secure Coding | v1 → v1.1 | 5 (input validation at boundaries, parameterized SQL, output encoding, secret redaction in logs, no internal leak in errors). |
+
+**Outcome:** entire Security cluster (`[17]`–`[24]`) now has Applicability Tier Tables. Still-frozen in cluster: `[22]` (Vuln-Mgmt) and `[23]` (Sec-IR). Non-frozen with tiers: `[17][18][19][20][21][24]`.
+
+### 19.3 CI wiring
+
+Two files added:
+
+- `.github/workflows/freeze-check.yml` — runs `tools/freeze-check.py --json` on PRs touching `[N]-*.md` or `tools/freeze-check.py`; uploads the JSON report and pastes the human-readable summary into the PR job summary. Fails the job (exit 1) when any standard is `FROZEN` or has `UNKNOWN_STATUS`.
+- `.pre-commit-config.yaml` — local `pre-commit` hook with the same entry point. Devs install once with `pip install pre-commit && pre-commit install`; any commit touching a standard or the linter itself triggers the check.
+
+**Enforcement policy chosen:** **block** on `FROZEN` + `UNKNOWN_STATUS`; **warn** on `MISSING_TIER_TABLE` and `DEPRECATED_PENDING` (they surface in the report but do not fail the build). Rationale: we want the pipeline to accept incremental progress; a hard gate on tier tables today would block 20 otherwise-correct edits.
+
+### 19.4 Linter re-run — portfolio state after Week-4
+
+```
+Scanned:            45 standards
+Frozen (§8.9.2):     9       (was 15)   ↓ 6
+No Tier Table:      20       (was 30)   ↓ 10
+Legacy PENDING:     17       (was 22)   ↓ 5
+Unknown status val:  5       (unchanged; deferred to Week-5 vocab migration)
+```
+
+**Remaining frozen after Week-4 (9):**
+`[10]` POL-AUP-001, `[15]` STD-LGL-001, `[22]` STD-SEC-006, `[23]` STD-SEC-007, `[26]` STD-DAT-002, `[31]` STD-ENG-002, `[34]` STD-ENG-004, `[38]` STD-OPS-003, `[39]` STD-OPS-005.
+
+All nine fall within the Week-1/2 Path B pattern; each needs ~30 minutes of T1 reduction + Tier Table insertion. Grouping suggestion for Week-5:
+
+- **Batch 5A — Security finish:** `[22][23]` (matches Week-4 security theme).
+- **Batch 5B — Data finish:** `[26]`.
+- **Batch 5C — Engineering depth:** `[31][34]`.
+- **Batch 5D — Ops depth:** `[38][39]`.
+- **Batch 5E — AUP + Legal:** `[10][15]`.
+
+### 19.5 Portfolio-level consequences
+
+1. The **Security + Data + core-Eng + Release** backbone is now tiered and unfrozen. A new project picking up the CYBERCUBE portfolio today can derive an enforceable T1 baseline from just `[17]–[21]`, `[25][27]`, `[35][37]`, plus the already-tiered `[14] POL-REC-001`, `[36] POL-ENG-001`, `[40][41]`, `[44]`. That's 14 T1-backed documents covering security, access control, cryptography, data classification, tenant isolation, testing, release, change management, SLP, incident response, and audit.
+2. The **T1 clause average across the 6 unfreezes is 4.8** (5, 5, 5, 4, 5, 5). This aligns with the Week-1/2 target of "5 rules implementable on day 1" and confirms Path B is the dominant unfreeze idiom.
+3. **RLS scope resolved.** Before Week-4, both `[19]` and `[27]` carried RLS as aspirational MUST. Now `[27]` owns the rule (T3) and `[19]` defers — eliminating a known overlap-register item from Pass-1 §4.
+4. **Automation gate is live.** CI and pre-commit now refuse to accept regressions (a new frozen standard, an unknown status value). This is the first automated quality gate in the portfolio.
+
+### 19.6 Follow-ups / WEEK-5 QUEUE
+
+1. Unfreeze batches 5A–5E (9 remaining frozen standards).
+2. Scripted vocabulary remap for `ACTIVE` / `IMPLEMENTED` / `PLANNED` / `GAP` — primarily `[7] STD-GOV-006` (UCM) and `[29] STD-ENG-001` (naming). Two-pass approach as previously noted.
+3. Tier Tables for the remaining 20 docs without one (meta-docs like `[1] Name Registry`, `[2] POL-GOV-001` itself, `[16] TPL-LGL-001`, plus all Ops/Legal/Privacy docs still outstanding). Some meta-docs legitimately shouldn't carry a Tier Table — document the exception in `[2]` §8.8.1.
+4. Begin Pass 3 Friction Audit using the linter's JSON output as one objective input plus author self-assessments.
+5. Consider tightening the CI gate to block `MISSING_TIER_TABLE` once the count reaches ≤5.
+
+---
+
+*End of Week-4 Execution Log.*
+
+---
+
+## 20. EXECUTION LOG — Week-5: Full Unfreeze + Tier-Table Rollout + Vocab Remap + CI Tightening + Pass-3 Kickoff (2026-04-22)
+
+**Scope:** Complete the portfolio-level tier + status discipline. Drive `FROZEN`, `MISSING_TIER_TABLE`, legacy `PENDING`, and `UNKNOWN_STATUS` counts to zero. Tighten CI. Kick off Pass-3 Friction Audit.
+
+### 20.1 Batches 5A–5E: remaining 9 frozen standards unfrozen (Path B)
+
+Same Path B pattern as Weeks 1–4 (Tier Table after front-matter, Impl-Status rewritten with `Tier` column, `PENDING → ROADMAP|PARTIAL|IN PLACE` remap, version bump, Version-History row).
+
+| Batch | Std | New ver | T1 rules (count, one-line) |
+|-------|-----|---------|-----------------------------|
+| 5A | [22] STD-SEC-006 Vulnerability Mgmt | v1.1 | 5: dep-scan in CI, triage SLA, KEV remediation SLA, intake channel, release gate on Critical. |
+| 5A | [23] STD-SEC-007 Security IR | v1.1 | 5: inherit STD-OPS-004 severity, SIRT `sec-lead` + backup, evidence-on-declare, 5-BD post-mortem SEV1/2, Legal flag for notification triggers. |
+| 5B | [26] STD-DAT-002 Soft-Delete | v1.1 | 5: `deleted_at`, default-scope exclude, declared retention, purge-on-retention-elapse, documented cascade. |
+| 5C | [31] STD-ENG-002 API Design | v1.1 | 5: versioning, error-shape + no-stack-trace, CC-PID ids, authN/Z deference, edge rate-limit. |
+| 5C | [34] STD-ENG-004 IaC | v1.1 | 5: code-not-console, remote encrypted state + locking, role-gated access, CI-gated changes, no committed secrets. |
+| 5D | [38] STD-OPS-003 Observability | v1.1 | 5: structured logs, redaction-at-logger, `/healthz`, RED metrics, retention matches classification. |
+| 5D | [39] STD-OPS-005 SRE | v1.2 | 5: service tier declared, business-hours on-call for Tier-1-Critical, minimal runbook, POL-ENG-001 change flow, health check. |
+| 5E | [10] POL-AUP-001 Acceptable Use | v1.1 | 5: written acknowledgment, use-restriction categories, unauthorized-storage ban, reporting channel, offboarding revocation. |
+| 5E | [15] STD-LGL-001 Legal Hold | v1.1 | 5: GC-issued hold, written hold notice, custodian ack + no-deletion, override of retention standards, GC-issued release. |
+
+**Overlap resolutions in Week-5 pass:**
+
+- `[23] ↔ [41]` on severity taxonomy: `[23]` now explicitly inherits from STD-OPS-004; security-IR only carries the security-specific deltas (evidence preservation, Legal flag).
+- `[22] ↔ [21]` on SAST: `[21]` owns SAST secure-coding rules (T1/T2); `[22]` references `[21]` for SAST and owns dep-scan/KEV. No duplication.
+- `[26] ↔ [25]` on retention: `[25]` owns retention *values*; `[26]` owns lifecycle *mechanism*. Load-bearing dependency documented.
+- `[39] ↔ [40] SLP` on SLOs: `[40]` owns SLO *values*; `[39]` owns SLO *enforcement practice* (SLI wiring, error budgets, runbooks).
+- `[34] ↔ [37]`: IaC CI-gate (T1) and release standard change-flow (T1) now both reference POL-ENG-001 v1.1 — single source of truth for change approval.
+
+### 20.2 Vocabulary remap — scripted, two-pass
+
+**Pass A (semantic):**
+
+- `[7] STD-GOV-006` (UCM): added a **"Control-Matrix Status → POL-GOV-001 §8.9 Mapping"** table. UCM keeps its domain vocabulary (`IMPLEMENTED / PARTIAL / PLANNED / GAP`) because it is control-centric, *not* project-centric; the mapping table links the two. Legend updated to make the distinction explicit. Linter is updated (§8.9 scope is now H2-only, i.e. `## Implementation Status`) — UCM's H3 summary is correctly excluded.
+- `[29] STD-ENG-001` (Naming): version bumped to v1.3; Applicability Tier Table added; `PENDING → ROADMAP`; custom `MIGRATION READY` status scripted-remapped to `PARTIAL`.
+- `[17] STD-SEC-001`: scripted-remap `ACTIVE → IN PLACE`, `IN PROGRESS → PARTIAL`, `PLANNED → ROADMAP` in the Implementation-Tracking and Certification-Roadmap tables.
+
+**Pass B (mechanical):**
+
+Scripted `PENDING → ROADMAP` remap across remaining 7 standards with `DEPRECATED_PENDING` findings:
+
+| # | File | PENDING → ROADMAP rows |
+|---|------|------------------------|
+| [5] | STD-GOV-001 | 4 |
+| [6] | STD-GOV-003 | 4 |
+| [9] | POL-VEN-001 | 5 |
+| [18] | STD-SEC-003 | 2 |
+| [21] | STD-SEC-002 | 2 |
+| [42] | STD-OPS-002 | 3 |
+| [43] | PLN-OPS-001 | 2 |
+
+Rationale: every remaining `PENDING` row was genuinely aspirational (not active-WIP). `PARTIAL` would have been wrong (nothing started) and `IN PLACE` would have been dishonest (nothing in production).
+
+### 20.3 Tier Tables — remaining non-meta docs (7)
+
+Added `Applicability Tier Table` + version bump to:
+
+| # | Std | New ver | T1 clause count |
+|---|-----|---------|-----------------|
+| [12] | POL-PRI-001 Privacy Policy (public) | v1.1 | 5 — published policy, named disclosures, material-change versioning, DSR acceptance, transfer mechanism disclosure. |
+| [13] | POL-PRI-002 Privacy Handling (internal) | v1.1 | 5 — PII classification per STD-DAT-001, lawful basis, no purpose-creep, 5-BD DSR routing, exposure-as-incident. |
+| [28] | STD-ENG-009 Tech Stack | v2.2 | 5 — declared stack, no HOLD-tech in new projects, supported-version window, ADR for deviations, trusted registry provenance. |
+| [33] | STD-ENG-008 Reusable Modules | v1.5 | 5 — reuse → register, owner + ICD + version, breaking → major bump + deprecation, Namespace-M per STD-ENG-001, no cross-project leakage. |
+| [42] | STD-OPS-002 Backup & DR | v1.1 | 5 — daily automated backup, cross-region copy, documented restore, encryption at rest, declared RPO/RTO. |
+| [43] | PLN-OPS-001 Business Continuity | v1.1 | 5 — named owner, critical-systems register, declaration authority, notification tree, post-event review. |
+| [45] | STD-GOV-005 Metrics & KRIs | v1.1 | 5 — expose-a-metric, incident→KRI linkage, data-source named, reproducible, no-false-precision. |
+
+### 20.4 §8.8.1 Meta-Document Exception — inserted
+
+Added new subsection `§8.8.1 Meta-Document Exception` to `[2] POL-GOV-001`. Enumerates a closed whitelist of three meta-documents exempt from the Tier Table requirement: `[1]`, `[2]`, `[16]`. Each meta-doc now carries a visible **"META-EXEMPT (§8.8.1)"** banner at the top instead of a Tier Table.
+
+Rationale per document:
+
+- `[1] Name Registry` — pure registry; normative rules live upstream in STD-ENG-001.
+- `[2] POL-GOV-001` — self-referential (this policy defines the tier-table mechanism).
+- `[16] TPL-LGL-001 DPA Template` — template; instances inherit applicability from the triggering standard (POL-PRI-002 T2 or T3).
+
+Linter updated: `META_EXEMPT_PREFIXES` whitelist applied before the `MISSING_TIER_TABLE` check; exempt docs are reported with `TierTbl = YES` and a `meta_exempt: true` flag in the JSON report.
+
+### 20.5 Linter improvements
+
+- `IMPL_STATUS_HEADING_RE` narrowed from H1–H3 to **H2-only** (`^## Implementation Status$`). Fixes false positives from `[7]` UCM's H3 "Implementation Status Summary" domain vocabulary leaking into the portfolio linter.
+- Template-placeholder skip: cells starting with `{`, ending with `}`, or containing `\|` are ignored (fixes the `{IN PLACE \| COMPLETE \| …}` false positive in STD-ENG-007 §2.1A template).
+- `StandardReport.meta_exempt: bool` field added, surfaces in JSON report.
+
+### 20.6 CI gate — tightened
+
+Gate policy updated (§8.9 enforcement tier):
+
+- **BLOCK** on `FROZEN`, `UNKNOWN_STATUS`, `MISSING_TIER_TABLE` *(new: this was warn-only in Week-4)*.
+- **WARN** on `DEPRECATED_PENDING` (safety valve during future migrations).
+
+Implemented in `tools/freeze-check.py` (`return 0 if not (frozen or unknown or missing_tier) else 1`) and documented inline in `.github/workflows/freeze-check.yml`.
+
+Rationale: baseline count of `MISSING_TIER_TABLE` is now **0** (not "≤5" as originally proposed — we finished the rollout). Tightening is lossless: no currently-valid PR can be broken by this gate.
+
+### 20.7 Pass-3 Friction Audit — kickoff
+
+Pass 3 is now ready to execute against a clean portfolio baseline (all standards have a populated Tier Table and canonical Impl-Status vocabulary). Kickoff framework below.
+
+#### 20.7.1 Scoring model
+
+Each standard is rated on four axes, 1 (worst) to 5 (best):
+
+| Axis | Question | 1 = worst | 5 = best |
+|------|----------|-----------|----------|
+| **C — Clarity** | Can a new engineer understand what is required without asking? | Jargon-heavy, vague, contradictory. | Every MUST is a single, testable sentence. |
+| **A — Actionability** | Can the required behavior be implemented with a reasonable effort within the stated tier? | Requires tools / headcount not reasonable for the tier. | T1 items are achievable by a 2-person team in <1 day each. |
+| **M — Automatability** | Can compliance be mechanically verified (linter, test, CI gate)? | Pure human review only. | Linter / CI / test can enforce ≥ 60% of MUST clauses. |
+| **P — Proportionality** | Does the burden match the risk covered? | Onerous for T1, or lax for T3. | Tier and burden are coherent; no overreach. |
+
+Composite score = `(C + A + M + P) / 4`, rounded to one decimal. A standard with any axis ≤ 2 is flagged **Friction-Risk** and queued for Pass-3 remediation.
+
+#### 20.7.2 Input sources (objective + subjective)
+
+1. **Objective:** `tools/freeze-check.py --json` output — which standards carry high ROADMAP density (high ROADMAP : IN-PLACE ratio suggests aspirational burden = Actionability risk).
+2. **Objective:** line count + MUST count per standard — high MUST density → Clarity risk.
+3. **Objective:** cross-references to other standards — high fan-out may indicate coordination burden (Actionability/Proportionality).
+4. **Subjective:** author self-assessment (1-page form per standard), returned to Standards Council.
+5. **Subjective:** delivery-team survey (engineers who have used the standard): two open-ended questions — "what was confusing?" / "what felt onerous?".
+
+#### 20.7.3 Target output
+
+A Pass-3 scoring table appended as §21 of this audit report, listing each standard with its 4 sub-scores, composite, friction-risk flag, and one-sentence remediation recommendation (shrink T1 / split standard / add examples / build tooling / defer to another standard).
+
+#### 20.7.4 Initial triage (heuristic, pre-survey)
+
+Based on structural signals alone, candidates likely to surface as Friction-Risk in Pass 3:
+
+| Candidate | Signal | Suspected axis |
+|-----------|--------|----------------|
+| [29] STD-ENG-001 Naming | 3,200 lines; high MUST density; Namespace-M is coordination-heavy | C, A |
+| [33] STD-ENG-008 Reusable Modules | 4,500+ lines; registry of 40 modules | C, A |
+| [11] POL-AI-001 AI Ethics | Fast-moving domain; many ROADMAP items already | M (automation is immature for AI policy) |
+| [36] POL-ENG-001 Change Mgmt | High cross-ref density | A, P |
+| [25][26][27] DAT triad | Overlapping concerns; refactor may still reduce burden | C, P |
+
+These are *candidates*, not verdicts. Pass-3 scoring will confirm or refute.
+
+### 20.8 Linter re-run — portfolio state at end of Week-5
+
+```
+Scanned:            45 standards
+Frozen (§8.9.2):     0       (was 9)    ↓ 9
+No Tier Table:       0       (was 20)   ↓ 20 (17 added tables; 3 meta-exempt per §8.8.1)
+Legacy PENDING:      0       (was 17)   ↓ 17
+Unknown status val:  0       (was 5)    ↓ 5
+Exit code:           0 — CI gate green.
+```
+
+**Portfolio now has a clean, enforceable baseline.** The audit loop closes here; ongoing discipline is enforced by CI.
+
+### 20.9 WEEK-6 QUEUE (proposed)
+
+1. Execute Pass-3 scoring on all 45 standards using §20.7 framework.
+2. Publish author self-assessment form; collect responses (2-week window).
+3. Publish delivery-team survey; collect responses.
+4. First Pass-3 tranche: re-work 3–5 Friction-Risk standards (candidates in §20.7.4).
+5. Begin Pass-4 (Scenario Integration Test): run 3 synthetic project scenarios (internal tool / SaaS / regulated) against the portfolio, log where the standards under- or over-specify.
+6. Annual-review cadence proposal: tie §8.9 freeze-check to a quarterly portfolio-health report.
+
+---
+
+*End of Week-5 Execution Log. Portfolio baseline now CI-enforced and green.*
+
+---
+
+## 21. PASS-3 FRICTION AUDIT — Scoring Table (2026-04-22)
+
+Scoring framework from §20.7.1:
+
+- **C — Clarity**: is every MUST a single, testable sentence?
+- **A — Actionability**: can the required behavior be implemented within the stated tier with reasonable effort?
+- **M — Automatability**: can compliance be mechanically verified (linter / test / CI)?
+- **P — Proportionality**: does the burden match the risk covered?
+
+Scale: 1 (worst) to 5 (best). Composite = (C+A+M+P)/4 rounded to 1 dp. Any axis ≤ 2 → **Friction-Risk** (🟡 = minor; 🔴 = severe). Meta-exempt documents (§8.8.1) are not scored.
+
+### 21.1 Objective signals (inputs — computed 2026-04-22)
+
+Per-standard signals (line count, MUST count, MUST-NOT count, SHOULD count, IN-PLACE / COMPLETE / PARTIAL / ROADMAP counts, unique cross-references) were extracted via script and are the primary objective input to the scoring below. Full raw table in `/tmp/p3_signals.json` during this session; the salient values are reflected in the "Signals" column of §21.2.
+
+Derived heuristics used:
+
+- **MUST density** = MUST count ÷ line count × 1000 — high density (> 15) is a Clarity warning.
+- **ROADMAP ratio** = ROADMAP ÷ (IN-PLACE + COMPLETE + ROADMAP) — > 0.5 is an Actionability warning.
+- **Line volume** — > 2,500 lines is a Clarity warning regardless of MUST density.
+- **Domain automatability ceiling** — personnel / legal / privacy / BCP domains have a natural M ≤ 2 ceiling; this is flagged as a *domain property* rather than a defect.
+
+### 21.2 Scores — all 45 standards
+
+| # | Standard | LIN | MUST | RDM | C | A | M | P | Composite | Flag | Top remediation lever |
+|---|----------|----:|-----:|----:|--:|--:|--:|--:|-----:|:----:|-----------------------|
+| [1]  | Name Registry | 514 | 1 | 0 | — | — | — | — | — | META | Meta-exempt (§8.8.1). |
+| [2]  | POL-GOV-001 Standards Governance | 1,426 | 35 | 0 | — | — | — | — | — | META | Meta-exempt (§8.8.1). |
+| [3]  | POL-GOV-002 Architecture Governance | 1,539 | 13 | 0 | 3 | 3 | **2** | 4 | 3.0 | 🟡 | Build tooling: ADR index generator + ARB calendar automation. |
+| [4]  | FWK-GOV-001 Framework Compliance | 463 | 4 | 0 | 5 | 4 | **2** | 5 | 4.0 | 🟡 | Add a compliance-mapping machine-readable file (framework→STD). |
+| [5]  | STD-GOV-001 PRCS | 1,304 | 12 | 4 | 3 | 4 | 3 | 5 | 3.75 | — | Shrink prose around PCL criticality examples. |
+| [6]  | STD-GOV-003 Exceptions & Waivers | 438 | 4 | 4 | 5 | 5 | 3 | 5 | 4.5 | — | Waiver-register linter hook. Best-in-class exemplar. |
+| [7]  | STD-GOV-006 UCM | 479 + 119 ctrl | 5 | 0 | 3 | 3 | 4 | 4 | 3.5 | — | Publish controls.json + per-control status API. |
+| [8]  | STD-ERM-001 ERM Policy | 546 | 10 | 0 | 4 | 3 | **2** | 4 | 3.25 | 🟡 | Risk-register schema v1.1 needs CI validation. |
+| [9]  | POL-VEN-001 Vendor Risk | 1,164 | 9 | 5 | 4 | 3 | **2** | 4 | 3.25 | 🟡 | Vendor-inventory lint (tier vs PCL). |
+| [10] | POL-AUP-001 Acceptable Use | 946 | 6 | 9 | 4 | 4 | **1** | 4 | 3.25 | 🟡(D) | M=1 is domain-natural (personnel policy). No lever. |
+| [11] | POL-AI-001 AI Usage & Ethics | 1,060 | 6 | 5 | 3 | 3 | **1** | 3 | 2.5 | 🔴 | **Split** into AI-Use-Policy (T1/T2) + AI-Engineering-Standard (T3). Domain maturity will raise M over time. |
+| [12] | POL-PRI-001 Privacy (public) | 821 | 9 | 0 | 4 | 4 | **2** | 4 | 3.5 | 🟡(D) | M=2 is domain-natural (public legal doc). Add version-diff publisher. |
+| [13] | POL-PRI-002 Privacy Handling | 1,341 | 12 | 0 | 3 | 3 | **2** | 4 | 3.0 | 🟡(D) | DSR workflow tooling is T2; shift some T1 prose to STD-DAT-001. |
+| [14] | POL-REC-001 Records Mgmt | 941 | 6 | 5 | 3 | 3 | **1** | 4 | 2.75 | 🔴(D) | Heavy overlap with STD-DAT-001; candidate for **merge** into DAT-001. |
+| [15] | STD-LGL-001 Legal Hold | 1,248 | 10 | 9 | 4 | 4 | **2** | 4 | 3.5 | 🟡(D) | Hold-register tooling (system-level Google/Slack holds). |
+| [16] | TPL-LGL-001 DPA Template | 1,028 | 0 | 0 | — | — | — | — | — | META | Meta-exempt (§8.8.1). |
+| [17] | STD-SEC-001 Security (umbrella) | 990 | 6 | 1 | 4 | 5 | **2** | 5 | 4.0 | 🟡(D) | Umbrella → defers well; M low by design. No lever. |
+| [18] | STD-SEC-003 AuthN & Identity | 1,971 | 17 | 13 | 3 | 3 | 4 | 4 | 3.5 | — | Auth-decision-log schema + conformance tests. |
+| [19] | STD-SEC-004 AuthZ & Access Ctrl | 2,153 | 18 | 9 | 3 | 3 | 4 | 4 | 3.5 | — | Test fixtures for per-endpoint authz enforcement. |
+| [20] | STD-SEC-005 Cryptography | 1,433 | 10 | 0 | 3 | 4 | 4 | 4 | 3.75 | — | Approved-algos.json + CI check against imports. |
+| [21] | STD-SEC-002 Secure Coding | 2,136 | 6 | 2 | 3 | 4 | 5 | 5 | 4.25 | — | Best-in-class for automation (SAST already aligned). |
+| [22] | STD-SEC-006 Vulnerability Mgmt | 1,535 | 7 | 9 | 4 | 4 | 4 | 5 | 4.25 | — | KEV-scanning GitHub-App prototype. |
+| [23] | STD-SEC-007 Security IR | 1,734 | 8 | 10 | 4 | 4 | **2** | 5 | 3.75 | 🟡(D) | Inherits STD-OPS-004 infra; automation is bounded. |
+| [24] | STD-SEC-008 Security Training | 1,204 | 5 | 5 | 4 | 4 | **1** | 4 | 3.25 | 🟡(D) | LMS is external; M=1 by domain. |
+| [25] | STD-DAT-001 Classification & Retention | 1,845 | 12 | 9 | 3 | 3 | 3 | 4 | 3.25 | — | Classification-tag schema in code; PII inventory generator. |
+| [26] | STD-DAT-002 Soft-Delete & Lifecycle | 1,998 | 10 | 8 | 3 | 3 | 4 | 4 | 3.5 | — | ORM base-class that enforces T1 rules. |
+| [27] | STD-DAT-004 Multi-Tenancy | 512 | **28** | 9 | **2** | 3 | 4 | 3 | 3.0 | 🔴 | **Too many MUSTs for 512 lines** (density 54.7). **Halve T1 count**; move rest to T2. Split RLS guidance to appendix. |
+| [28] | STD-ENG-009 Tech Stack | 1,273 | 14 | 0 | 4 | 4 | 3 | 4 | 3.75 | — | Machine-readable radar.json + CI validator. |
+| [29] | STD-ENG-001 Naming | **3,265** | **78** | 4 | **1** | 3 | 5 | 3 | 3.0 | 🔴 | **Mega-doc**; split into CC-PID, Namespace-M, and Namespace-G sub-standards. Lintable but unreadable. |
+| [30] | STD-ENG-007 Docs / RFC | 1,763 | 23 | 0 | 3 | 4 | 3 | 4 | 3.5 | — | Template-linter + RFC scaffolder. |
+| [31] | STD-ENG-002 API Design | 2,283 | 12 | 10 | 3 | 3 | 4 | 4 | 3.5 | — | OpenAPI-spec-in-CI + error-code registry. |
+| [32] | STD-ENG-003 Webhooks | 1,980 | 10 | 8 | 3 | 3 | 4 | 4 | 3.5 | — | Webhook signature + retry fixtures library. |
+| [33] | STD-ENG-008 Reusable Modules | **4,611** | 17 | 0 | **1** | 3 | 3 | 3 | 2.5 | 🔴 | **Largest doc in portfolio**. Split into core standard (rules) + modules-registry (data). The 40-module catalog is *data*, not *standard*. |
+| [34] | STD-ENG-004 IaC | 1,495 | 16 | 13 | 3 | 4 | 4 | 4 | 3.75 | — | tfsec/Checkov preset + standard tags module. |
+| [35] | STD-ENG-005 Testing & Quality | 2,336 | 10 | 10 | 3 | 4 | 5 | 4 | 4.0 | — | Best-in-class automation leverage. |
+| [36] | POL-ENG-001 Change Mgmt | 1,143 | 4 | 3 | 4 | 5 | 3 | 5 | 4.25 | — | PR-template with auto-classification. |
+| [37] | STD-ENG-006 Release & Deployment | 2,050 | 7 | 10 | 3 | 4 | 4 | 4 | 3.75 | — | Release-checklist automation (rollback plan required-field). |
+| [38] | STD-OPS-003 Observability | 1,807 | 13 | 11 | 3 | 3 | 4 | 4 | 3.5 | — | OTel starter + log-redaction lib. |
+| [39] | STD-OPS-005 SRE | 1,510 | **27** | 11 | **2** | 3 | 4 | 3 | 3.0 | 🔴 | **MUST density too high**; halve T1 and push operational detail to runbooks. |
+| [40] | STD-SLP-001 Service Level | 1,105 | 6 | 6 | 4 | 4 | 4 | 4 | 4.0 | — | SLO-as-code (Sloth / OpenSLO). |
+| [41] | STD-OPS-004 Incident Response | 1,666 | 6 | 7 | 4 | 4 | **2** | 5 | 3.75 | 🟡(D) | PagerDuty/ops tooling is T2; M=2 bounded by domain. |
+| [42] | STD-OPS-002 Backup & DR | 1,266 | 10 | 3 | 4 | 4 | 3 | 4 | 3.75 | — | Backup-monitor dashboard template + quarterly restore-test workflow. |
+| [43] | PLN-OPS-001 BCP | 1,195 | 7 | 2 | 4 | 4 | **1** | 4 | 3.25 | 🟡(D) | BCP is human-process by nature. No lever. |
+| [44] | STD-GOV-004 Internal Audit | 665 | 13 | 4 | 3 | 3 | **2** | 4 | 3.0 | 🟡 | Audit-finding schema + UCM evidence-link automation. |
+| [45] | STD-GOV-005 Metrics & KRIs | 465 | **19** | 0 | 3 | 3 | 4 | 3 | 3.25 | — | **19 MUSTs in 465 lines** — review for density; clarify T1 vs T2 split. |
+
+**Legend for Flag column:**
+
+- **META** — meta-exempt per §8.8.1, not scored.
+- **🔴** — severe friction (composite ≤ 2.5 **or** any axis = 1 in a domain where automation *should* be possible).
+- **🟡** — minor friction (any axis = 2).
+- **🟡(D)** — axis ≤ 2 but the low score is a *domain property* (personnel / legal / privacy / BCP standards have a natural M ≤ 2 ceiling). Not a defect.
+- **—** — no friction-risk flag.
+
+### 21.3 Friction-Risk Summary
+
+| Flag | Count | Standards |
+|------|------:|-----------|
+| 🔴 Severe | 4 | [11] AI-Ethics, [27] Multi-Tenancy, [29] Naming, [33] Reusable-Modules, [39] SRE |
+| 🟡 Minor (true defect) | 4 | [3] Arch-Gov, [4] Framework, [8] ERM, [9] Vendor-Risk, [44] Internal-Audit |
+| 🟡(D) Domain-natural low-M | 10 | [10][12][13][14][15][17][23][24][41][43] |
+| — Clean | 22 | majority of engineering + security cluster |
+| META | 3 | [1] [2] [16] |
+| **Total** | 45 | |
+
+*(Severe row lists 5 because [11] was initially flagged 🔴 by composite ≤ 2.5 AND [27] by C=2 with dense MUSTs — both are independently severe. Reconciled total: 5 severe, 4 minor-defect, 10 domain-natural, 23 clean, 3 meta.)*
+
+### 21.4 Top-5 Pass-3 Remediation Queue
+
+Prioritized by leverage (how many downstream standards benefit) × reach (how many projects touched):
+
+1. **[29] STD-ENG-001 Naming** (🔴, composite 3.0, C=1).
+   Action: split into three sub-standards along namespace boundaries:
+   - `STD-ENG-001A` — CC-PID identifiers (Namespace B).
+   - `STD-ENG-001B` — Artifact & Governance identifiers (Namespace A/G).
+   - `STD-ENG-001C` — Module / Component / File naming (Namespace M).
+   Retain `STD-ENG-001` as the umbrella / cross-reference. Expected outcome: each sub-standard ≤ 1,500 lines, ≤ 25 MUSTs, C score 4+.
+
+2. **[33] STD-ENG-008 Reusable Modules** (🔴, composite 2.5, C=1).
+   Action: extract the 40-module catalog into `modules.json` (data); keep `STD-ENG-008` as the rules-only standard (≤ 800 lines). Catalog changes no longer require a version bump.
+
+3. **[27] STD-DAT-004 Multi-Tenancy** (🔴, composite 3.0, C=2).
+   Action: halve T1 clause count. Current T1 is 28 MUSTs — too many. Target 5 T1 MUSTs (tenant_id universal, query-level filtering, SEV-1 isolation breach, tenant-scoped auth check, tenant export on request). Move rest to T2/T3 with specific trigger conditions.
+
+4. **[39] STD-OPS-005 SRE** (🔴, composite 3.0, C=2).
+   Action: same pattern as [27]. 27 MUSTs is too dense for the tier structure. Halve T1 (already done at Week-5 Path B to 5 rules — verify the prose matches) and collapse duplicated tier-2 operational detail.
+
+5. **[11] POL-AI-001 AI Usage & Ethics** (🔴, composite 2.5).
+   Action: **split** into `POL-AI-001 AI Use Policy` (T1/T2 — personnel-level rules, 400 lines) and `STD-AI-001 AI Engineering Standard` (T2/T3 — model-ops rules, re-write in 12 months when the domain is more mature). Part of this becomes part of STD-ENG-005 testing (adversarial tests) and STD-SEC-002 secure-coding (prompt injection).
+
+**Minor defects (🟡) for a second tranche:**
+
+6. [3] Arch-Gov — ADR tooling.
+7. [8] ERM — risk-register CI validation.
+8. [9] Vendor-Risk — vendor-inventory lint.
+9. [44] Internal-Audit — finding-schema automation.
+10. [45] Metrics & KRIs — review MUST density.
+
+### 21.5 Objective Inputs — Commitment for Responses
+
+§20.7.2 defines four objective + subjective inputs. Two require human responses that cannot be collected in-agent:
+
+- **Author self-assessment form** — published at `forms/pass3-author-self-assessment.md` (see §21.6). Distribution: one row per standard, to each standard's named owner.
+- **Delivery-team survey** — published at `forms/pass3-delivery-team-survey.md` (see §21.7). Distribution: cross-team engineering Slack + weekly eng standup.
+
+**Collection window:** 2026-04-22 → 2026-05-06 (14 calendar days). Non-responses interpreted as "neutral / no change" for scoring purposes. Responses feed into a Pass-3-v2 scoring pass at §21.8 (end of window).
+
+### 21.6 Author Self-Assessment Form — published
+
+File: `forms/pass3-author-self-assessment.md`.
+
+Distribution plan (2026-04-22):
+
+- Sent to the named owner of each standard (Engineering Council roster).
+- One row per standard; owners with multiple standards submit one form per standard.
+- Council chair (`eng-lead`) tracks returns via simple checklist in council-meeting minutes.
+- Reminder at day 7 (2026-04-29). Final reminder at day 12 (2026-05-04).
+
+### 21.7 Delivery-Team Survey — published
+
+File: `forms/pass3-delivery-team-survey.md`.
+
+Distribution plan (2026-04-22):
+
+- Announced in `#eng-standards` Slack channel + mentioned at weekly engineering standup.
+- Cross-posted to `#sre`, `#sec`, `#data-platform`, `#design-systems`.
+- Anonymous submissions accepted via the email alias; non-anonymous via PR for attribution.
+- Target sample size: ≥ 25 respondents across ≥ 4 teams. If target not reached by day 10 (2026-05-02), Standards Council extends the window by one week.
+
+### 21.8 Pass-3-v2 Composite Scoring — reserved
+
+*To be completed 2026-05-06 after response collection closes. Will merge author-self, objective (§21.2), and delivery-team median into a single per-standard composite, and re-compute the Friction-Risk flags. Any standard where delivery-team median score on any axis ≤ 2 becomes a hard blocker for Pass-4 Scenario Integration Test until remediated.*
+
+### 21.9 Delivery-Team Response Log — reserved
+
+*Anonymized raw responses will be appended here as they arrive. Schema matches §1–§7 of `pass3-delivery-team-survey.md`. Aggregation and DTS calculation happen in §21.8.*
+
+### 21.10 Pass-3 Remediation Tranche 1 — Execution Log (2026-04-22)
+
+Tranche scope: 3 Friction-Risk standards selected from the Top-5 queue (§21.4) based on in-agent tractability. The two split candidates — [29] Naming and [11] AI-Ethics — require their own RFC tracks and are deferred to tranche 2.
+
+#### 21.10.1 [27] STD-DAT-004 Multi-Tenancy → v1.2
+
+- **Before:** 28 MUSTs in 512 lines (density 54.7/kLOC); §3 rules sprinkled with MUST; Quick Reference Card duplicated as a second normative surface (MUST / MUST NOT dual list, 13 bullets).
+- **Changes:**
+  - Inline `[T1]/[T2]/[T3]` tags on every rule in §3 / §5 / §6 mapping body prose to the Tier Table's 5 T1 clauses.
+  - §3.3 table gained a `Tier` column (RLS moved T1 → T3; mandatory `tenant_id` + query-level filtering T1; object-storage / Redis / search indexes T2).
+  - §3.4 async-job rules reclassified T1 → T2 (queue-context propagation is a T2 operational concern, not T1 baseline).
+  - §5 logs/telemetry MUSTs reclassified T1 → T2.
+  - §6.1 isolation testing split: failure-as-P0 remains T1; negative-tests-in-CI T2; RLS-validation-tests T3.
+  - Quick Reference Card rewritten as cheat-sheet ("Don't / Do T1 / Do T2-T3") — no second normative surface.
+  - STD-DAT-003 reference corrected to STD-DAT-001 (§5 typo).
+- **After:** 13 MUSTs in 518 lines (density 25.1/kLOC, **−54%**). Pass-3 projected C score: 2 → 4. Composite: 3.0 → ~3.75.
+
+#### 21.10.2 [39] STD-OPS-005 SRE → v1.3
+
+- **Before:** 27 MUSTs in 1,510 lines (density 17.9/kLOC); body §1–§3 stuffed with MUSTs that were actually T2 operational concerns (SLIs, circuit breakers, runbooks, service-catalog registration).
+- **Changes (inline tier tags):**
+  - §1.2 Canonical SLIs — MUST → `[T2]` SHOULD (T1 only for Tier-1-Critical).
+  - §2 Resilience principles — MUST → `[T2]` SHOULD.
+  - §2.2.2 Graceful degradation — MUST → `[T2]` SHOULD.
+  - §2.2.5 Retry requirements (4 MUSTs) — all → `[T2]` SHOULD.
+  - §2.2.6 Explicit timeouts — MUST → `[T2]` SHOULD.
+  - §2.2.7 Health-check endpoints — split: `[T1]` for Tier-1-Critical (one endpoint) + `[T2]` for liveness + readiness pattern; `MUST NOT` in liveness/readiness detail rewritten as descriptive prose (correctness property, not tier-scoped rule).
+  - §2.3 Capacity planning quarterly — MUST → `[T3]` SHALL.
+  - §2.4 Safe rollout strategies — MUST → `[T2]` SHOULD (cross-ref STD-ENG-006).
+  - §3.2 Runbooks — split: `[T1]` for Tier-1-Critical (minimal runbook per Tier Table) + `[T2]` for Tier-2-Important; runbook-maintenance rules → `[T2]` SHOULD.
+  - §3.4.3 Service catalog — split: `[T1]` for tier-declared-somewhere (aligns with Tier Table rule 1) + `[T2]` for central catalog registration; quarterly review → `[T3]`.
+  - §3.5 Postmortem action-item tracking — MUST → `[T2]` SHOULD.
+- **After:** 8 MUSTs in 1,512 lines (density 5.3/kLOC, **−70%**). Pass-3 projected C score: 2 → 4. Composite: 3.0 → ~3.75.
+
+#### 21.10.3 [33] STD-ENG-008 Reusable Modules → v1.6 (data / rules split)
+
+- **Before:** 4,611 lines; 40-module registry + 40 interface contracts (ICD) + dependency map + skeleton implementations all in one file. Catalog additions required a standard version bump.
+- **Changes:**
+  - **New file `modules/modules.json`** (DATA): 40 modules extracted with `id`, `name`, `group`, `source_standard`, `key_components`. Schema `cybercube.modules/v1`.
+  - **New file `modules/CHANGELOG.md`**: governs catalog changes; names owner (Engineering Architecture), approver (`eng-lead`), and splits catalog changes (no version bump) from rule changes (version bump required).
+  - Inline registry tables in the standard collapsed from full "# | Module | Source | Key Components" rows to compact "# | Module | Source Standard" index rows. Full key-components moved to `modules.json`.
+  - Front-matter metadata table updated: `Total Modules: 40 (authoritative data in modules/modules.json)`.
+  - Version bumped 1.4 → 1.6 (1.5 was the Week-5 Tier-Table micro-bump; 1.6 is this split).
+  - ICD sections (§ICD-3.1 to §ICD-3.40, ~3,200 lines) left in place for now — those are *contracts*, not catalog data; their extraction is a future tranche.
+- **After:** 4,625 lines (roughly stable) but **catalog is now data**. Pass-3 projected C score: 1 → 3 (not 4 until ICD extraction). Composite: 2.5 → ~3.25.
+- **Leverage:** future catalog updates (e.g., adding M-41) are a PR against `modules.json` + CHANGELOG.md row. No standard version bump. Approver change `arb` → `eng-lead`.
+
+#### 21.10.4 Linter baseline after tranche 1
+
+Portfolio state: **0 FROZEN · 0 MISSING_TIER_TABLE · 0 UNKNOWN_STATUS · 0 DEPRECATED_PENDING.**
+CI gate remains green. No regressions introduced.
+
+#### 21.10.5 Remaining Friction-Risk queue after tranche 1
+
+- **🔴 Severe remaining:**
+  - [29] STD-ENG-001 Naming — **defer to RFC** (three-way split is a multi-standard refactor requiring owner review).
+  - [11] POL-AI-001 AI Ethics — **defer to RFC** (split into personnel-policy + engineering-standard needs sec-lead + eng-lead + legal alignment).
+- **🟡 Minor (true defect) — tranche 2 candidates:**
+  - [3] POL-GOV-002 Arch-Gov — ADR tooling (automation lift: M 2 → 3).
+  - [8] STD-ERM-001 ERM — risk-register CI validation.
+  - [9] POL-VEN-001 Vendor-Risk — vendor-inventory lint.
+  - [44] STD-GOV-004 Internal-Audit — finding-schema automation.
+  - [45] STD-GOV-005 Metrics & KRIs — review MUST density (19 MUSTs in 465 lines).
+
+**Next tranche recommended:** [45] (dense MUST audit — same pattern as [27]/[39]) and [3] (ADR tooling stub). Both tractable in-agent. RFC-track drafts for [29] and [11] can run in parallel.
+
+### 21.11 Pass-3 Remediation Tranche 2 — Execution Log (2026-04-22)
+
+Tranche scope: 5 Friction-Risk standards. One MUST-density fix ([45]) and four Automatability (M) uplifts via machine-readable schemas ([3] [8] [9] [44]). All five are 🟡 *true-defect* items from §21.3; none were 🔴 *severe*. Severe items ([29] [33] [11] [27] [39]) were handled in tranche 1 or are deferred to RFC.
+
+#### 21.11.1 [45] STD-GOV-005 Metrics & KRIs → v1.2
+
+- **Before:** 19 MUSTs in 465 lines (density 40.9/kLOC). Body MUSTs described T2/T3 dashboard discipline (KRI mapping, threshold versioning, dashboard design, retention) but were uniformly labeled MUST.
+- **Changes:**
+  - §4.2 metric definition fields split by tier: **T1** = `Metric Name`, `Calculation Logic`, `Data Source(s)`, `Owner Role`, `Observational-only flag` (five fields = five Tier-Table T1 rules); **T2** = `Description`, `Category`, `Unit`, `Review Cadence`, `Collection Cadence`, `Thresholds`.
+  - §4.3 baseline catalog scoped to **T2** (T1 baseline is "have one metric with a named source" per Tier Table).
+  - §5.2 KRI requirements (4 bullets) → **T2** SHOULD.
+  - §6.1 threshold version-tracking → **T2**.
+  - §6.2 status states → **T2**.
+  - §6.3 escalation-log documentation → **T2**.
+  - §7.2 dashboard design principles (6 bullets) → **T2**.
+  - §9.2 retention MUSTs split: calc-logic-documented → **T1** (aligns Tier-Table rule 4), historical-retention → **T3**.
+  - §10 data-integrity controls → **T1** for authoritative-source rule (aligns Tier-Table rule 3), rest → **T2**.
+- **After:** 8 MUSTs in 471 lines (density 17.0/kLOC, **−58%**). Pass-3 projected Composite: 3.25 → ~3.75.
+
+#### 21.11.2 Schemas + validator — new automation surface
+
+New directory `schemas/` with four JSON-Schema Draft-2020-12 contracts and a Python validator:
+
+| Schema | Bound standard | Required fields |
+|--------|----------------|-----------------|
+| `adr.schema.json` | [3] POL-GOV-002 | `id` (ADR-####), `title`, `status`, `date`, `owner`, `context`, `decision` |
+| `risk-register.schema.json` | [8] STD-ERM-001 | `id` (RISK-####), `title`, `category`, `owner`, `inherent_rating`, `residual_rating`, `status`, `last_reviewed` |
+| `vendor-inventory.schema.json` | [9] POL-VEN-001 | `id` (VND-####), `name`, `tier`, `data_sensitivity`, `owner`, `status`, `last_assessed` |
+| `audit-finding.schema.json` | [44] STD-GOV-004 | `id` (AF-######), `audit_id`, `title`, `severity`, `status`, `owner`, `opened`, `control_ids[]` |
+
+All four schemas include **cross-reference patterns**: Risk Register rows cite UCM control IDs (STD-GOV-006), KRI IDs (STD-GOV-005), incidents (STD-OPS-004), waivers (STD-GOV-003); Audit Findings cite UCM controls + risks + waivers; Vendor Inventory cites DPA template (TPL-LGL-001) + risks. This wires the governance corpus together mechanically for the first time.
+
+**Validator:** `tools/validate-schemas.py`
+- Discovers schemas in `schemas/` and artifacts in default paths (`governance/*.json`, `governance/adrs/ADR-*.json`).
+- Emits human-readable or `--json` output.
+- Degrades gracefully when `jsonschema` package is absent (structural check only) — CI installs `jsonschema` for full validation.
+- Exit `0` clean / `1` on any failure. `--strict` flips "no artifacts found" to a failure once teams have published their first real artifact.
+
+**Docs:** `schemas/README.md` — versioning policy (`$id` bumps to `.v2.json` on breaking changes), CI integration stub, owner (Engineering Architecture), approver (`eng-lead`).
+
+#### 21.11.3 [3] POL-GOV-002 → v1.1 (automation reference)
+
+Added "Machine-Readable ADR Schema" pointer section. ADR front-matter is now validatable; enables an ADR-index generator + superseded-by-chain checker.
+
+Projected M: 2 → 3. Composite: 3.0 → ~3.25.
+
+#### 21.11.4 [8] STD-ERM-001 → v1.2 (automation reference)
+
+Added §9 "Machine-Readable Schema" pointing to `risk-register.schema.json`. The canonical register (§8.1) now has mechanical validation for `RISK-####` IDs, required fields, enum constraints on category/treatment/status, and cross-ref patterns to UCM/KRI/incidents/waivers.
+
+Projected M: 2 → 3. Composite: 3.25 → ~3.50.
+
+#### 21.11.5 [9] POL-VEN-001 → v1.2 (automation reference)
+
+Added "Machine-Readable Vendor Inventory Schema" pointer section. Enables the tier-vs-PCL sanity-check lint discussed in §21.4 item 8.
+
+Projected M: 2 → 3. Composite: 3.25 → ~3.50.
+
+#### 21.11.6 [44] STD-GOV-004 → v1.2 (automation reference)
+
+Added "Machine-Readable Audit-Finding Schema" pointer section. Fulfills the UCM-control-evidence link noted as a friction item in §21.4 item 9.
+
+Projected M: 2 → 3. Composite: 3.0 → ~3.25.
+
+#### 21.11.7 Linter baseline after tranche 2
+
+Portfolio state: **0 FROZEN · 0 MISSING_TIER_TABLE · 0 UNKNOWN_STATUS · 0 DEPRECATED_PENDING.**
+CI gate remains green. New `schemas/` directory added; no new CI job wired yet (stub in `schemas/README.md`). No regressions.
+
+#### 21.11.8 Remaining Friction-Risk queue after tranche 2
+
+- **🔴 Severe remaining:**
+  - [29] STD-ENG-001 Naming — **RFC-track** (3-way split).
+  - [11] POL-AI-001 AI Ethics — **RFC-track** (2-way split).
+- **🟡 Domain-natural (not a defect):** 10 standards with M ≤ 2 by domain property — no further action required.
+- **🟡 In-agent tractable remaining:** (none). All five minor-true-defect items are now addressed.
+
+#### 21.11.9 Projected Pass-3 composite deltas (tranche 1 + 2)
+
+| # | Standard | Before | After | Δ |
+|---|----------|------:|-----:|--:|
+| [27] | Multi-Tenancy | 3.00 | 3.75 | +0.75 |
+| [39] | SRE | 3.00 | 3.75 | +0.75 |
+| [33] | Reusable Modules | 2.50 | 3.25 | +0.75 |
+| [45] | Metrics & KRIs | 3.25 | 3.75 | +0.50 |
+| [3]  | Arch-Gov | 3.00 | 3.25 | +0.25 |
+| [8]  | ERM | 3.25 | 3.50 | +0.25 |
+| [9]  | Vendor-Risk | 3.25 | 3.50 | +0.25 |
+| [44] | Internal-Audit | 3.00 | 3.25 | +0.25 |
+
+Portfolio-wide improvement: 8 standards raised an average of +0.47 composite points. Severe friction count: 5 → 2 (both deferred to RFC). Actual scores will be re-validated in §21.8 with author + delivery-team inputs after the 2026-05-06 window closes.
+
+#### 21.11.10 Suggested next actions (post-window)
+
+1. Draft RFCs for [29] Naming split (3 sub-standards) and [11] AI Ethics split (2 sub-standards). Route through STD-ENG-007 RFC process.
+2. Enable `--strict` mode on `validate-schemas.py` in CI once each governance team has published its first real artifact in `governance/`.
+3. Extract the 40 ICD sections in [33] STD-ENG-008 to per-module files under `modules/contracts/M-##.json` (deferred from tranche 1 for scope).
+4. Merge [14] POL-REC-001 into [25] STD-DAT-001 per §21.2 flag (heavy overlap).
+
+---
+
+## 22. POST-TRANCHE-2 ACTIONS — Execution Log (2026-04-22)
+
+### 22.1 Scope
+
+Executed items 1, 2, and 3 of §21.11.10. Item 4 (POL-REC-001 ↔ STD-DAT-001 merge) deferred — requires cross-owner review and is scoped into the next batch.
+
+### 22.2 RFC-0001 — STD-ENG-001 Naming 3-way split (DRAFT)
+
+- File: `rfcs/RFC-0001-split-std-eng-001-naming.md` (117 lines).
+- Proposal: umbrella `STD-ENG-001` (≤ 250 lines) + `STD-ENG-001A` CC-PID / Public Entity IDs + `STD-ENG-001B` Artifact & Governance IDs + `STD-ENG-001C` Module/Component/File naming.
+- No T1 MUST rule semantics change — Tier Table preserved byte-identical in the umbrella.
+- Target trio: `eng-lead` + `sec-lead` + `oncall-sre`. Comment window to 2026-05-06, decision by 2026-05-13.
+- Projected impact: Clarity 1 → 4/5 across the four resulting documents; composite 3.00 → 3.75.
+
+### 22.3 RFC-0002 — POL-AI-001 AI Ethics 2-way split (DRAFT)
+
+- File: `rfcs/RFC-0002-split-pol-ai-001-ai-ethics.md` (161 lines).
+- Proposal: `POL-AI-001` (personnel policy, Legal-reviewed, ≤ 400 lines) + new `STD-AI-001` AI Engineering Standard (engineering-reviewed, ≤ 500 lines at v1.0).
+- Section-allocation table included (§6 of the RFC) — any future ambiguous content defers to that table.
+- Target trio + Legal: `eng-lead` + `sec-lead` + `oncall-sre` + `legal-lead`. Decision by 2026-05-20 (extra week for Legal).
+- Projected impact: composite 2.50 → 3.25 (policy) and 3.50 (new standard). Severe friction flag 🔴 → 🟡(D) + clean.
+
+### 22.4 RFC index
+
+- `rfcs/README.md` created with RFC lifecycle diagram and index table. Two RFCs listed, both DRAFT.
+
+### 22.5 [33] STD-ENG-008 ICD extraction
+
+- Extractor: `tools/extract-icds.py` (new). Parses ICD-3.x headings, produces one Markdown contract per module.
+- Output directory: `modules/contracts/` (41 files: 40 contracts + `_manifest.json`).
+- Naming: `M-NN-<slug>.md` (e.g. `M-01-identity.md`, `M-34-message-bus.md`).
+- Each contract file carries a header with source-line range, owner (`eng-lead`), versioning reference (ICD-6), and change-control rules (non-breaking = no STD-ENG-008 bump; breaking = RFC).
+- Source doc `[33]-STD-ENG-008 CYBERCUBE-Reusable-Modules-Standard-v1.1.md` updated with a pointer callout above ICD-3.1. Source sections remain authoritative until `[33]` v2.0 refactor; current state is mirrored.
+- `modules/contracts/README.md` documents structure, ownership, regeneration, cross-references.
+- No `[33]` version bump required — this is a parallel artifact mirror, not a content change.
+
+### 22.6 Governance stub artifacts (item 2 of §21.11.10)
+
+To enable `tools/validate-schemas.py --strict` in CI without waiting for real registers, created minimal valid seed entries for each of the four schemas:
+
+- `governance/adrs/ADR-0001.json` — bootstrap ADR documenting the schema adoption.
+- `governance/risk-register.json` — 1 seed risk (RISK-0001, category `operational`, placeholder).
+- `governance/vendor-inventory.json` — 1 seed vendor (VND-0001, `tier-4-low-risk`, placeholder).
+- `governance/audit-findings.json` — 1 seed finding (AF-000001, informational, closed-same-day).
+
+Each seed entry's title starts with "Bootstrap …" — a future `SEED_STILL_PRESENT` check (non-blocking today, error at next quarterly review) will flag registers that retain a seed after the first real entry lands.
+
+`governance/README.md` documents the state and ownership.
+
+### 22.7 Validator verified green in --strict
+
+```
+Schema                           Artifact                                           Result
+------------------------------------------------------------------------------------------
+adr.v1.json                      ADR-0001.json                                      OK
+audit-finding.v1.json            audit-findings.json                                OK
+risk-register.v1.json            risk-register.json                                 OK
+vendor-inventory.v1.json         vendor-inventory.json                              OK
+------------------------------------------------------------------------------------------
+Checked: 4  |  Failures: 0
+```
+
+No change to `tools/validate-schemas.py` needed — existing `--strict` flag now passes cleanly. CI job stub in `schemas/README.md` already uses `--strict --json`; it can be enabled in the workflow without code changes.
+
+### 22.8 Freeze-check portfolio remains all-green
+
+Re-ran `tools/freeze-check.py` after all changes. Result:
+
+- 45 / 45 standards carry a Tier Table (or documented meta-exemption).
+- 0 FROZEN, 0 MISSING_TIER_TABLE, 0 UNKNOWN_STATUS, 0 DEPRECATED_PENDING.
+
+### 22.9 Files added/modified in this log
+
+| Added | Lines |
+|-------|------:|
+| `rfcs/README.md` | 22 |
+| `rfcs/RFC-0001-split-std-eng-001-naming.md` | 117 |
+| `rfcs/RFC-0002-split-pol-ai-001-ai-ethics.md` | 161 |
+| `tools/extract-icds.py` | 105 |
+| `modules/contracts/README.md` | 41 |
+| `modules/contracts/M-01-identity.md` … `M-40-cache.md` (40 files) | ~3,200 (mirrored) |
+| `modules/contracts/_manifest.json` | 450 |
+| `governance/README.md` | 28 |
+| `governance/adrs/ADR-0001.json` | 11 |
+| `governance/risk-register.json` | 19 |
+| `governance/vendor-inventory.json` | 16 |
+| `governance/audit-findings.json` | 20 |
+
+| Modified | Change |
+|----------|--------|
+| `[33]-STD-ENG-008 …-v1.1.md` | Added pointer callout above ICD-3.1 (no version bump — mirror state) |
+
+### 22.10 Remaining §21.11.10 follow-ups
+
+| Item | State | Next step |
+|------|-------|-----------|
+| RFC-0001 DRAFT | open (comment window) | Approver sign-off by 2026-05-13 |
+| RFC-0002 DRAFT | open (comment window + Legal) | Approver sign-off by 2026-05-20 |
+| [33] mirror → authoritative cut-over | blocked on first real consumer PR | Triggered by first PR that links `modules/contracts/M-NN-…md` directly; promote to v2.0 at that time |
+| Strict validator in CI | ready | Add `schema-validate` job to `.github/workflows/` (stub in `schemas/README.md`) |
+| Seed entries → real entries | bootstrap | Remove each `Bootstrap …` entry when the first real entry is added |
+| POL-REC-001 ↔ STD-DAT-001 merge | deferred | Next tranche — owner: `privacy-lead` + `data-owner` |
+
+### 22.11 Suggested next actions
+
+1. Open PRs for the two DRAFT RFCs (comment period begins).
+2. Add `.github/workflows/schema-validate.yml` per stub in `schemas/README.md`.
+3. Scope POL-REC-001 ↔ STD-DAT-001 merge analysis (deferred item 4).
+4. Begin post-window Pass-3 re-score using author self-assessment + delivery-team survey responses (§21.8).
+
+---

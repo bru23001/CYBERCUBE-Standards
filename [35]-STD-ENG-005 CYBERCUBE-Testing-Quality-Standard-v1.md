@@ -1,4 +1,16 @@
-# CYBERCUBE Testing & Quality Assurance Standard (v1)
+# CYBERCUBE Testing & Quality Assurance Standard (v1.2)
+
+## Applicability Tier Table
+
+| Applicability | Tier | Summary of Clauses in This Standard | Waiver Path |
+| ------------- | ---- | ----------------------------------- | ----------- |
+| All projects | **T1 MUST** | (1) Every production-bound change MUST run an automated test suite in CI and pass before merge. (2) Critical paths (auth, payment, data deletion, any T1 clause enforcement) MUST have at least one automated test. (3) A bug fix MUST include a regression test that reproduces the bug before the fix is applied. (4) Tests MUST be deterministic; flaky tests MUST be quarantined (skipped with ticket) within 2 business days of being identified. (5) The test suite MUST complete within 15 minutes in CI or the project documents and justifies a longer budget. | None (non-waivable) |
+| SaaS / customer-facing | **T2 SHOULD** | Coverage thresholds (≥70% unit, ≥50% integration by default), per-service test data factories, pre-commit hooks (lint + affected tests), integration-test environment kept current, security scanning (SAST + dependency) in CI, coverage dashboard, E2E suite for top user journeys, execution-time budgets monitored. | Lightweight waiver per POL-GOV-001 §8.3 |
+| Regulated / high-risk | **T3 MAY** | Mutation testing for critical modules, property-based testing, performance baselines with regression alerts, chaos/resilience testing, test evidence archived for audit, contract testing between services, negative-isolation suite (per STD-DAT-004 T2/T3), compliance-mapped test suites (e.g. OWASP ASVS coverage for each level). | Formal waiver per STD-GOV-003 |
+
+> Per POL-GOV-001 §8.8.
+
+> **v1.2 (2026-04-22) — Unfreeze (Path B).** T1 reduced to five rules enforceable in CI today: tests-in-CI, critical-path coverage, regression-test-on-fix, flaky-quarantine, execution-time budget. Coverage thresholds, dashboards, performance baselines, mutation/property testing reclassified to T2/T3 ROADMAP. Every T1 clause is verifiable via CI metadata.
 
 ## Glossary
 
@@ -2263,21 +2275,30 @@ const user = createTestUser({
 
 ### Core Implementation
 
-| Component | Status | Notes |
-|-----------|--------|-------|
-| Test pyramid structure | PARTIAL | Unit heavy |
-| Coverage thresholds | PENDING | Define per-service |
-| Test naming conventions | PARTIAL | Inconsistent |
-| Test data factories | PENDING | Create factories |
-| CI quality gates | PARTIAL | Basic setup |
-| Pre-commit hooks | PENDING | Add lint-staged |
-| Integration test environment | PARTIAL | Manual setup |
-| E2E test suite | PARTIAL | Few critical paths |
-| Flaky test monitoring | PENDING | Track failures + quarantine process |
-| Coverage dashboard | PENDING | Codecov setup |
-| Security scanning in CI | PARTIAL | Dependency scanning only |
-| Performance testing | PENDING | Define baselines per service tier |
-| Test execution time budgets | PENDING | Measure current state |
+| Component | Status | Tier | Notes |
+|-----------|--------|------|-------|
+| Automated tests in CI (gate on merge) | IN PLACE | T1 | GitHub branch protection requires green CI |
+| Critical-path automated coverage | PARTIAL | T1 | Auth + core flows covered; ownership checks per service |
+| Regression-test-on-fix policy | IN PLACE | T1 | Code-review checklist |
+| Flaky test quarantine (2-BD SLA) | PARTIAL | T1 | Process documented; triage rhythm ROADMAP |
+| Test execution time budget (15 min default) | IN PLACE | T1 | Measured per pipeline |
+| Test pyramid structure | PARTIAL | T2 | Unit-heavy; integration/E2E growth ROADMAP |
+| Coverage thresholds (≥70/≥50) | ROADMAP | T2 | Re-trigger: per-service baseline measurement |
+| Test naming conventions | PARTIAL | T2 | Style guide in §Testing; enforcement ROADMAP |
+| Test data factories | ROADMAP | T2 | Per-service as services stabilize |
+| Pre-commit hooks (lint + affected tests) | ROADMAP | T2 | Wired via Week-4 CI work; see `.husky/` |
+| Integration test environment | PARTIAL | T2 | Manual setup; docker-compose ROADMAP |
+| E2E test suite (top user journeys) | PARTIAL | T2 | Few critical paths exist; journey catalog ROADMAP |
+| Coverage dashboard (Codecov) | ROADMAP | T2 | Re-trigger: after thresholds defined |
+| Security scanning in CI (SAST + deps) | PARTIAL | T2 | Dependency scanning live; SAST ROADMAP |
+| Mutation testing | ROADMAP | T3 | Regulated projects only |
+| Property-based testing | ROADMAP | T3 | Regulated projects only |
+| Performance baselines + regression alerts | ROADMAP | T3 | Paired with SLO engineering (STD-SLP-001 T3) |
+| Chaos / resilience testing | ROADMAP | T3 | Regulated projects only |
+| Contract testing between services | ROADMAP | T3 | Re-trigger: first 3-service dependency graph |
+| Negative-isolation test suite | ROADMAP | T3 | Paired with STD-DAT-004 T2/T3 |
+
+Status vocabulary: `IN PLACE` | `COMPLETE` | `PARTIAL` | `ROADMAP` | `N/A`.
 
 ### Migration Path
 
@@ -2297,6 +2318,7 @@ const user = createTestUser({
 |---------|------|---------|
 | v1 | 2026-01-17 | Initial release |
 | v1.1 | 2026-02-07 | Fixed markdown formatting throughout. Added: performance test targets (1.6), test execution time budgets (7.6), flaky test management (7.7), security testing integration (7.8), prohibited practices (10). Added Related Documents. Updated MSW examples to v2 |
+| v1.2 | 2026-04-22 | Unfreeze (Path B): added Applicability Tier Table with 5 T1 clauses (tests-in-CI, critical-path coverage, regression-test-on-fix, flaky quarantine, execution-time budget). Coverage thresholds, dashboards, performance baselines, mutation/property testing reclassified to T2/T3 ROADMAP. Status vocabulary normalized. |
 
 ---
 

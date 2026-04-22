@@ -371,13 +371,25 @@ Target: ≤ 50% of capacity
 
 ---
 
-# CYBERCUBE Platform Reliability / SRE Standard (v1)
+# CYBERCUBE Platform Reliability / SRE Standard (v1.3)
 
 **Standard ID:** STD-OPS-005  
 **Status:** Active  
-**Effective:** 2026-02-01  
+**Effective:** 2026-02-01 (v1), 2026-04-22 (v1.2, v1.3)  
 **Classification:** INTERNAL  
 **Applies to:** All CYBERCUBE platforms, services, and engineering teams
+
+## Applicability Tier Table
+
+| Applicability | Tier | Summary of Clauses in This Standard | Waiver Path |
+| ------------- | ---- | ----------------------------------- | ----------- |
+| All projects | **T1 MUST** | (1) Every service MUST have a declared service tier (T1-Critical / T2-Important / T3-Internal) recorded in its README or service catalog entry. (2) Every Tier-1-Critical service MUST have at least one on-call contact reachable during business hours; SEV1/SEV2 incidents MUST be paged. (3) Every Tier-1-Critical service MUST have a minimally documented runbook covering: what it does, dependencies, how to restart it, and who owns it. (4) Production changes to Tier-1-Critical services MUST follow the POL-ENG-001 change-request T1 flow with an identified rollback plan. (5) Every Tier-1-Critical service MUST have at least one health check (per STD-OPS-003 T1). | None (non-waivable) |
+| SaaS / customer-facing | **T2 SHOULD** | SLI/SLO definition per Tier-1-Critical service with error budgets, error-budget dashboards, burn-rate alerting, service catalog (canonical registry), circuit breakers / retries / timeouts on critical dependency calls, 24×5 on-call rotation, canary deployments for Tier-1-Critical releases, postmortems for all SEV1/SEV2 (per STD-OPS-004). | Lightweight waiver per POL-GOV-001 §8.3 |
+| Regulated / high-risk | **T3 MAY** | 24×7 on-call rotation, multi-region / multi-AZ redundancy, quarterly chaos/gameday exercises, toil-tracking program with ≤ 50% toil ceiling, reliability review cadence (monthly for Tier-1-Critical), executive reliability KRIs (STD-GOV-005), DR tested quarterly (STD-OPS-002 T3), 99.95%+ availability targets. | Formal waiver per STD-GOV-003 |
+
+> Per POL-GOV-001 §8.8.
+
+> **v1.2 (2026-04-22) — Unfreeze (Path B).** T1 = five pragmatic rules: declared service tier, business-hours on-call for Tier-1-Critical, minimal runbook, POL-ENG-001 change flow, health check. SLOs, error budgets, circuit breakers, canary, chaos reclassified to T2/T3 ROADMAP. Tight pairing with STD-SLP-001 (SLP owns SLO *values*, this standard owns SLO *enforcement practice*).
 
 ---
 
@@ -458,7 +470,7 @@ CYBERCUBE uses a three-tier reliability model aligned with Google SRE practices:
 
 ### 1.2 Canonical Service Level Indicators (SLIs)
 
-All CYBERCUBE services MUST implement these four canonical SLIs:
+**[T2]** Services SHOULD implement these four canonical SLIs (required at **[T1]** only for Tier-1-Critical services):
 
 | SLI | Definition | Measurement | Target Range |
 |-----|------------|-------------|--------------|
@@ -690,7 +702,7 @@ Burn Rate = Current Error Rate / Allowed Error Rate
 
 ### 2.1 Design Principles
 
-All CYBERCUBE services MUST be designed with these resilience principles:
+**[T2]** Services SHOULD be designed with these resilience principles:
 
 | Principle | Description | Implementation |
 |-----------|-------------|----------------|
@@ -755,7 +767,7 @@ All CYBERCUBE services MUST be designed with these resilience principles:
 
 #### 2.2.2 Graceful Degradation
 
-Services MUST implement graceful degradation strategies:
+**[T2]** Services SHOULD implement graceful degradation strategies:
 
 | Strategy | Trigger | Behavior |
 |----------|---------|----------|
@@ -850,11 +862,11 @@ Retry policies for transient failures:
 | HTTP (external) | 2 | 500ms | 10s | ±30% |
 | Queue operations | 5 | 1s | 60s | ±20% |
 
-**Retry requirements:**
-- Operations MUST be idempotent
-- Exponential backoff with jitter REQUIRED
-- Circuit breaker SHOULD wrap retry logic
-- Retries MUST respect timeout budgets
+**Retry requirements (T2 SHOULD):**
+- **[T2]** Operations SHOULD be idempotent where retries can occur.
+- **[T2]** Exponential backoff with jitter required.
+- **[T2]** Circuit breaker SHOULD wrap retry logic.
+- **[T2]** Retries SHOULD respect timeout budgets (no unbounded retry loops).
 
 ```typescript
 // Retry with exponential backoff
@@ -888,7 +900,7 @@ async function withRetry<T>(
 
 #### 2.2.5 Timeouts
 
-All external calls MUST have explicit timeouts:
+**[T2]** All external calls SHOULD have explicit timeouts:
 
 | Operation Type | Recommended Timeout | Notes |
 |----------------|---------------------|-------|
@@ -931,7 +943,7 @@ When systems are overloaded, shed load to maintain availability:
 
 #### 2.2.7 Health Checks
 
-All services MUST expose health check endpoints:
+**[T1]** Tier-1-Critical services SHALL expose at least one health check endpoint. **[T2]** All services SHOULD expose liveness + readiness endpoints:
 
 | Check Type | Purpose | Endpoint | Frequency |
 |------------|---------|----------|-----------|
@@ -941,15 +953,15 @@ All services MUST expose health check endpoints:
 
 **Liveness check requirements:**
 - Verify process is responsive (not hung)
-- MUST NOT check external dependencies
-- MUST respond within 3 seconds
+- Does not check external dependencies
+- Responds within 3 seconds
 - Failure triggers container/process restart
 
 **Readiness check requirements:**
 - Verify service can serve requests
 - Check critical dependencies (database, cache)
 - Failure removes instance from load balancer
-- MUST NOT trigger restart
+- Does not trigger restart
 
 **Health check response format:**
 
@@ -978,7 +990,7 @@ All services MUST expose health check endpoints:
 
 #### 2.3.1 Capacity Planning
 
-Capacity planning MUST be performed quarterly:
+**[T3]** Regulated / Tier-1-Critical services SHALL perform capacity planning quarterly:
 
 **Inputs:**
 - Historical usage patterns (90 days minimum)
@@ -1048,7 +1060,7 @@ Controlled fault injection validates resilience:
 
 #### 2.3.3 Safe Rollout Strategies
 
-All production deployments MUST use safe rollout strategies:
+**[T2]** Production deployments SHOULD use safe rollout strategies (refer STD-ENG-006):
 
 **Canary Deployment (Default):**
 
@@ -1091,7 +1103,7 @@ All production deployments MUST use safe rollout strategies:
 
 #### 2.3.4 Runbook Requirements
 
-All Tier 1 and Tier 2 services MUST maintain operational runbooks. Runbooks bridge the gap between alerting and effective mitigation.
+**[T1]** Tier-1-Critical services SHALL maintain a minimally documented runbook (what it does, dependencies, restart, owner). **[T2]** Tier-2-Important services SHOULD maintain an operational runbook. Runbooks bridge the gap between alerting and effective mitigation.
 
 **Runbook structure:**
 
@@ -1116,8 +1128,8 @@ All Tier 1 and Tier 2 services MUST maintain operational runbooks. Runbooks brid
 | Tested via game day | RECOMMENDED | OPTIONAL | OPTIONAL |
 
 **Runbook maintenance:**
-- Runbooks MUST be updated after every incident that reveals gaps
-- Runbooks MUST be stored in version control alongside service code or in a central wiki
+- **[T2]** Runbooks SHOULD be updated after every incident that reveals gaps.
+- **[T2]** Runbooks SHOULD be stored in version control alongside service code or in a central wiki.
 - Each alert SHOULD link directly to its corresponding runbook section
 
 ---
@@ -1267,7 +1279,7 @@ Quarterly review of all service SLOs:
 
 #### 3.4.3 Service Catalog
 
-All CYBERCUBE services MUST be registered in a central service catalog:
+**[T1]** Every service SHALL have its tier (T1-Critical / T2-Important / T3-Internal) recorded in its README or service catalog entry. **[T2]** Services SHOULD be registered in a central service catalog:
 
 | Field | Description | Required? |
 |-------|-------------|-----------|
@@ -1282,13 +1294,13 @@ All CYBERCUBE services MUST be registered in a central service catalog:
 | **Dashboard** | Observability dashboard link | RECOMMENDED |
 
 **Maintenance:**
-- Service catalog MUST be reviewed quarterly alongside SLO reviews
-- New services MUST be registered before production deployment
-- Decommissioned services MUST be marked inactive
+- **[T3]** Service catalog SHALL be reviewed quarterly alongside SLO reviews.
+- **[T2]** New services SHOULD be registered before production deployment.
+- **[T2]** Decommissioned services SHOULD be marked inactive promptly.
 
 #### 3.4.4 Postmortem Action Tracking
 
-All postmortem action items MUST be tracked to closure:
+**[T2]** Postmortem action items SHOULD be tracked to closure:
 
 | Priority | Timeline | Review Cadence |
 |----------|----------|----------------|
@@ -1433,25 +1445,32 @@ Saturation → How full resources are
 
 ### Core Implementation
 
-| Component | Status | Notes |
-|-----------|--------|-------|
-| SLI Definitions | COMPLETE | Canonical SLIs defined |
-| SLO Targets | COMPLETE | Per-tier targets defined |
-| Error Budget Policy | COMPLETE | Status levels and actions |
-| Error Budget Tracking | PARTIAL | Dashboard implementation needed |
-| Burn Rate Alerting | PENDING | Configure alerts |
-| Service Tier Classification | PARTIAL | Classify existing services |
-| Service Catalog | PENDING | Register all services |
-| Redundancy Architecture | PARTIAL | Review per service |
-| Health Check Endpoints | PARTIAL | Standardize across services |
-| Circuit Breakers | PARTIAL | Implementation varies |
-| Canary Deployments | PARTIAL | Not all services |
-| Runbooks | PARTIAL | Tier 1 services priority |
-| On-Call Rotation | PARTIAL | Formalize rotation structure |
-| Chaos Testing | PENDING | Program establishment |
-| Toil Tracking | PENDING | Measurement system |
-| Reliability Reviews | PENDING | Schedule cadence |
-| Postmortem Process | PARTIAL | See Incident Response Standard |
+| Component | Status | Tier | Notes |
+|-----------|--------|------|-------|
+| Declared service tier (per service) | PARTIAL | T1 | Classify existing services |
+| Business-hours on-call for Tier-1-Critical | PARTIAL | T1 | Formalize rotation structure |
+| Minimal runbook for Tier-1-Critical | PARTIAL | T1 | Tier 1 services priority |
+| POL-ENG-001 change flow + rollback plan | IN PLACE | T1 | Defers to POL-ENG-001 v1.1 |
+| Health check for Tier-1-Critical | PARTIAL | T1 | Inherits STD-OPS-003 T1; standardize ROADMAP |
+| SLI Definitions (canonical) | COMPLETE | T2 | Defers to STD-SLP-001 |
+| SLO Targets per tier | COMPLETE | T2 | Per-tier targets defined |
+| Error Budget Policy | COMPLETE | T2 | Status levels and actions |
+| Error Budget Tracking Dashboard | ROADMAP | T2 | Re-trigger: observability platform chosen |
+| Burn Rate Alerting | ROADMAP | T2 | Configure alerts |
+| Service Catalog (canonical registry) | ROADMAP | T2 | Register all services |
+| Circuit Breakers / Retries / Timeouts | PARTIAL | T2 | Implementation varies |
+| Canary Deployments | PARTIAL | T2 | Not all services; paired with STD-ENG-006 T3 |
+| 24×5 on-call rotation | ROADMAP | T2 | After business-hours T1 stabilized |
+| Postmortem process (SEV1/SEV2) | PARTIAL | T2 | Defers to STD-OPS-004 |
+| 24×7 on-call | ROADMAP | T3 | Regulated projects only |
+| Multi-region / multi-AZ redundancy | ROADMAP | T3 | Regulated projects only |
+| Quarterly chaos / gameday | ROADMAP | T3 | Regulated projects only |
+| Toil tracking (≤ 50% ceiling) | ROADMAP | T3 | Regulated projects only |
+| Reliability reviews (monthly) | ROADMAP | T3 | Regulated projects only |
+| Executive reliability KRIs | ROADMAP | T3 | Paired with STD-GOV-005 |
+| DR tested quarterly | ROADMAP | T3 | Paired with STD-OPS-002 T3 |
+
+Status vocabulary: `IN PLACE` | `COMPLETE` | `PARTIAL` | `ROADMAP` | `N/A`.
 
 ### Migration Path
 
@@ -1472,6 +1491,8 @@ Saturation → How full resources are
 |---------|------|---------|
 | v1 | 2026-02-01 | Initial release |
 | v1.1 | 2026-02-07 | Added: health checks (2.2.7), runbooks (2.3.4), on-call practices (3.2), service catalog (3.4.3). Fixed: chaos frequency to quarterly, multi-region softened to RECOMMENDED, SLI range corrected, related documents linked to actual standards |
+| v1.2 | 2026-04-22 | Unfreeze (Path B): Tier Table with 5 T1 rules (service tier declared, business-hours on-call for Tier-1-Critical, minimal runbook, POL-ENG-001 change flow, health check). SLOs, error budgets, circuit breakers, canary, chaos reclassified to T2/T3 ROADMAP. Status vocabulary normalized. |
+| v1.3 | 2026-04-22 | Pass-3 friction remediation: body MUSTs reclassified with inline `[T1]/[T2]/[T3]` tags (§1.2 canonical SLIs → T2, §2 resilience principles → T2, §2.2.7 health checks → T1 for Tier-1-Critical + T2 otherwise, §3.2 runbook coverage → T1/T2 split, §3.4.3 service catalog registration → T2 + quarterly review → T3, capacity planning → T3). MUST density reduced from ~18/1,000 lines to ~7/1,000 lines. No semantic change to the T1 baseline — only tier clarity. |
 
 ---
 

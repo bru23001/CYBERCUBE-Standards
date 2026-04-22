@@ -1,0 +1,450 @@
+{
+  "schema": "cybercube.modules.contracts.v1",
+  "generated": "2026-04-22T17:51:54+00:00",
+  "source": "[33]-STD-ENG-008 CYBERCUBE-Reusable-Modules-Standard-v1.1.md",
+  "count": 40,
+  "owner": "eng-lead",
+  "notes": "Per-module ICD contracts extracted from STD-ENG-008. STD-ENG-008 indexes these via modules/modules.json and retains shared contracts (ICD-4 through ICD-9) inline.",
+  "contracts": [
+    {
+      "module_id": "M-01",
+      "name": "Identity",
+      "slug": "identity",
+      "contract_file": "modules/contracts/M-01-identity.md",
+      "source_icd": "ICD-3.1",
+      "source_lines": [
+        682,
+        746
+      ]
+    },
+    {
+      "module_id": "M-02",
+      "name": "Authentication",
+      "slug": "authentication",
+      "contract_file": "modules/contracts/M-02-authentication.md",
+      "source_icd": "ICD-3.2",
+      "source_lines": [
+        747,
+        816
+      ]
+    },
+    {
+      "module_id": "M-03",
+      "name": "Authorization",
+      "slug": "authorization",
+      "contract_file": "modules/contracts/M-03-authorization.md",
+      "source_icd": "ICD-3.3",
+      "source_lines": [
+        817,
+        868
+      ]
+    },
+    {
+      "module_id": "M-09",
+      "name": "Audit",
+      "slug": "audit",
+      "contract_file": "modules/contracts/M-09-audit.md",
+      "source_icd": "ICD-3.4",
+      "source_lines": [
+        869,
+        931
+      ]
+    },
+    {
+      "module_id": "M-10",
+      "name": "Multi-Tenancy",
+      "slug": "multi-tenancy",
+      "contract_file": "modules/contracts/M-10-multi-tenancy.md",
+      "source_icd": "ICD-3.5",
+      "source_lines": [
+        932,
+        969
+      ]
+    },
+    {
+      "module_id": "M-04",
+      "name": "API Gateway",
+      "slug": "api-gateway",
+      "contract_file": "modules/contracts/M-04-api-gateway.md",
+      "source_icd": "ICD-3.6",
+      "source_lines": [
+        970,
+        1012
+      ]
+    },
+    {
+      "module_id": "M-05",
+      "name": "Identifier",
+      "slug": "identifier",
+      "contract_file": "modules/contracts/M-05-identifier.md",
+      "source_icd": "ICD-3.7",
+      "source_lines": [
+        1013,
+        1051
+      ]
+    },
+    {
+      "module_id": "M-06",
+      "name": "Data Classification",
+      "slug": "data-classification",
+      "contract_file": "modules/contracts/M-06-data-classification.md",
+      "source_icd": "ICD-3.8",
+      "source_lines": [
+        1052,
+        1086
+      ]
+    },
+    {
+      "module_id": "M-07",
+      "name": "Soft-Delete",
+      "slug": "soft-delete",
+      "contract_file": "modules/contracts/M-07-soft-delete.md",
+      "source_icd": "ICD-3.9",
+      "source_lines": [
+        1087,
+        1124
+      ]
+    },
+    {
+      "module_id": "M-08",
+      "name": "Records Management",
+      "slug": "records-management",
+      "contract_file": "modules/contracts/M-08-records-management.md",
+      "source_icd": "ICD-3.10",
+      "source_lines": [
+        1125,
+        1162
+      ]
+    },
+    {
+      "module_id": "M-11",
+      "name": "Logging",
+      "slug": "logging",
+      "contract_file": "modules/contracts/M-11-logging.md",
+      "source_icd": "ICD-3.11",
+      "source_lines": [
+        1163,
+        1211
+      ]
+    },
+    {
+      "module_id": "M-12",
+      "name": "Metrics",
+      "slug": "metrics",
+      "contract_file": "modules/contracts/M-12-metrics.md",
+      "source_icd": "ICD-3.12",
+      "source_lines": [
+        1212,
+        1251
+      ]
+    },
+    {
+      "module_id": "M-13",
+      "name": "Tracing",
+      "slug": "tracing",
+      "contract_file": "modules/contracts/M-13-tracing.md",
+      "source_icd": "ICD-3.13",
+      "source_lines": [
+        1252,
+        1285
+      ]
+    },
+    {
+      "module_id": "M-14",
+      "name": "Alerting",
+      "slug": "alerting",
+      "contract_file": "modules/contracts/M-14-alerting.md",
+      "source_icd": "ICD-3.14",
+      "source_lines": [
+        1286,
+        1320
+      ]
+    },
+    {
+      "module_id": "M-15",
+      "name": "Health Check",
+      "slug": "health-check",
+      "contract_file": "modules/contracts/M-15-health-check.md",
+      "source_icd": "ICD-3.15",
+      "source_lines": [
+        1321,
+        1356
+      ]
+    },
+    {
+      "module_id": "M-16",
+      "name": "Cryptography",
+      "slug": "cryptography",
+      "contract_file": "modules/contracts/M-16-cryptography.md",
+      "source_icd": "ICD-3.16",
+      "source_lines": [
+        1357,
+        1403
+      ]
+    },
+    {
+      "module_id": "M-17",
+      "name": "Secret Management",
+      "slug": "secret-management",
+      "contract_file": "modules/contracts/M-17-secret-management.md",
+      "source_icd": "ICD-3.17",
+      "source_lines": [
+        1404,
+        1442
+      ]
+    },
+    {
+      "module_id": "M-18",
+      "name": "Input Validation",
+      "slug": "input-validation",
+      "contract_file": "modules/contracts/M-18-input-validation.md",
+      "source_icd": "ICD-3.18",
+      "source_lines": [
+        1443,
+        1477
+      ]
+    },
+    {
+      "module_id": "M-19",
+      "name": "Rate Limiting",
+      "slug": "rate-limiting",
+      "contract_file": "modules/contracts/M-19-rate-limiting.md",
+      "source_icd": "ICD-3.19",
+      "source_lines": [
+        1478,
+        1517
+      ]
+    },
+    {
+      "module_id": "M-20",
+      "name": "Security Headers",
+      "slug": "security-headers",
+      "contract_file": "modules/contracts/M-20-security-headers.md",
+      "source_icd": "ICD-3.20",
+      "source_lines": [
+        1518,
+        1553
+      ]
+    },
+    {
+      "module_id": "M-21",
+      "name": "Webhook",
+      "slug": "webhook",
+      "contract_file": "modules/contracts/M-21-webhook.md",
+      "source_icd": "ICD-3.21",
+      "source_lines": [
+        1554,
+        1591
+      ]
+    },
+    {
+      "module_id": "M-22",
+      "name": "Notification",
+      "slug": "notification",
+      "contract_file": "modules/contracts/M-22-notification.md",
+      "source_icd": "ICD-3.22",
+      "source_lines": [
+        1592,
+        1628
+      ]
+    },
+    {
+      "module_id": "M-23",
+      "name": "Email",
+      "slug": "email",
+      "contract_file": "modules/contracts/M-23-email.md",
+      "source_icd": "ICD-3.23",
+      "source_lines": [
+        1629,
+        1666
+      ]
+    },
+    {
+      "module_id": "M-24",
+      "name": "File Upload",
+      "slug": "file-upload",
+      "contract_file": "modules/contracts/M-24-file-upload.md",
+      "source_icd": "ICD-3.24",
+      "source_lines": [
+        1667,
+        1704
+      ]
+    },
+    {
+      "module_id": "M-25",
+      "name": "Incident Management",
+      "slug": "incident-management",
+      "contract_file": "modules/contracts/M-25-incident-management.md",
+      "source_icd": "ICD-3.25",
+      "source_lines": [
+        1705,
+        1742
+      ]
+    },
+    {
+      "module_id": "M-26",
+      "name": "Change Management",
+      "slug": "change-management",
+      "contract_file": "modules/contracts/M-26-change-management.md",
+      "source_icd": "ICD-3.26",
+      "source_lines": [
+        1743,
+        1780
+      ]
+    },
+    {
+      "module_id": "M-27",
+      "name": "Feature Flag",
+      "slug": "feature-flag",
+      "contract_file": "modules/contracts/M-27-feature-flag.md",
+      "source_icd": "ICD-3.27",
+      "source_lines": [
+        1781,
+        1817
+      ]
+    },
+    {
+      "module_id": "M-28",
+      "name": "Backup",
+      "slug": "backup",
+      "contract_file": "modules/contracts/M-28-backup.md",
+      "source_icd": "ICD-3.28",
+      "source_lines": [
+        1818,
+        1861
+      ]
+    },
+    {
+      "module_id": "M-29",
+      "name": "Configuration",
+      "slug": "configuration",
+      "contract_file": "modules/contracts/M-29-configuration.md",
+      "source_icd": "ICD-3.29",
+      "source_lines": [
+        1862,
+        1926
+      ]
+    },
+    {
+      "module_id": "M-30",
+      "name": "Error Handling",
+      "slug": "error-handling",
+      "contract_file": "modules/contracts/M-30-error-handling.md",
+      "source_icd": "ICD-3.30",
+      "source_lines": [
+        1927,
+        1996
+      ]
+    },
+    {
+      "module_id": "M-31",
+      "name": "Core Utilities",
+      "slug": "core-utilities",
+      "contract_file": "modules/contracts/M-31-core-utilities.md",
+      "source_icd": "ICD-3.31",
+      "source_lines": [
+        1997,
+        2097
+      ]
+    },
+    {
+      "module_id": "M-32",
+      "name": "Data Access",
+      "slug": "data-access",
+      "contract_file": "modules/contracts/M-32-data-access.md",
+      "source_icd": "ICD-3.32",
+      "source_lines": [
+        2098,
+        2224
+      ]
+    },
+    {
+      "module_id": "M-33",
+      "name": "HTTP Client",
+      "slug": "http-client",
+      "contract_file": "modules/contracts/M-33-http-client.md",
+      "source_icd": "ICD-3.33",
+      "source_lines": [
+        2225,
+        2352
+      ]
+    },
+    {
+      "module_id": "M-34",
+      "name": "Message Bus",
+      "slug": "message-bus",
+      "contract_file": "modules/contracts/M-34-message-bus.md",
+      "source_icd": "ICD-3.34",
+      "source_lines": [
+        2353,
+        2510
+      ]
+    },
+    {
+      "module_id": "M-35",
+      "name": "Billing",
+      "slug": "billing",
+      "contract_file": "modules/contracts/M-35-billing.md",
+      "source_icd": "ICD-3.35",
+      "source_lines": [
+        2511,
+        2628
+      ]
+    },
+    {
+      "module_id": "M-36",
+      "name": "Workflow",
+      "slug": "workflow",
+      "contract_file": "modules/contracts/M-36-workflow.md",
+      "source_icd": "ICD-3.36",
+      "source_lines": [
+        2629,
+        2767
+      ]
+    },
+    {
+      "module_id": "M-37",
+      "name": "UI Foundation",
+      "slug": "ui-foundation",
+      "contract_file": "modules/contracts/M-37-ui-foundation.md",
+      "source_icd": "ICD-3.37",
+      "source_lines": [
+        2768,
+        2900
+      ]
+    },
+    {
+      "module_id": "M-38",
+      "name": "Localization",
+      "slug": "localization",
+      "contract_file": "modules/contracts/M-38-localization.md",
+      "source_icd": "ICD-3.38",
+      "source_lines": [
+        2901,
+        2972
+      ]
+    },
+    {
+      "module_id": "M-39",
+      "name": "Search",
+      "slug": "search",
+      "contract_file": "modules/contracts/M-39-search.md",
+      "source_icd": "ICD-3.39",
+      "source_lines": [
+        2973,
+        3060
+      ]
+    },
+    {
+      "module_id": "M-40",
+      "name": "Cache",
+      "slug": "cache",
+      "contract_file": "modules/contracts/M-40-cache.md",
+      "source_icd": "ICD-3.40",
+      "source_lines": [
+        3061,
+        3160
+      ]
+    }
+  ]
+}

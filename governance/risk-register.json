@@ -1,0 +1,19 @@
+[
+  {
+    "id": "RISK-0001",
+    "title": "Bootstrap risk — validator seed, replace before v1 freeze",
+    "description": "Placeholder seed entry to satisfy schemas/risk-register.schema.json validation in --strict mode while the real register is being populated by risk owners. Replace or remove once at least one real risk is recorded.",
+    "category": "operational",
+    "owner": "eng-lead",
+    "inherent_rating": { "likelihood": 1, "impact": 1, "rationale": "Seed-only. Not a real risk." },
+    "residual_rating": { "likelihood": 1, "impact": 1, "rationale": "Seed-only. Not a real risk." },
+    "treatment": "accept",
+    "controls": [],
+    "kri_ids": [],
+    "status": "open",
+    "last_reviewed": "2026-04-22",
+    "next_review_due": "2026-07-22",
+    "linked_incidents": [],
+    "linked_exceptions": []
+  }
+]

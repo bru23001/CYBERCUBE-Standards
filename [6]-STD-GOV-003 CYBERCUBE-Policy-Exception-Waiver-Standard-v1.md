@@ -1,13 +1,25 @@
-# CYBERCUBE Policy Exception & Waiver Standard (v1)
+# CYBERCUBE Policy Exception & Waiver Standard (v1.1)
 
 **Standard ID:** STD-GOV-003  
 **Status:** Active  
-**Effective:** 2026-02-01  
+**Effective:** 2026-02-01 (v1), 2026-04-22 (v1.1)  
 **Classification:** INTERNAL  
 **Owner:** Governance / Executive Leadership  
 **Approver:** CEO  
 **Applies to:** All CYBERCUBE policies, standards, controls, personnel, contractors, and third parties  
 **Review Cycle:** Annual + after any major policy framework change
+
+---
+
+## Applicability Tier Table
+
+| Applicability | Tier | Summary of Clauses in This Standard | Waiver Path |
+| ------------- | ---- | ----------------------------------- | ----------- |
+| All projects | **T1 MUST** | (1) Every deviation from an approved control MUST be filed as an exception via this standard (no undocumented deviations). (2) Exceptions MUST name a requester, approver (role key `sec-lead` or above), expiry date, and compensating control. (3) Expired exceptions MUST NOT be re-used silently — renewal is a new request with fresh risk assessment. | None (non-waivable — meta-standard) |
+| SaaS / customer-facing | **T2 SHOULD** | Exception register maintained in a controlled location, quarterly review by Governance, communication to affected teams, visible in project compliance dashboard. | Lightweight waiver per POL-GOV-001 §8.3 (meta-recursive: applies to operational steps only, never to T1 rules above) |
+| Regulated / high-risk | **T3 MAY** | External audit of the exception register, board-level review of critical exceptions, regulator-facing waiver attestations, SLA on exception remediation. | Formal waiver per this standard (self-referential; requires CEO approval) |
+
+> Per POL-GOV-001 §8.8. **Meta-rule:** Because this standard IS the waiver mechanism, T1 clauses here are non-waivable by definition.
 
 ---
 
@@ -403,11 +415,11 @@ This Policy Exception & Waiver Standard is approved and adopted by CYBERCUBE exe
 | Exception request template | COMPLETE | Defined in §6.4 |
 | Approval authority matrix | COMPLETE | Defined in §7.1 |
 | Maximum duration limits | COMPLETE | Defined in §7.3 |
-| Exception registry | PENDING | Select tooling (Notion/Jira) |
-| Governance dashboard integration | PENDING | Align with 6.2 |
-| KRI tracking & alerting | PENDING | Define dashboard views |
+| Exception registry | ROADMAP | Select tooling (Notion/Jira) |
+| Governance dashboard integration | ROADMAP | Align with 6.2 |
+| KRI tracking & alerting | ROADMAP | Define dashboard views |
 | Emergency exception process | COMPLETE | Defined in §6.3 |
-| Audit integration | PENDING | Align with 6.1 |
+| Audit integration | ROADMAP | Align with 6.1 |
 
 ### Migration Path
 

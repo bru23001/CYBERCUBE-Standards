@@ -1,16 +1,26 @@
-# CYBERCUBE Unified Control Matrix (UCM)
+# CYBERCUBE Unified Control Matrix (UCM) (v1.1)
 
 | Metadata | Value |
 |----------|-------|
 | **Standard ID** | STD-GOV-006 |
 | **Catalog Number** | 6.4 |
-| **Version** | 1.0 |
+| **Version** | 1.1 |
 | **Status** | Active |
 | **Owner** | CISO + Compliance Lead |
-| **Effective** | 2026-02-16 |
+| **Effective** | 2026-02-16 (v1), 2026-04-22 (v1.1) |
 | **Classification** | INTERNAL |
 | **Compliance Level** | Mandatory |
 | **Next Review** | 2026-Q3 (post SOC 2 Type II audit) |
+
+## Applicability Tier Table
+
+| Applicability | Tier | Summary of Clauses in This Standard | Waiver Path |
+| ------------- | ---- | ----------------------------------- | ----------- |
+| All projects | **T1 MUST** | (1) Every normative clause (`MUST`/`SHALL`) across CYBERCUBE standards MUST map to a control entry in the UCM. (2) The UCM is the authoritative traceability source; divergent per-standard mappings are not normative. (3) Adding or removing a MUST clause in any standard MUST update the UCM in the same change. | None (non-waivable) |
+| SaaS / customer-facing | **T2 SHOULD** | Quarterly UCM refresh, gap-analysis feeding a remediation plan, compliance dashboard kept current, mapping to at least one external framework (e.g. SOC-2, NIST CSF, ISO-27001). | Lightweight waiver per POL-GOV-001 §8.3 |
+| Regulated / high-risk | **T3 MAY** | External-auditor evidence packs derived from UCM, live regulator-facing crosswalk (multiple frameworks in parallel), automated evidence collection against UCM rows. | Formal waiver per STD-GOV-003 |
+
+> Per POL-GOV-001 §8.8.
 
 > **Purpose:** Single-source traceability from every CYBERCUBE control to external regulatory and certification frameworks. Enables coverage gap analysis, overlap detection, and auditor-ready evidence mapping.
 
@@ -75,7 +85,7 @@ CTL-{DOMAIN}-{SEQ}
 | **EU AI Act** | Article reference (where applicable) |
 | **PCI DSS 4.0** | Requirement reference (where applicable) |
 | **Evidence Artifact** | What the auditor inspects |
-| **Impl. Status** | IMPLEMENTED / PARTIAL / PLANNED / GAP |
+| **Impl. Status** | IMPLEMENTED / PARTIAL / PLANNED / GAP (control-matrix domain vocabulary; **not** the POL-GOV-001 §8.9 canonical Impl-Status vocabulary — see mapping below) |
 
 ### Reading the Matrix
 
@@ -303,6 +313,17 @@ CTL-{DOMAIN}-{SEQ}
 | **PCI DSS 4.0** | ~12 applicable reqs | ~8 mapped | ~4 not mapped | ~67% |
 
 > **Note:** Percentages approximate. Full gap analysis pending per GAP-xxx items below.
+
+### Control-Matrix Status → POL-GOV-001 §8.9 Mapping
+
+This matrix uses a control-centric status vocabulary. When a control's status is consumed by the portfolio freeze-check (POL-GOV-001 §8.9), use the following mapping:
+
+| UCM control-matrix status | POL-GOV-001 §8.9 canonical | Note |
+|---------------------------|---------------------------|------|
+| `IMPLEMENTED`             | `IN PLACE` or `COMPLETE`  | Control is live and evidence is available. |
+| `PARTIAL`                 | `PARTIAL`                 | Same semantics in both systems. |
+| `PLANNED`                 | `ROADMAP`                 | Must carry a re-trigger condition like any ROADMAP row. |
+| `GAP`                     | `ROADMAP`                 | Explicit gap with a documented remediation target. |
 
 ### Implementation Status Summary
 

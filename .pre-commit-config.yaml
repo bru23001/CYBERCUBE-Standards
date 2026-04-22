@@ -1,0 +1,24 @@
+# Pre-commit hooks for the CYBERCUBE standards repo.
+#
+# Install with:
+#   pip install pre-commit
+#   pre-commit install
+#
+# The freeze-check hook enforces POL-GOV-001 §8.9 on every commit that
+# touches a `[N]-*.md` standard. It is authoritative; CI runs the same
+# script.
+
+repos:
+  - repo: local
+    hooks:
+      - id: freeze-check
+        name: POL-GOV-001 §8.9 Freeze-Check
+        entry: python tools/freeze-check.py
+        language: system
+        pass_filenames: false
+        files: '^\[[0-9]+\]-.*\.md$|^tools/freeze-check\.py$'
+        description: >
+          Enforces the POL-GOV-001 §8.9 freeze trigger and §8.8 tier-table
+          requirement across all [N]-*.md standards. Fails the commit if any
+          standard is frozen, uses unknown status vocabulary, or (warn) is
+          missing its Applicability Tier Table.

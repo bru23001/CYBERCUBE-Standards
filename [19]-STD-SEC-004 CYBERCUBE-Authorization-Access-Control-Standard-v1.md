@@ -429,15 +429,27 @@ CYBERCUBE adopts Zanzibar concepts for:
 
 ---
 
-# CYBERCUBE Authorization & Access Control Standard (v1)
+# CYBERCUBE Authorization & Access Control Standard (v1.1)
 
 **Standard ID:** STD-SEC-004
 **Parent Document:** 2.1 CYBERCUBE Security Policy (STD-SEC-001)
 **Status:** Active
-**Effective:** 2026-01-17
+**Effective:** 2026-01-17 (v1), 2026-04-22 (v1.1)
 **Classification:** INTERNAL
 **Owner:** Security Team
 **Applies to:** All CYBERCUBE products, services, and APIs requiring access control
+
+## Applicability Tier Table
+
+| Applicability | Tier | Summary of Clauses in This Standard | Waiver Path |
+| ------------- | ---- | ----------------------------------- | ----------- |
+| All projects | **T1 MUST** | (1) Deny-by-default: every protected resource MUST require an explicit allow rule. (2) Every API endpoint MUST perform an authorization check before any business-logic branch. (3) Every user/service principal MUST have a role or explicit permission set — no "admin-or-nothing" binary. (4) Authorization decisions (allow, deny, reason) MUST be logged for privileged or data-access endpoints. (5) Object ownership checks MUST run on any user-scoped resource (user cannot read/modify another user's records by id). | None (non-waivable) |
+| SaaS / customer-facing | **T2 SHOULD** | Permission registry (central list of all permissions), named roles with inheritance, tenant isolation enforced at query layer, ABAC conditions for attribute-driven rules, periodic access reviews, privileged-action logging with alerting. | Lightweight waiver per POL-GOV-001 §8.3 |
+| Regulated / high-risk | **T3 MAY** | PostgreSQL Row-Level Security (RLS) on all tenant-scoped tables (authoritative over query-level filtering), dedicated policy engine (OPA or equivalent), quarterly access certification with evidence, segregation-of-duties matrix, just-in-time privileged access, break-glass procedure with automatic revocation. | Formal waiver per STD-GOV-003 |
+
+> Per POL-GOV-001 §8.8.
+
+> **v1.1 (2026-04-22) — Unfreeze (Path B).** T1 reduced to five rules enforceable in application code today. Permission registry, ABAC engine, RLS, access reviews moved to T2/T3 ROADMAP. RLS becomes MUST at T3 only — for T2 products, query-level tenant filtering is acceptable. Resolves overlap with [27] STD-DAT-004 which holds tenant-isolation RLS guidance.
 
 ## 0. Purpose and Design Principles
 
@@ -1905,18 +1917,26 @@ Tenant     → hard isolation boundary
 
 ### Core Implementation
 
-| Component           | Status  | Notes                  |
-| ------------------- | ------- | ---------------------- |
-| Permission Registry | PENDING | Define all permissions |
-| Role System         | PARTIAL | Basic roles exist      |
-| Policy Engine       | PENDING | Design complete        |
-| RBAC Evaluation     | PARTIAL | Simple role checks     |
-| ABAC Conditions     | PENDING | Not implemented        |
-| Ownership Model     | PARTIAL | Basic ownership        |
-| Tenant Isolation    | PARTIAL | Query-level exists     |
-| RLS (PostgreSQL)    | PENDING | Design complete        |
-| Audit Logging       | PARTIAL | Extend coverage        |
-| Access Reviews      | PENDING | Process needed         |
+| Component           | Status   | Tier | Notes                  |
+| ------------------- | -------- | ---- | ---------------------- |
+| Deny-by-default policy | IN PLACE | T1 | Enforced in middleware |
+| Per-endpoint authorization checks | IN PLACE | T1 | Code-review checklist item |
+| Role/Permission assignment (non-binary) | IN PLACE | T1 | Basic role system in place |
+| Authorization decision logging | PARTIAL | T1 | Privileged endpoints logged; broader coverage ROADMAP |
+| Ownership check on user-scoped resources | IN PLACE | T1 | Enforced in repo-layer filters |
+| Permission Registry (central) | ROADMAP | T2 | Re-trigger: when 3+ services share permissions |
+| Role inheritance / hierarchy | ROADMAP | T2 | After registry exists |
+| RBAC Evaluation | PARTIAL | T2 | Simple role checks; full RBAC library ROADMAP |
+| ABAC Conditions | ROADMAP | T2 | Re-trigger: first attribute-driven rule required |
+| Tenant Isolation (query-level) | PARTIAL | T2 | Query-level filters exist; see STD-DAT-004 for multi-tenancy details |
+| Periodic Access Reviews | ROADMAP | T2 | Quarterly cadence when HR/IAM integration live |
+| Policy Engine (OPA or eq.) | ROADMAP | T3 | Only for T3 products |
+| RLS (PostgreSQL) | ROADMAP | T3 | MUST for T3; SHOULD for T2; see STD-DAT-004 |
+| Segregation-of-duties matrix | ROADMAP | T3 | Regulated projects only |
+| Just-in-Time privileged access | ROADMAP | T3 | Regulated projects only |
+| Break-glass procedure | ROADMAP | T3 | Regulated projects only |
+
+Status vocabulary: `IN PLACE` | `COMPLETE` | `PARTIAL` | `ROADMAP` | `N/A`.
 
 ### Migration Path
 
@@ -1956,6 +1976,7 @@ Tenant     → hard isolation boundary
 | Version | Date       | Changes         |
 | ------- | ---------- | --------------- |
 | v1      | 2026-01-17 | Initial release |
+| v1.1    | 2026-04-22 | Unfreeze (Path B): added Applicability Tier Table with 5 T1 clauses (deny-by-default, per-endpoint checks, non-binary roles, decision logging, ownership checks). Permission registry, policy engine, RLS, access reviews reclassified to T2/T3 ROADMAP. RLS→T3 only, resolving overlap with STD-DAT-004. Status vocabulary normalized. |
 
 
 ```

@@ -356,15 +356,27 @@ Types:
 
 ---
 
-# CYBERCUBE Soft-Delete & Lifecycle Management Standard (v1)
+# CYBERCUBE Soft-Delete & Lifecycle Management Standard (v1.1)
 
 **Standard ID:** STD-DAT-002  
 **Parent Document:** 2.1 CYBERCUBE Security Policy (STD-SEC-001)  
 **Status:** Active  
-**Effective:** 2026-01-17  
+**Effective:** 2026-01-17 (v1), 2026-04-22 (v1.1)  
 **Classification:** INTERNAL  
 **Owner:** Engineering Leadership  
 **Applies to:** All CYBERCUBE resources with CC-PIDs
+
+## Applicability Tier Table
+
+| Applicability | Tier | Summary of Clauses in This Standard | Waiver Path |
+| ------------- | ---- | ----------------------------------- | ----------- |
+| All projects | **T1 MUST** | (1) User-generated records MUST NOT be hard-deleted on user action by default; they MUST enter a soft-deleted state with a `deleted_at` timestamp (or equivalent lifecycle column). (2) Soft-deleted records MUST be excluded from default queries (default scope filters them out). (3) A retention period MUST be declared for each soft-deleted entity type, consistent with STD-DAT-001 T1. (4) When retention elapses, records MUST be purged — soft-deletion is not a permanent state. (5) Cascading lifecycle MUST be documented: deleting a parent entity MUST specify whether children are cascade-deleted, orphaned, or blocked. | None (non-waivable) |
+| SaaS / customer-facing | **T2 SHOULD** | Grace-period restore API (30-day default), standardized `410 Gone` response for accessed-after-delete resources, tombstone record (id + deletion reason) retained after purge for audit, lifecycle events emitted to audit log, user-visible "Trash" / "Recently deleted" UI. | Lightweight waiver per POL-GOV-001 §8.3 |
+| Regulated / high-risk | **T3 MAY** | Archival tier (cold storage) before purge, suspension state distinct from deletion, per-tenant customizable retention, legal-hold integration (per STD-LGL-001), cryptographic erasure (destroy per-record keys) for PII purge, audit trail immutable in a SIEM. | Formal waiver per STD-GOV-003 |
+
+> Per POL-GOV-001 §8.8.
+
+> **v1.1 (2026-04-22) — Unfreeze (Path B).** T1 = five rules every data model can follow: soft-delete-by-default, exclude-from-default-queries, declared retention, purge on retention elapse, documented cascade. Restore API, tombstones, 410 response, archival, cryptographic erasure reclassified to T2/T3 ROADMAP. Load-bearing dependency on STD-DAT-001 for retention rules.
 
 ## 0. Purpose and Design Principles
 
@@ -1935,18 +1947,25 @@ Child cannot be "more alive" than parent
 
 ### Core Implementation
 
-| Component | Status | Notes |
-|-----------|--------|-------|
-| Lifecycle States | PARTIAL | Basic soft delete exists |
-| 410 Gone Response | PARTIAL | Added to some endpoints |
-| Tombstone Table | PENDING | Design complete |
-| Grace Periods | PARTIAL | Fixed 30 days |
-| Cascade Delete | PARTIAL | Basic cascade |
-| Suspension | PENDING | Not implemented |
-| Archival | PENDING | Not implemented |
-| Restore API | PARTIAL | Basic restore |
-| Purge Job | PENDING | Manual only |
-| Lifecycle Events | PENDING | Not logged |
+| Component | Status | Tier | Notes |
+|-----------|--------|------|-------|
+| Soft-delete column (`deleted_at`) on user-gen entities | IN PLACE | T1 | Convention enforced via ORM base class |
+| Default-scope excludes soft-deleted rows | IN PLACE | T1 | Enforced by ORM default scope |
+| Declared retention period per entity | PARTIAL | T1 | Inherits STD-DAT-001 retention schedule |
+| Purge after retention elapses | PARTIAL | T1 | Manual process today; automated job ROADMAP |
+| Documented cascade semantics | PARTIAL | T1 | Mostly documented in ERDs; review-gate ROADMAP |
+| Grace-period restore API | PARTIAL | T2 | Basic restore exists; standardized API ROADMAP |
+| `410 Gone` on accessed-after-delete | PARTIAL | T2 | Some endpoints; full coverage ROADMAP |
+| Tombstone record post-purge | ROADMAP | T2 | Design complete; implementation ROADMAP |
+| Lifecycle events → audit log | ROADMAP | T2 | Paired with STD-OPS-003 audit channel |
+| User-visible "Trash" UI | ROADMAP | T2 | Re-trigger: first customer-facing product UX |
+| Archival tier (cold storage) | ROADMAP | T3 | Regulated projects only |
+| Suspension state (distinct from delete) | ROADMAP | T3 | Re-trigger: compliance/billing needs |
+| Per-tenant customizable retention | ROADMAP | T3 | Enterprise T3 only |
+| Legal-hold integration | ROADMAP | T3 | Paired with STD-LGL-001 T3 |
+| Cryptographic erasure (per-record keys) | ROADMAP | T3 | Regulated projects only |
+
+Status vocabulary: `IN PLACE` | `COMPLETE` | `PARTIAL` | `ROADMAP` | `N/A`.
 
 ### Migration Path
 

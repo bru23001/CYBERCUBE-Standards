@@ -1,6 +1,14 @@
-# CYBERCUBE Webhooks & External Integrations Standard (v1)
+# CYBERCUBE Webhooks & External Integrations Standard (v1.1)
 
-> **FROZEN — MUST language suspended.** Per POL-GOV-001 §8.8 (ratified 2026-04-22), this standard's Implementation Status section is majority-PENDING (all 9 components PENDING). All normative MUST/SHALL clauses are temporarily downgraded to SHOULD until Implementation Status reaches majority IN-PLACE/COMPLETE. This status blocks advancement to Active per POL-GOV-001 §2.2. Lift the freeze by: (a) completing PENDING components, or (b) formally downgrading MUST language and re-submitting for review.
+## Applicability Tier Table
+
+| Applicability | Tier | Summary of Clauses in This Standard | Waiver Path |
+| ------------- | ---- | ----------------------------------- | ----------- |
+| All projects | **T1 MUST** | **Conditional: applies only if the product emits webhooks to external consumers.** If it does: (1) Every webhook payload MUST be signed with HMAC-SHA256 using a per-endpoint secret. (2) Every webhook MUST carry a unique `event_id` so consumers can deduplicate. (3) Webhook secrets MUST be stored per the Secrets Management Standard. Products that do NOT emit webhooks are exempt. | None (non-waivable *when applicable*) |
+| SaaS / customer-facing | **T2 SHOULD** | Canonical event schema, retry with exponential backoff, delivery logs queryable by customer, endpoint management API, dead-letter queue, signed timestamp to block replay. | Lightweight waiver per POL-GOV-001 §8.3 |
+| Regulated / high-risk | **T3 MAY** | Event replay UI, typed SDK(s), per-subscription rate limiting, customer-facing delivery dashboard, SOC-2-grade delivery audit trail. | Formal waiver per STD-GOV-003 |
+
+> **v1.1 (2026-04-22) — MUST scope narrowed and conditionalized.** This standard is a *design standard* that binds only when a product emits webhooks. Until the central webhook delivery engine exists, no CYBERCUBE product is subject to the T2/T3 rows (all are ROADMAP). The T1 row (HMAC + idempotency + secrets) is the authoritative contract any webhook producer must satisfy from day one.
 
 ## Glossary
 
@@ -1935,17 +1943,24 @@ invoice.payment.* → Sub-resource
 
 ### Core Implementation
 
-| Component | Status | Notes |
-|-----------|--------|-------|
-| Event Schema | PENDING | Define all events |
-| Webhook Signing | PENDING | HMAC-SHA256 |
-| Delivery Engine | PENDING | Queue-based |
-| Retry Logic | PENDING | Exponential backoff |
-| Endpoint Management API | PENDING | CRUD endpoints |
-| Dead Letter Queue | PENDING | 30-day retention |
-| Delivery Logs | PENDING | Query API |
-| Event Replay | PENDING | Manual trigger |
-| SDK (TypeScript) | PENDING | Client library |
+| Component | Status | Tier | Notes |
+|-----------|--------|------|-------|
+| Standard document | IN PLACE | T1 | This document; design contract |
+| Scope gate (conditional on emitting webhooks) | IN PLACE | T1 | No current CYBERCUBE product emits webhooks → T1 vacuously satisfied |
+| HMAC-SHA256 signing contract (documented) | IN PLACE | T1 | §Webhook Signing — enforceable on first implementation |
+| `event_id` idempotency contract (documented) | IN PLACE | T1 | §Event Schema — enforceable on first implementation |
+| Event Schema (canonical events) | ROADMAP | T2 | Defines when first product emits webhooks |
+| Delivery Engine | ROADMAP | T2 | Queue-based; shared platform |
+| Retry Logic (exp. backoff) | ROADMAP | T2 | Paired with delivery engine |
+| Endpoint Management API | ROADMAP | T2 | CRUD for customer-managed subscriptions |
+| Dead Letter Queue (30-day) | ROADMAP | T2 | Paired with delivery engine |
+| Delivery Logs (query API) | ROADMAP | T2 | Customer-visible |
+| Event Replay (manual) | ROADMAP | T3 | Operator tool |
+| SDK (TypeScript) | ROADMAP | T3 | Shipped to external devs |
+
+Status vocabulary: `IN PLACE` | `COMPLETE` | `PARTIAL` | `ROADMAP` | `N/A`.
+
+**Re-trigger rule:** The moment any CYBERCUBE product ships a webhook emission feature, the T2 row of the Tier Table becomes SHOULD (not ROADMAP) for that product, and the components above must be tracked to `IN PLACE` before GA.
 
 ### Migration Path
 
@@ -1962,3 +1977,4 @@ invoice.payment.* → Sub-resource
 | Version | Date | Changes |
 |---------|------|---------|
 | v1 | 2026-01-17 | Initial release |
+| v1.1 | 2026-04-22 | Unfreeze (Path B, conditional): added Applicability Tier Table and scope gate — standard binds only when a product emits webhooks. T1 reduced to HMAC-SHA256 signing, `event_id` idempotency, and secrets-store usage (all design contracts, vacuously IN PLACE while no product emits webhooks). Delivery engine, retry, DLQ, logs, schema, SDK reclassified as T2/T3 ROADMAP with a re-trigger rule on first implementation. Status vocabulary normalized. |

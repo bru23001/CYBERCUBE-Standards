@@ -1,13 +1,25 @@
-# CYBERCUBE Legal Hold & eDiscovery Standard (v1)
+# CYBERCUBE Legal Hold & eDiscovery Standard (v1.1)
 
 **Standard ID:** STD-LGL-001  
 **Status:** Active  
-**Effective:** 2026-01-17  
-**Version:** 1.0  
+**Effective:** 2026-01-17 (v1), 2026-04-22 (v1.1)  
+**Version:** 1.1  
 **Classification:** INTERNAL  
 **Owner:** General Counsel  
 **Approver:** Executive Leadership  
 **Applies to:** All CYBERCUBE data, systems, and personnel
+
+## Applicability Tier Table
+
+| Applicability | Tier | Summary of Clauses in This Standard | Waiver Path |
+| ------------- | ---- | ----------------------------------- | ----------- |
+| All projects and personnel | **T1 MUST** | (1) On receipt of a credible legal claim, subpoena, regulatory inquiry, or anticipated litigation, a legal hold MUST be issued by General Counsel and MUST pause normal deletion of potentially relevant data. (2) Every legal hold MUST be documented in writing (scope, custodians, data sources, effective date) using the template in this standard. (3) Personnel named as custodians MUST acknowledge the hold and MUST NOT delete, alter, or export covered data outside the hold-approved workflow. (4) All standards that schedule automatic deletion (STD-DAT-001, STD-DAT-002, POL-REC-001) MUST be overridden by an active legal hold for the scoped data. (5) Hold release MUST be in writing by General Counsel before normal deletion resumes. | None (non-waivable — legal obligation) |
+| SaaS / customer-facing | **T2 SHOULD** | Centralized hold register (tool or tracked document), acknowledgment tracking per custodian, system-level hold capability for primary systems (email, chat, file storage, source code hosting), audit log of all hold actions, training module for managers and custodians, interview & preservation procedures for departing custodians. | Lightweight waiver per POL-GOV-001 §8.3 |
+| Regulated / high-risk | **T3 MAY** | Automated preservation at the system level (vault/archive + hold flag), forensic chain-of-custody for collected data, eDiscovery tooling (review platform), outside counsel integration, per-matter cost tracking, compliance metrics dashboard, integration with cryptographic-erasure controls (override both soft-delete and PII key destruction). | Formal waiver per STD-GOV-003 |
+
+> Per POL-GOV-001 §8.8.
+
+> **v1.1 (2026-04-22) — Unfreeze (Path B).** T1 = five obligations that are pure process (no tooling needed): GC-issued hold, written hold notice, custodian acknowledgment + no-deletion, override of other retention standards, GC-issued release. Hold register, system-level hold, eDiscovery tooling reclassified to T2/T3 ROADMAP.
 
 ---
 
@@ -1142,17 +1154,26 @@ General Counsel: legal@cybercube.software
 
 ### Core Implementation
 
-| Component | Status | Notes |
-|-----------|--------|-------|
-| Hold process defined | COMPLETE | This standard |
-| Notice templates | COMPLETE | This standard |
-| Authorization forms | COMPLETE | This standard |
-| System hold capability | PARTIAL | Implement per system |
-| Hold register | PENDING | Select tool |
-| Acknowledgment tracking | PENDING | Implement workflow |
-| Audit logging | PARTIAL | Extend existing logs |
-| Training program | PENDING | Develop curriculum |
-| Compliance metrics | PENDING | Build dashboard |
+| Component | Status | Tier | Notes |
+|-----------|--------|------|-------|
+| Hold process defined | COMPLETE | T1 | This standard |
+| Notice templates | COMPLETE | T1 | This standard |
+| Authorization forms | COMPLETE | T1 | This standard |
+| Override of deletion/retention standards on active hold | IN PLACE | T1 | Binding rule; defers to STD-DAT-001, STD-DAT-002, POL-REC-001 |
+| GC-issued release (written) | IN PLACE | T1 | Process documented |
+| Hold register (centralized) | ROADMAP | T2 | Select tool |
+| Acknowledgment tracking | ROADMAP | T2 | Implement workflow |
+| System-level hold capability | PARTIAL | T2 | Google/Slack implementable; others ROADMAP |
+| Audit log for hold actions | PARTIAL | T2 | Extend existing logs |
+| Training for managers + custodians | ROADMAP | T2 | Paired with STD-SEC-008 T2 |
+| Automated preservation (vault + hold flag) | ROADMAP | T3 | Regulated projects only |
+| Forensic chain-of-custody | ROADMAP | T3 | Paired with STD-SEC-007 T3 |
+| eDiscovery tooling (review platform) | ROADMAP | T3 | Regulated projects only |
+| Per-matter cost tracking | ROADMAP | T3 | Outside-counsel integration |
+| Compliance metrics dashboard | ROADMAP | T3 | Paired with STD-GOV-005 |
+| Override of cryptographic erasure | ROADMAP | T3 | Paired with STD-DAT-001 T3 |
+
+Status vocabulary: `IN PLACE` | `COMPLETE` | `PARTIAL` | `ROADMAP` | `N/A`.
 
 ### Migration Path
 

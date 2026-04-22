@@ -1,4 +1,4 @@
-# CYBERCUBE Architecture Governance Policy (v1)
+# CYBERCUBE Architecture Governance Policy (v1.1)
 
 > Key terms are defined in **Appendix A: Glossary** at the end of this document.
 
@@ -6,10 +6,22 @@
 
 **Standard ID:** POL-GOV-002
 **Status:** Active
-**Effective:** 2026-01-17
+**Effective:** 2026-01-17 (v1), 2026-04-22 (v1.1)
 **Classification:** INTERNAL
 **Owner:** Architecture Review Board (ARB)
 **Applies to:** All CYBERCUBE engineering teams and systems
+
+---
+
+## Applicability Tier Table
+
+| Applicability | Tier | Summary of Clauses in This Policy | Waiver Path |
+| ------------- | ---- | --------------------------------- | ----------- |
+| All projects | **T1 MUST** | (1) Every product MUST have a named architecture owner (role key `eng-lead` per STD-ENG-007 §X.1 unless project assigns otherwise). (2) Architectural decisions that affect two or more services, data stores, or external interfaces MUST be recorded as an ADR or RFC per STD-ENG-007. (3) Breaking changes to public contracts MUST go through ARB review or formal asynchronous approval by the architecture owner. | None (non-waivable) |
+| SaaS / customer-facing | **T2 SHOULD** | Maintained system architecture diagram (C4 level 1-2), technology-choice register, tech-debt log reviewed each quarter, periodic ARB sync reviews. | Lightweight waiver per POL-GOV-001 §8.3 |
+| Regulated / high-risk | **T3 MAY** | Formal ARB chartering, scheduled architecture reviews with documented attendance, enterprise reference architecture compliance, external architecture review (e.g. cloud well-architected). | Formal waiver per STD-GOV-003 |
+
+> Per POL-GOV-001 §8.8, clauses in the body MUST be tagged with their tier and reference the row that authorizes them.
 
 ---
 
@@ -1055,11 +1067,25 @@ Next scheduled review: **2027-01-17**
 
 ---
 
+## Machine-Readable ADR Schema
+
+ADR front-matter is machine-validated against [`schemas/adr.schema.json`](../schemas/adr.schema.json) (introduced Pass-3 tranche-2, 2026-04-22).
+
+- **Required fields:** `id` (`ADR-####`), `title`, `status`, `date`, `owner`, `context`, `decision`.
+- **Optional:** `supersedes`, `superseded_by`, `standards_affected`, `applicability_tier`, `consequences`.
+- **Validator:** `python tools/validate-schemas.py --path governance/adrs/ADR-####.json`.
+- **Governance:** the schema is versioned by `$id` and changed under POL-GOV-001 §8.
+
+This raises Automatability (M) for this policy from 2 → 3 without changing the T1 baseline.
+
+---
+
 ## Version History
 
 | Version | Date       | Changes         | Author |
 | ------- | ---------- | --------------- | ------ |
 | v1.0    | 2026-01-17 | Initial release | ARB    |
+| v1.1    | 2026-04-22 | Pass-3 tranche-2: added "Machine-Readable ADR Schema" pointer section; ADR front-matter is now validatable via `schemas/adr.schema.json` + `tools/validate-schemas.py`. No rule change; enables automation. |
 
 ---
 

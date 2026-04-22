@@ -1,0 +1,63 @@
+name: schema-validate
+
+on:
+  pull_request:
+    paths:
+      - 'schemas/**'
+      - 'governance/**'
+      - 'tools/validate-schemas.py'
+      - '.github/workflows/schema-validate.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'schemas/**'
+      - 'governance/**'
+      - 'tools/validate-schemas.py'
+
+permissions:
+  contents: read
+
+jobs:
+  schema-validate:
+    # Gate policy (introduced 2026-04-22, Post-tranche-2):
+    #   BLOCK on any validation failure from tools/validate-schemas.py.
+    #   --strict mode: also BLOCK if a schema has zero artifacts found.
+    #   Seeds in governance/ (Bootstrap entries) keep --strict green during
+    #   bootstrap; real entries replace seeds per governance/README.md.
+    name: Governance Artifact Schema Validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install jsonschema
+
+      - name: Run schema validator (--strict --json)
+        id: validate
+        run: |
+          python tools/validate-schemas.py --strict --json | tee schema-validate-report.json
+
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: schema-validate-report
+          path: schema-validate-report.json
+          if-no-files-found: ignore
+
+      - name: Post summary to PR
+        if: always()
+        run: |
+          {
+            echo "## Governance Artifact Schema Validation"
+            echo ""
+            echo '```'
+            python tools/validate-schemas.py --strict || true
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

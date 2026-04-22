@@ -1,10 +1,25 @@
-CYBERCUBE Cryptography & Key Management Standard (v1)
+CYBERCUBE Cryptography & Key Management Standard (v1.1)
 
 > Key terms are defined in **Appendix A: Glossary** at the end of this document.
 
 ---
 
-**Standard ID:** STD-SEC-005**Status:** Active**Effective:** 2026-01-17**Classification:** INTERNAL**Owner:** Security Team**Applies to:** All CYBERCUBE systems handling cryptographic operations
+**Standard ID:** STD-SEC-005
+**Status:** Active
+**Effective:** 2026-01-17 (v1), 2026-04-22 (v1.1)
+**Classification:** INTERNAL
+**Owner:** Security Team
+**Applies to:** All CYBERCUBE systems handling cryptographic operations
+
+### Applicability Tier Table
+
+| Applicability | Tier | Summary of Clauses in This Standard | Waiver Path |
+| ------------- | ---- | ----------------------------------- | ----------- |
+| All projects | **T1 MUST** | (1) Only approved algorithms MAY be used: AES-GCM (or AES-CBC with authenticated envelope) for symmetric encryption; TLS 1.2+ for transport; SHA-256+ for hashing; Argon2id or bcrypt for password hashing; RSA ≥ 2048 or Ed25519 for signing. (2) No custom cryptography ("roll-your-own crypto" is prohibited). (3) All secrets (API keys, DB passwords, signing keys, OAuth client secrets) MUST be stored in a secret manager — **never** in source, `.env` committed to Git, or plaintext config files. (4) TLS MUST be enabled on all public-facing network endpoints. (5) Secrets MUST have a documented rotation policy (even if the rotation itself is currently manual). | None (non-waivable) |
+| SaaS / customer-facing | **T2 SHOULD** | Automated secrets rotation where supported, encryption at rest for all PII tables (platform-managed keys), mTLS for internal service-to-service traffic, certificate management with auto-renewal, key-use auditing, deprecation plan for legacy TLS 1.0/1.1 consumers. | Lightweight waiver per POL-GOV-001 §8.3 |
+| Regulated / high-risk | **T3 MAY** | Customer-managed keys (BYOK / HYOK), HSM-backed key storage, FIPS 140-2/3 validated modules, post-quantum cryptography planning (hybrid KEMs), separation of duties for key administration, key escrow for legal/regulatory compliance, formal cryptographic review gate for any new crypto use. | Formal waiver per STD-GOV-003 |
+
+> Per POL-GOV-001 §8.8.
 
 0. Purpose & Design Principles
 

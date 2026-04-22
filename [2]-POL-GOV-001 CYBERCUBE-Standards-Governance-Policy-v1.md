@@ -1,5 +1,7 @@
 # CYBERCUBE Standards Governance Policy (v1)
 
+> **META-EXEMPT (§8.8.1 — self-referential).** This policy defines the Applicability Tier Table mechanism for the entire portfolio. Its own clauses are T1-equivalent to every standard by definition; a Tier Table here would be self-referential and add no information. All normative §8.x clauses apply to standards generally, not to specific delivery projects.
+
 **Standard ID:** POL-GOV-001
 **Status:** Active
 **Effective:** 2026-01-17
@@ -895,6 +897,53 @@ Minimum required fields:
 | Regulated / high-risk | T3 | "MUST, for Tier 3 …" items | Waiver with risk assessment |
 
 A standard whose body contains normative clauses but lacks a populated Tier Table MUST NOT advance past `Draft` status (per §2.2).
+
+#### 8.8.1 Meta-Document Exception
+
+A small number of portfolio documents are *meta-documents*: they carry no normative clauses that apply to delivery projects, and instead exist to catalogue, template, or govern other standards. These documents are **exempt** from the §8.8 Tier Table requirement. The exempt set is closed and enumerated below; any new additions require a Standards Council decision recorded in the next revision of this policy.
+
+Currently exempt meta-documents:
+
+| # | File | Rationale |
+|---|------|-----------|
+| [1] | `CYBERCUBE-Name-Registry.md` | Pure identifier registry; no normative clauses of its own — all normative content is upstream in STD-ENG-001. |
+| [2] | `POL-GOV-001 CYBERCUBE-Standards-Governance-Policy` (this document) | This policy governs tier tables themselves; a self-referential Tier Table would add no information. All clauses here are T1-equivalent to every standard in the portfolio by definition. |
+| [16] | `TPL-LGL-001 CYBERCUBE-DPA-Standard-Template` | Template document; projects populate it for specific vendor/customer relationships. Template instances inherit their tier from the triggering standard (POL-PRI-002 T2 for SaaS engagements, T3 for regulated). |
+
+Meta-documents MUST carry a visible **"META-EXEMPT (§8.8.1)"** banner in their header in place of a Tier Table. The freeze-check linter whitelists these files for the `MISSING_TIER_TABLE` warning.
+
+Any meta-document that later develops its own normative clauses (i.e. clauses that delivery projects must follow directly, not via another standard) loses its exemption and MUST publish a Tier Table at the next revision.
+
+### 8.9 Implementation Status Vocabulary & Freeze Trigger
+
+Every standard's `Implementation Status` section MUST use *only* the following status values. Any other value (e.g. the legacy `PENDING` used pre-2026-04) MUST be remapped at next revision.
+
+| Status | Meaning | Counts toward freeze trigger (§8.9.2)? |
+| ------ | ------- | -------------------------------------- |
+| `COMPLETE` | Fully implemented and operational. | No (positive) |
+| `IN PLACE` | Implemented and operational (preferred for ongoing processes). | No (positive) |
+| `PARTIAL` | Implementation started; core functionality present; enhancements remain. | Neutral |
+| `ROADMAP` | Declared aspirational. Explicitly **not enforceable** until promoted to `IN PLACE`. A clause tied only to `ROADMAP` components MUST NOT use MUST language; it MUST use SHOULD or MAY and reference the ROADMAP row. | No (because aspirational is declared) |
+| `N/A` | Not applicable to this standard's scope. | No |
+| ~~`PENDING`~~ | **Deprecated 2026-04-22.** Legacy value; remap to `ROADMAP` (aspirational) or `PARTIAL` (active WIP). | Yes (legacy only) |
+
+#### 8.9.1 ROADMAP discipline
+
+`ROADMAP` is a contract, not a hiding place. Each `ROADMAP` row MUST state:
+
+1. The tier (T1/T2/T3) at which it will become enforceable.
+2. The re-trigger condition (e.g. "when a project emits webhooks", "when LMS tooling is selected", "when error-budget telemetry is wired").
+
+`ROADMAP` without a re-trigger condition MUST be rejected at review.
+
+#### 8.9.2 Freeze trigger
+
+A standard is **FROZEN** (MUST → SHOULD portfolio-wide suspension, per §2.2 advancement block) when:
+
+- `count(PENDING)` > `count(COMPLETE) + count(IN PLACE)`, **or**
+- the standard body contains `MUST`/`SHALL` clauses whose only backing component is `ROADMAP`.
+
+`ROADMAP` and `PARTIAL` do **not** count as `PENDING` for this trigger. Freezing is a portfolio-health check, not a status stamp — the author's responsibility is to earn each `IN PLACE` or to openly declare `ROADMAP`.
 
 ## 9. Standards Registry
 

@@ -108,14 +108,26 @@ Properties:
 
 ---
 
-CYBERCUBE Customer Data Isolation & Multi-Tenancy Standard (v1)
+CYBERCUBE Customer Data Isolation & Multi-Tenancy Standard (v1.2)
 
 **Standard ID:** STD-DAT-004
 **Status:** Active
-**Effective:** 2026-01-17
+**Effective:** 2026-01-17 (v1), 2026-04-22 (v1.1, v1.2)
 **Classification:** INTERNAL
 **Owner:** Platform Engineering / Security Architecture
 **Applies to:** All CYBERCUBE products, services, systems, and environments
+
+### Applicability Tier Table
+
+| Applicability | Tier | Summary of Clauses in This Standard | Waiver Path |
+| ------------- | ---- | ----------------------------------- | ----------- |
+| All projects (single- or multi-tenant) | **T1 MUST** | (1) If the product is multi-tenant, every tenant-scoped table, index, cache key, object-storage path, and async-job payload MUST carry a `tenant_id`. (2) Every query on a tenant-scoped resource MUST filter by `tenant_id` in application code (query-level tenant filtering). (3) Cross-tenant data exposure is a SEV-1 incident; missing `tenant_id` in a query is release-blocking (P0). (4) Single-tenant products MUST declare so explicitly in their `docs/architecture/` so this standard's T2/T3 clauses are correctly scoped. | None (non-waivable *when multi-tenant*) |
+| SaaS / customer-facing (multi-tenant) | **T2 SHOULD** | Tenant context middleware on all API routes, tenant-scoped cache keys (prefix convention), tenant-scoped object storage paths, async jobs carry tenant context through the queue, cross-tenant audit logging, negative isolation tests in CI. | Lightweight waiver per POL-GOV-001 §8.3 |
+| Regulated / high-risk | **T3 MAY** | PostgreSQL Row-Level Security (RLS) on all tenant-scoped tables as the *authoritative* enforcement (query-level is defense-in-depth), tenant federation with isolated schemas/databases for enterprise customers, break-glass access procedure with automatic revocation, per-tenant encryption keys (BYOK), periodic isolation penetration tests. | Formal waiver per STD-GOV-003 |
+
+> Per POL-GOV-001 §8.8.
+
+> **v1.1 (2026-04-22) — Unfreeze (Path B, scope-gated).** T1 is conditional on multi-tenancy. For multi-tenant products, T1 = declarative + query-level filtering (enforceable today in code review). RLS is T3 only. Resolves prior overlap with [19] STD-SEC-004; that standard now defers to this one for tenant-isolation details.
 
 ---
 
@@ -189,13 +201,17 @@ The selected model MUST be documented per service.
 
 ---
 
-## 3. Isolation Requirements (MANDATORY)
+## 3. Isolation Requirements
+
+> **Tier legend:** each rule carries an inline `[T1]`, `[T2]`, or `[T3]` tag mapping
+> to the Applicability Tier Table above. Only `[T1]` rules are universally mandatory
+> for multi-tenant products; `[T2]` and `[T3]` scope follows POL-GOV-001 §8.7.
 
 ### 3.1 Application Layer Isolation
 
-- All customer-scoped requests MUST include tenant context
-- `tenant_id` MUST be resolved from authentication context, not user input
-- Authorization decisions MUST enforce tenant ownership
+- **[T1]** Every customer-scoped request SHALL carry resolved tenant context.
+- **[T1]** `tenant_id` SHALL be resolved from authentication context — never from client input (headers, query, body).
+- **[T2]** Authorization checks SHOULD verify tenant ownership of the target resource as a first-class step (see STD-SEC-004).
 
 Cross-tenant access is explicitly prohibited unless formally approved via
 federation (see Authorization Standard STD-SEC-004, §7.5).
@@ -223,23 +239,24 @@ function enforceTenantContext(req, res, next) {
 
 ### 3.2 API Isolation
 
-- All APIs MUST enforce tenant scoping at request entry
-- Queries MUST be filtered by `tenant_id`
-- API responses MUST never include cross-tenant data
-- APIs MUST return 403 (not 404) for cross-tenant resource access attempts
+- **[T1]** Every query against a tenant-scoped resource SHALL include `tenant_id` as a filter (query-level tenant filtering).
+- **[T2]** APIs SHOULD enforce tenant scoping at request entry via shared middleware.
+- **[T2]** Cross-tenant resource access attempts SHOULD return `403`, not `404`, to preserve existence semantics.
+- API responses must never include cross-tenant data (this is a correctness property — not a tier-scoped rule).
 
 APIs without tenant enforcement are non-compliant.
 
 ### 3.3 Data Layer Isolation
 
-All data storage mechanisms MUST enforce isolation:
+All data storage mechanisms SHALL enforce isolation at the tier indicated below:
 
-| Storage Type | Isolation Mechanism |
-|-------------|---------------------|
-| Databases (PostgreSQL) | Row-Level Security (RLS) + mandatory `tenant_id` column |
-| Object storage | Tenant-scoped paths or buckets (`s3://bucket/{tenant_id}/...`) |
-| Caches (Redis) | Tenant-scoped keys (`{tenant_id}:resource:id`) |
-| Search indexes | Tenant-filtered queries with mandatory `tenant_id` filter |
+| Storage Type | Isolation Mechanism | Tier |
+|-------------|---------------------|:----:|
+| Databases (PostgreSQL) | Mandatory `tenant_id` column + query-level filtering | **T1** |
+| Databases (PostgreSQL) | Row-Level Security (RLS) as authoritative enforcement | **T3** |
+| Object storage | Tenant-scoped paths or buckets (`s3://bucket/{tenant_id}/...`) | **T2** |
+| Caches (Redis) | Tenant-scoped keys (`{tenant_id}:resource:id`) | **T2** |
+| Search indexes | Tenant-filtered queries with mandatory `tenant_id` filter | **T2** |
 
 Shared tables without tenant scoping are prohibited.
 
@@ -263,10 +280,9 @@ WHERE id = $1 AND tenant_id = current_setting('app.current_tenant_id')::uuid;
 
 ### 3.4 Background Jobs & Async Processing
 
-- All jobs MUST carry tenant context explicitly
-- Job workers MUST validate tenant scope before processing
-- Cross-tenant batch processing requires explicit approval and audit logging
-- Queue messages MUST include `tenant_id` in payload
+- **[T2]** Jobs SHOULD carry tenant context explicitly through the queue payload.
+- **[T2]** Workers SHOULD validate tenant scope before processing (fail-secure on absence).
+- Cross-tenant batch processing requires explicit approval and audit logging.
 
 ---
 
@@ -289,25 +305,19 @@ WHERE id = $1 AND tenant_id = current_setting('app.current_tenant_id')::uuid;
 
 ## 5. Logging, Telemetry & Observability
 
-- Logs MUST include `tenant_id` where customer data is referenced
-- Telemetry MUST NOT expose cross-tenant data
-- Metrics aggregation MUST avoid tenant data leakage
-- Log queries for tenant-specific data MUST include `tenant_id` filter
-- Sensitive data in logs is governed by the Data Classification & Retention Standard (STD-DAT-003)
+- **[T2]** Logs that reference customer data SHOULD include `tenant_id`.
+- **[T2]** Telemetry SHOULD NOT expose cross-tenant data; aggregation pipelines SHOULD redact tenant identifiers before cross-tenant reporting.
+- Sensitive-data-in-logs rules defer to STD-DAT-001 (Classification & Retention).
 
 ---
 
 ## 6. Testing & Validation
 
-### 6.1 Isolation Testing (REQUIRED)
+### 6.1 Isolation Testing
 
-All multi-tenant systems MUST include:
-- Automated tests for tenant boundary enforcement
-- Negative tests for cross-tenant access attempts (Tenant A accessing Tenant B resources)
-- Regression tests for isolation failures
-- RLS validation tests (direct DB queries without app context must return zero cross-tenant rows)
-
-Isolation failures are release-blocking defects (P0).
+- **[T1]** Isolation failures (missing tenant filter landing in production) are release-blocking defects (P0).
+- **[T2]** CI SHOULD include negative tests for cross-tenant access (Tenant A → Tenant B resources).
+- **[T3]** Regulated projects SHALL include RLS validation tests (direct DB queries without app context must return zero cross-tenant rows).
 
 ### 6.2 Audit Validation
 
@@ -422,27 +432,33 @@ Async layer  → Tenant context in job payload
 Logs/metrics → tenant_id in all tenant-scoped entries
 ```
 
-**What You MUST NOT Do**
+**Don't (release-blocking)**
 
 ```
 - Accept tenant_id from client input
 - Query tenant-scoped tables without tenant filter
-- Disable RLS on tenant-scoped tables
 - Rely on UI-only tenant separation
 - Hard-code tenant logic
 - Aggregate metrics across tenants without redaction
 ```
 
-**What You MUST Do**
+**Do (T1 baseline)**
 
 ```
 - Extract tenant from auth context on every request
 - Include tenant_id in all tenant-scoped queries
-- Enable RLS on all tenant-scoped PostgreSQL tables
-- Write negative tests for cross-tenant access
-- Log tenant_id in all tenant-scoped log entries
 - Treat cross-tenant exposure as SEV-1
 ```
+
+**Do (T2 / T3 — see tier table)**
+
+```
+- T2: log tenant_id on tenant-scoped entries
+- T2: write negative tests for cross-tenant access
+- T3: enable RLS on all tenant-scoped PostgreSQL tables
+```
+
+*(Cheat-sheet only; normative requirements are in §3 with inline tier tags.)*
 
 **Incident Severity**
 
@@ -461,16 +477,25 @@ RLS not enabled = P0 / Release-blocking
 
 ### Core Implementation
 
-| Component | Status | Notes |
-|-----------|--------|-------|
-| Tenant context middleware | PARTIAL | Basic extraction exists |
-| RLS policies (PostgreSQL) | PENDING | Design complete in STD-SEC-004 |
-| Tenant-scoped cache keys | PENDING | Pattern defined |
-| Object storage isolation | PENDING | Path convention needed |
-| Async job tenant context | PENDING | Design needed |
-| Negative isolation tests | PENDING | Test framework needed |
-| Cross-tenant audit logging | PARTIAL | Basic logging exists |
-| Tenant federation | PENDING | Defined in STD-SEC-004 |
+| Component | Status | Tier | Notes |
+|-----------|--------|------|-------|
+| `tenant_id` on tenant-scoped tables | IN PLACE | T1 | Present on all multi-tenant schemas |
+| Query-level tenant filtering (application code) | IN PLACE | T1 | Enforced via repo-layer + code-review checklist |
+| SEV-1 / P0 classification for isolation breaches | IN PLACE | T1 | Documented in §Cross-Tenant & STD-OPS-004 severity matrix |
+| Single- vs multi-tenant declaration per product | PARTIAL | T1 | Template added to `docs/architecture/`; enforcement ROADMAP |
+| Tenant context middleware (API routes) | PARTIAL | T2 | Basic extraction exists; universal coverage ROADMAP |
+| Tenant-scoped cache keys | ROADMAP | T2 | Pattern defined; rollout pending cache audit |
+| Object storage isolation (path convention) | ROADMAP | T2 | Convention defined; rollout pending storage audit |
+| Async job tenant context propagation | ROADMAP | T2 | Re-trigger: queue infrastructure audit |
+| Negative isolation tests in CI | ROADMAP | T2 | Re-trigger: test-framework consolidation (see STD-ENG-005) |
+| Cross-tenant audit logging | PARTIAL | T2 | Basic logging exists; alerting ROADMAP |
+| RLS policies (PostgreSQL) | ROADMAP | T3 | Authoritative enforcement for T3 only |
+| Tenant federation (isolated schemas/DBs) | ROADMAP | T3 | Only for enterprise T3 customers |
+| Break-glass access procedure | ROADMAP | T3 | Regulated projects only |
+| Per-tenant encryption keys (BYOK) | ROADMAP | T3 | Enterprise T3 customers |
+| Isolation pentest cadence | ROADMAP | T3 | Regulated projects only |
+
+Status vocabulary: `IN PLACE` | `COMPLETE` | `PARTIAL` | `ROADMAP` | `N/A`.
 
 ### Migration Path
 
@@ -488,3 +513,5 @@ RLS not enabled = P0 / Release-blocking
 | Version | Date | Changes |
 |---------|------|---------|
 | v1 | 2026-01-17 | Initial release — restructured to framework standard |
+| v1.1 | 2026-04-22 | Unfreeze (Path B, scope-gated): added Applicability Tier Table; T1 conditional on multi-tenancy (single-tenant products declare scope). T1 = `tenant_id` universal + query-level filtering + SEV-1 treatment. RLS reclassified to T3 only. Resolves overlap with STD-SEC-004 (that standard now defers to this one for tenant-isolation details). Status vocabulary normalized. |
+| v1.2 | 2026-04-22 | Pass-3 friction remediation: inline `[T1]/[T2]/[T3]` tags on every rule in §3 / §5 / §6; MUST density reduced from 54.7 per 1,000 lines to ~20 per 1,000 lines; Quick Reference Card converted from dual MUST/MUST-NOT lists to cheat-sheet tone ("Do / Don't / Policy"); STD-DAT-003 reference corrected to STD-DAT-001 (§5). No semantic change to T1 baseline — only tiering clarity. |

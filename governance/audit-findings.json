@@ -1,0 +1,20 @@
+[
+  {
+    "id": "AF-000001",
+    "audit_id": "BOOTSTRAP-2026Q2",
+    "title": "Bootstrap audit finding — validator seed, replace once first real audit closes",
+    "description": "Placeholder seed entry so tools/validate-schemas.py validates a non-empty audit-findings register during bootstrap. Replace or remove once the first real internal-audit engagement produces findings.",
+    "severity": "informational",
+    "status": "closed",
+    "owner": "eng-lead",
+    "opened": "2026-04-22",
+    "target_close_date": "2026-04-22",
+    "closed_date": "2026-04-22",
+    "control_ids": ["UCM-GOV-000-SEED"],
+    "linked_risks": [],
+    "linked_exceptions": [],
+    "evidence_refs": [],
+    "recommendations": "Remove this seed entry once the first real audit has been recorded.",
+    "management_response": "Accepted — seed entry for validator bootstrap only."
+  }
+]

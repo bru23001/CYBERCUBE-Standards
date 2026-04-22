@@ -1,5 +1,7 @@
 # CYBERCUBE Data Processing Agreement (DPA) Standard Template
 
+> **META-EXEMPT (POL-GOV-001 §8.8.1).** This is a legal *template* for customer DPAs, not a normative standard for delivery projects. Instances of this template inherit their applicability tier from the triggering standard (POL-PRI-002 T2 for standard SaaS engagements; T3 for regulated-data engagements). No Applicability Tier Table is required on the template itself.
+
 **Standard ID:** TPL-LGL-001  
 **Version:** 1.0  
 **Effective:** January 17, 2026  

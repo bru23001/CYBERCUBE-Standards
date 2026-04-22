@@ -1,10 +1,22 @@
-# CYBERCUBE Framework Compliance
+# CYBERCUBE Framework Compliance (v1.1)
 
 **Standard ID:** FWK-GOV-001  
 **Status:** Active  
-**Effective:** 2026-01-17  
+**Effective:** 2026-01-17 (v1), 2026-04-22 (v1.1)  
 **Classification:** INTERNAL  
 **Owner:** Standards Council
+
+---
+
+## Applicability Tier Table
+
+| Applicability | Tier | Summary of Clauses in This Framework | Waiver Path |
+| ------------- | ---- | ------------------------------------ | ----------- |
+| All projects | **T1 MUST** | (1) The CYBERCUBE acronym definitions in this document are canonical and MUST NOT be reinterpreted elsewhere. (2) Every project MUST complete a self-assessment against the checklist at project inception and again before GA. (3) Any FAIL item MUST either be fixed before GA or covered by an approved waiver per STD-GOV-003. | None (non-waivable) |
+| SaaS / customer-facing | **T2 SHOULD** | Checklist re-scored at each release cycle, scores logged in the project's `docs/compliance/`, compliance owner named per project. | Lightweight waiver per POL-GOV-001 §8.3 |
+| Regulated / high-risk | **T3 MAY** | External framework-compliance validation, published compliance scores, board-level compliance reporting, cross-mapped to SOC-2/ISO-27001 via STD-GOV-006 UCM. | Formal waiver per STD-GOV-003 |
+
+> Per POL-GOV-001 §8.8.
 
 ---
 
