@@ -40,22 +40,25 @@ from pathlib import Path
 STARTERS_DIR = "docs/starters"
 COMPLIANCE_MAPS_DIR = "governance/compliance-maps"
 
-# Bracket reference like "[4] FWK-GOV-001" or "[33] STD-ENG-008"
-# Captures the bracket number and the standard ID.
+# Bracket reference like "[4] FWK-GOV-001", "[33] STD-ENG-008", or
+# "[49] STD-ENG-001A" (post-RFC-0001 split sub-standards may carry a
+# single trailing uppercase letter after the three-digit slot).
 BRACKET_REF_RE = re.compile(
     r"\[(?P<n>\d+)\]\s*"
-    r"(?P<id>(?:POL|STD|FWK|TPL|PLN)-[A-Z]+-\d{3})"
+    r"(?P<id>(?:POL|STD|FWK|TPL|PLN)-[A-Z]+-\d{3}[A-Z]?)"
 )
 
 # Version reference immediately following an ID, like "FWK-GOV-001 v1.4"
 VERSION_RE = re.compile(
-    r"(?P<id>(?:POL|STD|FWK|TPL|PLN)-[A-Z]+-\d{3})\s+v(?P<ver>\d+(?:\.\d+)?)"
+    r"(?P<id>(?:POL|STD|FWK|TPL|PLN)-[A-Z]+-\d{3}[A-Z]?)\s+v(?P<ver>\d+(?:\.\d+)?)"
 )
 
 # Standard filename: "[N]-<ID> <...>-v<version>.md"
+# ID may carry an optional single trailing uppercase letter suffix
+# (introduced by RFC-0001 sub-standards: STD-ENG-001A/B/C).
 STANDARD_FILENAME_RE = re.compile(
     r"^\[(?P<n>\d+)\]-"
-    r"(?P<id>(?:POL|STD|FWK|TPL|PLN)-[A-Z]+-\d{3})\s"
+    r"(?P<id>(?:POL|STD|FWK|TPL|PLN)-[A-Z]+-\d{3}[A-Z]?)\s"
     r".*?-v(?P<ver>\d+(?:\.\d+)?)\.md$"
 )
 
