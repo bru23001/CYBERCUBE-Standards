@@ -14,11 +14,11 @@
       "meta_exempt": true,
       "counts": {
         "PARTIAL": 0,
-        "N/A": 0,
-        "IN PLACE": 0,
         "ROADMAP": 0,
+        "COMPLETE": 0,
         "PENDING": 0,
-        "COMPLETE": 0
+        "N/A": 0,
+        "IN PLACE": 0
       },
       "frozen": false,
       "findings": []
@@ -30,11 +30,11 @@
       "meta_exempt": true,
       "counts": {
         "PARTIAL": 0,
-        "N/A": 0,
-        "IN PLACE": 0,
         "ROADMAP": 0,
+        "COMPLETE": 0,
         "PENDING": 0,
-        "COMPLETE": 0
+        "N/A": 0,
+        "IN PLACE": 0
       },
       "frozen": false,
       "findings": []
@@ -46,27 +46,27 @@
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 0,
-        "N/A": 0,
-        "IN PLACE": 0,
         "ROADMAP": 0,
+        "COMPLETE": 0,
         "PENDING": 0,
-        "COMPLETE": 0
+        "N/A": 0,
+        "IN PLACE": 0
       },
       "frozen": false,
       "findings": []
     },
     {
-      "file": "[4]-FWK-GOV-001 CYBERCUBE-Framework-Compliance-v1.md",
+      "file": "[4]-FWK-GOV-001 CYBERCUBE-Framework-Compliance-v1.2.md",
       "number": 4,
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 0,
-        "N/A": 0,
-        "IN PLACE": 0,
         "ROADMAP": 0,
+        "COMPLETE": 0,
         "PENDING": 0,
-        "COMPLETE": 0
+        "N/A": 0,
+        "IN PLACE": 0
       },
       "frozen": false,
       "findings": []
@@ -78,11 +78,11 @@
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 0,
-        "N/A": 0,
-        "IN PLACE": 0,
         "ROADMAP": 4,
+        "COMPLETE": 6,
         "PENDING": 0,
-        "COMPLETE": 6
+        "N/A": 0,
+        "IN PLACE": 0
       },
       "frozen": false,
       "findings": []
@@ -94,11 +94,11 @@
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 0,
-        "N/A": 0,
-        "IN PLACE": 0,
         "ROADMAP": 4,
+        "COMPLETE": 4,
         "PENDING": 0,
-        "COMPLETE": 4
+        "N/A": 0,
+        "IN PLACE": 0
       },
       "frozen": false,
       "findings": []
@@ -110,11 +110,11 @@
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 0,
-        "N/A": 0,
-        "IN PLACE": 0,
         "ROADMAP": 0,
+        "COMPLETE": 0,
         "PENDING": 0,
-        "COMPLETE": 0
+        "N/A": 0,
+        "IN PLACE": 0
       },
       "frozen": false,
       "findings": []
@@ -126,11 +126,11 @@
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 0,
-        "N/A": 0,
-        "IN PLACE": 0,
         "ROADMAP": 0,
+        "COMPLETE": 0,
         "PENDING": 0,
-        "COMPLETE": 0
+        "N/A": 0,
+        "IN PLACE": 0
       },
       "frozen": false,
       "findings": []
@@ -142,11 +142,11 @@
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 1,
-        "N/A": 0,
-        "IN PLACE": 0,
         "ROADMAP": 5,
+        "COMPLETE": 5,
         "PENDING": 0,
-        "COMPLETE": 5
+        "N/A": 0,
+        "IN PLACE": 0
       },
       "frozen": false,
       "findings": []
@@ -158,11 +158,11 @@
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 3,
-        "N/A": 0,
-        "IN PLACE": 1,
         "ROADMAP": 9,
+        "COMPLETE": 1,
         "PENDING": 0,
-        "COMPLETE": 1
+        "N/A": 0,
+        "IN PLACE": 1
       },
       "frozen": false,
       "findings": []
@@ -174,11 +174,11 @@
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 0,
-        "N/A": 0,
-        "IN PLACE": 4,
         "ROADMAP": 5,
+        "COMPLETE": 0,
         "PENDING": 0,
-        "COMPLETE": 0
+        "N/A": 0,
+        "IN PLACE": 4
       },
       "frozen": false,
       "findings": []
@@ -190,11 +190,11 @@
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 0,
-        "N/A": 0,
-        "IN PLACE": 0,
         "ROADMAP": 0,
+        "COMPLETE": 0,
         "PENDING": 0,
-        "COMPLETE": 0
+        "N/A": 0,
+        "IN PLACE": 0
       },
       "frozen": false,
       "findings": []
@@ -206,11 +206,11 @@
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 0,
-        "N/A": 0,
-        "IN PLACE": 0,
         "ROADMAP": 0,
+        "COMPLETE": 0,
         "PENDING": 0,
-        "COMPLETE": 0
+        "N/A": 0,
+        "IN PLACE": 0
       },
       "frozen": false,
       "findings": []
@@ -222,11 +222,11 @@
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 1,
-        "N/A": 0,
-        "IN PLACE": 5,
         "ROADMAP": 5,
+        "COMPLETE": 0,
         "PENDING": 0,
-        "COMPLETE": 0
+        "N/A": 0,
+        "IN PLACE": 5
       },
       "frozen": false,
       "findings": []
@@ -238,11 +238,11 @@
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 2,
-        "N/A": 0,
-        "IN PLACE": 2,
         "ROADMAP": 9,
+        "COMPLETE": 3,
         "PENDING": 0,
-        "COMPLETE": 3
+        "N/A": 0,
+        "IN PLACE": 2
       },
       "frozen": false,
       "findings": []
@@ -254,11 +254,11 @@
       "meta_exempt": true,
       "counts": {
         "PARTIAL": 0,
-        "N/A": 0,
-        "IN PLACE": 0,
         "ROADMAP": 0,
+        "COMPLETE": 0,
         "PENDING": 0,
-        "COMPLETE": 0
+        "N/A": 0,
+        "IN PLACE": 0
       },
       "frozen": false,
       "findings": []
@@ -270,11 +270,11 @@
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 1,
-        "N/A": 0,
-        "IN PLACE": 20,
         "ROADMAP": 1,
+        "COMPLETE": 0,
         "PENDING": 0,
-        "COMPLETE": 0
+        "N/A": 0,
+        "IN PLACE": 20
       },
       "frozen": false,
       "findings": []
@@ -286,11 +286,11 @@
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 7,
-        "N/A": 0,
-        "IN PLACE": 2,
         "ROADMAP": 13,
+        "COMPLETE": 0,
         "PENDING": 0,
-        "COMPLETE": 0
+        "N/A": 0,
+        "IN PLACE": 2
       },
       "frozen": false,
       "findings": []
@@ -302,11 +302,11 @@
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 3,
-        "N/A": 0,
-        "IN PLACE": 4,
         "ROADMAP": 9,
+        "COMPLETE": 0,
         "PENDING": 0,
-        "COMPLETE": 0
+        "N/A": 0,
+        "IN PLACE": 4
       },
       "frozen": false,
       "findings": []
@@ -318,11 +318,11 @@
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 0,
-        "N/A": 0,
-        "IN PLACE": 0,
         "ROADMAP": 0,
+        "COMPLETE": 0,
         "PENDING": 0,
-        "COMPLETE": 0
+        "N/A": 0,
+        "IN PLACE": 0
       },
       "frozen": false,
       "findings": []
@@ -334,11 +334,11 @@
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 3,
-        "N/A": 0,
-        "IN PLACE": 0,
         "ROADMAP": 2,
+        "COMPLETE": 5,
         "PENDING": 0,
-        "COMPLETE": 5
+        "N/A": 0,
+        "IN PLACE": 0
       },
       "frozen": false,
       "findings": []
@@ -350,11 +350,11 @@
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 3,
-        "N/A": 0,
-        "IN PLACE": 4,
         "ROADMAP": 9,
+        "COMPLETE": 2,
         "PENDING": 0,
-        "COMPLETE": 2
+        "N/A": 0,
+        "IN PLACE": 4
       },
       "frozen": false,
       "findings": []
@@ -366,11 +366,11 @@
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 1,
-        "N/A": 0,
-        "IN PLACE": 4,
         "ROADMAP": 10,
+        "COMPLETE": 1,
         "PENDING": 0,
-        "COMPLETE": 1
+        "N/A": 0,
+        "IN PLACE": 4
       },
       "frozen": false,
       "findings": []
@@ -382,11 +382,11 @@
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 1,
-        "N/A": 0,
-        "IN PLACE": 4,
         "ROADMAP": 5,
+        "COMPLETE": 0,
         "PENDING": 0,
-        "COMPLETE": 0
+        "N/A": 0,
+        "IN PLACE": 4
       },
       "frozen": false,
       "findings": []
@@ -398,11 +398,11 @@
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 6,
-        "N/A": 0,
-        "IN PLACE": 4,
         "ROADMAP": 9,
+        "COMPLETE": 0,
         "PENDING": 0,
-        "COMPLETE": 0
+        "N/A": 0,
+        "IN PLACE": 4
       },
       "frozen": false,
       "findings": []
@@ -414,11 +414,11 @@
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 5,
-        "N/A": 0,
-        "IN PLACE": 2,
         "ROADMAP": 8,
+        "COMPLETE": 0,
         "PENDING": 0,
-        "COMPLETE": 0
+        "N/A": 0,
+        "IN PLACE": 2
       },
       "frozen": false,
       "findings": []
@@ -430,11 +430,11 @@
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 3,
-        "N/A": 0,
-        "IN PLACE": 3,
         "ROADMAP": 9,
+        "COMPLETE": 0,
         "PENDING": 0,
-        "COMPLETE": 0
+        "N/A": 0,
+        "IN PLACE": 3
       },
       "frozen": false,
       "findings": []
@@ -446,11 +446,11 @@
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 0,
-        "N/A": 0,
-        "IN PLACE": 0,
         "ROADMAP": 0,
+        "COMPLETE": 0,
         "PENDING": 0,
-        "COMPLETE": 0
+        "N/A": 0,
+        "IN PLACE": 0
       },
       "frozen": false,
       "findings": []
@@ -462,11 +462,11 @@
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 10,
-        "N/A": 0,
-        "IN PLACE": 0,
         "ROADMAP": 4,
+        "COMPLETE": 14,
         "PENDING": 0,
-        "COMPLETE": 14
+        "N/A": 0,
+        "IN PLACE": 0
       },
       "frozen": false,
       "findings": []
@@ -478,11 +478,11 @@
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 0,
-        "N/A": 0,
-        "IN PLACE": 0,
         "ROADMAP": 0,
+        "COMPLETE": 0,
         "PENDING": 0,
-        "COMPLETE": 0
+        "N/A": 0,
+        "IN PLACE": 0
       },
       "frozen": false,
       "findings": []
@@ -494,11 +494,11 @@
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 4,
-        "N/A": 0,
-        "IN PLACE": 4,
         "ROADMAP": 10,
+        "COMPLETE": 0,
         "PENDING": 0,
-        "COMPLETE": 0
+        "N/A": 0,
+        "IN PLACE": 4
       },
       "frozen": false,
       "findings": []
@@ -510,11 +510,11 @@
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 0,
-        "N/A": 0,
-        "IN PLACE": 4,
         "ROADMAP": 8,
+        "COMPLETE": 0,
         "PENDING": 0,
-        "COMPLETE": 0
+        "N/A": 0,
+        "IN PLACE": 4
       },
       "frozen": false,
       "findings": []
@@ -526,11 +526,11 @@
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 0,
-        "N/A": 0,
-        "IN PLACE": 0,
         "ROADMAP": 0,
+        "COMPLETE": 0,
         "PENDING": 0,
-        "COMPLETE": 0
+        "N/A": 0,
+        "IN PLACE": 0
       },
       "frozen": false,
       "findings": []
@@ -542,11 +542,11 @@
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 1,
-        "N/A": 0,
-        "IN PLACE": 3,
         "ROADMAP": 13,
+        "COMPLETE": 3,
         "PENDING": 0,
-        "COMPLETE": 3
+        "N/A": 0,
+        "IN PLACE": 3
       },
       "frozen": false,
       "findings": []
@@ -558,11 +558,11 @@
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 7,
-        "N/A": 0,
-        "IN PLACE": 3,
         "ROADMAP": 10,
+        "COMPLETE": 0,
         "PENDING": 0,
-        "COMPLETE": 0
+        "N/A": 0,
+        "IN PLACE": 3
       },
       "frozen": false,
       "findings": []
@@ -574,11 +574,11 @@
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 1,
-        "N/A": 0,
-        "IN PLACE": 6,
         "ROADMAP": 3,
+        "COMPLETE": 0,
         "PENDING": 0,
-        "COMPLETE": 0
+        "N/A": 0,
+        "IN PLACE": 6
       },
       "frozen": false,
       "findings": []
@@ -590,11 +590,11 @@
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 5,
-        "N/A": 0,
-        "IN PLACE": 5,
         "ROADMAP": 10,
+        "COMPLETE": 1,
         "PENDING": 0,
-        "COMPLETE": 1
+        "N/A": 0,
+        "IN PLACE": 5
       },
       "frozen": false,
       "findings": []
@@ -606,11 +606,11 @@
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 6,
-        "N/A": 0,
-        "IN PLACE": 1,
         "ROADMAP": 11,
+        "COMPLETE": 0,
         "PENDING": 0,
-        "COMPLETE": 0
+        "N/A": 0,
+        "IN PLACE": 1
       },
       "frozen": false,
       "findings": []
@@ -622,11 +622,11 @@
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 7,
-        "N/A": 0,
-        "IN PLACE": 1,
         "ROADMAP": 11,
+        "COMPLETE": 3,
         "PENDING": 0,
-        "COMPLETE": 3
+        "N/A": 0,
+        "IN PLACE": 1
       },
       "frozen": false,
       "findings": []
@@ -638,11 +638,11 @@
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 2,
-        "N/A": 0,
-        "IN PLACE": 5,
         "ROADMAP": 6,
+        "COMPLETE": 0,
         "PENDING": 0,
-        "COMPLETE": 0
+        "N/A": 0,
+        "IN PLACE": 5
       },
       "frozen": false,
       "findings": []
@@ -654,11 +654,11 @@
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 1,
-        "N/A": 0,
-        "IN PLACE": 5,
         "ROADMAP": 7,
+        "COMPLETE": 0,
         "PENDING": 0,
-        "COMPLETE": 0
+        "N/A": 0,
+        "IN PLACE": 5
       },
       "frozen": false,
       "findings": []
@@ -670,11 +670,11 @@
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 3,
-        "N/A": 0,
-        "IN PLACE": 0,
         "ROADMAP": 3,
+        "COMPLETE": 3,
         "PENDING": 0,
-        "COMPLETE": 3
+        "N/A": 0,
+        "IN PLACE": 0
       },
       "frozen": false,
       "findings": []
@@ -686,11 +686,11 @@
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 3,
-        "N/A": 0,
-        "IN PLACE": 0,
         "ROADMAP": 2,
+        "COMPLETE": 3,
         "PENDING": 0,
-        "COMPLETE": 3
+        "N/A": 0,
+        "IN PLACE": 0
       },
       "frozen": false,
       "findings": []
@@ -702,11 +702,11 @@
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 0,
-        "N/A": 0,
-        "IN PLACE": 5,
         "ROADMAP": 4,
+        "COMPLETE": 0,
         "PENDING": 0,
-        "COMPLETE": 0
+        "N/A": 0,
+        "IN PLACE": 5
       },
       "frozen": false,
       "findings": []
@@ -718,11 +718,11 @@
       "meta_exempt": false,
       "counts": {
         "PARTIAL": 0,
-        "N/A": 0,
-        "IN PLACE": 0,
         "ROADMAP": 0,
+        "COMPLETE": 0,
         "PENDING": 0,
-        "COMPLETE": 0
+        "N/A": 0,
+        "IN PLACE": 0
       },
       "frozen": false,
       "findings": []
