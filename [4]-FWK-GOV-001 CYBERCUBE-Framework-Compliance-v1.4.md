@@ -684,7 +684,14 @@ Adds to T1 + T2. ~35 deliverables — kicks in for fintech, healthcare, PCI-adja
 5. **Waivers (STD-GOV-003)** — any deliverable you can't produce gets filed as a waiver with compensating control + expiry; no silent skips.
 6. **Waiver inverse (scope-down)** — if a T2/T3 deliverable clearly doesn't fit (e.g. a single-tenant internal tool hitting [27] multi-tenant clauses), document the non-applicability in the same channel.
 
-*Cross-reference: starter-kit templates that pre-wire the T1/T2/T3 deliverables are scoped in RFC-0004 (accepted 2026-04-22, execution pending). Until RFC-0004 execution lands, this cheat-sheet is the canonical summary.*
+**Starter kits.** Archetype-specific onboarding checklists live under `docs/starters/` (shipped 2026-04-22, RFC-0004 residual execution):
+
+- `docs/starters/internal-tool.md` — T1-only projects (≤5 FTEs, INTERNAL data, no customer interface). References the [33] STD-ENG-008 small-project exclusion.
+- `docs/starters/t2-saas.md` — customer-facing multi-tenant SaaS; T1 + T2 baseline. Companion [`VENDOR-ONBOARDING.md`](../docs/starters/VENDOR-ONBOARDING.md) documents the first-vendor flow.
+- `docs/starters/t3-regulated.md` — regulated / high-risk; T1 + T2 + T3 with **fintech** (PCI DSS 4.0) and **healthcare** (HIPAA) variants. Cross-links `governance/compliance-maps/*` seeded under RFC-0005.
+- `docs/starters/ai-feature.md` — AI-feature overlay atop any parent archetype; [48] STD-AI-001 T2/T3 integration.
+
+Each checklist filters this Tier Cheat-Sheet to the archetype's scope and adds `[FILL]` markers for project-specific values (PCL code, owners, data classification). Companion template repos (`cybercube-starter-<archetype>`) are a follow-on per RFC-0004 §5 step 8.
 
 ---
 
