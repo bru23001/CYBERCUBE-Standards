@@ -251,7 +251,7 @@ CTL-{DOMAIN}-{SEQ}
 
 | Control ID | Control Name | CYBERCUBE Policy | CYBERCUBE Standard | Catalog § | Owner | ISO 27001:2022 | SOC 2 TSC | NIST CSF 2.0 | GDPR | Evidence Artifact | Status |
 |------------|-------------|-----------------|-------------------|-----------|-------|---------------|-----------|-------------|------|-------------------|--------|
-| CTL-ENG-001 | CC-PID identifier standard | — | STD-ENG-001 | 5.1 | Engineering | A.5.9 | CC7.2 | ID.AM-01 | — | Identifier registry, entity codes | IMPLEMENTED |
+| CTL-ENG-001 | CC-PID identifier standard | — | STD-ENG-001A | 5.1 | Engineering | A.5.9 | CC7.2 | ID.AM-01 | — | Identifier registry, entity codes (see [49]) | IMPLEMENTED |
 | CTL-ENG-002 | API design (REST, OpenAPI, versioning) | — | STD-ENG-002 | 5.2 | Engineering | A.8.26 | CC7.2, PI1.2 | PR.DS-10 | — | OpenAPI specs, API review records | PARTIAL |
 | CTL-ENG-003 | Webhook security (signatures, retry, HMAC) | — | STD-ENG-003 | 5.3 | Engineering | A.8.26 | CC7.2 | PR.DS-02 | — | Webhook config, signature verification | PARTIAL |
 | CTL-ENG-004 | Infrastructure as Code (Terraform) | — | STD-ENG-004 | 5.4 | Engineering / SRE | A.8.9 | CC8.1 | PR.PS-01 | — | Terraform state, plan/apply logs | PARTIAL |

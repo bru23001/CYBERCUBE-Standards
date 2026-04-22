@@ -15,7 +15,7 @@
 
 | Applicability | Tier | Summary of Clauses in This Standard | Waiver Path |
 | ------------- | ---- | ----------------------------------- | ----------- |
-| All projects building or consuming shared code | **T1 MUST** | (1) Any piece of functionality reused across ≥ 2 projects MUST be a registered module in this standard (not copy-pasted) — **subject to the Small-Project Exclusion in §Small-Project Exclusion below**. (2) Every registered module MUST have a named owner, a single public interface contract (ICD), and a version in its package manifest. (3) Breaking changes to a registered module MUST bump the major version and MUST be preceded by a deprecation note on the prior stable version. (4) Registered modules MUST follow Namespace-M naming per STD-ENG-001 T1 (clause 4). (5) Production code MUST NOT depend on unregistered ("local-only") modules that leak across project boundaries. | None for T1 #2–#5 (non-waivable — coordination standard); T1 #1 supports a self-asserted Small-Project Exclusion (see below) in lieu of a formal waiver |
+| All projects building or consuming shared code | **T1 MUST** | (1) Any piece of functionality reused across ≥ 2 projects MUST be a registered module in this standard (not copy-pasted) — **subject to the Small-Project Exclusion in §Small-Project Exclusion below**. (2) Every registered module MUST have a named owner, a single public interface contract (ICD), and a version in its package manifest. (3) Breaking changes to a registered module MUST bump the major version and MUST be preceded by a deprecation note on the prior stable version. (4) Registered modules MUST follow Namespace-M naming per [51] STD-ENG-001C (STD-ENG-001 T1 clause 4). (5) Production code MUST NOT depend on unregistered ("local-only") modules that leak across project boundaries. | None for T1 #2–#5 (non-waivable — coordination standard); T1 #1 supports a self-asserted Small-Project Exclusion (see below) in lieu of a formal waiver |
 | SaaS / customer-facing | **T2 SHOULD** | Internal module registry (machine-readable `modules.json`), semver compatibility tests, contract tests per public interface, shared changelog per module, automated version-bump PRs across consumers, module-documentation site published internally. | Lightweight waiver per POL-GOV-001 §8.3 |
 | Regulated / high-risk | **T3 MAY** | Module-level SBOM + provenance attestation, license-compatibility policy enforced per consumer, signed artifacts for each release, long-term-support (LTS) branches for stable modules, formal RFC required for new module addition, cross-module dependency graph reviewed by ARB. | Formal waiver per STD-GOV-003 |
 
@@ -40,7 +40,7 @@ Excluded products MUST still follow:
 
 - **T1 #2** — owner + ICD + version for any module they *choose* to register,
 - **T1 #3** — breaking-change semver + deprecation note on the prior stable version,
-- **T1 #4** — Namespace-M naming per [29] STD-ENG-001,
+- **T1 #4** — Namespace-M naming per [51] STD-ENG-001C (module/component/file), under the [29] STD-ENG-001 umbrella,
 - **T1 #5** — no production dependency on unregistered modules that leak across project boundaries.
 
 **Mechanics:**
@@ -117,7 +117,7 @@ Excluded products MUST still follow:
 | M-02 | Authentication Module | STD-SEC-003 Authentication |
 | M-03 | Authorization Module | STD-SEC-004 Access Control |
 | M-04 | API Gateway Module | STD-ENG-002 API Design |
-| M-05 | Identifier Module | STD-ENG-001 Naming |
+| M-05 | Identifier Module | [49] STD-ENG-001A (CC-PID) |
 | M-29 | Configuration Module | STD-ENG-004 IaC / 12-Factor |
 | M-30 | Error Handling Module | STD-SEC-002 Secure Coding |
 | M-31 | Core Utilities Module | STD-OPS-003 Observability |
@@ -201,7 +201,7 @@ Excluded products MUST still follow:
 
 | # | Module | Source Standard |
 |---|--------|-----------------|
-| M-37 | UI Foundation Module | STD-ENG-009 Tech Stack / STD-ENG-001 Naming |
+| M-37 | UI Foundation Module | STD-ENG-009 Tech Stack / [51] STD-ENG-001C (component naming) |
 
 ---
 

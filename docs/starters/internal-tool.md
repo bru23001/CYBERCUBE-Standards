@@ -87,7 +87,9 @@ If conditions hold at start but a threshold is later crossed, the `[33]` small-p
 ### Engineering
 
 - [ ] **[28] STD-ENG-009** — Stack declared in README vs. the radar; no HOLD technologies for new work.
-- [ ] **[29] STD-ENG-001** — Namespace-A/G naming; CC-PID for external identifiers; raw DB PKs never leaked.
+- [ ] **[49] STD-ENG-001A** — CC-PID for external identifiers; raw DB PKs never leaked; entity-code registry precedes first use.
+- [ ] **[50] STD-ENG-001B** — Namespace-A / Namespace-G naming (artifacts, governance IDs).
+- [ ] **[51] STD-ENG-001C** — Namespace-M module / component / file naming.
 - [ ] **[31] STD-ENG-002** — Versioned endpoints; consistent machine-readable error shape; no stack traces to clients.
 - [ ] **[33] STD-ENG-008** — **Small-project exclusion applies.** Self-assert in README; record in PCL row. Module-catalog audit (T1 #1 — "reuse across ≥ 2 projects") is **skipped**. You still follow T1 #2 (owner + ICD + version for any module you *choose* to register) and T1 #3 (breaking-change semver). No waiver required.
 - [ ] **[34] STD-ENG-004** — Infra in code; remote state with locking; console drift reverted.

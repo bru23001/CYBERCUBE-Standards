@@ -36,7 +36,7 @@
       "id": "M-05",
       "name": "Identifier Module",
       "group": "core-infrastructure",
-      "source_standard": "5.1 Naming Standard",
+      "source_standard": "[49] STD-ENG-001A Public Entity IDs (CC-PID)",
       "key_components": "CC-PID generation, check digit validation, entity code registry"
     },
     {
@@ -281,7 +281,7 @@
       "id": "M-37",
       "name": "UI Foundation Module",
       "group": "frontend-presentation",
-      "source_standard": "1.1 Compliance (Brand) / 5.1 Naming",
+      "source_standard": "1.1 Compliance (Brand) / [51] STD-ENG-001C Module-Component-File Naming",
       "key_components": "Design tokens (color/spacing/typography/elevation/motion), theme engine (light/dark/white-label), component library (CYBERCUBE primitives), layout system (responsive grid/page templates/shell), WCAG 2.1 AA accessibility"
     }
   ]

@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://cybercube.software/schemas/entity-code.schema.json",
   "title": "CYBERCUBE Entity Code Registry",
-  "description": "Namespace B — CC-PID entity codes. Source: 5.1 Naming & Identifier Standard v1.2 §5.2",
+  "description": "Namespace B — CC-PID entity codes. Source: [49] STD-ENG-001A CYBERCUBE Public Entity IDs Standard v1 §5.2 (under [29] STD-ENG-001 umbrella v2.0).",
   "type": "array",
   "items": {
     "type": "object",

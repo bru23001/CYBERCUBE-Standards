@@ -98,7 +98,9 @@ All items from [internal-tool.md](./internal-tool.md) §3 apply **in full**, wit
 ### Engineering
 
 - [ ] **[28] STD-ENG-009 T2** — Quarterly radar refresh; compatibility matrix; SBOM at build; license-policy enforcement.
-- [ ] **[29] STD-ENG-001 T2** — Automated lint for component-type vocabulary; CC-PID format validator; module-boundary import lint.
+- [ ] **[49] STD-ENG-001A T2** — CC-PID format validator in API middleware; developer quick-reference cards.
+- [ ] **[50] STD-ENG-001B T2** — Automated artifact-filename lint; WOE tracker-key validation hook.
+- [ ] **[51] STD-ENG-001C T2** — Automated lint for component-type vocabulary; directory-structure CI check; module-boundary import lint.
 - [ ] **[31] STD-ENG-002 T2** — **Published OpenAPI spec**; standard response envelope; cursor pagination; idempotency keys; deprecation headers.
 - [ ] **[32] STD-ENG-003 T2** — *Webhook emitters only:* canonical event schema; exponential-backoff retry; delivery logs queryable; DLQ; signed timestamp.
 - [ ] **[33] STD-ENG-008 T2** — Internal `modules.json` registry; semver compatibility tests; contract tests per ICD; automated version-bump PRs.

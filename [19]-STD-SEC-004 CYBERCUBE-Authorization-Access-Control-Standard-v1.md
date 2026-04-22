@@ -1966,7 +1966,7 @@ Status vocabulary: `IN PLACE` | `COMPLETE` | `PARTIAL` | `ROADMAP` | `N/A`.
 | 2.2 Secure Coding Standard                             | Peer — secure implementation patterns                                    |
 | 2.5 Cryptography and Key Management Standard           | Peer — token encryption and key handling                                 |
 | 3.4 Customer Data Isolation and Multi-Tenancy Standard | Peer — tenant isolation requirements                                     |
-| 5.1 Naming and Identifier Standard                     | Peer — CC-PID format for entity codes                                    |
+| [49] STD-ENG-001A Public Entity IDs (CC-PID)           | Peer — CC-PID format for entity codes; CC-PID MUST NOT drive authZ       |
 | 5.2 API Design Standard                                | Peer — API security patterns                                             |
 
 ---

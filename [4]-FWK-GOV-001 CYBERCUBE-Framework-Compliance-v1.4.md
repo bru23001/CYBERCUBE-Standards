@@ -521,7 +521,10 @@ Baseline applicable to internal tools, SaaS, and regulated products alike. ~30 d
 **Engineering**
 
 - **[28] STD-ENG-009** — Declare stack in README against the radar; no HOLD technologies for new projects.
-- **[29] STD-ENG-001** — Namespace-A / Namespace-G naming; CC-PID for external identifiers; raw DB PKs not leaked.
+- **[29] STD-ENG-001** (umbrella) — Aggregate Tier Table for the naming family; namespace-at-a-glance matrix.
+- **[49] STD-ENG-001A** — CC-PID for external identifiers; raw DB PKs not leaked; entity-code registration before first use.
+- **[50] STD-ENG-001B** — Namespace-A / Namespace-G naming for artifacts, governance IDs (PRD/MOD).
+- **[51] STD-ENG-001C** — Namespace-M module/component/file naming conventions.
 - **[31] STD-ENG-002** — Versioned endpoints; consistent machine-readable error shape; no stack traces to clients.
 - **[32] STD-ENG-003** — *Webhook emitters only:* HMAC-SHA256 signing per endpoint; unique `event_id`; secrets per-consumer.
 - **[33] STD-ENG-008** — Functionality reused across ≥2 projects is a registered module with owner + ICD + version; breaking changes bump major. *Small-project exclusion available (self-asserted, no waiver required) for products ≤5 FTEs, ≤5 services, INTERNAL-or-below, no customer-facing interface — see [33] §Small-Project Exclusion.*
@@ -589,7 +592,9 @@ Adds to T1. ~25 deliverables — what separates a customer-facing SaaS v1 from a
 **Engineering**
 
 - **[28]** Quarterly radar refresh; compatibility matrix; SBOM at build; license-policy enforcement.
-- **[29]** Automated lint for component-type vocabulary; CC-PID format validator; module-boundary import lint.
+- **[49]** CC-PID format validator in API middleware; developer quick-reference cards.
+- **[50]** Automated artifact-filename lint; WOE tracker-key validation hook; governance-ID registry hook.
+- **[51]** Automated lint for component-type vocabulary (file/class suffixes); directory-structure CI check; module-boundary import lint.
 - **[31]** Published OpenAPI spec; standard response envelope; cursor pagination; idempotency keys; deprecation headers.
 - **[32]** Canonical event schema; exponential-backoff retry; delivery logs queryable; DLQ; signed timestamp.
 - **[33]** Internal `modules.json` registry; semver compatibility tests; contract tests per ICD; automated version-bump PRs.
@@ -657,7 +662,9 @@ Adds to T1 + T2. ~35 deliverables — kicks in for fintech, healthcare, PCI-adja
 **Engineering**
 
 - **[28]** Formal architecture review per new stack entry; vendor-risk assessment per technology; SLSA attestation; reproducible builds; FIPS-validated crypto libs; golden-image requirement.
-- **[29]** CC-PID integrity signature (tamper-evidence); per-tenant namespace partitioning; identifier audit trail; code-gen emits conformant IDs only; pre-commit blocks non-conformant identifiers.
+- **[49]** CC-PID integrity signature (tamper-evidence); per-tenant namespace partitioning in IDs; identifier audit trail; code-gen emits conformant IDs only; pre-commit blocks non-conformant identifiers.
+- **[50]** Centralized artifact registry with version audit trail; immutability enforcement on published governance records.
+- **[51]** Architecture-review gates on new component-type suffixes; pre-commit hooks on non-conformant module/file names.
 - **[31]** mTLS between services; signed-request scheme for partners; full audit-store recording; contract testing (Pact); API gateway with policy enforcement; client-cert auth.
 - **[32]** Event replay UI; typed SDKs; per-subscription rate limiting; customer delivery dashboard; SOC-2-grade delivery audit trail.
 - **[33]** Module-level SBOM + provenance; license-compatibility policy per consumer; signed release artifacts; LTS branches; RFC for new modules; ARB-reviewed dependency graph.

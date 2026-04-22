@@ -99,7 +99,9 @@ No T1/T2 item is skipped at T3. If a T2 item looks redundant with a T3 upgrade, 
 ### Engineering
 
 - [ ] **[28] STD-ENG-009 T3** — Formal architecture review per new stack entry; vendor-risk assessment per technology; **SLSA attestation**; reproducible builds; FIPS-validated crypto libs; golden-image requirement.
-- [ ] **[29] STD-ENG-001 T3** — CC-PID integrity signature (tamper-evidence); per-tenant namespace partitioning; identifier audit trail; code-gen emits conformant IDs only; pre-commit blocks non-conformant identifiers.
+- [ ] **[49] STD-ENG-001A T3** — CC-PID integrity signature (tamper-evidence); per-tenant namespace partitioning in IDs; identifier audit trail; code-gen emits conformant IDs only; pre-commit blocks non-conformant identifiers.
+- [ ] **[50] STD-ENG-001B T3** — Centralized artifact registry with version audit trail; immutability enforcement on published governance records.
+- [ ] **[51] STD-ENG-001C T3** — Architecture-review gates on new component-type suffixes; pre-commit hooks on non-conformant module/file names.
 - [ ] **[31] STD-ENG-002 T3** — **mTLS between services**; signed-request scheme for partners; full audit-store recording; contract testing (Pact); API gateway with policy enforcement; client-cert auth.
 - [ ] **[32] STD-ENG-003 T3** — *Webhook emitters only:* event replay UI; typed SDKs; per-subscription rate limiting; customer delivery dashboard; SOC-2-grade delivery audit trail.
 - [ ] **[33] STD-ENG-008 T3** — Module-level SBOM + provenance; license-compatibility policy per consumer; **signed release artifacts**; LTS branches; RFC for new modules; ARB-reviewed dependency graph.

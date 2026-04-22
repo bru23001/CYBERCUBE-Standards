@@ -402,7 +402,7 @@ This document does NOT define:
 - Retention periods — see Data Classification & Retention Standard
 - Data classification — see Data Classification & Retention Standard
 - Authorization — see Authorization & Access Control Standard
-- CC-PID format — see Naming & Identifier Standard
+- CC-PID format — see [49] STD-ENG-001A Public Entity IDs
 
 ## 1. Lifecycle States
 
@@ -1986,7 +1986,7 @@ Status vocabulary: `IN PLACE` | `COMPLETE` | `PARTIAL` | `ROADMAP` | `N/A`.
 | 3.3 Data Classification and Retention Standard | Peer — retention periods and classification levels |
 | 3.7 Legal Hold and eDiscovery Standard | Peer — legal hold enforcement referenced in purge logic |
 | 2.4 Authorization and Access Control Standard | Peer — permission checks on lifecycle transitions |
-| 5.1 Naming and Identifier Standard | Peer — CC-PID format and tombstone reservation |
+| [49] STD-ENG-001A Public Entity IDs (CC-PID) | Peer — CC-PID format and tombstone reservation |
 | 5.2 API Design Standard | Peer — HTTP status codes and response conventions |
 
 ---
