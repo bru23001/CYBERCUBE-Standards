@@ -4,10 +4,10 @@
 |----------|-------|
 | **Standard ID** | STD-ENG-008 |
 | **Catalog Number** | 5.9 |
-| **Version** | 1.6 |
+| **Version** | 1.7 |
 | **Status** | Active |
 | **Owner** | Architecture Team |
-| **Last Updated** | 2026-04-22 |
+| **Last Updated** | 2026-04-22 (v1.7) |
 | **Compliance Level** | Mandatory |
 | **Total Modules** | 40 (authoritative data in `modules/modules.json`) |
 
@@ -15,7 +15,7 @@
 
 | Applicability | Tier | Summary of Clauses in This Standard | Waiver Path |
 | ------------- | ---- | ----------------------------------- | ----------- |
-| All projects building or consuming shared code | **T1 MUST** | (1) Any piece of functionality reused across ≥ 2 projects MUST be a registered module in this standard (not copy-pasted). (2) Every registered module MUST have a named owner, a single public interface contract (ICD), and a version in its package manifest. (3) Breaking changes to a registered module MUST bump the major version and MUST be preceded by a deprecation note on the prior stable version. (4) Registered modules MUST follow Namespace-M naming per STD-ENG-001 T1 (clause 4). (5) Production code MUST NOT depend on unregistered ("local-only") modules that leak across project boundaries. | None (non-waivable — coordination standard) |
+| All projects building or consuming shared code | **T1 MUST** | (1) Any piece of functionality reused across ≥ 2 projects MUST be a registered module in this standard (not copy-pasted) — **subject to the Small-Project Exclusion in §Small-Project Exclusion below**. (2) Every registered module MUST have a named owner, a single public interface contract (ICD), and a version in its package manifest. (3) Breaking changes to a registered module MUST bump the major version and MUST be preceded by a deprecation note on the prior stable version. (4) Registered modules MUST follow Namespace-M naming per STD-ENG-001 T1 (clause 4). (5) Production code MUST NOT depend on unregistered ("local-only") modules that leak across project boundaries. | None for T1 #2–#5 (non-waivable — coordination standard); T1 #1 supports a self-asserted Small-Project Exclusion (see below) in lieu of a formal waiver |
 | SaaS / customer-facing | **T2 SHOULD** | Internal module registry (machine-readable `modules.json`), semver compatibility tests, contract tests per public interface, shared changelog per module, automated version-bump PRs across consumers, module-documentation site published internally. | Lightweight waiver per POL-GOV-001 §8.3 |
 | Regulated / high-risk | **T3 MAY** | Module-level SBOM + provenance attestation, license-compatibility policy enforced per consumer, signed artifacts for each release, long-term-support (LTS) branches for stable modules, formal RFC required for new module addition, cross-module dependency graph reviewed by ARB. | Formal waiver per STD-GOV-003 |
 
@@ -24,6 +24,36 @@
 > **v1.5 (2026-04-22) — Tier Table addition** (micro-bump on v1.4).
 >
 > **v1.6 (2026-04-22) — Pass-3 data/rules split.** The 40-module catalog is now data, in `modules/modules.json`, governed by `modules/CHANGELOG.md`. The inline registry tables in this standard collapse to an id + name + source-standard index; full key-components and interface schemas are in `modules.json` and §ICD. Catalog additions/renames no longer require a version bump of STD-ENG-008 — only rule changes do. No semantic change to the T1 baseline.
+
+> **v1.7 (2026-04-22) — RFC-0004 Small-Project Exclusion (additive, minor).** Adds a self-asserted exclusion from T1 #1 (M-NN module-catalog audit) for products that clear four size/exposure thresholds. T1 #2–#5 continue to apply to any module a small-project team *does* choose to register. Addresses Pass-4 finding F6 (M-NN audit overreach for very small projects). No existing rule altered.
+
+## Small-Project Exclusion
+
+**[T1] Small-project exclusion.** The M-NN module-catalog audit obligation in T1 #1 ("any piece of functionality reused across ≥ 2 projects MUST be a registered module") does **not** apply to products that meet **all** of the following thresholds:
+
+- ≤ 5 engineering FTEs,
+- ≤ 5 production services,
+- Data classification `INTERNAL` or below per [25] STD-DAT-001,
+- No customer-facing interface (public APIs, customer UIs, or billed endpoints).
+
+Excluded products MUST still follow:
+
+- **T1 #2** — owner + ICD + version for any module they *choose* to register,
+- **T1 #3** — breaking-change semver + deprecation note on the prior stable version,
+- **T1 #4** — Namespace-M naming per [29] STD-ENG-001,
+- **T1 #5** — no production dependency on unregistered modules that leak across project boundaries.
+
+**Mechanics:**
+
+- The exclusion is **self-asserted** — no waiver required under [6] STD-GOV-003.
+- The product's `README.md` MUST carry a one-line banner: *"This product claims the STD-ENG-008 §Small-Project Exclusion (≤5 FTEs, ≤5 services, INTERNAL-or-below, no customer-facing interface)."*
+- The exclusion MUST be recorded in the product's PCL row ([5] STD-GOV-001) via a boolean `std_eng_008_small_project_exclusion` field (or equivalent annotation).
+- When **any** of the four thresholds is crossed, the exclusion **lapses at the next release**, and the full T1 #1 audit obligation applies immediately. The product's PCL row and README banner MUST be updated in the same release.
+- Annual sample-audit by the Standards Council on products declaring the exclusion verifies the self-assertion against the thresholds (per [6] STD-GOV-003 §Audit cadence). Misuse is treated as a governance violation, not a standards violation.
+
+**Rationale.** The M-NN audit exists to prevent copy-paste drift across a multi-project portfolio. For products below the threshold, copy-paste cost is lower than module-registration cost; forcing registration adds governance friction without improving reuse. The thresholds are intentionally conservative — products close to the threshold should register modules proactively rather than rely on the exclusion.
+
+**Boundary with [6] STD-GOV-003 (waivers).** The exclusion is *not* a waiver. A waiver is time-boxed and requires a compensating control; the exclusion is open-ended (while thresholds hold) and requires no compensating control because the underlying risk (cross-project drift) structurally does not apply. Products that exceed any threshold and want temporary relief from T1 #1 must file a standard STD-GOV-003 waiver.
 
 > **Purpose:** Canonical registry of all reusable CYBERCUBE modules with interface contracts, dependency maps, and skeleton implementations.
 
@@ -4572,6 +4602,9 @@ Before a module is considered "skeleton-compliant", verify:
 | 1.2.2 | 2026-02-11 | Architecture Team | Added M-34 Message Bus Module (Communication & Integration). Broker-agnostic async transport: pub/sub, consumer groups, dead-letter queues, schema validation, backpressure, poison message handling. Implements ICD-8 Event Bus Contract transport layer. Updated: ICD-2 matrix (M-34 column — ASYNC from all event-emitting modules), ICD-3.34 full interface contract, ICD-4 (TopicName, MessageId, ConsumerGroupConfig, TopicMetrics, BackpressureConfig), ICD-5 (MBU_001–MBU_008), ICD-8 (M-34 noted as transport provider + cybercube.msgbus.* events), boundary rules, skeleton ports (IMessageBus), assembly diagram, failure isolation (Domain D). Priority: P1. Total modules: 33 → 34. |
 | 1.3 | 2026-02-11 | Architecture Team | New category: **Business Services**. Added M-35 Billing Module (payment gateway abstraction Stripe/Braintree/Adyen, subscription lifecycle TRIAL→ACTIVE→PAST_DUE→CANCELLED, plan management, usage metering, invoicing, proration, dunning, refunds, PCI-compliant tokenization). Added M-36 Workflow Module (state machine definition & execution, task assignment, approval chains, SLA tracking with escalation, parallel/sequential steps, compensation on failure, checkpoint recovery). Consumers: M-25 Incident/M-26 Change/M-35 Billing define workflows, M-36 executes. Updated: Module Dependency Map (Business Services layer), System Block Diagram (M-35/M-36 block), ICD-2 matrix (M-35/M-36 columns), ICD-3.35 + ICD-3.36 full contracts, ICD-4 (14 billing types + 8 workflow types), ICD-5 (BIL_001–BIL_010 + WFL_001–WFL_010), ICD-8 (cybercube.billing.* 14 events + cybercube.workflow.* 17 events), boundary rules (6 rules each), skeleton ports (IBillingService, IWorkflowService), assembly diagram, failure isolation (Domain F: Business Services). Priority: P2. Total modules: 34 → 36. |
 | 1.3.1 | 2026-02-11 | Architecture Team | New category: **Frontend & Presentation**. Added M-37 UI Foundation Module (design tokens — color/spacing/typography/elevation/motion/breakpoints, theme engine — light/dark/white-label per tenant via M-10, component library — 6 categories ~30 primitives, layout system — 12-column grid + 5 page templates, WCAG 2.1 AA mandatory). Client-side only — no server dependencies, no event bus. Updated: System Block Diagram (M-37 between clients and API boundary), ICD-2 matrix (M-37 column — SYNC to M-10/M-29 only), ICD-3.37 full contract, ICD-4 (8 UI types), ICD-5 (UI_001–UI_005), boundary rules, skeleton ports (IThemeProvider, ITokenProvider), assembly diagram, failure isolation (Domain G: Frontend — fallback to default theme on error). Priority: P2. Total modules: 36 → 37. |
+| 1.7 | 2026-04-22 | Standards Council | **RFC-0004 Small-Project Exclusion (additive, minor).** Adds §Small-Project Exclusion: self-asserted relief from T1 #1 for products ≤5 FTEs, ≤5 services, INTERNAL-or-below classification, no customer-facing interface. T1 #2–#5 continue to apply. No waiver required; exclusion recorded in PCL row + README banner; lapses at next release when any threshold is crossed. Annual sample-audit by Standards Council. Addresses Pass-4 finding F6. |
+| 1.6 | 2026-04-22 | Architecture Team | Pass-3 data/rules split: 40-module catalog moved to `modules/modules.json` (governed by `modules/CHANGELOG.md`); inline registry collapsed to id+name+source-standard index. Catalog additions/renames no longer require a standard version bump. No semantic change to T1 baseline. |
+| 1.5 | 2026-04-22 | Standards Council | Added Applicability Tier Table per POL-GOV-001 §8.8 (micro-bump on v1.4). |
 | 1.4 | 2026-02-11 | Architecture Team | Added 3 modules from gap analysis. **M-38 Localization Module** (P2, Core Infrastructure): translation management, BCP 47 locale detection, ICU MessageFormat pluralization, number/date/currency formatting, RTL support, lazy namespace loading, fallback chain. **M-39 Search Module** (P2, Data Management): full-text search abstraction (Elasticsearch/Typesense/OpenSearch), tenant-scoped indices, faceted search, relevance tuning, event-driven reindexing via M-34, alias-swap zero-downtime reindex. **M-40 Cache Module** (P1, Core Infrastructure): cache-aside/write-through/write-behind/read-through strategies, Redis/Memcached abstraction, tenant-scoped keys per STD-DAT-004, TTL management, tag-based invalidation, stampede protection (singleflight + probabilistic early expiry), CONFIDENTIAL+ data encrypted via M-16. Updated: catalog tables, dependency map, system block diagram, failure isolation (Domain B + E), priority table, ICD-2 matrix (3 new rows/columns), ICD-3.38–3.40 full contracts, ICD-4 (12 i18n + 10 search + 5 cache types), ICD-5 (I18N_001–004, SRC_001–006, CSH_001–006), ICD-8 (cybercube.search.* 6 events), boundary rules (all 5 rules updated), skeleton ports (ILocalizationService, ISearchService, ICacheService), assembly diagram. Total modules: 37 → 40. |
 
 ---

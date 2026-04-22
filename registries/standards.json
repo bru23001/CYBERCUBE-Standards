@@ -495,12 +495,12 @@
     "name": "CYBERCUBE Reusable Modules Standard",
     "type": "Standard",
     "domain": "Engineering",
-    "version": "v1.4",
+    "version": "v1.7",
     "owner": "Architecture Team",
     "status": "Active",
-    "effective": "2026-02-11",
+    "effective": "2026-04-22",
     "classification": "INTERNAL",
-    "filename": "STD-ENG-008 CYBERCUBE-Reusable-Modules-Standard-v1.1.md",
+    "filename": "STD-ENG-008 CYBERCUBE-Reusable-Modules-Standard-v1.7.md",
     "createdAt": "2026-02-10"
   },
   {

@@ -523,7 +523,7 @@ Baseline applicable to internal tools, SaaS, and regulated products alike. ~30 d
 - **[29] STD-ENG-001** — Namespace-A / Namespace-G naming; CC-PID for external identifiers; raw DB PKs not leaked.
 - **[31] STD-ENG-002** — Versioned endpoints; consistent machine-readable error shape; no stack traces to clients.
 - **[32] STD-ENG-003** — *Webhook emitters only:* HMAC-SHA256 signing per endpoint; unique `event_id`; secrets per-consumer.
-- **[33] STD-ENG-008** — Functionality reused across ≥2 projects is a registered module with owner + ICD + version; breaking changes bump major.
+- **[33] STD-ENG-008** — Functionality reused across ≥2 projects is a registered module with owner + ICD + version; breaking changes bump major. *Small-project exclusion available (self-asserted, no waiver required) for products ≤5 FTEs, ≤5 services, INTERNAL-or-below, no customer-facing interface — see [33] §Small-Project Exclusion.*
 - **[34] STD-ENG-004** — All cloud infra in code; remote state with locking; console drift reverted.
 - **[35] STD-ENG-005** — Automated test suite gates merge; critical paths have a test; bug fixes ship with regression tests.
 - **[36] POL-ENG-001** — Every production-impacting change filed with rollback + approver; emergency changes get a retro.
