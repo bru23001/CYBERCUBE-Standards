@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://cybercube.example/schemas/vendor-inventory.v1.json",
+  "$id": "https://cybercube.example/schemas/vendor-inventory.v1.1.json",
   "title": "CYBERCUBE Vendor Inventory — schema (POL-VEN-001)",
   "description": "Machine-readable contract for the vendor inventory referenced by POL-VEN-001. Each entry records one vendor/third-party relationship. The vendor-inventory lint (tools/validate-schemas.py) enforces this schema.",
   "type": "array",
@@ -19,7 +19,7 @@
         "name": { "type": "string", "minLength": 1 },
         "category": {
           "type": "string",
-          "enum": ["infrastructure", "saas", "data-processor", "sub-processor", "consultancy", "payments", "other"]
+          "enum": ["infrastructure", "saas", "data-processor", "sub-processor", "consultancy", "payments", "foundation-model", "other"]
         },
         "tier": {
           "type": "string",

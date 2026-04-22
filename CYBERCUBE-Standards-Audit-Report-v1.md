@@ -1741,3 +1741,50 @@ Internal tools below ~5 services shouldn't be forced to audit against 40 modules
 Audit loop is now fully traversed. Ongoing enforcement runs through CI (`freeze-check`, `schema-validate`) and pre-commit hooks. Further changes are RFC-driven, not audit-driven.
 
 ---
+
+## 25. POST-PASS-4 REMEDIATION — Execution Log (2026-04-22)
+
+Working the §24.5 queue smallest-first. This section accretes per-task sub-logs.
+
+### 25.1 TASK-0002 — `foundation-model` vendor category (additive schema change)
+
+**Scope:** addresses §24.4 F5 (S5 AI-feature scenario: no vendor-inventory category for foundation-model API providers). Additive enum change — non-breaking per POL-GOV-001 §8 (new enum value does not invalidate any existing artifact).
+
+**Changes:**
+
+| File | Change |
+|------|--------|
+| `schemas/vendor-inventory.schema.json` | `$id` bumped `v1.json` → `v1.1.json`; added `foundation-model` to `$defs/vendor/properties/category/enum` (now 8 values) |
+
+Enum before → after:
+
+```
+before: ["infrastructure","saas","data-processor","sub-processor","consultancy","payments","other"]
+after:  ["infrastructure","saas","data-processor","sub-processor","consultancy","payments","foundation-model","other"]
+```
+
+**Verification:**
+
+- `python3 tools/validate-schemas.py --strict` → `Checked: 4 | Failures: 0`. New `$id` reflected in output: `vendor-inventory.v1.1.json`.
+- `python3 tools/freeze-check.py` → 45/45 YES, 0 findings.
+- No artifact rewrite required — existing seed `vendor-inventory.json` uses `"category": "other"`, remains valid under the widened enum.
+- No callers of the old `$id` outside the schema file itself (grep confirmed).
+
+**Downstream follow-ups (not blocking):**
+
+- When RFC-0002 (`STD-AI-001`) lands, add a rule requiring foundation-model vendors be categorized with this value; until then the enum is available but not mandated.
+- `[9] POL-VEN-001` body copy does not enumerate categories inline; no version bump needed there. If a future vendor-onboarding guide lists categories explicitly, keep it in sync.
+
+**Status:** ✅ TASK-0002 DONE. §24.4 F5 cleared.
+
+### 25.2 Outstanding queue
+
+| ID | State | Next |
+|----|-------|------|
+| TASK-0001 — tier cheat-sheet in [4] FWK-GOV-001 | queued | ~2 h; aggregate Tier Tables across 45 standards |
+| RFC-0004 — starter kits & project templates | queued | ~2 weeks drafting; addresses F1, F6 |
+| RFC-0005 — regulation mapping artifacts | queued | ~1 week drafting; addresses F2, F3 (HIPAA primitives → TPL-LGL-002 + STD-DAT-005) |
+| Pass-3 numeric re-score | blocked | survey window closes 2026-05-06 |
+| RFC-0001/0002/0003 approvals | blocked | decisions 2026-05-13 / 05-20 / 05-27 |
+
+---
