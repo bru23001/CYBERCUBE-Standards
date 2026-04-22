@@ -1,0 +1,64 @@
+name: starter-check
+
+on:
+  pull_request:
+    paths:
+      - 'docs/starters/**'
+      - '[[]*[]]-*.md'
+      - 'governance/compliance-maps/**'
+      - 'tools/starter-check.py'
+      - '.github/workflows/starter-check.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'docs/starters/**'
+      - '[[]*[]]-*.md'
+      - 'governance/compliance-maps/**'
+      - 'tools/starter-check.py'
+
+permissions:
+  contents: read
+
+jobs:
+  starter-check:
+    # Gate policy (introduced 2026-04-22, RFC-0004 §7 risk mitigation):
+    #   BLOCK on any starter-rot finding:
+    #     UNKNOWN_STANDARD, BRACKET_MISMATCH, STALE_VERSION,
+    #     MISSING_COMPLIANCE_MAP, MISSING_STARTER_CROSSLINK.
+    #   Purpose: prevent docs/starters/* from drifting out of sync with the
+    #   bracket-numbered standards portfolio and compliance-maps directory.
+    name: RFC-0004 §7 Starter-Rot Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run starter-check linter (--json)
+        run: |
+          python tools/starter-check.py --json
+          echo "---"
+          echo "Summary written to starter-check-report.json"
+
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: starter-check-report
+          path: starter-check-report.json
+          if-no-files-found: ignore
+
+      - name: Post summary to PR
+        if: always()
+        run: |
+          {
+            echo "## RFC-0004 §7 Starter-Rot Check"
+            echo ""
+            echo '```'
+            python tools/starter-check.py || true
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

@@ -1,0 +1,25 @@
+{
+  "reports": [
+    {
+      "file": "VENDOR-ONBOARDING.md",
+      "findings": []
+    },
+    {
+      "file": "ai-feature.md",
+      "findings": []
+    },
+    {
+      "file": "internal-tool.md",
+      "findings": []
+    },
+    {
+      "file": "t2-saas.md",
+      "findings": []
+    },
+    {
+      "file": "t3-regulated.md",
+      "findings": []
+    }
+  ],
+  "total_findings": 0
+}
