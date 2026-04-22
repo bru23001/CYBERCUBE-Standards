@@ -1387,3 +1387,68 @@ Re-ran `tools/freeze-check.py` after all changes. Result:
 4. Begin post-window Pass-3 re-score using author self-assessment + delivery-team survey responses (§21.8).
 
 ---
+
+## 23. POST-TRANCHE-2 ACTIONS — Continuation Log (2026-04-22)
+
+### 23.1 Scope
+
+Executed items 2 and 3 of §22.11. Item 1 (open PRs for RFCs) deferred — requires explicit user consent for commit/push. Item 4 (Pass-3 re-score) blocked on 2-week survey window (closes 2026-05-06).
+
+### 23.2 CI workflow: `schema-validate.yml`
+
+- File: `.github/workflows/schema-validate.yml` (new).
+- Triggers on PR/push when `schemas/**`, `governance/**`, or `tools/validate-schemas.py` change.
+- Installs `jsonschema`, runs `tools/validate-schemas.py --strict --json`, uploads the JSON report as an artifact, posts a human-readable summary to the PR.
+- Gate policy: **BLOCK** on any validation failure; `--strict` mode also blocks if a schema has zero artifacts (seeds in `governance/` keep it green during bootstrap).
+- Matches the stub published in `schemas/README.md`.
+
+### 23.3 RFC-0003 — POL-REC-001 / STD-DAT-001 overlap resolution (DRAFT)
+
+- File: `rfcs/RFC-0003-collapse-pol-rec-001-into-std-dat-001.md` (~200 lines).
+- Updated `rfcs/README.md` index with RFC-0003 entry.
+
+**Key finding from scoping analysis:** full merge is wrong. Dependency between the two documents is **one-way**: [14] POL-REC-001 depends on [25] STD-DAT-001; the reverse is not true. **Zero** of [14]'s four T1 MUSTs are uniquely owned — three are pure delegations (to STD-DAT-001 or STD-LGL-001) and the fourth is a subset of STD-DAT-001 T1 #4. Merging everything into STD-DAT-001 would bloat an engineering-owned standard with Legal-owned records-governance content.
+
+**Recommended path** (per RFC):
+
+- `STD-DAT-001` v1.1 → v1.2: additive only (harmonize destruction-log fields; add cross-link banner).
+- `POL-REC-001` v1.1 → v2.0: breaking structural change. Shrink from 941 → ~300 lines. Cut §2 "Document Classifications" (102 lines of duplication), §4 "Records Lifecycle" body, retention tables. Revise T1 count 4 → 2 (custodian + disposition authority — the only two rules uniquely owned by records governance). Removed T1 #3 "legal hold" moved to STD-LGL-001 if not already present.
+- Four-way approver trio + Legal: `legal-lead` + `privacy-lead` + `data-owner` + `sec-lead`. Comment close 2026-05-20; decision 2026-05-27.
+
+**Projected impact:** [14] Clarity 3 → 4, Proportionality 3 → 4. [25] Clarity 3 → 4. §21.2 overlap flag between [14] and [25] cleared. No normative weakening (all removed T1s either remain in force via the pointed-to standard or are promoted to the receiving standard).
+
+### 23.4 Alternatives rejected (documented in RFC §8)
+
+- **(a) Full merge — delete POL-REC-001.** Rejected. Engineering-owned standard shouldn't absorb Legal-owned records-governance.
+- **(b) Resolve only the §2 classification duplication.** Rejected. Leaves three redundant T1 MUSTs in [14]; overlap flag not cleared.
+- **(c) Three-way split of POL-REC-001.** Rejected. Over-fragmentation.
+
+### 23.5 RFC portfolio state
+
+```
+rfcs/
+├── README.md
+├── RFC-0001-split-std-eng-001-naming.md           DRAFT  decision 2026-05-13
+├── RFC-0002-split-pol-ai-001-ai-ethics.md         DRAFT  decision 2026-05-20
+└── RFC-0003-collapse-pol-rec-001-into-std-dat-001.md  DRAFT  decision 2026-05-27
+```
+
+Three DRAFT RFCs open concurrently. Each has a distinct approver trio; no single reviewer gates all three.
+
+### 23.6 Remaining §22.11 follow-ups
+
+| Item | State | Next step |
+|------|-------|-----------|
+| #1 Open PRs for DRAFT RFCs | blocked | Needs explicit user consent to commit/push |
+| #2 CI schema-validate workflow | **done (§23.2)** | Will activate on first PR touching schemas/governance |
+| #3 POL-REC-001 ↔ STD-DAT-001 merge scope | **done (§23.3 → RFC-0003)** | Approver sign-off by 2026-05-27 |
+| #4 Pass-3 re-score | blocked | Survey window closes 2026-05-06 |
+
+### 23.7 Suggested next actions
+
+1. **User consent to commit/push.** Three batches accumulated since tranche-2: RFCs 0001-0003, CI workflow, governance seeds, ICD mirror. Clean commit points available per batch.
+2. **Monitor survey window** (closes 2026-05-06). At close, begin §21.8 Pass-3 re-score with author + delivery-team inputs.
+3. **Activate RFC comment windows.** Once PRs land, announcement in `#eng-standards` with deadline calendar.
+4. **Begin consumer-PR discovery for [33] mirror cut-over** — track first PR citing `modules/contracts/M-NN-…md` directly.
+
+---
