@@ -5,12 +5,12 @@
     "name": "CYBERCUBE Framework Compliance",
     "type": "Framework",
     "domain": "Governance",
-    "version": "v1",
+    "version": "v1.2",
     "owner": "Standards Council",
     "status": "Active",
-    "effective": "2026-01-17",
+    "effective": "2026-04-22",
     "classification": "INTERNAL",
-    "filename": "FWK-GOV-001 CYBERCUBE-Framework-Compliance-v1.md",
+    "filename": "FWK-GOV-001 CYBERCUBE-Framework-Compliance-v1.2.md",
     "createdAt": "2026-02-10"
   },
   {

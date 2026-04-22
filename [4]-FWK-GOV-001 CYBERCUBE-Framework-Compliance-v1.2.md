@@ -1,8 +1,8 @@
-# CYBERCUBE Framework Compliance (v1.1)
+# CYBERCUBE Framework Compliance (v1.2)
 
 **Standard ID:** FWK-GOV-001  
 **Status:** Active  
-**Effective:** 2026-01-17 (v1), 2026-04-22 (v1.1)  
+**Effective:** 2026-01-17 (v1), 2026-04-22 (v1.1), 2026-04-22 (v1.2)  
 **Classification:** INTERNAL  
 **Owner:** Standards Council
 
@@ -461,3 +461,232 @@ When referencing "standards" in conversation, this refers to the full set of CYB
 │                                                                             │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
+
+---
+
+## Tier Cheat-Sheet
+
+*Aggregated from the Applicability Tier Tables of all 45 standards (v1.x portfolio). Each line names the standard + the deliverable a new team must produce to satisfy that tier. Use as the "opening-checklist" when scoping a new project; the full clause text lives in the cited standard.*
+
+> **How to read this:** Pick your tier from STD-GOV-001 (PCL criticality) and STD-DAT-001 (data classification). T1 applies to everything. T2 adds SaaS / customer-facing obligations. T3 adds regulated / high-risk obligations. Meta-exempt ([1] Name Registry, [2] POL-GOV-001, [16] TPL-LGL-001) provide infrastructure for the framework itself and don't produce tier-scoped deliverables.
+>
+> **Addresses Pass-4 Finding F4** (coordination cost grows linearly with tier depth — no single-page cheat-sheet). See `CYBERCUBE-Standards-Audit-Report-v1.md` §24.4.
+
+### T1 — MUST (every project)
+
+Baseline applicable to internal tools, SaaS, and regulated products alike. ~30 deliverables across 22 standards.
+
+**Governance & Registry**
+
+- **[3] POL-GOV-002** — Named architecture owner; ADR/RFC for any cross-service / cross-datastore change.
+- **[4] FWK-GOV-001** — Self-assessment against the checklist at inception + pre-GA; remediate or waive every FAIL.
+- **[5] STD-GOV-001** — Register product with a PCL code before first production deploy; review on architectural change.
+- **[6] STD-GOV-003** — File a waiver for any documented deviation; no silent deviations.
+- **[7] STD-GOV-006** — Every new MUST clause you author maps to a UCM row in the same change.
+- **[8] STD-ERM-001** — Use the canonical Risk Register; HIGH/CRITICAL residual risks have a named approver.
+- **[44] STD-GOV-004** — Audit findings tracked in the ERM risk register.
+- **[45] STD-GOV-005** — Expose at least one business/operational metric; SEV1/SEV2 produce a KRI entry at portfolio level.
+
+**People & Vendors**
+
+- **[9] POL-VEN-001** — Vendor register with risk rating; vendor risks in the ERM register; assessment before production data flows.
+- **[10] POL-AUP-001** — Every employee/contractor acknowledges AUP before access; no personal/illegal use of company assets.
+- **[11] POL-AI-001** — AI tools from Approved list; no PII/secrets/customer data to unapproved services; human review of AI output before merge.
+- **[24] STD-SEC-008** — Security-awareness onboarding before access; annual refresh; incident-triggered re-training.
+
+**Privacy & Records**
+
+- **[12] POL-PRI-001** — Published, version-dated public Privacy Policy with all GDPR/CCPA categories.
+- **[13] POL-PRI-002** — Classify personal data (via STD-DAT-001); declare lawful basis before collection.
+- **[14] POL-REC-001** — Records classified per STD-DAT-001; retention per canonical schedule; legal-hold blocks deletion; destruction logged.
+- **[15] STD-LGL-001** — On credible claim/subpoena, GC issues a written legal hold that pauses deletion.
+
+**Security**
+
+- **[17] STD-SEC-001** — Named security owner (`sec-lead`); security incidents tracked; CIA as primary objective.
+- **[18] STD-SEC-003** — Passwords Argon2id (or bcrypt ≥12); session expiry + invalidation on logout/credential change; auth events logged.
+- **[19] STD-SEC-004** — Deny-by-default; authZ check before business logic on every endpoint; no "admin-or-nothing" roles.
+- **[20] STD-SEC-005** — Approved algorithms only (AES-GCM, TLS 1.2+, SHA-256+, Argon2id, RSA≥2048/Ed25519); no roll-your-own crypto.
+- **[21] STD-SEC-002** — Input validation at trust boundaries; parameterized SQL; template-escaped HTML output.
+- **[22] STD-SEC-006** — Dependency scan in every CI build; Critical/High triaged ≤5 BD; CISA KEV remediated in SLA.
+- **[23] STD-SEC-007** — Security incidents follow STD-OPS-004 SEV taxonomy; `sec-lead` + backup named; evidence preserved.
+
+**Data**
+
+- **[25] STD-DAT-001** — Classification label per entity; declared retention; PII fields identified; deletion audit; backup inheritance.
+- **[26] STD-DAT-002** — User-initiated deletes are soft-deletes by default; soft-deleted excluded from default scope; retention before purge.
+- **[27] STD-DAT-004** — *Multi-tenant only:* `tenant_id` on every scoped table/index/cache/path; every query filters by it; no cross-tenant leakage.
+
+**Engineering**
+
+- **[28] STD-ENG-009** — Declare stack in README against the radar; no HOLD technologies for new projects.
+- **[29] STD-ENG-001** — Namespace-A / Namespace-G naming; CC-PID for external identifiers; raw DB PKs not leaked.
+- **[31] STD-ENG-002** — Versioned endpoints; consistent machine-readable error shape; no stack traces to clients.
+- **[32] STD-ENG-003** — *Webhook emitters only:* HMAC-SHA256 signing per endpoint; unique `event_id`; secrets per-consumer.
+- **[33] STD-ENG-008** — Functionality reused across ≥2 projects is a registered module with owner + ICD + version; breaking changes bump major.
+- **[34] STD-ENG-004** — All cloud infra in code; remote state with locking; console drift reverted.
+- **[35] STD-ENG-005** — Automated test suite gates merge; critical paths have a test; bug fixes ship with regression tests.
+- **[36] POL-ENG-001** — Every production-impacting change filed with rollback + approver; emergency changes get a retro.
+- **[37] STD-ENG-006** — Git with protected default branch; deploys from versioned immutable artifacts; identifiable deploy record.
+
+**Operations**
+
+- **[38] STD-OPS-003** — Structured logs (no secrets/PII); health endpoint per service.
+- **[39] STD-OPS-005** — Declared service tier; on-call contact per Tier-1-Critical; SLI defined.
+- **[40] STD-SLP-001** — Written service description + named SLO owner; announced planned maintenance; Legal-reviewed public SLAs.
+- **[41] STD-OPS-004** — SEV1–SEV4 taxonomy; on-call per production service; postmortem ≤10 BD on SEV1/2.
+- **[42] STD-OPS-002** — Daily automated backup per datastore; at least one copy on different storage/region; documented restore procedure.
+- **[43] PLN-OPS-001** — Named BC owner + backup; Critical Systems register with RTO; declare-BC authority.
+
+### T2 — SHOULD (SaaS / customer-facing)
+
+Adds to T1. ~25 deliverables — what separates a customer-facing SaaS v1 from an internal tool.
+
+**Governance & Compliance**
+
+- **[3]** Maintained C4-level architecture diagram + tech-debt log; quarterly ARB sync.
+- **[4]** Checklist re-scored each release; scores logged in `docs/compliance/`; named compliance owner.
+- **[5]** Automated registry sync from source repos; quarterly PCL recertification; CMDB integration.
+- **[6]** Exception register in controlled location; quarterly review; visible in compliance dashboard.
+- **[7]** Quarterly UCM refresh; gap analysis; mapping to one external framework (SOC-2 / NIST CSF / ISO-27001).
+- **[8]** Semi-annual risk review per product; KRI tracking.
+- **[44]** Annual audit plan; findings tracking; CAP process; periodic dashboard.
+- **[45]** KRI catalog with thresholds per domain; quarterly review; automated collection.
+
+**People & Vendors**
+
+- **[9]** Annual assessment; DPA signed before data access; named vendor owner; offboarding + sub-processor list.
+- **[10]** AUP integrated into contract; annual re-acknowledgment; documented BYOD / MDM enrollment; automated offboarding.
+- **[11]** Tool approval workflow; usage logging; prompt/model versioning in product AI.
+- **[24]** Quarterly phishing simulations; role-based curricula; LMS-backed tracking.
+
+**Privacy & Records**
+
+- **[12]** Per-jurisdiction notices (GDPR/CCPA/LGPD/UK-DPA); cookie banner with granular consent; DPO contact listed.
+- **[13]** DPIA triage workflow; consent platform; DSR ticket workflow with SLA; DPA inventory; annual privacy training.
+- **[14]** Named records custodian per department; automated retention/disposal where platform allows.
+- **[15]** Centralized hold register; custodian acknowledgment; system-level hold capability; audit log of hold actions.
+
+**Security**
+
+- **[17]** Threat modeling for new services; dependency scanning; security review of high-risk changes.
+- **[18]** Email verification; secure password reset; TOTP MFA offered; refresh-token rotation; account lockout.
+- **[19]** Permission registry; named roles with inheritance; tenant isolation at query layer; periodic access reviews.
+- **[20]** Automated secrets rotation; encryption at rest for PII (platform-managed); mTLS internal; cert auto-renewal.
+- **[21]** Linter + security rules in CI; dependency-vuln scan; centralized input-validation + output-encoding libs; secure cookie flags; CSP.
+- **[22]** SAST on every PR with blocking gate; container scanning pre-push; published VDP / security.txt.
+- **[23]** Per-category playbooks; annual tabletop; legal-reviewed notification templates; quarterly IR metrics.
+
+**Data**
+
+- **[25]** DSAR workflow with SLA; lawful-basis map per field group; encryption at rest; non-prod data masking.
+- **[26]** Grace-period restore API (30d default); `410 Gone` standard; tombstone records; user-visible Trash.
+- **[27]** Tenant-context middleware on routes; tenant-scoped cache/storage; async jobs carry tenant context; negative-isolation tests.
+
+**Engineering**
+
+- **[28]** Quarterly radar refresh; compatibility matrix; SBOM at build; license-policy enforcement.
+- **[29]** Automated lint for component-type vocabulary; CC-PID format validator; module-boundary import lint.
+- **[31]** Published OpenAPI spec; standard response envelope; cursor pagination; idempotency keys; deprecation headers.
+- **[32]** Canonical event schema; exponential-backoff retry; delivery logs queryable; DLQ; signed timestamp.
+- **[33]** Internal `modules.json` registry; semver compatibility tests; contract tests per ICD; automated version-bump PRs.
+- **[34]** IaC security scanning in CI (tfsec/Checkov); version pinning via lockfiles; CODEOWNERS on sensitive modules; drift detection.
+- **[35]** Coverage ≥70% unit / ≥50% integration; SAST + dep scan; E2E on top journeys; coverage dashboard.
+- **[36]** CAB review for medium/high-risk; change calendar; customer-impact notification.
+- **[37]** CI with tests + security scan gating merge; staging ≥80% parity; `/healthz` + `/readyz`; artifact registry; feature flags.
+
+**Operations**
+
+- **[38]** Correlation/trace IDs; OpenTelemetry SDK; RED+saturation dashboards; SLO-linked alerts; on-call paging integration.
+- **[39]** SLI/SLO per Tier-1-Critical; error-budget dashboards + burn-rate alerting; 24×5 on-call; canary deploys.
+- **[40]** Public SLA doc; status page; customer-visible incident comms; quarterly service review.
+- **[41]** Paging tool (PagerDuty or equivalent); public status page; runbook repo; MTTA/MTTR targets.
+- **[42]** Quarterly backup-restore tests; integrity verification; per-service DR runbook; backup alerts.
+- **[43]** Annual BC tabletop; BIA per business unit; alternate-workspace fallback; vendor contingency; pre-drafted customer notification templates.
+
+### T3 — MAY (regulated / high-risk)
+
+Adds to T1 + T2. ~35 deliverables — kicks in for fintech, healthcare, PCI-adjacent, externally-audited products. Most teams do *not* need this tier; waivers flow the other way (STD-GOV-003) when partially applicable.
+
+**Governance & Compliance**
+
+- **[3]** Formal ARB chartering; scheduled architecture reviews with attendance; enterprise reference-architecture compliance; external review (cloud well-architected).
+- **[4]** External framework-compliance validation; published compliance scores; board-level reporting; SOC-2/ISO-27001 cross-map via UCM.
+- **[5]** Regulator-facing product inventory attestation; external PCL validation; authoritative asset-management linkage.
+- **[6]** External audit of the exception register; board-level review of critical exceptions; regulator-facing waiver attestations.
+- **[7]** External-auditor evidence packs derived from UCM; live multi-framework crosswalk; automated evidence collection.
+- **[8]** Executive risk committee; independent review of residual ratings; board-level reporting; GRC-platform integration.
+- **[44]** Independent internal audit function; scheduled compliance audits; audit-universe refresh.
+- **[45]** Audit-grade metric pipeline (source-to-dashboard traceability); externally verifiable metrics; quarterly board KRI report; metric change control.
+
+**People & Vendors**
+
+- **[9]** SOC-2 Type II attestation required; pen-test evidence; on-site audit rights; multi-vendor contingency for critical dependencies; bi-annual tabletops on vendor-originated incidents.
+- **[10]** Role-based AUP addenda; training completion gate before access; insider-threat monitoring; prohibited-software allowlist/denylist via MDM; disciplinary matrix codified.
+- **[11]** AI Governance Committee; ethics review board; board-approval for critical-risk AI; bias/fairness audits; documented model cards.
+- **[24]** PCI-specific training (Req 12.6); sector-specific modules; executive crisis simulations; bi-annual tabletops.
+
+**Privacy & Records**
+
+- **[12]** Sector-specific disclosures (HIPAA NPP / COPPA / GLBA); layered notice; DPIA summary referenced; automated DSR portal.
+- **[13]** Full Art. 35 DPIAs; data-minimization-by-design; pseudonymization / differential privacy; BCRs / SCCs for transfers.
+- **[14]** Formal records-management training; DLP coverage; immutable/WORM archive tier; certified media sanitization; external attestation.
+- **[15]** Automated preservation (vault + hold flag); forensic chain-of-custody; eDiscovery tooling; regulator-clock automation.
+
+**Security**
+
+- **[17]** Continuous controls monitoring mapped to UCM; CISO-owned risk register; scheduled third-party pen tests; executive-reported KRIs.
+- **[18]** Enforced MFA; enterprise SSO (SAML); FIDO2 keys; step-up auth for privileged ops; session recording for admin actions; SCIM; continuous auth telemetry.
+- **[19]** PostgreSQL RLS authoritative on tenant tables; dedicated policy engine (OPA); quarterly access certification; SoD matrix; JIT privileged access; break-glass with auto-revocation.
+- **[20]** BYOK/HYOK; HSM-backed storage; FIPS 140-2/3 modules; post-quantum planning (hybrid KEMs); SoD on key admin; formal crypto-review gate.
+- **[21]** SAST on every PR with blocking gate; IAST/DAST in staging; secure-code review for privileged modules; threat modeling; memory-safety-first language preference.
+- **[22]** Bug bounty; DAST in staging; cloud CSPM; executive KRI reporting; scheduled third-party pen tests; UCM-wired dashboard.
+- **[23]** External IR retainer with SLA; chain-of-custody forms; 24×7 security on-call; executive-briefing cadence; forensic toolchain (EDR/memory/disk); regulator-notification automation (GDPR 72h / HIPAA).
+
+**Data**
+
+- **[25]** Legal-hold system with per-entity flags; BYOK/HYOK; automated DSAR with ID-verification; immutable audit trails; tokenization/pseudonymization; residency controls; GDPR DPIA / HIPAA BAA / PCI SecDepth artifacts.
+- **[26]** Archival (cold) tier before purge; suspension distinct from deletion; per-tenant retention; legal-hold integration; cryptographic erasure; SIEM-immutable audit.
+- **[27]** PostgreSQL RLS authoritative; tenant federation (isolated schemas/DBs); break-glass with auto-revocation; per-tenant encryption keys (BYOK).
+
+**Engineering**
+
+- **[28]** Formal architecture review per new stack entry; vendor-risk assessment per technology; SLSA attestation; reproducible builds; FIPS-validated crypto libs; golden-image requirement.
+- **[29]** CC-PID integrity signature (tamper-evidence); per-tenant namespace partitioning; identifier audit trail; code-gen emits conformant IDs only; pre-commit blocks non-conformant identifiers.
+- **[31]** mTLS between services; signed-request scheme for partners; full audit-store recording; contract testing (Pact); API gateway with policy enforcement; client-cert auth.
+- **[32]** Event replay UI; typed SDKs; per-subscription rate limiting; customer delivery dashboard; SOC-2-grade delivery audit trail.
+- **[33]** Module-level SBOM + provenance; license-compatibility policy per consumer; signed release artifacts; LTS branches; RFC for new modules; ARB-reviewed dependency graph.
+- **[34]** Policy-as-code (OPA/Sentinel/Conftest) blocking gates; production-apply approval workflow; break-glass for emergencies; tested state-recovery runbook; cost-budget guardrails; multi-region state; SoD on IaC.
+- **[35]** Mutation testing; property-based testing; performance baselines with regression alerts; chaos/resilience testing; archived test evidence; contract testing; OWASP ASVS mapping.
+- **[36]** Formal CAB ceremony; segregation of duties on approval; metrics dashboard; annual program review; compliance attestation.
+- **[37]** Artifact signing (cosign/sigstore) with verify-at-deploy policy; SBOM per release; build/deploy SoD; canary / blue-green; automated rollback on health regression; SIEM-exported deploy audit.
+
+**Operations**
+
+- **[38]** End-to-end distributed tracing; audit-log pipeline separate from ops logs (immutable, SIEM-exportable); anomaly detection; synthetic monitoring; executive observability KRIs; multi-tenant log isolation.
+- **[39]** 24×7 on-call; multi-region / multi-AZ redundancy; quarterly chaos/gamedays; toil tracking ≤50%; monthly reliability review; DR tested quarterly; 99.95%+ availability.
+- **[40]** Measured SLO engineering (SLI + burn-rate + error-budget-driven change freezes); service-credits billing integration; customer reporting portal; contractual SLA with remedies.
+- **[41]** Quarterly IR tabletops; BCP/DR integration; SEV-specific customer/regulator notification trees; external IR retainer; formal metrics dashboard.
+- **[42]** Quarterly full-DR gameday; 3-2-1 backup rule; hardened immutable/WORM tier; legal-hold-compatible backups; per-tenant restore; DR-audit reports.
+- **[43]** Annual live exercise (not just tabletop); alternate-site tested; regulatory continuity reports; ISO 22301 BCMS; board reporting; business-interruption insurance; BIA refresh ≤ annual.
+
+### How to use this cheat-sheet
+
+1. **At project inception** — open [5] STD-GOV-001 and classify your product (PCL); open [25] STD-DAT-001 and classify your data. These two pick your tier.
+2. **Build your T1 checklist** — 45 items above under "T1 MUST" are the floor. Every line cites its source standard; open only the standards whose T1 rules you do not yet satisfy.
+3. **Add T2 if customer-facing** — multi-tenant SaaS, public APIs, anything with a DPA or contractual SLA triggers T2.
+4. **Add T3 only if regulated** — PCI card-data, HIPAA PHI, regulated financial data, or contractual audit obligations. Defaults to "not T3" — escalation requires named justification.
+5. **Waivers (STD-GOV-003)** — any deliverable you can't produce gets filed as a waiver with compensating control + expiry; no silent skips.
+6. **Waiver inverse (scope-down)** — if a T2/T3 deliverable clearly doesn't fit (e.g. a single-tenant internal tool hitting [27] multi-tenant clauses), document the non-applicability in the same channel.
+
+*Cross-reference: starter-kit templates that pre-wire the T1/T2/T3 deliverables are scoped in RFC-0004 (pending). Until RFC-0004 lands, this cheat-sheet is the canonical summary.*
+
+---
+
+## Version History
+
+| Version | Date | Author | Changes |
+|---------|------|--------|---------|
+| v1 | 2026-01-17 | Standards Council | Initial framework publication. |
+| v1.1 | 2026-04-22 | Standards Council | Added Applicability Tier Table per POL-GOV-001 §8.8. |
+| v1.2 | 2026-04-22 | Standards Council | Added **Tier Cheat-Sheet** — aggregates T1/T2/T3 deliverables across all 45 standards into a single onboarding reference. Addresses Pass-4 audit finding F4 (coordination cost). Non-normative — no existing clauses changed. |
