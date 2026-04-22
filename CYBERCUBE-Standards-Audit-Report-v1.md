@@ -2539,6 +2539,7 @@ diff <(git show HEAD:"[29]-STD-ENG-001 CYBERCUBE-Naming-Identifier-Standard-v1.2
 | `48c7669` | 4 | Audit §31 — execution log |
 | `9e17890` | post | Umbrella Tier Table Quick-links replaced with sub-standard cross-links (§31.10 deferred item closed) |
 | `dd53825` | post | `ci:` `.github/workflows/starter-check.yml` added — RFC-0004 optional follow-on closed |
+| `b0f5fd3` | post | `ci:` `schema-validate.yml` installs `pyyaml` — PyYAML-in-CI optional follow-on closed |
 
 ### 31.10 Remaining work after §31 (refreshed 2026-04-22)
 
@@ -2550,7 +2551,7 @@ diff <(git show HEAD:"[29]-STD-ENG-001 CYBERCUBE-Naming-Identifier-Standard-v1.2
   - `#eng-standards` announcement — non-normative.
   - ~~Wire `tools/starter-check.py` into CI~~ — **Closed by `dd53825`**. New `.github/workflows/starter-check.yml` mirrors `freeze-check.yml` / `schema-validate.yml` shape: triggers on PR + push-to-main for `docs/starters/**`, `[[]*[]]-*.md`, `governance/compliance-maps/**`, `tools/starter-check.py`; BLOCKS merge on any starter-rot finding (UNKNOWN_STANDARD / BRACKET_MISMATCH / STALE_VERSION / MISSING_COMPLIANCE_MAP / MISSING_STARTER_CROSSLINK); uploads `starter-check-report.json` artifact; posts summary to PR. Pre-commit hook not added (repo has no husky/pre-commit config — introducing one is a separate opinionated choice).
 - **RFC-0005 follow-ons** — per-regulation bulk population (PCI ≈3 wk / HIPAA ≈2 wk / SOC2 ≈2 wk).
-- **Optional**: install `PyYAML` in CI runtime.
+- ~~**Optional**: install `PyYAML` in CI runtime.~~ — **Closed by `b0f5fd3`**. `schema-validate.yml` now `pip install jsonschema pyyaml`; compliance-map YAML front-matter is actually validated in CI against `compliance-map.schema.json` instead of graceful-skipped.
 - **Blocked**: Pass-3 numeric re-score until 2026-05-06.
 
 ### 31.11 Verdict
