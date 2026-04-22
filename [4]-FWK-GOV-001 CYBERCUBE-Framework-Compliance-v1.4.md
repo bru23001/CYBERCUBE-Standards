@@ -1,8 +1,8 @@
-# CYBERCUBE Framework Compliance (v1.3)
+# CYBERCUBE Framework Compliance (v1.4)
 
 **Standard ID:** FWK-GOV-001  
 **Status:** Active  
-**Effective:** 2026-01-17 (v1), 2026-04-22 (v1.1), 2026-04-22 (v1.2), 2026-04-22 (v1.3)  
+**Effective:** 2026-01-17 (v1), 2026-04-22 (v1.1), 2026-04-22 (v1.2), 2026-04-22 (v1.3), 2026-04-22 (v1.4)  
 **Classification:** INTERNAL  
 **Owner:** Standards Council
 
@@ -466,9 +466,9 @@ When referencing "standards" in conversation, this refers to the full set of CYB
 
 ## Tier Cheat-Sheet
 
-*Aggregated from the Applicability Tier Tables of all 45 standards (v1.x portfolio). Each line names the standard + the deliverable a new team must produce to satisfy that tier. Use as the "opening-checklist" when scoping a new project; the full clause text lives in the cited standard.*
+*Aggregated from the Applicability Tier Tables of all 48 standards (v1.x portfolio). Each line names the standard + the deliverable a new team must produce to satisfy that tier. Use as the "opening-checklist" when scoping a new project; the full clause text lives in the cited standard.*
 
-> **How to read this:** Pick your tier from STD-GOV-001 (PCL criticality) and STD-DAT-001 (data classification). T1 applies to everything. T2 adds SaaS / customer-facing obligations. T3 adds regulated / high-risk obligations. Meta-exempt ([1] Name Registry, [2] POL-GOV-001, [16] TPL-LGL-001) provide infrastructure for the framework itself and don't produce tier-scoped deliverables.
+> **How to read this:** Pick your tier from STD-GOV-001 (PCL criticality) and STD-DAT-001 (data classification). T1 applies to everything. T2 adds SaaS / customer-facing obligations. T3 adds regulated / high-risk obligations. Meta-exempt ([1] Name Registry, [2] POL-GOV-001, [16] TPL-LGL-001, [46] TPL-LGL-002) provide infrastructure for the framework itself (and in the case of [16]/[46], serve as customer-facing legal templates) and don't produce tier-scoped deliverables.
 >
 > **Addresses Pass-4 Finding F4** (coordination cost grows linearly with tier depth — no single-page cheat-sheet). See `CYBERCUBE-Standards-Audit-Report-v1.md` §24.4.
 
@@ -514,6 +514,7 @@ Baseline applicable to internal tools, SaaS, and regulated products alike. ~30 d
 **Data**
 
 - **[25] STD-DAT-001** — Classification label per entity; declared retention; PII fields identified; deletion audit; backup inheritance.
+- **[47] STD-DAT-005** — *When exporting PHI or GDPR-scope personal data for secondary use:* declared de-identification method (Safe-Harbor / Expert-Determination / pseudonymization); residual-risk class (`low`/`medium`/`high`) with justification; release logged with operator/date/sample-size/approver/destination; for Safe-Harbor, all 18 identifier categories addressed + actual-knowledge attestation.
 - **[26] STD-DAT-002** — User-initiated deletes are soft-deletes by default; soft-deleted excluded from default scope; retention before purge.
 - **[27] STD-DAT-004** — *Multi-tenant only:* `tenant_id` on every scoped table/index/cache/path; every query filters by it; no cross-tenant leakage.
 
@@ -548,7 +549,7 @@ Adds to T1. ~25 deliverables — what separates a customer-facing SaaS v1 from a
 - **[4]** Checklist re-scored each release; scores logged in `docs/compliance/`; named compliance owner.
 - **[5]** Automated registry sync from source repos; quarterly PCL recertification; CMDB integration.
 - **[6]** Exception register in controlled location; quarterly review; visible in compliance dashboard.
-- **[7]** Quarterly UCM refresh; gap analysis; mapping to one external framework (SOC-2 / NIST CSF / ISO-27001).
+- **[7]** Quarterly UCM refresh; gap analysis; mapping to one external framework via `governance/compliance-maps/` (PCI DSS 4.0, HIPAA Security Rule, SOC 2 seeded at v1.2). Products declaring regulation scope MUST reference the relevant map in their PCL row ([5] STD-GOV-001) and audit-evidence pack ([44] STD-GOV-004).
 - **[8]** Semi-annual risk review per product; KRI tracking.
 - **[44]** Annual audit plan; findings tracking; CAP process; periodic dashboard.
 - **[45]** KRI catalog with thresholds per domain; quarterly review; automated collection.
@@ -567,6 +568,7 @@ Adds to T1. ~25 deliverables — what separates a customer-facing SaaS v1 from a
 - **[13]** DPIA triage workflow; consent platform; DSR ticket workflow with SLA; DPA inventory; annual privacy training.
 - **[14]** Named records custodian per department; automated retention/disposal where platform allows.
 - **[15]** Centralized hold register; custodian acknowledgment; system-level hold capability; audit log of hold actions.
+- **[47]** Documented de-identification procedure per data-flow (not per ad-hoc release); method-selection rationale recorded (Safe-Harbor vs Expert-Determination vs pseudonymization); periodic review of residual risk (annual for `medium`, semi-annual for `high`); de-id output held to source classification until risk validated `low`.
 
 **Security**
 
@@ -647,7 +649,8 @@ Adds to T1 + T2. ~35 deliverables — kicks in for fintech, healthcare, PCI-adja
 
 **Data**
 
-- **[25]** Legal-hold system with per-entity flags; BYOK/HYOK; automated DSAR with ID-verification; immutable audit trails; tokenization/pseudonymization; residency controls; GDPR DPIA / HIPAA BAA / PCI SecDepth artifacts.
+- **[25]** Legal-hold system with per-entity flags; BYOK/HYOK; automated DSAR with ID-verification; immutable audit trails; tokenization/pseudonymization; residency controls; GDPR DPIA / HIPAA BAA (via [46] TPL-LGL-002) / PCI SecDepth artifacts.
+- **[47]** Formal Expert-Determination review by qualified statistician/data-scientist (HIPAA §164.514(b)(1)); statistical disclosure control; differential-privacy implementation where applicable; external audit of de-identified releases; k-anonymity/l-diversity/t-closeness thresholds declared + enforced.
 - **[26]** Archival (cold) tier before purge; suspension distinct from deletion; per-tenant retention; legal-hold integration; cryptographic erasure; SIEM-immutable audit.
 - **[27]** PostgreSQL RLS authoritative; tenant federation (isolated schemas/DBs); break-glass with auto-revocation; per-tenant encryption keys (BYOK).
 
@@ -675,7 +678,7 @@ Adds to T1 + T2. ~35 deliverables — kicks in for fintech, healthcare, PCI-adja
 ### How to use this cheat-sheet
 
 1. **At project inception** — open [5] STD-GOV-001 and classify your product (PCL); open [25] STD-DAT-001 and classify your data. These two pick your tier.
-2. **Build your T1 checklist** — 45 items above under "T1 MUST" are the floor. Every line cites its source standard; open only the standards whose T1 rules you do not yet satisfy.
+2. **Build your T1 checklist** — ~31 items above under "T1 MUST" are the floor (the [47] T1 row fires only when PHI or GDPR-scope personal data is exported for secondary use). Every line cites its source standard; open only the standards whose T1 rules you do not yet satisfy.
 3. **Add T2 if customer-facing** — multi-tenant SaaS, public APIs, anything with a DPA or contractual SLA triggers T2.
 4. **Add T3 only if regulated** — PCI card-data, HIPAA PHI, regulated financial data, or contractual audit obligations. Defaults to "not T3" — escalation requires named justification.
 5. **Waivers (STD-GOV-003)** — any deliverable you can't produce gets filed as a waiver with compensating control + expiry; no silent skips.
@@ -693,3 +696,4 @@ Adds to T1 + T2. ~35 deliverables — kicks in for fintech, healthcare, PCI-adja
 | v1.1 | 2026-04-22 | Standards Council | Added Applicability Tier Table per POL-GOV-001 §8.8. |
 | v1.2 | 2026-04-22 | Standards Council | Added **Tier Cheat-Sheet** — aggregates T1/T2/T3 deliverables across all 45 standards into a single onboarding reference. Addresses Pass-4 audit finding F4 (coordination cost). Non-normative — no existing clauses changed. |
 | v1.3 | 2026-04-22 | Standards Council | **RFC-0002 execution reflection (additive).** Tier Cheat-Sheet updated to reflect the POL-AI-001 split: [11] T2/T3 rows rescoped to personnel-policy deliverables; new rows for **[48] STD-AI-001** enumerate the engineering-side AI deliverables at T2 (model registry, prompt versioning, eval harness, prompt-injection mitigation, observability, disclosure banner) and T3 (bias audit, model cards, provenance, red-team, governance engineering remit). T1 note clarifies no T1 MUST exists in [48] at v1.0 by design. Portfolio size grows from 45 → 46 standards. |
+| v1.4 | 2026-04-22 | Standards Council | **RFC-0005 execution reflection (additive).** Tier Cheat-Sheet updated for the HIPAA-primitives split + compliance-maps: [7] T2 row extended to reference `governance/compliance-maps/` (PCI DSS 4.0, HIPAA Security Rule, SOC 2); new **[47] STD-DAT-005** rows added at T1 (conditional — fires only when exporting PHI or GDPR-scope personal data for secondary use; declared method + risk class + release log), T2 (documented procedure per data-flow; method-selection rationale; periodic risk review), and T3 (Expert-Determination by qualified statistician; statistical disclosure control; differential privacy; external audit). [25] T3 row cites [46] TPL-LGL-002 BAA template as the HIPAA instrument. Meta-exempt list grows to include [46]. Portfolio size 46 → 48 standards. |

@@ -5,7 +5,7 @@
 | Applicability | Tier | Summary of Clauses in This Policy | Waiver Path |
 | ------------- | ---- | --------------------------------- | ----------- |
 | All projects | **T1 MUST** | (1) Every vendor with access to CYBERCUBE data or production systems MUST be recorded in a vendor register with a risk rating. (2) Vendor risks MUST be tracked in the ERM Risk Register with `entry_type = VENDOR_RISK` (per STD-ERM-001 §8.1). (3) Before any production data flows to a new vendor, a documented risk review MUST be completed and its outcome captured in the register. | None (non-waivable) |
-| SaaS / customer-facing | **T2 SHOULD** | Initial + periodic (annual) assessment, DPA signed before data access, named vendor owner, offboarding procedure with credential revocation and data-return verification, sub-processor list maintained. | Lightweight waiver per POL-GOV-001 §8.3 |
+| SaaS / customer-facing | **T2 SHOULD** | Initial + periodic (annual) assessment, DPA signed before data access ([16] TPL-LGL-001) or BAA when PHI is in scope ([46] TPL-LGL-002), named vendor owner, offboarding procedure with credential revocation and data-return verification, sub-processor list maintained. | Lightweight waiver per POL-GOV-001 §8.3 |
 | Regulated / high-risk | **T3 MAY** | SOC-2 Type II attestation required, pen-test evidence, on-site audit rights, multi-vendor contingency for critical dependencies, regulator-facing vendor inventory, bi-annual tabletop on vendor-originated incidents. | Formal waiver per STD-GOV-003 |
 
 > Per POL-GOV-001 §8.8.
