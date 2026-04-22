@@ -2536,14 +2536,19 @@ diff <(git show HEAD:"[29]-STD-ENG-001 CYBERCUBE-Naming-Identifier-Standard-v1.2
 | `0f80540` | 1 | Create [49]/[50]/[51] skeletons + rewrite [29] v1.2→v2.0 umbrella + starter-check regex extension |
 | `cadcf4e` | 2 | Cross-reference sweep (10 files across standards, starters, modules, schema) |
 | `d6d0806` | 3 | `registries/standards.json` + `freeze-check-report.json` sync |
-| (this) | 4 | Audit §31 — execution log |
+| `48c7669` | 4 | Audit §31 — execution log |
+| `9e17890` | post | Umbrella Tier Table Quick-links replaced with sub-standard cross-links (§31.10 deferred item closed) |
+| `dd53825` | post | `ci:` `.github/workflows/starter-check.yml` added — RFC-0004 optional follow-on closed |
 
-### 31.10 Remaining work after §31
+### 31.10 Remaining work after §31 (refreshed 2026-04-22)
 
-- **RFC-0001 follow-ons (non-blocking)**:
-  - `#eng-standards` announcement (step 9)
-  - Replace preserved-but-broken Tier Table "Quick links" anchors with cross-standard links to [49]/[50]/[51] (cleanup commit; deferred so the byte-diff gate stays meaningful as a repeatable check at the HEAD boundary).
-- **RFC-0004 follow-ons** (unchanged from §30.9): four `cybercube-starter-<archetype>` template repos; `#eng-standards` announcement; optional CI wiring for `starter-check.py`.
+- **RFC-0001 follow-ons**:
+  - `#eng-standards` announcement (step 9) — non-normative, out-of-tree.
+  - ~~Replace preserved-but-broken Tier Table "Quick links" anchors~~ — **Closed by `9e17890`**. The former single-row Quick-links with intra-doc anchors (of which 9 of 13 pointed at sections now in sub-standards) was split into "Quick links" (6 intra-doc anchors that still resolve) + "Sub-standard jumps" (9 URL-encoded cross-standard links into [49]/[50]/[51]). T1 rule rows left unchanged. Future T1-drift checks should diff the table rows specifically, not the full Tier Table block.
+- **RFC-0004 follow-ons** (§30.9 refresh):
+  - Four `cybercube-starter-<archetype>` template repos — out-of-tree; owners `eng-lead` + per-domain leads; weeks 4–6 of RFC-0004 schedule.
+  - `#eng-standards` announcement — non-normative.
+  - ~~Wire `tools/starter-check.py` into CI~~ — **Closed by `dd53825`**. New `.github/workflows/starter-check.yml` mirrors `freeze-check.yml` / `schema-validate.yml` shape: triggers on PR + push-to-main for `docs/starters/**`, `[[]*[]]-*.md`, `governance/compliance-maps/**`, `tools/starter-check.py`; BLOCKS merge on any starter-rot finding (UNKNOWN_STANDARD / BRACKET_MISMATCH / STALE_VERSION / MISSING_COMPLIANCE_MAP / MISSING_STARTER_CROSSLINK); uploads `starter-check-report.json` artifact; posts summary to PR. Pre-commit hook not added (repo has no husky/pre-commit config — introducing one is a separate opinionated choice).
 - **RFC-0005 follow-ons** — per-regulation bulk population (PCI ≈3 wk / HIPAA ≈2 wk / SOC2 ≈2 wk).
 - **Optional**: install `PyYAML` in CI runtime.
 - **Blocked**: Pass-3 numeric re-score until 2026-05-06.
