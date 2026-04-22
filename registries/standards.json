@@ -380,16 +380,17 @@
   {
     "id": "STD-ENG-001",
     "catalogNumber": "5.1",
-    "name": "CYBERCUBE Naming & Identifier Standard",
+    "name": "CYBERCUBE Naming & Identifier Standard (umbrella)",
     "type": "Standard",
     "domain": "Engineering",
-    "version": "v1.2",
+    "version": "v2.0",
     "owner": "Engineering Lead",
     "status": "Active",
-    "effective": "2026-02-10",
+    "effective": "2026-04-22",
     "classification": "INTERNAL",
-    "filename": "STD-ENG-001 CYBERCUBE-Naming-Identifier-Standard-v1.2.md",
-    "createdAt": "2026-02-10"
+    "filename": "STD-ENG-001 CYBERCUBE-Naming-Identifier-Standard-v2.0.md",
+    "createdAt": "2026-02-10",
+    "notes": "Umbrella post RFC-0001 split; defers to STD-ENG-001A/B/C."
   },
   {
     "id": "STD-ENG-002",
@@ -698,5 +699,50 @@
     "classification": "INTERNAL",
     "filename": "STD-DAT-005 CYBERCUBE-De-identification-Standard-v1.md",
     "createdAt": "2026-04-22"
+  },
+  {
+    "id": "STD-ENG-001A",
+    "catalogNumber": "5.1A",
+    "name": "CYBERCUBE Public Entity IDs (CC-PID) Standard",
+    "type": "Standard",
+    "domain": "Engineering",
+    "version": "v1.0",
+    "owner": "Engineering Lead",
+    "status": "Active",
+    "effective": "2026-04-22",
+    "classification": "INTERNAL",
+    "filename": "STD-ENG-001A CYBERCUBE-Public-Entity-IDs-Standard-v1.md",
+    "createdAt": "2026-04-22",
+    "notes": "Split from STD-ENG-001 v1.3 per RFC-0001; covers Namespace B (CC-PID)."
+  },
+  {
+    "id": "STD-ENG-001B",
+    "catalogNumber": "5.1B",
+    "name": "CYBERCUBE Artifact & Governance Identifiers Standard",
+    "type": "Standard",
+    "domain": "Engineering",
+    "version": "v1.0",
+    "owner": "Engineering Lead",
+    "status": "Active",
+    "effective": "2026-04-22",
+    "classification": "INTERNAL",
+    "filename": "STD-ENG-001B CYBERCUBE-Artifact-Governance-Identifiers-Standard-v1.md",
+    "createdAt": "2026-04-22",
+    "notes": "Split from STD-ENG-001 v1.3 per RFC-0001; covers Namespaces A and G."
+  },
+  {
+    "id": "STD-ENG-001C",
+    "catalogNumber": "5.1C",
+    "name": "CYBERCUBE Module, Component & File Naming Standard",
+    "type": "Standard",
+    "domain": "Engineering",
+    "version": "v1.0",
+    "owner": "Engineering Lead",
+    "status": "Active",
+    "effective": "2026-04-22",
+    "classification": "INTERNAL",
+    "filename": "STD-ENG-001C CYBERCUBE-Module-Component-File-Naming-Standard-v1.md",
+    "createdAt": "2026-04-22",
+    "notes": "Split from STD-ENG-001 v1.3 per RFC-0001; covers Namespace M."
   }
 ]
