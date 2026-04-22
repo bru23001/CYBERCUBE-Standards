@@ -1702,8 +1702,8 @@ export type PublicIdValidationResult =
   if (/\s/.test(prefix)) throw new Error("Invalid token prefix: whitespace is not allowed");
   if (prefix.length < 3) throw new Error("Token prefix must be at least 3 characters");
 
-  // validate prefix chars against allowed token alphabet
-  if (!new RegExp(`^[A-HJ-NP-Z2-9]{${prefix.length}}$`).test(prefix)) {
+  // validate prefix chars against allowed token alphabet (static pattern; avoid dynamic RegExp)
+  if (!/^[A-HJ-NP-Z2-9]+$/.test(prefix)) {
   throw new Error("Invalid token prefix characters");
   }
 

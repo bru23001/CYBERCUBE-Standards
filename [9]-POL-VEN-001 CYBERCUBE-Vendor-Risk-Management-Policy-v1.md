@@ -205,6 +205,7 @@ risks associated with third-party vendors who have access to CYBERCUBE systems,
 data, or facilities, or who provide critical services.
 
 **Industry Alignment:**
+
 - ISO/IEC 27001 (A.15 Supplier Relationships)
 - SOC 2 Type II (CC9.2 Vendor Management)
 - NIST Cybersecurity Framework (ID.SC)
@@ -212,6 +213,7 @@ data, or facilities, or who provide critical services.
 - PCI DSS (Requirement 12.8)
 
 **This policy applies to:**
+
 - All vendors with access to company systems
 - All vendors processing company or customer data
 - All vendors providing critical services
@@ -221,6 +223,7 @@ data, or facilities, or who provide critical services.
 - Partners with system integration
 
 **Out of Scope:**
+
 - One-time purchases without data/system access
 - Standard utilities without data access
 - General suppliers without integration
@@ -230,6 +233,7 @@ data, or facilities, or who provide critical services.
 Free-tier SaaS tools that process company or customer data ARE in scope and must be classified. The absence of a paid contract does not remove risk. Examples: free Slack workspace storing internal discussions, free-tier analytics processing customer data.
 
 **Goals:**
+
 1. Identify and classify vendor risks
 2. Ensure appropriate due diligence
 3. Establish contractual protections
@@ -315,14 +319,14 @@ Free-tier SaaS tools that process company or customer data ARE in scope and must
 
 ### 1.2 Classification Criteria Matrix
 
-| Factor | Critical (T1) | High (T2) | Moderate (T3) | Low (T4) |
-|--------|---------------|-----------|---------------|----------|
-| **Customer data** | Restricted/Confidential | Internal | None | None |
-| **Company data** | Confidential | Internal | Internal | Public only |
-| **System access** | Privileged/Production | Production | Non-prod | None |
-| **Business impact** | Severe | Significant | Moderate | Minimal |
-| **Replaceability** | Difficult | Moderate | Easy | Trivial |
-| **Integration depth** | Deep | Moderate | Light | None |
+| Factor                | Critical (T1)           | High (T2)   | Moderate (T3) | Low (T4)    |
+| --------------------- | ----------------------- | ----------- | ------------- | ----------- |
+| **Customer data**     | Restricted/Confidential | Internal    | None          | None        |
+| **Company data**      | Confidential            | Internal    | Internal      | Public only |
+| **System access**     | Privileged/Production   | Production  | Non-prod      | None        |
+| **Business impact**   | Severe                  | Significant | Moderate      | Minimal     |
+| **Replaceability**    | Difficult               | Moderate    | Easy          | Trivial     |
+| **Integration depth** | Deep                    | Moderate    | Light         | None        |
 
 ### 1.3 Classification Decision Tree
 
@@ -359,28 +363,30 @@ Free-tier SaaS tools that process company or customer data ARE in scope and must
 
 ### 1.4 Requirements by Tier
 
-| Requirement | T1 Critical | T2 High | T3 Moderate | T4 Low |
-|-------------|-------------|---------|-------------|--------|
-| **Security questionnaire** | Full SIG/Custom | Standard | Abbreviated | None |
-| **SOC 2 / ISO cert** | Required | Required | Preferred | Not required |
-| **DPA** | Required | If data | If data | Not required |
-| **Security review** | Deep dive | Standard | Light | None |
-| **Legal review** | Full | Standard | Light | Standard T&C |
-| **Approval level** | Security + Legal + Exec | Security + Legal | Security | Procurement |
-| **Review frequency** | Annual + continuous | Annual | Biennial | None |
-| **Offboarding plan** | Detailed | Standard | Basic | Standard |
+| Requirement                | T1 Critical             | T2 High          | T3 Moderate | T4 Low       |
+| -------------------------- | ----------------------- | ---------------- | ----------- | ------------ |
+| **Security questionnaire** | Full SIG/Custom         | Standard         | Abbreviated | None         |
+| **SOC 2 / ISO cert**       | Required                | Required         | Preferred   | Not required |
+| **DPA**                    | Required                | If data          | If data     | Not required |
+| **Security review**        | Deep dive               | Standard         | Light       | None         |
+| **Legal review**           | Full                    | Standard         | Light       | Standard T&C |
+| **Approval level**         | Security + Legal + Exec | Security + Legal | Security    | Procurement  |
+| **Review frequency**       | Annual + continuous     | Annual           | Biennial    | None         |
+| **Offboarding plan**       | Detailed                | Standard         | Basic       | Standard     |
 
 ### 1.5 Vendor Concentration Risk
 
 Vendor concentration risk occurs when CYBERCUBE is overly dependent on a single vendor for critical functions or when multiple critical vendors share the same jurisdiction or infrastructure.
 
 **Requirements:**
+
 - All Tier 1 vendors MUST have their concentration risk documented during assessment
 - Tier 1 vendors that represent a single point of failure SHOULD have a documented contingency or alternative identified
 - The vendor registry MUST track geographic jurisdiction for all Tier 1 and Tier 2 vendors
 - Concentration risk MUST be reviewed as part of annual Tier 1 vendor reviews
 
 **Concentration risk is elevated when:**
+
 - A single vendor provides more than one critical function
 - Multiple critical vendors share the same cloud infrastructure
 - Tier 1 vendors operate exclusively in jurisdictions with regulatory instability
@@ -459,27 +465,27 @@ NOTE: Multi-vendor strategies are not required at this time. The goal is awarene
 
 #### 2.2.1 Questionnaire Types
 
-| Type | Use For | Questions | Time |
-|------|---------|-----------|------|
-| **Full SIG/CAIQ** | Tier 1 Critical | 300+ | 2-4 weeks |
-| **Standard Custom** | Tier 2 High | 80-150 | 1-2 weeks |
-| **Abbreviated** | Tier 3 Moderate | 30-50 | 1 week |
-| **None** | Tier 4 Low | N/A | N/A |
+| Type                | Use For         | Questions | Time      |
+| ------------------- | --------------- | --------- | --------- |
+| **Full SIG/CAIQ**   | Tier 1 Critical | 300+      | 2-4 weeks |
+| **Standard Custom** | Tier 2 High     | 80-150    | 1-2 weeks |
+| **Abbreviated**     | Tier 3 Moderate | 30-50     | 1 week    |
+| **None**            | Tier 4 Low      | N/A       | N/A       |
 
 #### 2.2.2 Core Assessment Domains
 
-| Domain | Topics | Tier 1 | Tier 2 | Tier 3 |
-|--------|--------|--------|--------|--------|
-| **Security Governance** | Policies, leadership, risk management | Deep | Standard | Light |
-| **Access Control** | Identity, authentication, authorization | Deep | Standard | Standard |
-| **Data Protection** | Encryption, classification, handling | Deep | Standard | Light |
-| **Network Security** | Architecture, segmentation, monitoring | Deep | Standard | Light |
-| **Incident Response** | Detection, response, notification | Deep | Standard | Light |
-| **Business Continuity** | Backup, DR, availability | Deep | Standard | Light |
-| **Compliance** | Certifications, audits, regulations | Deep | Standard | Light |
-| **HR Security** | Background checks, training | Standard | Standard | Light |
-| **Physical Security** | Facilities, data centers | Standard | Light | Light |
-| **Third-Party Management** | Their vendor management | Standard | Light | N/A |
+| Domain                     | Topics                                  | Tier 1   | Tier 2   | Tier 3   |
+| -------------------------- | --------------------------------------- | -------- | -------- | -------- |
+| **Security Governance**    | Policies, leadership, risk management   | Deep     | Standard | Light    |
+| **Access Control**         | Identity, authentication, authorization | Deep     | Standard | Standard |
+| **Data Protection**        | Encryption, classification, handling    | Deep     | Standard | Light    |
+| **Network Security**       | Architecture, segmentation, monitoring  | Deep     | Standard | Light    |
+| **Incident Response**      | Detection, response, notification       | Deep     | Standard | Light    |
+| **Business Continuity**    | Backup, DR, availability                | Deep     | Standard | Light    |
+| **Compliance**             | Certifications, audits, regulations     | Deep     | Standard | Light    |
+| **HR Security**            | Background checks, training             | Standard | Standard | Light    |
+| **Physical Security**      | Facilities, data centers                | Standard | Light    | Light    |
+| **Third-Party Management** | Their vendor management                 | Standard | Light    | N/A      |
 
 #### 2.2.3 Sample Security Questions
 
@@ -487,30 +493,35 @@ NOTE: Multi-vendor strategies are not required at this time. The goal is awarene
 ## Security Questionnaire - Core Questions
 
 ### Security Governance
+
 1. Do you have a documented information security policy?
 2. Is there executive leadership responsible for security?
 3. Do you conduct regular risk assessments?
 4. Do you have cyber insurance coverage?
 
 ### Access Control
+
 5. Do you require MFA for all system access?
 6. Do you follow least privilege principles?
 7. How often do you review access rights?
 8. Do you have a formal access provisioning/deprovisioning process?
 
 ### Data Protection
+
 9. How is data encrypted at rest and in transit?
 10. What data classification scheme do you use?
 11. Where is data stored (geographically)?
 12. How is customer data segregated?
 
 ### Incident Response
+
 13. Do you have a documented incident response plan?
 14. What is your breach notification timeline?
 15. Have you experienced security incidents in the past 24 months?
 16. Do you conduct incident response exercises?
 
 ### Compliance
+
 17. Do you have SOC 2 Type II certification?
 18. What other certifications do you hold?
 19. When was your last external audit?
@@ -519,16 +530,16 @@ NOTE: Multi-vendor strategies are not required at this time. The goal is awarene
 
 ### 2.3 Documentation Requirements
 
-| Document | T1 | T2 | T3 | T4 |
-|----------|----|----|----|----|
-| **SOC 2 Type II** | Required | Required | Preferred | — |
-| **ISO 27001 cert** | Preferred | Preferred | — | — |
-| **Penetration test** | Required (annual) | Preferred | — | — |
-| **Security policy** | Required | Required | — | — |
-| **Privacy policy** | Required | Required | Required | — |
-| **DPA/BAA** | Required | If applicable | If applicable | — |
-| **Insurance cert** | Required | Required | — | — |
-| **Business continuity** | Required | Preferred | — | — |
+| Document                | T1                | T2            | T3            | T4  |
+| ----------------------- | ----------------- | ------------- | ------------- | --- |
+| **SOC 2 Type II**       | Required          | Required      | Preferred     | —   |
+| **ISO 27001 cert**      | Preferred         | Preferred     | —             | —   |
+| **Penetration test**    | Required (annual) | Preferred     | —             | —   |
+| **Security policy**     | Required          | Required      | —             | —   |
+| **Privacy policy**      | Required          | Required      | Required      | —   |
+| **DPA/BAA**             | Required          | If applicable | If applicable | —   |
+| **Insurance cert**      | Required          | Required      | —             | —   |
+| **Business continuity** | Required          | Preferred     | —             | —   |
 
 ### 2.4 Risk Rating
 
@@ -570,12 +581,12 @@ NOTE: Multi-vendor strategies are not required at this time. The goal is awarene
 
 ### 2.5 Risk Acceptance Authority
 
-| Residual Risk | Approval Required |
-|---------------|-------------------|
-| **Low** | Security Team |
-| **Moderate** | Security Lead + Business Owner |
-| **High** | CISO/CTO + Legal |
-| **Critical** | Executive Team |
+| Residual Risk    | Approval Required                  |
+| ---------------- | ---------------------------------- |
+| **Low**          | Security Team                      |
+| **Moderate**     | Security Lead + Business Owner     |
+| **High**         | CISO/CTO + Legal                   |
+| **Critical**     | Executive Team                     |
 | **Unacceptable** | Cannot proceed without remediation |
 
 ### 2.6 Expedited Vendor Onboarding
@@ -584,17 +595,18 @@ For urgent business needs, an expedited assessment path is available with approp
 
 **Eligibility:** Business-critical need with documented urgency and executive sponsor.
 
-| Step | Action | Timeline |
-|------|--------|----------|
-| 1 | Business owner submits expedited request with justification | Day 0 |
-| 2 | Preliminary classification (tier determination) | Day 0 |
-| 3 | Abbreviated security assessment (core domains only) | 1-3 days |
-| 4 | Temporary approval by Security Lead + Business Owner | Day 3 |
-| 5 | Vendor onboarded with monitoring | Day 3-5 |
-| 6 | Full assessment completed | Within 30 days |
-| 7 | Final approval or remediation/offboarding | Within 45 days |
+| Step | Action                                                      | Timeline       |
+| ---- | ----------------------------------------------------------- | -------------- |
+| 1    | Business owner submits expedited request with justification | Day 0          |
+| 2    | Preliminary classification (tier determination)             | Day 0          |
+| 3    | Abbreviated security assessment (core domains only)         | 1-3 days       |
+| 4    | Temporary approval by Security Lead + Business Owner        | Day 3          |
+| 5    | Vendor onboarded with monitoring                            | Day 3-5        |
+| 6    | Full assessment completed                                   | Within 30 days |
+| 7    | Final approval or remediation/offboarding                   | Within 45 days |
 
 **Constraints:**
+
 - Expedited path is NOT available for Tier 1 Critical vendors — full assessment required
 - Temporary approval is valid for 30 days maximum
 - Vendor access is limited to minimum necessary during temporary period
@@ -607,21 +619,23 @@ Vendors often rely on their own vendors (fourth parties / sub-processors), exten
 
 **Requirements by tier:**
 
-| Requirement | T1 Critical | T2 High | T3 Moderate | T4 Low |
-|-------------|-------------|---------|-------------|--------|
-| Sub-processor list required | Yes | Yes | No | No |
-| Prior approval of new sub-processors | Yes | Notification | No | No |
-| Flow-down of security requirements | Required | Required | Preferred | No |
-| Right to object to sub-processor | Yes | Yes | No | No |
-| Sub-processor audit rights | Preferred | No | No | No |
+| Requirement                          | T1 Critical | T2 High      | T3 Moderate | T4 Low |
+| ------------------------------------ | ----------- | ------------ | ----------- | ------ |
+| Sub-processor list required          | Yes         | Yes          | No          | No     |
+| Prior approval of new sub-processors | Yes         | Notification | No          | No     |
+| Flow-down of security requirements   | Required    | Required     | Preferred   | No     |
+| Right to object to sub-processor     | Yes         | Yes          | No          | No     |
+| Sub-processor audit rights           | Preferred   | No           | No          | No     |
 
 **Sub-processor change process:**
+
 1. Vendor notifies CYBERCUBE of intended sub-processor change (minimum 30 days for T1, 14 days for T2)
 2. Security team assesses the sub-processor's impact on risk posture
 3. CYBERCUBE approves, objects, or requests additional information
 4. If objection is sustained and vendor proceeds, CYBERCUBE reserves right to terminate
 
 **Contractual provisions:**
+
 - DPA MUST include sub-processor clause for T1 and T2 vendors
 - Vendor remains fully liable for sub-processor actions
 - Sub-processor list MUST be maintained and available upon request
@@ -632,18 +646,18 @@ Vendors often rely on their own vendors (fourth parties / sub-processors), exten
 
 ### 3.1 Standard Contract Terms
 
-| Requirement | T1 | T2 | T3 | T4 | Description |
-|-------------|----|----|----|----|-------------|
-| **Security standards** | ✓ | ✓ | ✓ | — | Maintain reasonable security |
-| **Incident notification** | ✓ | ✓ | ✓ | — | Notify within 48h of awareness of confirmed or suspected incident |
-| **Audit rights** | ✓ | ✓ | — | — | Right to audit or review SOC 2 |
-| **Subcontractor controls** | ✓ | ✓ | — | — | Flow-down requirements |
-| **Data handling** | ✓ | ✓ | ✓ | — | Per data classification |
-| **Termination rights** | ✓ | ✓ | ✓ | ✓ | For cause, convenience |
-| **Data return/deletion** | ✓ | ✓ | ✓ | — | On termination |
-| **Insurance minimums** | ✓ | ✓ | — | — | Cyber, E&O coverage |
-| **Compliance obligations** | ✓ | ✓ | ✓ | — | Applicable regulations |
-| **Confidentiality** | ✓ | ✓ | ✓ | ✓ | NDA or confidentiality clause |
+| Requirement                | T1  | T2  | T3  | T4  | Description                                                       |
+| -------------------------- | --- | --- | --- | --- | ----------------------------------------------------------------- |
+| **Security standards**     | ✓   | ✓   | ✓   | —   | Maintain reasonable security                                      |
+| **Incident notification**  | ✓   | ✓   | ✓   | —   | Notify within 48h of awareness of confirmed or suspected incident |
+| **Audit rights**           | ✓   | ✓   | —   | —   | Right to audit or review SOC 2                                    |
+| **Subcontractor controls** | ✓   | ✓   | —   | —   | Flow-down requirements                                            |
+| **Data handling**          | ✓   | ✓   | ✓   | —   | Per data classification                                           |
+| **Termination rights**     | ✓   | ✓   | ✓   | ✓   | For cause, convenience                                            |
+| **Data return/deletion**   | ✓   | ✓   | ✓   | —   | On termination                                                    |
+| **Insurance minimums**     | ✓   | ✓   | —   | —   | Cyber, E&O coverage                                               |
+| **Compliance obligations** | ✓   | ✓   | ✓   | —   | Applicable regulations                                            |
+| **Confidentiality**        | ✓   | ✓   | ✓   | ✓   | NDA or confidentiality clause                                     |
 
 ### 3.2 Data Processing Agreement (DPA)
 
@@ -651,30 +665,30 @@ Vendors often rely on their own vendors (fourth parties / sub-processors), exten
 
 **Key Terms:**
 
-| Term | Requirement |
-|------|-------------|
-| **Processing purpose** | Clearly defined, limited |
-| **Data types** | Specified categories |
-| **Instructions** | Process only on documented instructions |
-| **Confidentiality** | Personnel bound to confidentiality |
-| **Security measures** | Appropriate technical/organizational measures |
-| **Sub-processors** | Prior approval, flow-down |
-| **Data subject rights** | Assistance with requests |
-| **Deletion/return** | On termination |
-| **Audit** | Allow audits or provide attestation |
-| **Breach notification** | Without undue delay |
-| **International transfers** | SCCs if applicable |
+| Term                        | Requirement                                   |
+| --------------------------- | --------------------------------------------- |
+| **Processing purpose**      | Clearly defined, limited                      |
+| **Data types**              | Specified categories                          |
+| **Instructions**            | Process only on documented instructions       |
+| **Confidentiality**         | Personnel bound to confidentiality            |
+| **Security measures**       | Appropriate technical/organizational measures |
+| **Sub-processors**          | Prior approval, flow-down                     |
+| **Data subject rights**     | Assistance with requests                      |
+| **Deletion/return**         | On termination                                |
+| **Audit**                   | Allow audits or provide attestation           |
+| **Breach notification**     | Without undue delay                           |
+| **International transfers** | SCCs if applicable                            |
 
 ### 3.3 Service Level Agreement (SLA)
 
-| Component | T1 Critical | T2 High | T3+ |
-|-----------|-------------|---------|-----|
-| **Uptime** | 99.9%+ | 99.5%+ | Per service |
-| **Response time** | Defined | Defined | — |
-| **Support hours** | 24/7 | Business hours | Standard |
-| **Incident response** | < 1 hour | < 4 hours | Standard |
-| **Credits** | Required | Preferred | — |
-| **Termination rights** | For SLA breach | For material breach | Standard |
+| Component              | T1 Critical    | T2 High             | T3+         |
+| ---------------------- | -------------- | ------------------- | ----------- |
+| **Uptime**             | 99.9%+         | 99.5%+              | Per service |
+| **Response time**      | Defined        | Defined             | —           |
+| **Support hours**      | 24/7           | Business hours      | Standard    |
+| **Incident response**  | < 1 hour       | < 4 hours           | Standard    |
+| **Credits**            | Required       | Preferred           | —           |
+| **Termination rights** | For SLA breach | For material breach | Standard    |
 
 ### 3.4 Security Addendum Template
 
@@ -682,45 +696,54 @@ Vendors often rely on their own vendors (fourth parties / sub-processors), exten
 ## Security Requirements Addendum
 
 ### 1. Security Standards
+
 Vendor shall maintain security controls consistent with:
+
 - Industry best practices
 - SOC 2 Type II criteria (or equivalent)
 - Applicable laws and regulations
 
 ### 2. Access Control
+
 - Implement least privilege access
 - Require MFA for system access
 - Conduct regular access reviews
 - Promptly deprovision terminated personnel
 
 ### 3. Data Protection
+
 - Encrypt data at rest (AES-256 or equivalent)
 - Encrypt data in transit (TLS 1.2+)
 - Implement data classification
 - Maintain data segregation
 
 ### 4. Incident Response
+
 - Maintain documented incident response plan
 - Notify CYBERCUBE within 48 hours of becoming aware of confirmed or suspected security incident
 - Cooperate in incident investigation
 - Provide incident report within 72 hours
 
 ### 5. Personnel Security
+
 - Conduct background checks (as permitted by law)
 - Provide security awareness training
 - Maintain confidentiality obligations
 
 ### 6. Business Continuity
+
 - Maintain business continuity/disaster recovery plans
 - Test plans at least annually
 - Maintain backups with defined RPO/RTO
 
 ### 7. Compliance
+
 - Maintain required certifications
 - Provide audit reports upon request
 - Notify of compliance issues
 
 ### 8. Subcontractors
+
 - Obtain prior approval for subcontractors
 - Flow down security requirements
 - Remain responsible for subcontractor compliance
@@ -732,12 +755,12 @@ Vendor shall maintain security controls consistent with:
 
 ### 4.1 Review Schedule
 
-| Tier | Frequency | Scope | Trigger Events |
-|------|-----------|-------|----------------|
-| **T1 Critical** | Annual + Continuous | Full reassessment | Any change, incident |
-| **T2 High** | Annual | Standard reassessment | Material change, incident |
-| **T3 Moderate** | Biennial | Light review | Incident, contract renewal |
-| **T4 Low** | Contract renewal | Reconfirm classification | Incident |
+| Tier            | Frequency           | Scope                    | Trigger Events             |
+| --------------- | ------------------- | ------------------------ | -------------------------- |
+| **T1 Critical** | Annual + Continuous | Full reassessment        | Any change, incident       |
+| **T2 High**     | Annual              | Standard reassessment    | Material change, incident  |
+| **T3 Moderate** | Biennial            | Light review             | Incident, contract renewal |
+| **T4 Low**      | Contract renewal    | Reconfirm classification | Incident                   |
 
 ### 4.2 Annual Review Process
 
@@ -781,27 +804,27 @@ Vendor shall maintain security controls consistent with:
 
 ### 4.3 Continuous Monitoring (Critical Vendors)
 
-| Activity | Frequency | Source |
-|----------|-----------|--------|
-| **Security news monitoring** | Continuous | News, alerts |
-| **Breach database check** | Monthly | HaveIBeenPwned, etc. |
-| **Rating service check** | Quarterly | SecurityScorecard, BitSight |
-| **SOC 2 report review** | Upon issuance | Vendor |
-| **Subcontractor changes** | Upon notification | Vendor |
-| **SLA performance** | Monthly | Service data |
-| **Incident review** | Per incident | Internal, vendor |
+| Activity                     | Frequency         | Source                      |
+| ---------------------------- | ----------------- | --------------------------- |
+| **Security news monitoring** | Continuous        | News, alerts                |
+| **Breach database check**    | Monthly           | HaveIBeenPwned, etc.        |
+| **Rating service check**     | Quarterly         | SecurityScorecard, BitSight |
+| **SOC 2 report review**      | Upon issuance     | Vendor                      |
+| **Subcontractor changes**    | Upon notification | Vendor                      |
+| **SLA performance**          | Monthly           | Service data                |
+| **Incident review**          | Per incident      | Internal, vendor            |
 
 ### 4.4 Triggered Reviews
 
-| Trigger | Action | Timeline |
-|---------|--------|----------|
-| **Vendor security incident** | Assess impact, full review | Immediate |
-| **Vendor breach (public)** | Contact vendor, assess impact | 24 hours |
-| **Significant service change** | Reassess scope, controls | Before change |
-| **Contract renewal** | Full periodic review | 60 days before |
-| **Acquisition of vendor** | Reassess new entity | 30 days |
-| **Regulatory change** | Assess compliance impact | Per regulation |
-| **Internal incident involving vendor** | Root cause, vendor review | Per incident |
+| Trigger                                | Action                        | Timeline       |
+| -------------------------------------- | ----------------------------- | -------------- |
+| **Vendor security incident**           | Assess impact, full review    | Immediate      |
+| **Vendor breach (public)**             | Contact vendor, assess impact | 24 hours       |
+| **Significant service change**         | Reassess scope, controls      | Before change  |
+| **Contract renewal**                   | Full periodic review          | 60 days before |
+| **Acquisition of vendor**              | Reassess new entity           | 30 days        |
+| **Regulatory change**                  | Assess compliance impact      | Per regulation |
+| **Internal incident involving vendor** | Root cause, vendor review     | Per incident   |
 
 ### 4.5 Vendor Incident Response
 
@@ -809,20 +832,21 @@ When a vendor experiences a security incident that may affect CYBERCUBE data or 
 
 **Vendor incident response process:**
 
-| Step | Action | Owner | Timeline |
-|------|--------|-------|----------|
-| 1 | Receive vendor notification or detect incident | Security Team | T+0 |
-| 2 | Assess potential impact on CYBERCUBE data/systems | Security Team | Within 4 hours |
-| 3 | Classify severity (SEV-1 through SEV-4) | Security Lead | Within 4 hours |
-| 4 | If SEV-1/SEV-2: Declare incident, invoke Incident Response Standard | Incident Commander | Immediately |
-| 5 | Contact vendor for detailed information and timeline | Security Team | Within 24 hours |
-| 6 | Determine customer notification obligations | Security + Legal | Within 24 hours |
-| 7 | Implement protective measures (credential rotation, access review) | Security + Engineering | Per severity |
-| 8 | Monitor vendor remediation progress | Security Team | Ongoing |
-| 9 | Obtain vendor incident report and root cause analysis | Security Team | Within 30 days |
-| 10 | Full vendor reassessment if warranted | Security Team | Within 60 days |
+| Step | Action                                                              | Owner                  | Timeline        |
+| ---- | ------------------------------------------------------------------- | ---------------------- | --------------- |
+| 1    | Receive vendor notification or detect incident                      | Security Team          | T+0             |
+| 2    | Assess potential impact on CYBERCUBE data/systems                   | Security Team          | Within 4 hours  |
+| 3    | Classify severity (SEV-1 through SEV-4)                             | Security Lead          | Within 4 hours  |
+| 4    | If SEV-1/SEV-2: Declare incident, invoke Incident Response Standard | Incident Commander     | Immediately     |
+| 5    | Contact vendor for detailed information and timeline                | Security Team          | Within 24 hours |
+| 6    | Determine customer notification obligations                         | Security + Legal       | Within 24 hours |
+| 7    | Implement protective measures (credential rotation, access review)  | Security + Engineering | Per severity    |
+| 8    | Monitor vendor remediation progress                                 | Security Team          | Ongoing         |
+| 9    | Obtain vendor incident report and root cause analysis               | Security Team          | Within 30 days  |
+| 10   | Full vendor reassessment if warranted                               | Security Team          | Within 60 days  |
 
 **Impact assessment criteria:**
+
 - Was CYBERCUBE customer data exposed or potentially exposed?
 - Was CYBERCUBE system access compromised?
 - Were credentials, keys, or tokens potentially compromised?
@@ -831,12 +855,12 @@ When a vendor experiences a security incident that may affect CYBERCUBE data or 
 
 **Protective measures by severity:**
 
-| Severity | Measures |
-|----------|----------|
+| Severity             | Measures                                                                                                     |
+| -------------------- | ------------------------------------------------------------------------------------------------------------ |
 | **SEV-1 (Critical)** | Immediately rotate credentials, restrict vendor access, consider service isolation, invoke incident response |
-| **SEV-2 (High)** | Rotate credentials within 24h, review vendor access logs, increased monitoring |
-| **SEV-3 (Medium)** | Review access, monitor for anomalies, request vendor status updates |
-| **SEV-4 (Low)** | Log incident, monitor vendor communications, review at next periodic assessment |
+| **SEV-2 (High)**     | Rotate credentials within 24h, review vendor access logs, increased monitoring                               |
+| **SEV-3 (Medium)**   | Review access, monitor for anomalies, request vendor status updates                                          |
+| **SEV-4 (Low)**      | Log incident, monitor vendor communications, review at next periodic assessment                              |
 
 ---
 
@@ -906,15 +930,17 @@ When a vendor experiences a security incident that may affect CYBERCUBE data or 
 ```markdown
 ## Vendor Offboarding Checklist
 
-### Vendor: _________________ Termination Date: _____________
+### Vendor: **\*\*\*\***\_**\*\*\*\*** Termination Date: **\*\***\_**\*\***
 
 ### 1. Notification & Planning
+
 - [ ] Termination notice sent per contract
 - [ ] Transition plan documented
 - [ ] Stakeholders notified
 - [ ] Timeline established
 
 ### 2. Access Revocation
+
 - [ ] User accounts disabled
 - [ ] API keys/tokens revoked
 - [ ] SSO/SAML disconnected
@@ -925,6 +951,7 @@ When a vendor experiences a security incident that may affect CYBERCUBE data or 
 - [ ] Removed from email distribution lists
 
 ### 3. Data Handling
+
 - [ ] Data export requested
 - [ ] Data export received and verified
 - [ ] Deletion requested
@@ -932,6 +959,7 @@ When a vendor experiences a security incident that may affect CYBERCUBE data or 
 - [ ] Certificate of destruction obtained
 
 ### 4. Integration Removal
+
 - [ ] API connections disabled
 - [ ] Webhooks removed
 - [ ] DNS entries updated
@@ -940,33 +968,37 @@ When a vendor experiences a security incident that may affect CYBERCUBE data or 
 - [ ] Documentation updated
 
 ### 5. Financial & Administrative
+
 - [ ] Final invoices processed
 - [ ] Deposits/prepayments reconciled
 - [ ] Contract filed (retention)
 - [ ] Vendor registry updated
 
 ### 6. Closure
+
 - [ ] All checklist items complete
 - [ ] Offboarding documented
 - [ ] Vendor record archived
 
 ### Sign-off
-- **IT/Security:** _________________ Date: _______
-- **Business Owner:** _________________ Date: _______
-- **Procurement:** _________________ Date: _______
+
+- **IT/Security:** **\*\*\*\***\_**\*\*\*\*** Date: **\_\_\_**
+- **Business Owner:** **\*\*\*\***\_**\*\*\*\*** Date: **\_\_\_**
+- **Procurement:** **\*\*\*\***\_**\*\*\*\*** Date: **\_\_\_**
 ```
 
 ### 5.3 Data Return & Deletion
 
-| Requirement | Timeline | Evidence |
-|-------------|----------|----------|
-| **Data export request** | Per contract (typically 30 days) | Written request |
-| **Data export delivery** | Per contract | Export files |
-| **Deletion request** | Upon export confirmation | Written request |
-| **Deletion completion** | Per contract (typically 30-90 days) | Vendor confirmation |
-| **Deletion certificate** | Upon completion | Signed certificate |
+| Requirement              | Timeline                            | Evidence            |
+| ------------------------ | ----------------------------------- | ------------------- |
+| **Data export request**  | Per contract (typically 30 days)    | Written request     |
+| **Data export delivery** | Per contract                        | Export files        |
+| **Deletion request**     | Upon export confirmation            | Written request     |
+| **Deletion completion**  | Per contract (typically 30-90 days) | Vendor confirmation |
+| **Deletion certificate** | Upon completion                     | Signed certificate  |
 
 **Deletion Certificate Must Include:**
+
 - Date of deletion
 - Scope of data deleted
 - Method of deletion
@@ -979,34 +1011,34 @@ When a vendor experiences a security incident that may affect CYBERCUBE data or 
 
 ### 6.1 Registry Requirements
 
-| Field | Required | Description |
-|-------|----------|-------------|
-| Vendor name | Yes | Legal entity name |
-| Vendor ID | Yes | Internal identifier |
-| Primary contact | Yes | Vendor contact |
-| Business owner | Yes | Internal owner |
-| Classification tier | Yes | T1-T4 |
-| Services provided | Yes | Description |
-| Data access | Yes | Types of data accessed |
-| System access | Yes | Systems accessed |
-| Contract dates | Yes | Start, end, renewal |
-| Risk rating | Yes | Current rating |
-| Last assessment | Yes | Date |
-| Next review date | Yes | Scheduled |
-| SOC 2 expiration | If applicable | Report end date |
-| DPA status | Yes | Yes/No/NA |
-| Status | Yes | Active/Inactive/Terminated |
+| Field               | Required      | Description                |
+| ------------------- | ------------- | -------------------------- |
+| Vendor name         | Yes           | Legal entity name          |
+| Vendor ID           | Yes           | Internal identifier        |
+| Primary contact     | Yes           | Vendor contact             |
+| Business owner      | Yes           | Internal owner             |
+| Classification tier | Yes           | T1-T4                      |
+| Services provided   | Yes           | Description                |
+| Data access         | Yes           | Types of data accessed     |
+| System access       | Yes           | Systems accessed           |
+| Contract dates      | Yes           | Start, end, renewal        |
+| Risk rating         | Yes           | Current rating             |
+| Last assessment     | Yes           | Date                       |
+| Next review date    | Yes           | Scheduled                  |
+| SOC 2 expiration    | If applicable | Report end date            |
+| DPA status          | Yes           | Yes/No/NA                  |
+| Status              | Yes           | Active/Inactive/Terminated |
 
 ### 6.2 Registry Maintenance
 
-| Activity | Frequency | Owner |
-|----------|-----------|-------|
-| **New vendor entry** | Upon onboarding | Procurement + Security |
-| **Status updates** | As changes occur | Business owner |
-| **Assessment dates** | After assessment | Security |
-| **Contract updates** | Upon renewal/change | Procurement |
-| **Quarterly audit** | Quarterly | Security |
-| **Annual validation** | Annual | Business owners |
+| Activity              | Frequency           | Owner                  |
+| --------------------- | ------------------- | ---------------------- |
+| **New vendor entry**  | Upon onboarding     | Procurement + Security |
+| **Status updates**    | As changes occur    | Business owner         |
+| **Assessment dates**  | After assessment    | Security               |
+| **Contract updates**  | Upon renewal/change | Procurement            |
+| **Quarterly audit**   | Quarterly           | Security               |
+| **Annual validation** | Annual              | Business owners        |
 
 ---
 
@@ -1014,27 +1046,27 @@ When a vendor experiences a security incident that may affect CYBERCUBE data or 
 
 ### 7.1 RACI Matrix
 
-| Activity | Security | Legal | Procurement | Business Owner |
-|----------|----------|-------|-------------|----------------|
-| Vendor identification | C | I | R | A |
-| Classification | A | C | I | R |
-| Security assessment | R/A | C | I | C |
-| Contract negotiation | C | A | R | C |
-| DPA execution | C | A | R | I |
-| Onboarding | R | I | R | A |
-| Periodic review | R/A | C | I | C |
-| Continuous monitoring | R/A | I | I | I |
-| Offboarding | R | C | R | A |
+| Activity              | Security | Legal | Procurement | Business Owner |
+| --------------------- | -------- | ----- | ----------- | -------------- |
+| Vendor identification | C        | I     | R           | A              |
+| Classification        | A        | C     | I           | R              |
+| Security assessment   | R/A      | C     | I           | C              |
+| Contract negotiation  | C        | A     | R           | C              |
+| DPA execution         | C        | A     | R           | I              |
+| Onboarding            | R        | I     | R           | A              |
+| Periodic review       | R/A      | C     | I           | C              |
+| Continuous monitoring | R/A      | I     | I           | I              |
+| Offboarding           | R        | C     | R           | A              |
 
 ### 7.2 Escalation Path
 
-| Issue | First Contact | Escalation |
-|-------|---------------|------------|
-| Assessment delays | Procurement | Security Lead |
-| Security concerns | Security Team | CISO/CTO |
-| Contract issues | Legal | General Counsel |
-| Vendor incidents | Security Team | Incident Response |
-| Business disputes | Business Owner | Department Head |
+| Issue             | First Contact  | Escalation        |
+| ----------------- | -------------- | ----------------- |
+| Assessment delays | Procurement    | Security Lead     |
+| Security concerns | Security Team  | CISO/CTO          |
+| Contract issues   | Legal          | General Counsel   |
+| Vendor incidents  | Security Team  | Incident Response |
+| Business disputes | Business Owner | Department Head   |
 
 ---
 
@@ -1042,18 +1074,18 @@ When a vendor experiences a security incident that may affect CYBERCUBE data or 
 
 The following practices are PROHIBITED:
 
-| Practice | Reason | Alternative |
-|----------|--------|-------------|
-| Engaging vendors without assessment | Unknown risk exposure | Complete assessment before access/data sharing |
-| Sharing employee credentials with vendors | Accountability loss, audit failure | Provision dedicated vendor accounts |
-| Granting production access without Security approval | Uncontrolled privileged access | Follow assessment and approval process |
-| Skipping offboarding steps | Lingering access, data retention | Complete offboarding checklist |
-| Signing contracts without Security/Legal review (T1/T2) | Missing security terms | Route through approval workflow |
-| Allowing vendors to self-classify | Conflict of interest | Internal classification by Security team |
-| Using personal accounts for vendor SaaS | No organizational control | Use company-managed accounts |
-| Ignoring vendor breach notifications | Delayed response, increased impact | Invoke vendor incident response process immediately |
-| Storing vendor credentials in plaintext | Credential exposure | Use secrets management tool |
-| Bypassing the expedited process for urgency | Unassessed risk in production | Use expedited onboarding path with guardrails |
+| Practice                                                | Reason                             | Alternative                                         |
+| ------------------------------------------------------- | ---------------------------------- | --------------------------------------------------- |
+| Engaging vendors without assessment                     | Unknown risk exposure              | Complete assessment before access/data sharing      |
+| Sharing employee credentials with vendors               | Accountability loss, audit failure | Provision dedicated vendor accounts                 |
+| Granting production access without Security approval    | Uncontrolled privileged access     | Follow assessment and approval process              |
+| Skipping offboarding steps                              | Lingering access, data retention   | Complete offboarding checklist                      |
+| Signing contracts without Security/Legal review (T1/T2) | Missing security terms             | Route through approval workflow                     |
+| Allowing vendors to self-classify                       | Conflict of interest               | Internal classification by Security team            |
+| Using personal accounts for vendor SaaS                 | No organizational control          | Use company-managed accounts                        |
+| Ignoring vendor breach notifications                    | Delayed response, increased impact | Invoke vendor incident response process immediately |
+| Storing vendor credentials in plaintext                 | Credential exposure                | Use secrets management tool                         |
+| Bypassing the expedited process for urgency             | Unassessed risk in production      | Use expedited onboarding path with guardrails       |
 
 ---
 
@@ -1063,12 +1095,12 @@ Print it. Keep it handy.
 
 ### Vendor Tiers
 
-| Tier | Data/Access | Review |
-|------|-------------|--------|
-| T1 Critical | Customer data, privileged | Annual + continuous |
-| T2 High | Production access, integration | Annual |
-| T3 Moderate | Internal data, limited | Biennial |
-| T4 Low | No sensitive access | Contract renewal |
+| Tier        | Data/Access                    | Review              |
+| ----------- | ------------------------------ | ------------------- |
+| T1 Critical | Customer data, privileged      | Annual + continuous |
+| T2 High     | Production access, integration | Annual              |
+| T3 Moderate | Internal data, limited         | Biennial            |
+| T4 Low      | No sensitive access            | Contract renewal    |
 
 ### Assessment Requirements
 
@@ -1081,11 +1113,11 @@ T4: Classification only
 
 ### Required Documents by Tier
 
-| Document | T1 | T2 | T3 | T4 |
-|----------|----|----|----|----|
-| SOC 2 | ✓ | ✓ | — | — |
-| DPA | ✓ | If data | If data | — |
-| Security questionnaire | Full | Standard | Light | — |
+| Document               | T1   | T2       | T3      | T4  |
+| ---------------------- | ---- | -------- | ------- | --- |
+| SOC 2                  | ✓    | ✓        | —       | —   |
+| DPA                    | ✓    | If data  | If data | —   |
+| Security questionnaire | Full | Standard | Light   | —   |
 
 ### Offboarding Essentials
 
@@ -1165,14 +1197,14 @@ This enables the tier-vs-PCL sanity-check lint and raises Automatability (M) fro
 
 ## Related Documents
 
-| Document | Relationship |
-|----------|--------------|
-| 2.1 CYBERCUBE-Security-Policy-v1 | Security framework |
-| 2.2 CYBERCUBE-Secure-Coding-Standard-v1 | Open-source library governance |
-| 3.3 CYBERCUBE-Data-Classification-Retention-Standard-v1 | Data handling requirements |
-| 3.6 CYBERCUBE-DPA-Standard-Template-v1 | Processing agreement template |
-| 3.2 CYBERCUBE-Privacy-Handling-Policy-v1 | Privacy requirements |
-| 4.1 CYBERCUBE-Business-Continuity-Plan-v1 | Vendor continuity planning |
-| 4.3 CYBERCUBE-Incident-Response-Standard-v1 | Vendor incident escalation |
-| 4.6 CYBERCUBE-Service-Level-Policy-v1 | SLA alignment |
-| 1.2 CYBERCUBE-Standards-Governance-Policy-v1 | Compliance, reviews |
+| Document                                                | Relationship                   |
+| ------------------------------------------------------- | ------------------------------ |
+| 2.1 CYBERCUBE-Security-Policy-v1                        | Security framework             |
+| 2.2 CYBERCUBE-Secure-Coding-Standard-v1                 | Open-source library governance |
+| 3.3 CYBERCUBE-Data-Classification-Retention-Standard-v1 | Data handling requirements     |
+| 3.6 CYBERCUBE-DPA-Standard-Template-v1                  | Processing agreement template  |
+| 3.2 CYBERCUBE-Privacy-Handling-Policy-v1                | Privacy requirements           |
+| 4.1 CYBERCUBE-Business-Continuity-Plan-v1               | Vendor continuity planning     |
+| 4.3 CYBERCUBE-Incident-Response-Standard-v1             | Vendor incident escalation     |
+| 4.6 CYBERCUBE-Service-Level-Policy-v1                   | SLA alignment                  |
+| 1.2 CYBERCUBE-Standards-Governance-Policy-v1            | Compliance, reviews            |
