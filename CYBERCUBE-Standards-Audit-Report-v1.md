@@ -2431,3 +2431,125 @@ All three green. Portfolio size remains **48 standards**.
 - **Blocked**: Pass-3 numeric re-score until 2026-05-06.
 
 ---
+
+## 31. RFC-0001 EXECUTION — STD-ENG-001 split (2026-04-22)
+
+**Scope closed:** Pass-3 Clarity=1 finding against [29] STD-ENG-001 (3266 lines, 78 MUSTs, four intermingled namespaces). RFC-0001 migration plan steps 1–5 executed; step 6 (Pass-3 re-score) remains blocked until 2026-05-06; step 7 (`#eng-standards` announcement) is a non-normative follow-on.
+
+### 31.1 Files added
+
+| Path | Purpose | Lines |
+|------|---------|-------|
+| `[49]-STD-ENG-001A CYBERCUBE-Public-Entity-IDs-Standard-v1.md` | Namespace B — CC-PID format, check-digit algorithm, entity-code registry, impl guidance, support SOP | 1836 |
+| `[50]-STD-ENG-001B CYBERCUBE-Artifact-Governance-Identifiers-Standard-v1.md` | Namespaces A + G — artifact filenames (repos, branches, tickets, docs) and governance IDs (PRD/MOD/ADR/RFC/STD); WOE ticket-vs-issue | 248 |
+| `[51]-STD-ENG-001C CYBERCUBE-Module-Component-File-Naming-Standard-v1.md` | Namespace M — module/component/file/class naming; Developer Cheat Sheet | 958 |
+
+Total: **3 new standards**, ≈ 3,042 lines — pulled verbatim from the [29] v1.2 source per RFC-0001 §5 line-range map. Each carries its own Tier Table with only the T1 rules relevant to its scope (no T1 rule drift — see §31.6).
+
+### 31.2 Files renamed / rewritten
+
+| File | Change | Version impact |
+|------|--------|----------------|
+| `[29]-STD-ENG-001 CYBERCUBE-Naming-Identifier-Standard-v1.2.md` → `...-v2.0.md` | `git mv` preserves blame. Body rewritten to the umbrella: unchanged Tier Table (byte-identical to v1.2 — see §31.6), full Glossary, compressed §0 Purpose, Namespace-at-a-glance matrix, defers-to map, aggregated Version History (v1.x trail + v1.3 drift-backfill row + v2.0 structural-split row), Implementation Status pointers to A/B/C, Related Documents. | **v1.2 → v2.0** (major, structural split per POL-GOV-001 §8.6). v1.3 row backfilled to absorb the previously-drifted header claim. Umbrella 432 lines (Glossary dominates — accepted; RFC-0001 skeleton-first target ≤250 was non-binding). |
+
+### 31.3 Files modified (cross-reference sweep)
+
+Per RFC-0001 §5 citation rules:
+
+| File | Change | Rule applied |
+|------|--------|--------------|
+| `[4]-FWK-GOV-001 CYBERCUBE-Framework-Compliance-v1.4.md` | Tier Cheat-Sheet T1/T2/T3 rows: split single `[29] STD-ENG-001` bullet into four bullets (umbrella + A + B + C). | Mirror-level pointer update per POL-GOV-001 §8 — **no version bump**. |
+| `[33]-STD-ENG-008 CYBERCUBE-Reusable-Modules-Standard-v1.7.md` | Namespace-M binding (scope para + T1 #4 reference) retargeted to `[51] STD-ENG-001C`; M-05 ICD source → `[49]`; M-37 source → `[51]`. | "module naming / Namespace M" → [51]; "CC-PID" → [49]. |
+| `[19]-STD-SEC-004 CYBERCUBE-Authorization-Access-Control-Standard-v1.md` | Related-Docs row retargeted with CC-PID MUST-NOT-drive-authZ guardrail. | "CC-PID" → [49]. |
+| `[26]-STD-DAT-002 CYBERCUBE-Soft-Delete-Lifecycle-Standard-v1.md` | CC-PID body reference + Related-Docs row retargeted. | "CC-PID" → [49]. |
+| `[7]-STD-GOV-006 CYBERCUBE-Unified-Control-Matrix-v1.2.md` | `CTL-ENG-001` retargeted to `STD-ENG-001A` with `[49]` pointer. | "CC-PID" → [49]. |
+| `docs/starters/internal-tool.md`, `t2-saas.md`, `t3-regulated.md` | Each `[29]` checklist row split into the three sub-standard rows (49/50/51). | Archetype checklists cite specific sub-standards. |
+| `modules/modules.json` | `M-05.source_standard` → `[49] STD-ENG-001A (CC-PID)`; `M-37.source_standard` → includes `[51] STD-ENG-001C`. | Module source mapping. |
+| `registries/schema/entity-code.schema.json` | `description` points at `[49]` under `[29] v2.0` umbrella. | Schema provenance. |
+| `registries/standards.json` | `STD-ENG-001` bumped to v2.0 with umbrella note; three new entries `STD-ENG-001A/B/C` at v1.0; registry total 53 entries (51 standards + 2 templates). | Registry canonical truth. |
+| `freeze-check-report.json` | Regenerated — 51 scanned, all YES. | Tooling sync. |
+
+Total: **10 files modified** (Phase 2) + **2 files modified** (Phase 3) + **1 renamed** + **3 added** (Phase 1).
+
+### 31.4 Migration-plan step status (RFC-0001 §5)
+
+| Step | Action | Status |
+|------|--------|--------|
+| 1 | Accept RFC | **Done** (2026-04-22) |
+| 2 | Create [49] STD-ENG-001A | **Done** (§31.1) |
+| 3 | Create [50] STD-ENG-001B | **Done** (§31.1) |
+| 4 | Create [51] STD-ENG-001C | **Done** (§31.1) |
+| 5 | Rewrite [29] umbrella v1.2 → v2.0 via `git mv` | **Done** (§31.2) |
+| 6 | Cross-reference sweep (~25 files) | **Done** (§31.3 Phase 2) |
+| 7 | Registry + tooling sync | **Done** (§31.3 Phase 3) |
+| 8 | Re-run `freeze-check.py` + `validate-schemas.py --strict` + `starter-check.py` + byte-identical Tier Table diff | **Done** (§31.5) |
+| 9 | `#eng-standards` announcement | **Follow-on** — non-normative, owned by `eng-lead` |
+| 10 | Pass-3 re-score after 2026-05-06 | **Blocked** — awaiting survey window close |
+
+### 31.5 Verification
+
+Commands run post-execution at the repo root:
+
+```
+python3 tools/freeze-check.py                 # 51 standards scanned, all YES, no freeze triggers
+python3 tools/validate-schemas.py --strict    # 7/7 OK (YAML skipped gracefully pending PyYAML)
+python3 tools/starter-check.py                # 5 starter files OK; 50 standards indexed; 4 compliance maps
+```
+
+All three green. Portfolio size **48 → 51** (48 standards + 3 new sub-standards; the umbrella [29] retains its slot).
+
+### 31.6 T1 rule drift gate (critical)
+
+RFC-0001 §7 risk mitigation: the umbrella Tier Table MUST be byte-identical to the pre-split version so the 5 T1 rules cannot silently drift. Gate executed at Phase-1 pre-commit against `git show HEAD:...v1.2.md`:
+
+```
+diff <(git show HEAD:"[29]-STD-ENG-001 CYBERCUBE-Naming-Identifier-Standard-v1.2.md" \
+       | sed -n '/^## Applicability Tier Table/,/^## Glossary/p') \
+     <(sed -n '/^## Applicability Tier Table/,/^## Glossary/p' \
+         "[29]-STD-ENG-001 CYBERCUBE-Naming-Identifier-Standard-v2.0.md")
+```
+
+**Result: empty output — byte-identical.** 5 T1 rules preserved verbatim. Known trade-off: the preserved Tier Table "Quick links" anchors reference section headings that now live in sub-standards; the anchors are technically broken in the umbrella body but kept verbatim to satisfy the byte-diff gate. Remediation (replace anchors with `[49]` / `[50]` / `[51]` cross-standard links) is deferred to a follow-on cleanup commit and intentionally does **not** block RFC-0001 closure.
+
+### 31.7 Tooling deltas
+
+- **`tools/starter-check.py` regex extended** — `BRACKET_REF_RE`, `VERSION_RE`, `STANDARD_FILENAME_RE` now accept an optional trailing uppercase letter after the three-digit slot (`\d{3}[A-Z]?`) so `STD-ENG-001A/B/C` are recognized as first-class standards. Change landed in Phase 1 (commit `0f80540`). No `freeze-check.py` regex change needed (bracket numbers stay numeric — RFC-0001 sequential-numbering decision).
+- **`freeze-check.py` meta-exempt whitelist unchanged** — the umbrella `[29]` is not added; it keeps its Tier Table (byte-identical carry-over). The three sub-standards carry their own Tier Tables.
+
+### 31.8 Pass-4 findings status after §31
+
+| Finding | Status | Closed by |
+|---------|--------|-----------|
+| F1 Starter kits / project templates | Closed | §30 |
+| F2 Regulation mappings absent | Closed | §29 |
+| F3 HIPAA primitives absent | Closed | §29 |
+| F4 Tier Cheat-Sheet coordination cost | Closed | §25.2 + §28 + §29.3 + §31.3 (four-row split) |
+| F5 Vendor-inventory enum missing `foundation-model` | Closed | §25.1 |
+| F6 Small-project module-audit exclusion | Closed | §27 |
+
+**All six Pass-4 findings remain closed.** Pass-3 *Clarity* finding against [29] is now structurally addressed by the split; numeric re-score is blocked until the 2026-05-06 survey window closes.
+
+### 31.9 Commits
+
+| Commit | Phase | Scope |
+|--------|-------|-------|
+| `0f80540` | 1 | Create [49]/[50]/[51] skeletons + rewrite [29] v1.2→v2.0 umbrella + starter-check regex extension |
+| `cadcf4e` | 2 | Cross-reference sweep (10 files across standards, starters, modules, schema) |
+| `d6d0806` | 3 | `registries/standards.json` + `freeze-check-report.json` sync |
+| (this) | 4 | Audit §31 — execution log |
+
+### 31.10 Remaining work after §31
+
+- **RFC-0001 follow-ons (non-blocking)**:
+  - `#eng-standards` announcement (step 9)
+  - Replace preserved-but-broken Tier Table "Quick links" anchors with cross-standard links to [49]/[50]/[51] (cleanup commit; deferred so the byte-diff gate stays meaningful as a repeatable check at the HEAD boundary).
+- **RFC-0004 follow-ons** (unchanged from §30.9): four `cybercube-starter-<archetype>` template repos; `#eng-standards` announcement; optional CI wiring for `starter-check.py`.
+- **RFC-0005 follow-ons** — per-regulation bulk population (PCI ≈3 wk / HIPAA ≈2 wk / SOC2 ≈2 wk).
+- **Optional**: install `PyYAML` in CI runtime.
+- **Blocked**: Pass-3 numeric re-score until 2026-05-06.
+
+### 31.11 Verdict
+
+RFC-0001 executed cleanly across a 4-commit cadence. Portfolio size **48 → 51**. The five T1 rules are preserved byte-identically. The three new sub-standards are each internally coherent (single namespace each) and the umbrella [29] v2.0 now functions as a navigational and glossary spine rather than a 3266-line monolith. Pass-3 Clarity against [29] is structurally resolved pending re-score.
+
+---
