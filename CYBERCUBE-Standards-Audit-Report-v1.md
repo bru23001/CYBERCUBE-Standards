@@ -1777,14 +1777,124 @@ after:  ["infrastructure","saas","data-processor","sub-processor","consultancy",
 
 **Status:** ✅ TASK-0002 DONE. §24.4 F5 cleared.
 
-### 25.2 Outstanding queue
+### 25.2 TASK-0001 — Tier Cheat-Sheet in [4] FWK-GOV-001
+
+**Scope:** addresses §24.4 F4 (coordination cost grows linearly with tier depth; no single-page summary of what a new team must produce per tier). Non-normative — no existing clauses altered.
+
+**Source:** Applicability Tier Tables of all 45 standards, extracted programmatically (the `## Applicability Tier Table` section of each `[N]-*.md`). [1] / [2] / [16] contribute no tier rows (meta-exempt). [30] STD-ENG-007 carries placeholder tier text — excluded from the cheat-sheet content; when STD-ENG-007 is populated, refresh the T1/T2/T3 lines for it (currently omitted rather than shown as placeholders).
+
+**Changes:**
+
+| File | Change |
+|------|--------|
+| `[4]-FWK-GOV-001 …-v1.md` → `…-v1.2.md` | renamed (filename version marker bumped per handoff convention) |
+| `[4]-FWK-GOV-001 …-v1.2.md` header | version `v1.1` → `v1.2`; effective-date trailer extended |
+| `[4]-FWK-GOV-001 …-v1.2.md` body | new `## Tier Cheat-Sheet` section (~200 lines) — three grouped lists (T1 ~42 items · T2 ~34 items · T3 ~42 items), each line cites its source standard; followed by a short "How to use this cheat-sheet" ordered list |
+| `[4]-FWK-GOV-001 …-v1.2.md` body | new `## Version History` section (did not exist pre-v1.2) — captures v1 / v1.1 / v1.2 rows |
+| `registries/standards.json` | FWK-GOV-001 row updated: `version: v1.2`, `effective: 2026-04-22`, `filename: FWK-GOV-001 …-v1.2.md` |
+| `freeze-check-report.json` | regenerated — reflects new filename |
+
+**Item counts (cheat-sheet):** T1 42 · T2 34 · T3 42 = 118 lines of deliverables. The handoff estimate was "T1 ~30 · T2 ~25 · T3 ~35"; actual counts run higher because the cheat-sheet renders each cited standard as its own line rather than merging related clauses. No rule-count change — only presentation.
+
+**Verification:**
+
+- `python3 tools/freeze-check.py` → 45/45 YES (Tier Table still detected under new filename); 0 findings.
+- `python3 tools/validate-schemas.py --strict` → 4/4 OK; Failures: 0.
+- `grep Framework-Compliance-v1\.md` → only the historical hit in `freeze-check-report.json`, cleared by the `--json` rerun; `registries/standards.json` updated; no orphaned references remain.
+
+**Normative impact:** none. The cheat-sheet is a reading aid; every obligation it lists is already in force via the source standard. No tier escalation, no waiver-path change, no new MUST. Change qualifies as a **minor version bump** per POL-GOV-001 §8 (additive, non-breaking).
+
+**Downstream follow-ups:**
+
+- When STD-ENG-007 fills in its placeholder tier rows ([30]), append three bullets to the cheat-sheet under the appropriate section.
+- When RFC-0004 starter kits land, cross-link each starter from the matching cheat-sheet group (internal-tool → T1 only · T2-SaaS → T1+T2 · T3-regulated → full set · AI-feature → T1+T2 + AI-specific rows).
+- If a future standard is added to the portfolio, its tier rows MUST be appended to this cheat-sheet in the same PR (add to POL-GOV-001 §8 checklist).
+
+**Status:** ✅ TASK-0001 DONE. §24.4 F4 cleared.
+
+### 25.3 RFC-0004 DRAFT — Starter kits & project templates
+
+**Scope:** addresses §24.4 F1 (systemic under-investment in starter kits) and F6 ([33] M-NN audit overreach for very small projects). Non-normative until accepted; drafting only at this stage.
+
+**Deliverables scoped in the RFC:**
+
+- Four `docs/starters/<archetype>.md` onboarding checklists (internal-tool · t2-saas · t3-regulated · ai-feature).
+- Four companion template repos `cybercube-starter-<archetype>` (follow-on tickets post-acceptance).
+- Pre-wired per archetype: Tier Table, minimal runbook, ADR-0001 bootstrap, CI gate stubs, README onboarding checklist.
+- Additive T1 clause on [33] STD-ENG-008 — small-project exclusion gated on ≤5 FTE + ≤5 services + INTERNAL classification + no customer-facing surface; self-asserted in README + PCL row; lapses automatically on threshold crossing. [33] v1.1 → v1.2.
+- Pointer paragraph in [4] FWK-GOV-001 Tier Cheat-Sheet referencing `docs/starters/`.
+- New `tools/starter-check.py` — lints starter files for clause-currency.
+
+**File:** `rfcs/RFC-0004-starter-kits.md` (~280 lines). Approver quartet: `eng-lead` + `sec-lead` + `oncall-sre` + `standards-council`. Comment close 2026-05-20; decision 2026-05-27.
+
+**Cross-RFC coordination:** RFC-0004 allows placeholders for RFC-0005 artifacts (t3-regulated variants reference compliance-maps + BAA + de-id standard); either RFC can accept first.
+
+### 25.4 RFC-0005 DRAFT — Regulation mapping artifacts + HIPAA primitives
+
+**Scope:** addresses §24.4 F2 (absence of regulation mappings) and F3 (T3 blurs GDPR/HIPAA). Non-normative until accepted; drafting only.
+
+**Deliverables scoped in the RFC:**
+
+- `governance/compliance-maps/` directory with `_compliance-map.schema.json` (JSON-schema-validated YAML front-matter) and three seed files: `pci-dss-4.0.md`, `hipaa-security-rule.md`, `soc2.md`. Schema defines `regulation` block + `rows[]` of `{ucm_id, regulation_ref, relationship: direct|partial|adjacent, notes}`.
+- Extension of `tools/validate-schemas.py` to validate YAML front-matter in `.md` files.
+- Additive T2 reference clause in [7] STD-GOV-006 (v1 → v1.1) requiring in-scope products to cite the relevant mapping in their PCL row + audit-evidence pack.
+- Per-regulation bulk-population as follow-on tickets (not in this RFC): PCI ~3 wk (sec-lead), HIPAA ~2 wk (privacy-lead + legal-lead), SOC2 ~2 wk (sec-lead).
+- New `[46]-TPL-LGL-002` — BAA template, sibling to [16] TPL-LGL-001. Meta-exempt (template class).
+- New `[47]-STD-DAT-005` — De-identification standard covering HIPAA Safe-Harbor, Expert-Determination, and GDPR pseudonymization paths. Full Applicability Tier Table (T1 residual-risk-class declaration; T2 documented procedure; T3 expert-determination review + statistical disclosure control).
+- Registry updates: `registries/standards.json` grows 45 → 47 rows.
+- `[4]-FWK-GOV-001` Tier Cheat-Sheet gets new [47] rows → v1.2 → v1.3 minor bump.
+
+**File:** `rfcs/RFC-0005-regulation-mapping-artifacts.md` (~260 lines). Approver quartet: `sec-lead` + `legal-lead` + `privacy-lead` + `standards-council`. Comment close 2026-05-20; decision 2026-05-27.
+
+### 25.5 Files added/modified in this §25 log
+
+| Added | Lines |
+|-------|------:|
+| `rfcs/RFC-0004-starter-kits.md` | ~280 |
+| `rfcs/RFC-0005-regulation-mapping-artifacts.md` | ~260 |
+
+| Modified | Change |
+|----------|--------|
+| `schemas/vendor-inventory.schema.json` | `$id` v1→v1.1; enum `foundation-model` added (TASK-0002 / §25.1) |
+| `[4]-FWK-GOV-001 …-v1.2.md` | Tier Cheat-Sheet + Version History; file rename v1→v1.2 (TASK-0001 / §25.2) |
+| `registries/standards.json` | FWK-GOV-001 row synced to v1.2 |
+| `freeze-check-report.json` | regenerated to reflect [4] rename |
+| `rfcs/README.md` | index extended with RFC-0004 + RFC-0005 rows |
+
+### 25.6 Verification
+
+- `python3 tools/freeze-check.py` → 45/45 YES, 0 findings (RFC drafts are non-scanned).
+- `python3 tools/validate-schemas.py --strict` → 4/4 OK; `vendor-inventory.v1.1.json` reflected.
+- `git status` — all changes staged but uncommitted (pending user consent per git-safety rule).
+
+### 25.7 RFC portfolio state
+
+```
+rfcs/
+├── README.md
+├── RFC-0001-split-std-eng-001-naming.md                DRAFT  decision 2026-05-13
+├── RFC-0002-split-pol-ai-001-ai-ethics.md              DRAFT  decision 2026-05-20
+├── RFC-0003-collapse-pol-rec-001-into-std-dat-001.md   DRAFT  decision 2026-05-27
+├── RFC-0004-starter-kits.md                            DRAFT  decision 2026-05-27
+└── RFC-0005-regulation-mapping-artifacts.md            DRAFT  decision 2026-05-27
+```
+
+Five DRAFT RFCs concurrent. Decision dates 05-13 / 05-20 / 05-27 (×3). Approver rosters are non-overlapping enough that no single reviewer gates all five.
+
+### 25.8 Outstanding queue
 
 | ID | State | Next |
 |----|-------|------|
-| TASK-0001 — tier cheat-sheet in [4] FWK-GOV-001 | queued | ~2 h; aggregate Tier Tables across 45 standards |
-| RFC-0004 — starter kits & project templates | queued | ~2 weeks drafting; addresses F1, F6 |
-| RFC-0005 — regulation mapping artifacts | queued | ~1 week drafting; addresses F2, F3 (HIPAA primitives → TPL-LGL-002 + STD-DAT-005) |
 | Pass-3 numeric re-score | blocked | survey window closes 2026-05-06 |
-| RFC-0001/0002/0003 approvals | blocked | decisions 2026-05-13 / 05-20 / 05-27 |
+| RFC-0001 approval | blocked | decision 2026-05-13 |
+| RFC-0002 approval | blocked | decision 2026-05-20 |
+| RFC-0003/0004/0005 approvals | blocked | decisions 2026-05-27 |
+| [33] small-project exclusion clause | blocked on RFC-0004 | post-acceptance |
+| `governance/compliance-maps/*` | blocked on RFC-0005 | post-acceptance (seed) + per-reg bulk tickets |
+| `[46]-TPL-LGL-002` / `[47]-STD-DAT-005` | blocked on RFC-0005 | post-acceptance |
+| `docs/starters/*` authoring | blocked on RFC-0004 | post-acceptance |
+| Template repos `cybercube-starter-<archetype>` | blocked on RFC-0004 | follow-on tickets post-acceptance |
+
+All queued post-Pass-4 remediations are now either **done** (TASK-0001 + TASK-0002) or **RFC-drafted and awaiting sign-off** (RFC-0004 + RFC-0005). No additional audit-driven work remains in-flight.
 
 ---
