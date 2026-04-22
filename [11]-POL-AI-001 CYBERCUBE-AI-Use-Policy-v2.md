@@ -1,14 +1,18 @@
-# CYBERCUBE AI Usage & Ethics Policy (v1.1)
+# CYBERCUBE AI Use Policy (v2.0)
 
 ## Applicability Tier Table
 
 | Applicability | Tier | Summary of Clauses in This Policy | Waiver Path |
 | ------------- | ---- | --------------------------------- | ----------- |
 | All projects | **T1 MUST** | (1) AI tools MUST be chosen from the Approved Tools list (§2). (2) Personal/sensitive data (PII, secrets, customer data, source code of paid products) MUST NOT be sent to unapproved AI services (§3). (3) AI-generated output in shipped code MUST be reviewed by a human before merge. | None (non-waivable) |
-| SaaS / customer-facing | **T2 SHOULD** | Tool approval workflow, usage logging, prompt/model versioning in product AI. | Lightweight waiver per POL-GOV-001 §8.3 |
-| Regulated / high-risk | **T3 MAY** | AI Governance Committee, ethics review board, board-level approval for critical-risk AI, bias/fairness audits, documented model cards. | Formal waiver with risk assessment per STD-GOV-003 |
+| SaaS / customer-facing | **T2 SHOULD** | Tool approval workflow, usage logging, mandatory AI-use disclosure in customer-facing features, AUP-aligned training cadence. | Lightweight waiver per POL-GOV-001 §8.3 |
+| Regulated / high-risk | **T3 MAY** | AI Governance Committee (policy body), ethics review board (personnel-side intake), board-level approval for critical-risk AI use cases. | Formal waiver with risk assessment per STD-GOV-003 |
+
+> Per POL-GOV-001 §8.8.
 
 > **v1.1 (2026-04-22) — MUST scope narrowed.** Only three universal rules remain MUST. Governance committee, formal ethics review, monthly meetings, critical-risk board approval, and full monitoring pipeline are now T3 (regulated projects only) or ROADMAP.
+
+> **v2.0 (2026-04-22) — RFC-0002 split (breaking: content removed).** This document is **rescoped to the personnel-policy side only**: what humans are allowed to do with AI tools, approved-tools registry, prohibited data, disclosure rules, training. The three T1 MUSTs are unchanged. Engineering-side AI rules (model versioning, evaluation harness, prompt engineering / injection mitigation patterns, observability, bias / fairness audit protocols, model cards) have been moved to the new **[48] STD-AI-001 AI Engineering Standard v1.0**. The AI Governance Committee remains here as a *policy body*; its engineering remit moves to STD-AI-001. No personnel-side obligation is weakened.
 
 ## Glossary
 
@@ -250,14 +254,14 @@ Requirement: Human review for important outputs
 
 ---
 
-# CYBERCUBE AI Usage & Ethics Policy (v1)
+# CYBERCUBE AI Use Policy (v2.0)
 
 **Standard ID:** POL-AI-001  
 **Status:** Active  
-**Effective:** 2026-01-17  
+**Effective:** 2026-01-17 (v1), 2026-04-22 (v1.1), 2026-04-22 (v2.0 — RFC-0002 split)  
 **Classification:** INTERNAL  
 **Owner:** CTO + Legal  
-**Applies to:** All employees, contractors, and systems using AI
+**Applies to:** All employees and contractors using AI tools for work (see [48] STD-AI-001 for engineers building product features on AI)
 
 ---
 
@@ -622,15 +626,7 @@ If any answer is "No" or "Unsure" → Do not proceed
 
 ### 4.3 AI in Products
 
-| Requirement | Description |
-|-------------|-------------|
-| **Ethics review** | All AI features require ethics review |
-| **Bias testing** | Test for demographic and other biases |
-| **Transparency** | Disclose AI use to users where appropriate |
-| **Human override** | Provide ability to override AI decisions |
-| **Monitoring** | Monitor AI outputs for issues |
-| **Feedback loop** | Enable user feedback on AI outputs |
-| **Documentation** | Document AI behavior and limitations |
+This policy requires that any product feature powered by AI undergoes **ethics review** (§7 of this policy) and provides **customer-facing disclosure** when appropriate (§7.3). All engineering-side obligations (bias testing protocols, evaluation harness, human-override implementation patterns, monitoring / drift detection, model cards, model versioning) live in **[48] STD-AI-001 AI Engineering Standard**. The T3 MAY row of this policy's Tier Table obliges regulated projects to meet both the ethics-review / board-approval gates here *and* the engineering Tier Table of [48].
 
 ### 4.4 AI Risk Levels
 
@@ -861,23 +857,19 @@ If any answer is "No" or "Unsure" → Do not proceed
 
 ### 7.2 Bias Prevention
 
-| Stage | Actions |
-|-------|---------|
-| **Design** | Consider diverse perspectives, define fairness criteria |
-| **Data** | Audit training data for bias, ensure representation |
-| **Development** | Test across demographics, document limitations |
-| **Deployment** | Monitor for disparate impact, enable feedback |
-| **Ongoing** | Regular bias audits, update as needed |
+The ethical **commitment** not to discriminate based on protected characteristics is policy-level (§7.1, Principle 1) and non-negotiable. The **engineering protocol** for testing, auditing, and monitoring bias at design / data / development / deployment / ongoing stages lives in **[48] STD-AI-001 §6 Bias & Fairness Audit Protocol** (T3-gated in the engineering standard). Personnel-side obligation: any employee who suspects or observes biased AI output in a customer-facing feature MUST report it via the AI incident channel (§8.4).
 
 ### 7.3 Transparency Requirements
 
-| Context | Transparency Requirement |
-|---------|-------------------------|
-| **Customer-facing AI** | Disclose AI use, explain capabilities |
-| **Automated decisions** | Explain reasoning, provide appeal |
-| **AI-generated content** | Disclose when appropriate |
-| **Marketing claims** | Accurate representation of AI |
-| **Internal use** | Document for audit purposes |
+| Context | Transparency Requirement | Owner |
+|---------|-------------------------|-------|
+| **Customer-facing AI** | Disclose AI use; explain capabilities at appropriate detail. | Product + Marketing |
+| **Automated decisions** | Explain reasoning; provide appeal / override path. | Product + Legal |
+| **AI-generated content** | Disclose when appropriate (per §5.3 Content IP). | Publisher |
+| **Marketing claims** | Accurate representation of AI (no overclaiming). | Marketing + Legal |
+| **Internal use** | Document for audit purposes (usage logs per §8.2). | All employees |
+
+*Implementation patterns* for each row (disclosure banner copy, model-card publication path, appeal-path API surface) live in **[48] STD-AI-001 §7 Transparency & Disclosure Patterns**.
 
 ---
 
@@ -909,7 +901,7 @@ If any answer is "No" or "Unsure" → Do not proceed
 | Risk | Mitigation |
 |------|------------|
 | **Data leakage via prompts** | Data restrictions, training |
-| **Prompt injection attacks** | Input validation, monitoring |
+| **Prompt injection attacks** | Input validation, monitoring — see [48] STD-AI-001 §4 Prompt Engineering (cross-ref [21] STD-SEC-002) |
 | **Model poisoning** | Use trusted vendors, monitor outputs |
 | **Hallucination in critical use** | Human verification required |
 | **IP exposure** | No training on company data |
@@ -1018,22 +1010,24 @@ Ethics: ethics@cybercube.io
 
 ## Implementation Status
 
-**Last Updated:** 2026-01-17  
-**Policy Version:** v1
+**Last Updated:** 2026-04-22 (v2.0 — RFC-0002 split)  
+**Policy Version:** v2.0
 
 ### Core Implementation
 
 | Component | Status | Tier | Notes |
 |-----------|--------|------|-------|
-| Policy document | IN PLACE | T1 | This policy |
+| Policy document | IN PLACE | T1 | This policy (v2.0 rescoped to personnel-side) |
 | Approved tools registry (§2) | IN PLACE | T1 | Initial list defined; treated as canonical |
 | Data-input prohibitions (§3) | IN PLACE | T1 | Enforced via AUP + secure-coding review |
 | Human review of AI output | IN PLACE | T1 | Enforced via code-review policy |
 | Tool approval workflow | ROADMAP | T2 | Define when first non-trivial new tool requested |
 | AI training module | ROADMAP | T2 | Bundle into STD-SEC-008 onboarding once unfrozen |
-| Usage monitoring / logging | ROADMAP | T3 | Required only for product-embedded AI |
-| Ethics review process | ROADMAP | T3 | Required only for T3 / critical-risk AI |
-| Governance committee | ROADMAP | T3 | Required only for T3 / critical-risk AI |
+| Customer-facing AI disclosure | ROADMAP | T2 | Copy template + placement rules (cross-ref [48] §7) |
+| AI Governance Committee (policy body) | ROADMAP | T3 | Required only for T3 / critical-risk AI; engineering remit delegated to [48] |
+| Ethics review process (personnel-side intake) | ROADMAP | T3 | Required only for T3 / critical-risk AI |
+| Board-level approval for critical-risk AI | ROADMAP | T3 | Required only for T3 / critical-risk AI |
+| Engineering-side AI deliverables (model versioning, eval harness, observability, bias audit, model cards) | N/A | T2/T3 | Delegated to [48] STD-AI-001 Implementation Status — not in scope for this policy. |
 
 Status vocabulary: `IN PLACE` | `COMPLETE` | `PARTIAL` | `ROADMAP` | `N/A`.
 
@@ -1045,6 +1039,7 @@ Status vocabulary: `IN PLACE` | `COMPLETE` | `PARTIAL` | `ROADMAP` | `N/A`.
 |---------|------|---------|
 | v1 | 2026-01-17 | Initial release |
 | v1.1 | 2026-04-22 | Unfreeze (Path B): added Applicability Tier Table; T1 reduced to approved-tools list, data-input prohibitions, and human review of AI output. Governance committee, ethics review, usage monitoring, and critical-risk board approval reclassified as T3 ROADMAP. Status vocabulary normalized. |
+| v2.0 | 2026-04-22 | **RFC-0002 split (breaking: content removed).** Rescoped to personnel-policy side only. Document retitled "AI Use Policy" (was "AI Usage & Ethics Policy"). T1 MUSTs unchanged. Engineering-side content (model versioning, eval harness, prompt engineering / injection mitigation, observability / drift / unsafe-output KRI, bias / fairness audit protocol, model cards, transparency implementation patterns) moved to new **[48] STD-AI-001 AI Engineering Standard v1.0**. AI Governance Committee retained as a policy body; its engineering remit delegated to [48]. Tier Table rows T2 and T3 adjusted to reflect personnel-policy scope. Sections §4.3 / §7.2 / §7.3 / §8.3 retain the policy commitment and delegate the protocol to [48]. Implementation Status table updated accordingly. No normative weakening: every prior obligation remains in force — personnel-side in this document, engineering-side in [48]. |
 
 ---
 
@@ -1052,9 +1047,10 @@ Status vocabulary: `IN PLACE` | `COMPLETE` | `PARTIAL` | `ROADMAP` | `N/A`.
 
 | Document | Relationship |
 |----------|--------------|
-| 7.3 CYBERCUBE Acceptable Use Policy | General technology use |
-| 3.3 CYBERCUBE Data Classification & Retention Standard | Data handling |
-| 2.1 CYBERCUBE Security Policy | Security framework |
-| 3.2 CYBERCUBE Privacy Handling Policy | Privacy requirements |
-| Intellectual Property Policy *(Planned)* | IP ownership |
-| 2.2 CYBERCUBE Secure Coding Standard | AI in code |
+| **[48] STD-AI-001 AI Engineering Standard** | **Canonical engineering-side home.** Model versioning, evaluation harness, prompt engineering / injection mitigation, observability, bias / fairness audits, model cards. |
+| [10] POL-AUP-001 Acceptable Use Policy | General technology use. |
+| [25] STD-DAT-001 Data Classification & Retention Standard | Data-handling rules for AI inputs. |
+| [17] STD-SEC-001 Security Policy | Security framework. |
+| [13] POL-PRI-002 Privacy Handling Policy | Privacy requirements. |
+| [21] STD-SEC-002 Secure Coding Standard | AI in code + prompt-injection secure-coding patterns (cross-linked from [48]). |
+| Intellectual Property Policy *(Planned)* | IP ownership. |
