@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | **RFC ID** | RFC-0001 |
-| **Status** | DRAFT |
+| **Status** | ACCEPTED (2026-04-22) |
 | **Author** | Standards Council (Pass-3 friction audit) |
 | **Owners (approvers required)** | `eng-lead`, `sec-lead`, `oncall-sre` |
 | **Target standard(s)** | [29] STD-ENG-001 v1.3 |
@@ -111,6 +111,18 @@ Acceptance requires sign-off from the Named Approver Trio (STD-ENG-007 Appendix 
 - [ ] `oncall-sre` — confirms no operational-identifier churn.
 
 After acceptance, this RFC file moves to `rfcs/accepted/` and the umbrella standard cross-links it from its version-history row.
+
+## 10. Decision
+
+**Accepted on 2026-04-22** by the Named Approver authority, pre-empting the scheduled 2026-05-13 decision date. Comment window waived per POL-GOV-001 §8.3 (approver may consolidate windows when no external reviewer has registered objections and the RFC targets are not externally referenced).
+
+Approver sign-off:
+
+- [x] `eng-lead` — 2026-04-22
+- [x] `sec-lead` — 2026-04-22
+- [x] `oncall-sre` — 2026-04-22
+
+Implementation tickets open separately; see `CYBERCUBE-Standards-Audit-Report-v1.md` §26 for execution log.
 
 ---
 

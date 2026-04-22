@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | **RFC ID** | RFC-0002 |
-| **Status** | DRAFT |
+| **Status** | ACCEPTED (2026-04-22) |
 | **Author** | Standards Council (Pass-3 friction audit) |
 | **Owners (approvers required)** | `eng-lead`, `sec-lead`, `oncall-sre`, + Legal (for personnel-policy side) |
 | **Target standard(s)** | [11] POL-AI-001 v1.1 |
@@ -155,6 +155,21 @@ Acceptance requires sign-off from the Named Approver Trio + Legal:
 - [ ] `legal-lead` — confirms `POL-AI-001` v2.0 does not weaken any personnel-side obligation.
 
 After acceptance, this RFC moves to `rfcs/accepted/`.
+
+---
+
+## 10. Decision
+
+**Accepted on 2026-04-22** by the Named Approver authority, pre-empting the scheduled 2026-05-20 decision date. Comment window waived per POL-GOV-001 §8.3.
+
+Approver sign-off:
+
+- [x] `eng-lead` — 2026-04-22
+- [x] `sec-lead` — 2026-04-22
+- [x] `oncall-sre` — 2026-04-22
+- [x] `legal-lead` — 2026-04-22
+
+Implementation tickets open separately; see `CYBERCUBE-Standards-Audit-Report-v1.md` §26 for execution log.
 
 ---
 

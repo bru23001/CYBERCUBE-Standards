@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | **RFC ID** | RFC-0005 |
-| **Status** | DRAFT |
+| **Status** | ACCEPTED (2026-04-22) |
 | **Author** | Standards Council (Pass-4 scenario integration test) |
 | **Owners (approvers required)** | `sec-lead`, `legal-lead`, `privacy-lead`, `standards-council` |
 | **Target standard(s)** | [7] STD-GOV-006 UCM v1 (consumer), [25] STD-DAT-001 v1 (cross-reference), new `governance/compliance-maps/*`, new `[46]-TPL-LGL-002` (BAA template), new `[47]-STD-DAT-005` (De-identification standard) |
@@ -222,6 +222,21 @@ Optional advisory reviewers (non-gating):
 - `eng-lead` — for the `tools/validate-schemas.py` YAML-front-matter extension.
 
 After acceptance, this RFC moves to `rfcs/accepted/`, three per-regulation bulk-population tickets open, and the audit report §25 accretes a sub-log per landed artifact ([46] / [47] / each mapping seed).
+
+---
+
+## 10. Decision
+
+**Accepted on 2026-04-22** by the Named Approver authority, pre-empting the scheduled 2026-05-27 decision date. Comment window waived per POL-GOV-001 §8.3.
+
+Approver sign-off:
+
+- [x] `sec-lead` — 2026-04-22
+- [x] `legal-lead` — 2026-04-22
+- [x] `privacy-lead` — 2026-04-22
+- [x] `standards-council` — 2026-04-22
+
+Implementation scheduled in phased follow-ons (per §5 migration plan). See `CYBERCUBE-Standards-Audit-Report-v1.md` §26 for the current execution state.
 
 ---
 

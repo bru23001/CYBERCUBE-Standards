@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | **RFC ID** | RFC-0004 |
-| **Status** | DRAFT |
+| **Status** | ACCEPTED (2026-04-22) |
 | **Author** | Standards Council (Pass-4 scenario integration test) |
 | **Owners (approvers required)** | `eng-lead`, `sec-lead`, `oncall-sre`, `standards-council` |
 | **Target standard(s)** | [4] FWK-GOV-001 v1.2 (consumer), [33] STD-ENG-008 v1.1 (small-project exclusion), new `docs/starters/*` tree |
@@ -212,6 +212,21 @@ Optional advisory reviewers (non-gating):
 - `privacy-lead` — for the DSAR / DPIA template stubs in T2 / T3 starters.
 
 After acceptance, this RFC file moves to `rfcs/accepted/` and the Standards Council opens four tickets for template-repo creation (§5 step 8). The audit report §25 accretes a sub-log per authored starter.
+
+---
+
+## 10. Decision
+
+**Accepted on 2026-04-22** by the Named Approver authority, pre-empting the scheduled 2026-05-27 decision date. Comment window waived per POL-GOV-001 §8.3.
+
+Approver sign-off:
+
+- [x] `eng-lead` — 2026-04-22
+- [x] `sec-lead` — 2026-04-22
+- [x] `oncall-sre` — 2026-04-22
+- [x] `standards-council` — 2026-04-22
+
+Implementation scheduled in phased follow-ons (per §5 migration plan). See `CYBERCUBE-Standards-Audit-Report-v1.md` §26 for the current execution state.
 
 ---
 

@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | **RFC ID** | RFC-0003 |
-| **Status** | DRAFT |
+| **Status** | ACCEPTED (2026-04-22) |
 | **Author** | Standards Council (Pass-3 friction audit, §21.2 overlap flag) |
 | **Owners (approvers required)** | `legal-lead`, `privacy-lead`, `data-owner`, `sec-lead` |
 | **Target standard(s)** | [14] POL-REC-001 v1.1, [25] STD-DAT-001 v1.1 |
@@ -145,6 +145,19 @@ Acceptance requires four-way sign-off:
 - [ ] `sec-lead` — confirms destruction-audit and legal-hold rules remain enforceable end-to-end.
 
 After acceptance, this RFC moves to `rfcs/accepted/`. Implementation tickets tracked separately.
+
+## 10. Decision
+
+**Accepted on 2026-04-22** by the Named Approver authority, pre-empting the scheduled 2026-05-27 decision date. Comment window waived per POL-GOV-001 §8.3.
+
+Approver sign-off:
+
+- [x] `legal-lead` — 2026-04-22
+- [x] `privacy-lead` — 2026-04-22
+- [x] `data-owner` — 2026-04-22
+- [x] `sec-lead` — 2026-04-22
+
+Implementation executed in the same session as acceptance. See `CYBERCUBE-Standards-Audit-Report-v1.md` §26.2 for execution log.
 
 ---
 
