@@ -5,12 +5,12 @@
     "name": "CYBERCUBE Framework Compliance",
     "type": "Framework",
     "domain": "Governance",
-    "version": "v1.3",
+    "version": "v1.4",
     "owner": "Standards Council",
     "status": "Active",
     "effective": "2026-04-22",
     "classification": "INTERNAL",
-    "filename": "FWK-GOV-001 CYBERCUBE-Framework-Compliance-v1.3.md",
+    "filename": "FWK-GOV-001 CYBERCUBE-Framework-Compliance-v1.4.md",
     "createdAt": "2026-02-10"
   },
   {
@@ -635,12 +635,12 @@
     "name": "CYBERCUBE Unified Control Matrix",
     "type": "Standard",
     "domain": "Audit & Metrics",
-    "version": "v1",
+    "version": "v1.2",
     "owner": "CISO + Compliance Lead",
     "status": "Active",
-    "effective": "2026-02-16",
+    "effective": "2026-04-22",
     "classification": "INTERNAL",
-    "filename": "STD-GOV-006 CYBERCUBE-Unified-Control-Matrix-v1.md",
+    "filename": "STD-GOV-006 CYBERCUBE-Unified-Control-Matrix-v1.2.md",
     "createdAt": "2026-02-16"
   },
   {
@@ -669,6 +669,34 @@
     "effective": "2026-04-22",
     "classification": "INTERNAL",
     "filename": "STD-AI-001 CYBERCUBE-AI-Engineering-Standard-v1.md",
+    "createdAt": "2026-04-22"
+  },
+  {
+    "id": "TPL-LGL-002",
+    "catalogNumber": "7.8",
+    "name": "CYBERCUBE BAA Standard Template",
+    "type": "Template",
+    "domain": "Legal",
+    "version": "v1.0",
+    "owner": "Legal Lead + Privacy Lead",
+    "status": "Active",
+    "effective": "2026-04-22",
+    "classification": "INTERNAL",
+    "filename": "TPL-LGL-002 CYBERCUBE-BAA-Standard-Template-v1.md",
+    "createdAt": "2026-04-22"
+  },
+  {
+    "id": "STD-DAT-005",
+    "catalogNumber": "3.6",
+    "name": "CYBERCUBE De-identification Standard",
+    "type": "Standard",
+    "domain": "Data & Privacy",
+    "version": "v1.0",
+    "owner": "Privacy Lead + Data Owner",
+    "status": "Active",
+    "effective": "2026-04-22",
+    "classification": "INTERNAL",
+    "filename": "STD-DAT-005 CYBERCUBE-De-identification-Standard-v1.md",
     "createdAt": "2026-04-22"
   }
 ]

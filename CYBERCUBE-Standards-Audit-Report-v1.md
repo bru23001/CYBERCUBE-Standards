@@ -2182,3 +2182,135 @@ Remaining accepted RFCs:
 Pass-4 findings status unchanged by this RFC-0002 execution (RFC-0002 does not address any Pass-4 finding directly; Pass-4 F4 was already addressed in §25.2).
 
 ---
+
+## 29. RFC-0005 EXECUTION — Regulation mapping artifacts + HIPAA primitives (2026-04-22)
+
+RFC-0005 (accepted 2026-04-22) fully executed. Closes Pass-4 findings **F2** (regulation mappings absent) and **F3** (HIPAA primitives absent). Portfolio grows **46 → 48 standards**.
+
+### 29.1 Scope delivered
+
+Five deliverable classes landed per RFC-0005 §3:
+
+1. **`governance/compliance-maps/` directory** — new subdirectory with:
+   - `_compliance-map.schema.json` (JSON schema for YAML front-matter — stored in repo-standard location `schemas/compliance-map.schema.json` for tooling consistency; README references the schema path).
+   - `README.md` — index, schema contract, relationship-enum definitions (`direct` / `partial` / `adjacent`), ownership table, contribution workflow.
+   - `pci-dss-4.0.md` — PCI DSS v4.0 crosswalk. 5 seed rows. Owner: `sec-lead`.
+   - `hipaa-security-rule.md` — HIPAA Security Rule (45 CFR §164.306-318) crosswalk. 6 seed rows across Administrative + Technical safeguards. Owner: `privacy-lead` + `legal-lead`.
+   - `soc2.md` — AICPA Trust Services Criteria crosswalk. 7 seed rows spanning CC1, CC6, CC7. Owner: `sec-lead`.
+   - All maps carry `authoritative: false` and a non-authoritative banner.
+
+2. **`schemas/compliance-map.schema.json`** — Draft-2020-12 JSON schema validating the machine-readable YAML front-matter. Required fields: `regulation` (id/name/version/authority/effective/published_map/owner), `rows[]` (ucm_id matching `^CTL-[A-Z]+-[0-9]{3}$`, regulation_ref, relationship, notes?, evidence_artifact?). `authoritative` field constrained to `false`.
+
+3. **`tools/validate-schemas.py` extended** — YAML-front-matter discovery path added:
+   - New schema-to-path mapping for `compliance-map.schema.json` → `governance/compliance-maps/*.md`.
+   - `_extract_yaml_front_matter()` helper + new `yaml_front_matter` path in `validate_one()`.
+   - Dependency on `PyYAML` is **optional**; when absent, compliance-map artifacts are skipped with a clear message and other schema validations still run. Matches the existing graceful-degradation pattern for `jsonschema`.
+   - `README.md` inside `compliance-maps/` and files starting with `_` are excluded from discovery.
+
+4. **[7] STD-GOV-006 v1.1 → v1.2** — additive:
+   - Tier Cheat-Sheet T2 row extended: products declaring scope for a listed regulation MUST reference the map in PCL row + audit-evidence pack.
+   - New **§13 External Regulation Crosswalks** describing the map-file contract, ownership, consumption, cadence.
+   - Version-history backfill: v1.1 entry documented the prior Tier Table addition that had created version drift; v1.2 entry documents RFC-0005.
+   - Renamed `v1.md` → `v1.2.md`; registry synced.
+
+5. **[46] TPL-LGL-002 v1.0 + [47] STD-DAT-005 v1.0** — two new numbered entries:
+   - **[46] BAA Standard Template** — meta-exempt (no Tier Table), sibling to [16] TPL-LGL-001 DPA template. Covers 45 CFR §164.504(e) required content: permitted uses + Minimum Necessary + prohibited uses, safeguards cross-referenced to UCM via `compliance-maps/hipaa-security-rule.md`, breach notification (60-day max with 5-BD initial notice), subcontractor flow-down, HHS access, term + termination, return-or-destroy-or-extend on termination. Schedules A-D for per-deal customization. Owner: Legal Lead + Privacy Lead.
+   - **[47] De-identification Standard** — T1/T2/T3 Tier Table. T1 rules apply only when PHI or GDPR-scope personal data is exported for secondary use (conditional T1). Three methods documented: Safe-Harbor (HIPAA §164.514(b)(2) — 18 identifier categories), Expert-Determination (HIPAA §164.514(b)(1) — qualified-expert methodology), GDPR pseudonymization (Art. 4(5)). Residual-risk taxonomy: `low`/`medium`/`high` with review cadence. Release-log contract with [38] STD-OPS-003. Owner: Privacy Lead + Data Owner.
+
+### 29.2 Cross-reference updates (additive, no version bumps)
+
+Per POL-GOV-001 §8 additive-reference rule, the following received additive citations without version bumps:
+
+- **[25] STD-DAT-001 v1.2** — T3 row now cites `[46] TPL-LGL-002` for HIPAA BAA instrument and `[47] STD-DAT-005` for de-identification procedures.
+- **[15] STD-LGL-001 v1** — T3 row now flags the legal-hold-vs-BAA return-or-destroy precedence per [46] §8.3.
+- **[9] POL-VEN-001 v1** — T2 row now cites `[16] TPL-LGL-001` (DPA) and `[46] TPL-LGL-002` (BAA) as the two vendor-agreement instruments.
+
+### 29.3 [4] FWK-GOV-001 v1.3 → v1.4 — Tier Cheat-Sheet update
+
+- Intro portfolio count updated from 45 → 48 standards.
+- Meta-exempt list grows to include `[46]`.
+- **T1 MUST** — new conditional `[47]` row (fires only when PHI or GDPR-scope personal data is exported for secondary use).
+- **T2 SHOULD** — `[7]` row extended to reference `governance/compliance-maps/` with reserved behavior (MUST reference in PCL + evidence pack when scope applies). New `[47]` row (documented procedure per data-flow, method-selection rationale, periodic risk review).
+- **T3 MAY** — `[25]` T3 row revised to cite `[46] TPL-LGL-002` as the BAA instrument; new `[47]` T3 row (formal Expert-Determination review, SDC, differential privacy, external audit, k-anonymity/l-diversity thresholds).
+- Renamed `v1.3.md` → `v1.4.md`; registry synced.
+
+### 29.4 `tools/freeze-check.py` META_EXEMPT_PREFIXES extended
+
+`[46]-TPL-LGL-002` added to the meta-exempt whitelist alongside `[1]`, `[2]`, and `[16]`. Rationale: [46] is a legal template (class: template for customer agreements) that, like [16] TPL-LGL-001, inherits its applicability from the triggering standard rather than carrying its own Tier Table. Pattern matches POL-GOV-001 §8.8.1.
+
+### 29.5 `registries/standards.json` sync
+
+- `FWK-GOV-001` → v1.4 + filename.
+- `STD-GOV-006` → v1.2 + filename + effective 2026-04-22.
+- New entry `TPL-LGL-002` — catalog 7.8, v1.0, Legal, Legal Lead + Privacy Lead.
+- New entry `STD-DAT-005` — catalog 3.6, v1.0, Data & Privacy, Privacy Lead + Data Owner.
+- Total entries: 50 (48 standards + 2 legacy non-[N] rows).
+
+### 29.6 Verification
+
+Ran baseline pair:
+
+- `python3 tools/freeze-check.py --json` — 48 standards scanned, **0 findings**, all tier tables present (or meta-exempt). Report regenerated; `tier_table_rate` 100%.
+- `python3 tools/validate-schemas.py --strict` — 7 artifacts checked, **0 failures**. ADR/audit-findings/risk/vendor JSON artifacts validate clean. Compliance-map YAML validation SKIPS gracefully (PyYAML missing in this runtime) but structural `---` delimiter extraction confirms all three seed files have well-formed front-matter blocks. A sanity regex pass confirms: PCI 5 rows, HIPAA 6 rows, SOC2 7 rows — all match file shape.
+
+### 29.7 Files touched (this execution)
+
+**Created (7):**
+- `schemas/compliance-map.schema.json`
+- `governance/compliance-maps/README.md`
+- `governance/compliance-maps/pci-dss-4.0.md`
+- `governance/compliance-maps/hipaa-security-rule.md`
+- `governance/compliance-maps/soc2.md`
+- `[46]-TPL-LGL-002 CYBERCUBE-BAA-Standard-Template-v1.md`
+- `[47]-STD-DAT-005 CYBERCUBE-De-identification-Standard-v1.md`
+
+**Modified:**
+- `[7]-STD-GOV-006 …-v1.md` → renamed `…-v1.2.md`; T2 cheat-sheet row; new §13; version history.
+- `[4]-FWK-GOV-001 …-v1.3.md` → renamed `…-v1.4.md`; portfolio count 45 → 48; [7]/[25] cheat-sheet rows; new [47] T1/T2/T3 rows; meta-exempt list grows; version history v1.4 entry.
+- `[25]-STD-DAT-001 …-v1.2.md` — T3 row additive xref to [46]/[47].
+- `[15]-STD-LGL-001 …-v1.md` — T3 row additive xref to [46] §8.3.
+- `[9]-POL-VEN-001 …-v1.md` — T2 row additive xref to [16]/[46].
+- `tools/validate-schemas.py` — YAML-front-matter discovery + validation.
+- `tools/freeze-check.py` — `[46]-TPL-LGL-002` added to META_EXEMPT_PREFIXES.
+- `registries/standards.json` — FWK-GOV-001 v1.4 + STD-GOV-006 v1.2 + new TPL-LGL-002 + new STD-DAT-005.
+- `freeze-check-report.json` — regenerated (48 rows, 0 findings).
+
+### 29.8 Migration-plan step status (RFC-0005 §5)
+
+| Step | Status |
+|------|--------|
+| 1. Accept RFC | Done (§26) |
+| 2. Create compliance-maps/ + schema + README | Done (§29.1) |
+| 3. Seed 3 regulation maps | Done (§29.1) |
+| 4. Extend validate-schemas.py for YAML | Done (§29.1 / §29.6) |
+| 5. [7] STD-GOV-006 T2 clause + v1.1 bump | Done — v1.2 (§29.1; v1.1 was backfill of prior Tier-Table drift) |
+| 6. Author [46] TPL-LGL-002 | Done (§29.1) |
+| 7. Author [47] STD-DAT-005 | Done (§29.1) |
+| 8. Registry rows for [46] / [47] | Done (§29.5) |
+| 9. [4] FWK-GOV-001 Cheat-Sheet; v1.2 → v1.3 bump | Done — v1.4 (§29.3; prior v1.3 was RFC-0002 execution) |
+| 10. Cross-references in [25] / [15] / [9] | Done (§29.2) |
+| 11. Re-run freeze-check + validate-schemas | Done (§29.6) |
+| 12. Open per-regulation bulk-population tickets | Deferred — documented; seed rows ship at 3-7 per regulation per RFC-0005 §3.2 |
+| 13. Announce in `#eng-standards` + `#legal-compliance` | Deferred — non-normative communication task |
+
+### 29.9 Pass-4 findings status after §29
+
+| Finding | Status | Closed by |
+|---------|--------|-----------|
+| F1 Starter kits / project templates | Partial | RFC-0004 §27 (small-project exclusion landed; `docs/starters/*` still queued) |
+| F2 Regulation mappings absent | **Closed** | RFC-0005 §29 (seed maps + schema + tool + governance) |
+| F3 HIPAA primitives absent | **Closed** | RFC-0005 §29 ([46] BAA + [47] De-identification) |
+| F4 Tier Cheat-Sheet coordination cost | Closed (§25.2) | §25.2 + §28 + §29.3 refreshes |
+| F5 Vendor-inventory enum missing `foundation-model` | Closed (§25.1) | §25.1 |
+| F6 Small-project module-audit exclusion | Closed | RFC-0004 partial §27 |
+
+Only **F1 residual** remains from Pass-4; it reduces to the `docs/starters/*` + onboarding-checklist work noted as RFC-0004 residual. Pass-3 numeric re-score remains blocked until the 2026-05-06 survey window closes.
+
+### 29.10 Remaining work
+
+- **RFC-0001** (STD-ENG-001 split) — large multi-file structural refactor + ~3 new sub-standards. Still queued.
+- **RFC-0004 residual** — `docs/starters/*` + companion template repos + [5] PCL schema extension + [4] acknowledgment paragraph.
+- **RFC-0005 follow-ons** — bulk population of each of the three seeded maps per-regulation owner (PCI ≈3 wk / HIPAA ≈2 wk / SOC2 ≈2 wk per RFC-0005 §3.2).
+- **Optional**: install `PyYAML` in the CI runtime to enable full YAML front-matter schema validation (currently skipped gracefully).
+
+---
