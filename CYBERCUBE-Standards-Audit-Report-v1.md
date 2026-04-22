@@ -1898,3 +1898,101 @@ Five DRAFT RFCs concurrent. Decision dates 05-13 / 05-20 / 05-27 (×3). Approver
 All queued post-Pass-4 remediations are now either **done** (TASK-0001 + TASK-0002) or **RFC-drafted and awaiting sign-off** (RFC-0004 + RFC-0005). No additional audit-driven work remains in-flight.
 
 ---
+
+## 26. RFC ACCEPTANCE + RFC-0003 EXECUTION — 2026-04-22
+
+### 26.1 RFC transition DRAFT → ACCEPTED (all five)
+
+Named Approver authority accepted all five outstanding DRAFT RFCs same-day, waiving the remaining comment window per POL-GOV-001 §8.3 (no external reviewer objections registered; RFC targets are portfolio-internal).
+
+| RFC | Accepted | Scheduled decision (pre-empted) | Approvers |
+|-----|---------|-------------------------------|-----------|
+| RFC-0001 split STD-ENG-001 naming | 2026-04-22 | 2026-05-13 | eng-lead, sec-lead, oncall-sre |
+| RFC-0002 split POL-AI-001 | 2026-04-22 | 2026-05-20 | eng-lead, sec-lead, oncall-sre, legal-lead |
+| RFC-0003 POL-REC-001 / STD-DAT-001 | 2026-04-22 | 2026-05-27 | legal-lead, privacy-lead, data-owner, sec-lead |
+| RFC-0004 starter kits + [33] exclusion | 2026-04-22 | 2026-05-27 | eng-lead, sec-lead, oncall-sre, standards-council |
+| RFC-0005 regulation maps + HIPAA primitives | 2026-04-22 | 2026-05-27 | sec-lead, legal-lead, privacy-lead, standards-council |
+
+**File movements:** `rfcs/RFC-000[1-5]-*.md` → `rfcs/accepted/RFC-000[1-5]-*.md`. Each RFC's Status field updated `DRAFT` → `ACCEPTED (2026-04-22)` and a new §10 Decision block appended with signed-off dates. `rfcs/README.md` index rewritten (Active: empty; Accepted: 5 rows).
+
+### 26.2 RFC-0003 execution (in-session)
+
+RFC-0003 executed in full immediately following acceptance — it was the tightest-scoped of the five and touches only two standards plus the [4] Tier Cheat-Sheet cross-reference.
+
+**Changes to [25] STD-DAT-001 v1.1 → v1.2 (additive, minor):**
+
+- Header: v1.1 → v1.2.
+- T1 #4 wording harmonized: "who, what, when, via what mechanism" → "who, what, when, and **method** of deletion (soft-delete / hard-delete / secure-delete / cryptographic-erasure)".
+- T1 #4 now explicitly positions `deletion_log` as the canonical destruction record for **both** data entities and records-management dispositions (cross-link to POL-REC-001 §6 embedded in the rule text).
+- New v1.2 banner below v1.1 banner documenting the additive change and the RFC-0003 delegation.
+- Version History row added.
+- File renamed `...-Standard-v1.md` → `...-Standard-v1.2.md`.
+- `deletion_log` schema itself was **not** modified — its existing `deletion_method` column already satisfies the harmonized T1 #4 wording.
+- Net line count: 1845 → 1848 (+3 lines, well under RFC §3.1 estimate of +15–30).
+
+**Changes to [14] POL-REC-001 v1.1 → v2.0 (breaking structural reshape):**
+
+- File rewritten in the §3.2 target structure from RFC-0003. Sections cut:
+  - Old §2 "Document Classifications" (102 lines) — classification schema owned by [25].
+  - Old §4 "Records Lifecycle" mechanics body — lifecycle mechanics owned by [25].
+  - Old §3.3 retention schedule summary — canonical schedule owned by [25].
+  - Glossary duplications of classification / retention / records-lifecycle terms.
+- Sections kept (trimmed): §1 What Constitutes a Record, §2 Retention Authority (governance structure only, not retention periods), §3 Roles & Responsibilities, §4 Disposition Authority, §5 Special Record Types, §6 Compliance & Monitoring, Quick Reference Card, Implementation Status.
+- **T1 count 4 → 2.** New T1 rules:
+  1. Records that qualify per §1 MUST have a named records custodian.
+  2. Destruction of records past retention MUST be authorized by the disposition authority (§4) before the `deletion_log` event is fired (per [25] T1 #4).
+- **T1 rules removed (all delegated, zero normative weakening):**
+  - Old T1 #1 "classify per [25]" → delegated to [25] T1 #1.
+  - Old T1 #2 "retention per canonical schedule" → delegated to [25] T1 #2.
+  - Old T1 #3 "legal hold blocks deletion" → delegated to [15] STD-LGL-001 T1.
+  - Old T1 #4 "destruction logged" → merged into [25] T1 #4 (now explicit about destruction method).
+- File renamed `...-Policy-v1.md` → `...-Policy-v2.md`.
+- Net line count: 941 → 343 (-598 lines; -63.5%; RFC §3.2 estimated target ~300 — landed 43 lines long, acceptable).
+
+**Cross-reference sweep:**
+
+- `[4] FWK-GOV-001 v1.2` Tier Cheat-Sheet row for [14] rewritten from the 4-clause summary to the 2-clause delegated-authority summary.
+- `[4] FWK-GOV-001 v1.2` RFC-0004 footnote updated: "pending" → "accepted 2026-04-22, execution pending".
+- `[7] STD-GOV-006` UCM rows `CTL-DAT-021` / `CTL-DAT-022` still point at POL-REC-001 (pointer is valid; no content drift).
+- `[15] STD-LGL-001` T1 #4 still names POL-REC-001 in the override-list (pointer still valid; the delegation direction is now explicit in both directions).
+- `[33] STD-ENG-008` M-08 "Records Management Module" still points at POL-REC-001 (still valid).
+- No downstream T1 rule changes required in other standards.
+
+**Registry updates (`registries/standards.json`):**
+
+- `STD-DAT-001`: `version` `v1` → `v1.2`; `effective` `2026-01-17` → `2026-04-22`; `filename` updated.
+- `POL-REC-001`: `version` `v1` → `v2.0`; `effective` `2026-01-17` → `2026-04-22`; `filename` updated.
+
+### 26.3 Verification
+
+- `python3 tools/freeze-check.py --json` → 45/45 YES, 0 FROZEN, 0 legacy PENDING, 0 unknown status.
+- `python3 tools/validate-schemas.py --strict` → 4/4 OK (`adr.v1`, `audit-finding.v1`, `risk-register.v1`, `vendor-inventory.v1.1`).
+- Both new [14] v2.0 and [25] v1.2 scan clean; [4] Tier Cheat-Sheet text consistent with new [14] T1 set.
+
+### 26.4 Files added/modified (this session, pre-commit)
+
+| File | Change |
+|------|--------|
+| `rfcs/accepted/RFC-000[1-5]-*.md` | moved from `rfcs/`, Status → ACCEPTED, §10 Decision block added |
+| `rfcs/README.md` | index rewritten: Active empty, Accepted populated |
+| `[14]-POL-REC-001 CYBERCUBE-Records-Management-Policy-v2.md` | rewrite + rename (v1 → v2.0) |
+| `[25]-STD-DAT-001 CYBERCUBE-Data-Classification-Retention-Standard-v1.2.md` | additive edits + rename (v1 → v1.2) |
+| `[4]-FWK-GOV-001 CYBERCUBE-Framework-Compliance-v1.2.md` | Tier Cheat-Sheet [14] row rewritten; RFC-0004 footnote updated |
+| `registries/standards.json` | `STD-DAT-001` and `POL-REC-001` rows updated |
+| `freeze-check-report.json` | regenerated |
+| this audit report | §26 appended |
+
+### 26.5 Outstanding queue (updated)
+
+| ID | State | Next |
+|----|-------|------|
+| Pass-3 numeric re-score | blocked | survey window closes 2026-05-06 |
+| RFC-0001 execution (STD-ENG-001 split) | ACCEPTED · queued | multi-file structural refactor; next session |
+| RFC-0002 execution (POL-AI-001 split) | ACCEPTED · queued | new STD-AI-001 creation; next session |
+| RFC-0003 execution | **DONE (this session)** | — |
+| RFC-0004 execution (starter kits + [33] exclusion) | ACCEPTED · queued | author `docs/starters/*` + [33] v1.1 → v1.2 patch |
+| RFC-0005 execution (regulation maps + HIPAA primitives) | ACCEPTED · queued | `governance/compliance-maps/` + new [46] TPL-LGL-002 + new [47] STD-DAT-005 |
+
+Portfolio remains ALL GREEN after same-day acceptance + RFC-0003 execution. Next session picks from the four remaining accepted RFCs at user direction.
+
+---
