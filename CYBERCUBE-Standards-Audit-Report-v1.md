@@ -1996,3 +1996,80 @@ RFC-0003 executed in full immediately following acceptance — it was the tighte
 Portfolio remains ALL GREEN after same-day acceptance + RFC-0003 execution. Next session picks from the four remaining accepted RFCs at user direction.
 
 ---
+
+## 27. RFC-0004 PARTIAL EXECUTION — [33] Small-Project Exclusion (2026-04-22)
+
+### 27.1 Scope
+
+Executed the normative-portfolio slice of RFC-0004 §3.3 (the small-project exclusion clause in [33] STD-ENG-008). Deferred: `docs/starters/*` authoring and companion template repos (larger, out of scope for this slice; remain queued per RFC-0004 §5 migration plan).
+
+This slice addresses Pass-4 finding **F6** directly (M-NN audit overreach for very small projects) and is fully self-contained — one standard modified, two cross-references updated, zero new deliverables required.
+
+### 27.2 [33] STD-ENG-008 v1.4 → v1.7 (additive, minor)
+
+**Drift reconciliation (found during this slice):**
+
+The [33] file had accumulated 3-way drift before this session:
+
+- Filename: `-v1.1.md`
+- In-document metadata: `Version: 1.6`
+- Version History last row: `1.4` (2026-02-11)
+- Registry: `version: v1.4`, `filename: ...-v1.1.md`
+
+The inline `v1.5` and `v1.6` banners existed in the Tier Table preamble but were never mirrored into the Version History table or into the filename. Resolved in this session by:
+
+- Backfilling two missing Version History rows for v1.5 (Tier Table addition) and v1.6 (Pass-3 data/rules split).
+- Adding the new v1.7 row for the RFC-0004 exclusion.
+- Setting in-document metadata `Version: 1.7`; `Last Updated: 2026-04-22 (v1.7)`.
+- Renaming file `-v1.1.md` → `-v1.7.md`.
+- Registry `version: v1.4` → `v1.7`; `filename` updated; `effective` 2026-02-11 → 2026-04-22.
+
+**Additive content (v1.7):**
+
+- **Tier Table T1 cell** amended: T1 #1 now explicitly flags "subject to the Small-Project Exclusion below"; Waiver Path cell clarifies that T1 #2–#5 remain non-waivable while T1 #1 supports a self-asserted exclusion.
+- **New `## Small-Project Exclusion` section** inserted immediately below the banners, containing:
+  - Four thresholds (≤5 FTEs, ≤5 production services, INTERNAL-or-below data classification per [25], no customer-facing interface).
+  - Retained obligations (T1 #2–#5 continue to apply).
+  - Mechanics: self-asserted; README banner required; PCL row annotation (`std_eng_008_small_project_exclusion` boolean *or equivalent annotation*); automatic lapse at next release when any threshold crossed; annual sample-audit by Standards Council.
+  - Rationale paragraph.
+  - Boundary clarification vs. [6] STD-GOV-003 waivers (exclusion ≠ waiver; open-ended, no compensating control required, structurally different risk profile).
+- **New v1.7 banner** in the preamble documenting the additive change.
+
+**Cross-references updated:**
+
+- `[4] FWK-GOV-001 v1.2` Tier Cheat-Sheet row for [33] extended with a one-line pointer to the exclusion (non-breaking; the existing summary is unchanged, the exclusion is appended as an italicized clarification).
+
+**PCL schema note:** The RFC §3.3 mechanics call for a boolean PCL field `std_eng_008_small_project_exclusion`. The v1.7 text uses "or equivalent annotation" to allow deferring the [5] STD-GOV-001 PCL schema update to a follow-on slice; the exclusion is operable immediately via README banner + free-form PCL annotation.
+
+### 27.3 Verification
+
+- `python3 tools/freeze-check.py --json` → 45/45 YES, 0 FROZEN, 0 legacy PENDING, 0 unknown status.
+- `python3 tools/validate-schemas.py --strict` → 4/4 OK.
+- `freeze-check-report.json` regenerated with new [33] filename.
+
+### 27.4 Files modified
+
+| File | Change |
+|------|--------|
+| `[33]-STD-ENG-008 CYBERCUBE-Reusable-Modules-Standard-v1.7.md` | content additions (T1 cell + §Small-Project Exclusion + v1.7 banner + v1.5/v1.6/v1.7 Version History backfill); metadata `Version: 1.6 → 1.7`; renamed from `-v1.1.md` |
+| `[4]-FWK-GOV-001 CYBERCUBE-Framework-Compliance-v1.2.md` | Tier Cheat-Sheet [33] row extended with exclusion pointer |
+| `registries/standards.json` | `STD-ENG-008` row: `v1.4` → `v1.7`, effective + filename updated |
+| `freeze-check-report.json` | regenerated |
+| this audit report | §27 appended |
+
+### 27.5 RFC-0004 residual (still queued)
+
+- `docs/starters/internal-tool.md`, `docs/starters/t2-saas.md`, `docs/starters/t3-regulated.md`, `docs/starters/ai-feature.md` — onboarding checklists.
+- Companion template repos `cybercube-starter-<archetype>` — external to portfolio, follow-on tickets.
+- [5] STD-GOV-001 PCL schema extension (`std_eng_008_small_project_exclusion` boolean field) — small follow-on slice; deferred behind "or equivalent annotation" in v1.7 text.
+- [4] FWK-GOV-001 acknowledgment paragraph pointing to the starter kits — deferred until `docs/starters/*` land.
+
+### 27.6 Pass-4 finding status update
+
+- **F6** (M-NN audit overreach for very small projects) → **CLOSED** in normative portfolio. Operable exclusion mechanism now in-standard. `docs/starters/*` slice of F1 remains open (large follow-on).
+- **F4** (coordination cost) → already addressed in §25.2 ([4] Tier Cheat-Sheet).
+- **F5** (vendor category enum) → already addressed in §25.1 (TASK-0002 schema v1.1 bump).
+
+Pass-4 findings remaining in the queue: **F1** (starter kits — partial; `docs/starters/*` deferred), **F2** (regulation mapping artifacts — RFC-0005 execution pending), **F3** (HIPAA primitives — RFC-0005 execution pending).
+
+---
