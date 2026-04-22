@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cybercube.example/schemas/compliance-map.v1.json",
+  "title": "CYBERCUBE Regulation Compliance Map — schema (STD-GOV-006 crosswalks)",
+  "description": "Machine-readable contract for per-regulation compliance-map files under governance/compliance-maps/. Each file carries a YAML front-matter block validated by this schema; the body is a human-readable Markdown crosswalk grouped by regulation domain. Validated by tools/validate-schemas.py via the YAML-front-matter extraction path. Non-authoritative: these maps are CYBERCUBE's self-assessment against the regulation text, not a regulator attestation.",
+  "type": "object",
+  "required": ["regulation", "rows"],
+  "additionalProperties": false,
+  "properties": {
+    "regulation": {
+      "type": "object",
+      "required": ["id", "name", "version", "authority", "effective", "published_map", "owner"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+(?:\\.[a-z0-9-]+)*$",
+          "description": "Slug identifier for the regulation. Lowercase with hyphens/dots. Examples: 'pci-dss-4.0', 'hipaa-security-rule', 'soc2'."
+        },
+        "name": { "type": "string", "minLength": 1 },
+        "version": { "type": "string", "minLength": 1 },
+        "authority": { "type": "string", "minLength": 1, "description": "Issuing authority (PCI SSC, HHS, AICPA, ...)." },
+        "effective": { "type": "string", "format": "date", "description": "Date the regulation version became effective." },
+        "published_map": { "type": "string", "format": "date", "description": "Date this mapping snapshot is valid as of. Owners review ≥annually; >13 months stale is a lint finding." },
+        "owner": {
+          "type": "string",
+          "description": "Named role accountable for keeping this map current. Examples: 'sec-lead', 'privacy-lead + legal-lead'."
+        },
+        "authoritative": {
+          "type": "boolean",
+          "const": false,
+          "description": "Explicitly false for every map. Maps are CYBERCUBE self-assessment, not a regulator attestation."
+        }
+      }
+    },
+    "rows": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/row" }
+    }
+  },
+  "$defs": {
+    "row": {
+      "type": "object",
+      "required": ["ucm_id", "regulation_ref", "relationship"],
+      "additionalProperties": false,
+      "properties": {
+        "ucm_id": {
+          "type": "string",
+          "pattern": "^CTL-[A-Z]+-[0-9]{3}$",
+          "description": "UCM control ID per [7] STD-GOV-006 §1. Format: CTL-{DOMAIN}-{SEQ}. Examples: CTL-SEC-003, CTL-DAT-015."
+        },
+        "regulation_ref": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Regulation citation (requirement / section / criterion number) in the regulation's own numbering. Free-form string; regulation-specific conventions. Examples: '8.3.6' (PCI), '164.312(a)(2)(i)' (HIPAA), 'CC6.1' (SOC2)."
+        },
+        "relationship": {
+          "type": "string",
+          "enum": ["direct", "partial", "adjacent"],
+          "description": "direct = UCM row fully satisfies the regulation requirement (evidence-ready). partial = UCM row contributes; complete compliance requires additional controls named in notes. adjacent = related but not sufficient; auditor context only."
+        },
+        "notes": {
+          "type": "string",
+          "description": "Free-text explanation. REQUIRED in practice when relationship is 'partial' (name the additional controls) or 'adjacent' (explain the adjacency)."
+        },
+        "evidence_artifact": {
+          "type": "string",
+          "description": "Pointer to the evidence artifact (log type, report, registry row) that an auditor would request to verify this mapping. Free-text."
+        }
+      }
+    }
+  }
+}
