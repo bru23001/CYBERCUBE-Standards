@@ -2314,3 +2314,120 @@ Only **F1 residual** remains from Pass-4; it reduces to the `docs/starters/*` + 
 - **Optional**: install `PyYAML` in the CI runtime to enable full YAML front-matter schema validation (currently skipped gracefully).
 
 ---
+
+## 30. RFC-0004 RESIDUAL EXECUTION — Starter kits (`docs/starters/*`) (2026-04-22)
+
+**Scope closed:** Pass-4 F1 (systemic under-investment in starter kits & templates). RFC-0004 §5 migration plan steps 2–5, 7, and 9 (in-repo portion) executed; step 6 (small-project exclusion) was already closed in §27; steps 8 (template repos), 10 (Pass-3 re-score), 11 (announcement) remain as deliberate follow-ons.
+
+### 30.1 Files added
+
+| Path | Purpose | Lines |
+|------|---------|-------|
+| `docs/starters/README.md` | Index + archetype selection guide + staleness contract | 49 |
+| `docs/starters/internal-tool.md` | T1-only archetype checklist (≤5 FTEs, INTERNAL, no customer interface); cites [33] small-project exclusion | 139 |
+| `docs/starters/t2-saas.md` | Customer-facing SaaS archetype checklist (T1 + T2) | 157 |
+| `docs/starters/t3-regulated.md` | Regulated / high-risk archetype (T1 + T2 + T3) with **fintech** (PCI) and **healthcare** (HIPAA) variants | 192 |
+| `docs/starters/ai-feature.md` | AI-feature overlay for any parent archetype; wires [11] + [48] + [21] §11 + [9] foundation-model category | 134 |
+| `docs/starters/VENDOR-ONBOARDING.md` | Canonical seven-step "first-vendor" flow; closes Pass-4 S2 under-spec flag; cites [9] + [16] + [46] + compliance-maps | 162 |
+| `tools/starter-check.py` | Starter-rot linter (RFC-0004 §7 Risks mitigation); validates bracket + ID + version references, compliance-map paths, and starter cross-links | 274 |
+
+Total: **7 new files**, ≈ 1,107 lines.
+
+### 30.2 Files modified
+
+| File | Change | Version impact |
+|------|--------|----------------|
+| `[4]-FWK-GOV-001 CYBERCUBE-Framework-Compliance-v1.4.md` | Replaced the placeholder "starter-kit templates scoped in RFC-0004 (execution pending)" paragraph under *How to use this cheat-sheet* with the canonical pointer paragraph describing each `docs/starters/*` archetype + `VENDOR-ONBOARDING.md` + the template-repo follow-on. | **No version bump** — additive mirror-level pointer text per RFC-0004 §3.4 and POL-GOV-001 §8. If Standards Council later rules this non-mirror, reopen and bump v1.4 → v1.5. |
+
+### 30.3 Starter-kit structure (all five archetype files)
+
+Every starter follows the same seven-section contract (enforced by hand during authoring; `tools/starter-check.py` lints references, not structure, at v1):
+
+1. **Applicability** — explicit archetype boundaries; "switch archetype if …" escape.
+2. **Fill-ins** — project-specific values captured once at project start (PCL code, owners, classification, etc.).
+3. **Pre-GA checklist** — T1 (and T2/T3 where applicable) MUSTs filtered to the archetype. Each item cites a bracket + ID + clause.
+4. **Post-GA / ongoing** — periodic obligations and review cadences.
+5. **Exclusions** — intentional non-applicability (e.g., [27] multi-tenant skipped for internal tool) with reasons.
+6. **Escapes** — waiver path via [6] STD-GOV-003 for any item that cannot be produced.
+7. **Notes / variant-specific sections** — RFC-0002/0005 bridges (ai-feature), fintech/healthcare variants (t3-regulated), escalation triggers (t2-saas → t3-regulated).
+
+### 30.4 Pass-4 finding closure
+
+| Finding | Before | After §30 |
+|---------|--------|-----------|
+| **F1 — systemic under-investment in starter kits** | Partial (waiting on `docs/starters/*`) | **Closed** — five archetype files + vendor-onboarding flow shipped; template repos are a follow-on (RFC-0004 §5 step 8), not a blocker for finding closure |
+| F2 | Closed (§29) | Closed |
+| F3 | Closed (§29) | Closed |
+| F4 | Closed (§25.2) | Closed |
+| F5 | Closed (§25.1) | Closed |
+| F6 | Closed (§27) | Closed |
+
+**All Pass-4 findings are now closed.** Pass-3 numeric re-score remains blocked until the 2026-05-06 survey window closes (out-of-scope for RFC-0004).
+
+### 30.5 Tooling additions
+
+**`tools/starter-check.py` (274 lines).** Starter-rot guard per RFC-0004 §7 Risks: "If starters drift from the underlying standards, they mislead rather than help." Checks:
+
+1. **`UNKNOWN_STANDARD`** — every `[N] <ID>` bracket reference in a starter must resolve to a file at the repo root whose filename starts with `[N]-<ID>`.
+2. **`BRACKET_MISMATCH`** — the bracket number cited must match the one on disk for the given standard ID.
+3. **`STALE_VERSION`** — if a starter cites a specific `vN.M`, that version must match the current filename on disk.
+4. **`MISSING_COMPLIANCE_MAP`** — any `governance/compliance-maps/<file>` reference must resolve to an existing file in that directory (wildcards allowed in prose).
+5. **`MISSING_STARTER_CROSSLINK`** — relative markdown links to sibling files in `docs/starters/` must resolve.
+
+Exit code 0 when all clean; 1 on any finding; `--json` writes a machine-parseable report to `starter-check-report.json`.
+
+**Not wired into `freeze-check.py` or CI** yet — the tool is standalone and idempotent; wiring into CI is a small follow-on ticket. Running it manually alongside the pre-merge validator pair is sufficient for now.
+
+### 30.6 Migration-plan step status (RFC-0004 §5)
+
+| Step | Action | Status |
+|------|--------|--------|
+| 1 | Accept RFC | **Done** (2026-04-22, §26) |
+| 2 | `docs/starters/internal-tool.md` | **Done** (§30.1) |
+| 3 | `docs/starters/t2-saas.md` + `VENDOR-ONBOARDING.md` | **Done** (§30.1) |
+| 4 | `docs/starters/t3-regulated.md` (fintech + healthcare) | **Done** (§30.1) |
+| 5 | `docs/starters/ai-feature.md` | **Done** (§30.1) |
+| 6 | [33] STD-ENG-008 small-project exclusion (v1.1 → v1.2 target, actually v1.6 → v1.7 on execution) | **Done** (§27) |
+| 7 | [4] FWK-GOV-001 pointer paragraph | **Done** (§30.2; mirror-level, no version bump) |
+| 8 | Create four `cybercube-starter-<archetype>` template repos | **Follow-on** — out-of-tree; assign to `eng-lead` + per-domain leads; weeks 4–6 of the RFC's schedule |
+| 9 | Re-run `freeze-check.py` + `validate-schemas.py --strict` + `starter-check.py` | **Done** (§30.7) |
+| 10 | Re-run `pass3-score.py` after 2026-05-06 | **Blocked** — awaiting survey window close |
+| 11 | Announce in `#eng-standards`, open feedback channel | **Follow-on** — non-normative, owned by `eng-lead` |
+
+### 30.7 Verification
+
+Commands run post-execution at the repo root:
+
+```
+python3 tools/freeze-check.py                 # 48 standards scanned, all YES (tier table present), no freeze triggers
+python3 tools/validate-schemas.py --strict    # 7 artifacts: ADR-0001.json, audit-findings.json, risk-register.json, vendor-inventory.json, + 3 compliance-maps (YAML skipped gracefully pending PyYAML)
+python3 tools/starter-check.py                # 5 starter files scanned (excl. README), all OK; 47 standards indexed, 4 compliance maps indexed
+```
+
+All three green. Portfolio size remains **48 standards**.
+
+### 30.8 Pass-4 findings status after §30
+
+| Finding | Status | Closed by |
+|---------|--------|-----------|
+| F1 Starter kits / project templates | **Closed** | §30 (this section) — `docs/starters/*` shipped; template repos are follow-on |
+| F2 Regulation mappings absent | Closed | §29 |
+| F3 HIPAA primitives absent | Closed | §29 |
+| F4 Tier Cheat-Sheet coordination cost | Closed | §25.2 + §28 + §29.3 |
+| F5 Vendor-inventory enum missing `foundation-model` | Closed | §25.1 |
+| F6 Small-project module-audit exclusion | Closed | §27 |
+
+**All six Pass-4 findings are closed.** The only remaining Pass-4 work items are out-of-tree (template repos, announcement) or scheduled (Pass-3 numeric re-score post-2026-05-06).
+
+### 30.9 Remaining work after §30
+
+- **RFC-0001** (STD-ENG-001 split) — large multi-file structural refactor + ~3 new sub-standards. Still queued; no prerequisites outstanding.
+- **RFC-0004 follow-ons (out-of-tree / non-blocking)**:
+  - Four `cybercube-starter-<archetype>` template repos (step 8)
+  - `#eng-standards` announcement (step 11)
+  - Optional: wire `tools/starter-check.py` into pre-commit / CI
+- **RFC-0005 follow-ons** — per-regulation bulk population (PCI ≈3 wk / HIPAA ≈2 wk / SOC2 ≈2 wk).
+- **Optional**: install `PyYAML` in the CI runtime for YAML front-matter validation (currently skipped gracefully).
+- **Blocked**: Pass-3 numeric re-score until 2026-05-06.
+
+---
