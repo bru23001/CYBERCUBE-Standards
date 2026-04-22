@@ -1,0 +1,21 @@
+# Automatability (M) overrides for Pass-3 scoring.
+# Format:  <standard_number>: <score 1..5>
+#
+# Override the neutral M=3 default for standards whose Automatability is
+# already raised by a machine-readable artifact (schema, linter, validator,
+# contract mirror). Per §21.11 and §22 of the audit report.
+#
+# Remove a line when the underlying artifact is deprecated/removed.
+
+# Tranche-2 schemas + validator (see schemas/README.md, §21.11)
+3:  4    # POL-GOV-002 → schemas/adr.schema.json
+8:  4    # STD-ERM-001 → schemas/risk-register.schema.json
+9:  4    # POL-VEN-001 → schemas/vendor-inventory.schema.json
+44: 4    # STD-GOV-004 → schemas/audit-finding.schema.json
+
+# Tranche-1 data extraction (see modules/modules.json + modules/contracts/)
+33: 4    # STD-ENG-008 → modules/contracts/ + modules.json
+
+# Linter-covered (freeze-check.py enforces these)
+2:  5    # POL-GOV-001 — freeze-check enforces status vocabulary + tier tables
+30: 4    # STD-ENG-007 — documentation/RFC structural checks

@@ -1,7 +1,7 @@
 # M-13 — Tracing Module Interface Contract
 
 **Status:** EXTRACTED (owner: `eng-lead`)  
-**Source:** `[33]-STD-ENG-008 CYBERCUBE-Reusable-Modules-Standard-v1.1.md` §ICD-3.13 (lines 1252–1285)  
+**Source:** `[33]-STD-ENG-008 CYBERCUBE-Reusable-Modules-Standard-v1.1.md` §ICD-3.13 (lines 1254–1287)  
 **Versioning:** semver per ICD-6 (API Versioning Contract) in STD-ENG-008.  
 **Change control:** non-breaking edits may be made without STD-ENG-008 version bump; breaking changes require RFC (STD-ENG-007).
 

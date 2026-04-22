@@ -1,7 +1,7 @@
 # M-34 — Message Bus Module Interface Contract
 
 **Status:** EXTRACTED (owner: `eng-lead`)  
-**Source:** `[33]-STD-ENG-008 CYBERCUBE-Reusable-Modules-Standard-v1.1.md` §ICD-3.34 (lines 2353–2510)  
+**Source:** `[33]-STD-ENG-008 CYBERCUBE-Reusable-Modules-Standard-v1.1.md` §ICD-3.34 (lines 2355–2512)  
 **Versioning:** semver per ICD-6 (API Versioning Contract) in STD-ENG-008.  
 **Change control:** non-breaking edits may be made without STD-ENG-008 version bump; breaking changes require RFC (STD-ENG-007).
 

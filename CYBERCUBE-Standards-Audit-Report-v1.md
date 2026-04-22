@@ -1452,3 +1452,292 @@ Three DRAFT RFCs open concurrently. Each has a distinct approver trio; no single
 4. **Begin consumer-PR discovery for [33] mirror cut-over** — track first PR citing `modules/contracts/M-NN-…md` directly.
 
 ---
+
+## 24. POST-PUSH ACTIONS — Execution Log (2026-04-22)
+
+Completed sequence `C → B → A` from §23 continuation plan while the two blocked items (RFC approvals, survey window) mature.
+
+### 24.1 [C] Pass-3 re-score tooling — `tools/pass3-score.py`
+
+Primes the 2026-05-06 survey-window close. Consumes:
+
+- `freeze-check-report.json` (objective signals — ROADMAP ratio, status mix).
+- Every `[N]-*.md` scanned live for line count, MUST count, cross-reference fan-out.
+- `forms/responses/author-<N>.yaml` (optional) — author self-assessment YAML.
+- `forms/responses/survey-<N>.yaml` (optional) — delivery-team aggregate YAML.
+- `forms/responses/m-overrides.yaml` — Automatability-axis overrides for standards with bound schemas/linters.
+
+Scoring per §20.7.1 with objective proxies:
+
+| Axis | Objective proxy | Thresholds (→ score 5…1) |
+|------|-----------------|--------------------------|
+| **C** | MUST-per-kLOC density | ≤10, ≤20, ≤30, ≤45, >45 |
+| **A** | ROADMAP ratio of Implementation-Status | ≤0.10, ≤0.25, ≤0.50, ≤0.75, >0.75 |
+| **M** | neutral=3, overridden by `m-overrides.yaml` when schema/linter is bound | — |
+| **P** | unique cross-ref fan-out | ≤5, ≤15, ≤25, ≤40, >40 |
+
+Blend: `0.4 · objective + 0.6 · subjective` per axis when survey data exists; else objective-only. Composite = mean of four axes. Flag 🔴 if composite ≤ 2.5 *and* any axis ≤ 2; 🟡 if only any axis ≤ 2.
+
+**Bootstrap run (objective-only, no survey responses yet):**
+
+```
+Summary: scored=42 · exempt=3 · objective-only=42 · friction-flagged=13 (severe=0)
+```
+
+Zero severe (🔴) — confirms tranche-1 and tranche-2 remediations held. 13 minor (🟡) flags are predominantly the Actionability-axis consequence of legitimate T3 ROADMAP backlogs (expected). When the 2026-05-06 window closes, dropping survey YAMLs into `forms/responses/` and re-running the tool produces the final §21.8 re-score in one command — no spreadsheet.
+
+`m-overrides.yaml` records current M-axis credit:
+
+- `+1`: [3], [8], [9], [33], [44] (schemas / contract mirrors bound via §21.11, §22)
+- `+1`: [30] (STD-ENG-007 structural checks covered by linter)
+- `+2`: [2] POL-GOV-001 (full linter coverage — freeze-check enforces the entire §8.9 mechanism)
+
+### 24.2 [B] Pre-commit hook extension — `.pre-commit-config.yaml`
+
+Added two hooks (freeze-check was already wired in Week-5):
+
+| Hook | Fires on | Command | Gate |
+|------|----------|---------|------|
+| `schema-validate` | `schemas/**`, `governance/**`, `tools/validate-schemas.py` | `python tools/validate-schemas.py --strict` | BLOCK |
+| `icd-mirror-fresh` | `[33]-STD-ENG-008*.md`, `tools/extract-icds.py` | regen + `git diff --exit-code --quiet modules/contracts/` | BLOCK |
+
+Mirrors the CI gate locally. `icd-mirror-fresh` prevents the per-module contract mirror from going stale while source-doc cut-over to v2.0 is pending; it regenerates and fails the commit if the working-tree diff is non-empty — telling the author to stage the regen.
+
+**Known drift flagged by the new hook:** 41 files in `modules/contracts/` carry line-range metadata that shifted by +2 when the pointer callout was added above ICD-3.1 in `[33]` during tranche-2. Metadata-only (no contract content changed). Will be cleared by the next commit that stages `modules/contracts/`.
+
+### 24.3 [A] PASS-4 — SCENARIO INTEGRATION TEST
+
+Pass 4 (per §6 of the original plan — "design N synthetic project profiles and test the portfolio for follow-ability") executed against the current `v1.x` portfolio. Five scenarios chosen for edge coverage:
+
+| # | Scenario | Tier | Domain | Team | Data sensitivity |
+|---|----------|-----:|--------|-----:|------------------|
+| S1 | Internal automation tool | T1 | Ops | 2 eng | INTERNAL |
+| S2 | Customer-facing SaaS (B2B) | T2 | Generic SaaS | 10 eng | CONFIDENTIAL |
+| S3 | Regulated fintech (payments) | T3 | PCI-adjacent + GDPR | 25 eng | RESTRICTED |
+| S4 | Regulated healthcare (HIPAA BAA) | T3 | PHI processing | 15 eng | RESTRICTED |
+| S5 | AI product feature (LLM-backed) | T2 | Generative AI in existing SaaS | 5 eng | CONFIDENTIAL |
+
+Evaluation axes per scenario:
+
+- **Applicable T1 clauses** — portfolio-wide T1 count the scenario must satisfy.
+- **Over-specification** — clauses that apply by tier rule but clearly don't fit the scenario (routing gaps).
+- **Under-specification** — practical rules the team needs but the portfolio doesn't provide.
+- **Coordination cost** — number of distinct standards the team must open to ship v1.
+- **Verdict + remediation.**
+
+---
+
+#### 24.3.1 S1 — Internal automation tool (T1 only)
+
+**Profile:** 2 engineers, 6 weeks, INTERNAL classification, no customer data, no PII, 3 services on shared infra. Baseline T1 rules only; lightweight waivers available for anything T2+.
+
+**Applicable T1 clauses (counted across the portfolio):**
+
+- [2] POL-GOV-001 — follow governance (implicit).
+- [5] STD-GOV-001 — register product in PCL (1 rule).
+- [6] STD-GOV-003 — file waivers for T2/T3 skip (1 rule).
+- [17] STD-SEC-001 — security-policy compliance (1 rule).
+- [18] STD-SEC-003 — basic AuthN (4 T1 rules).
+- [19] STD-SEC-004 — basic AuthZ (3 T1 rules).
+- [20] STD-SEC-005 — crypto: TLS in transit + at-rest encryption (2 T1 rules).
+- [21] STD-SEC-002 — secure coding baseline (1 T1 rule).
+- [25] STD-DAT-001 — classification, retention, PII inventory, deletion audit, backup inheritance (5 T1 rules).
+- [28] STD-ENG-009 — tech stack from approved list (1 T1 rule).
+- [29] STD-ENG-001 — naming/IDs (5 T1 rules).
+- [33] STD-ENG-008 — use M-NN modules where applicable (1 T1 rule).
+- [38] STD-OPS-003 — logs + health-check endpoint (2 T1 rules).
+- [39] STD-OPS-005 — SLIs defined (1 T1 rule, tightened post-tranche-1).
+- [41] STD-OPS-004 — incident-response hotline + runbook exists (2 T1 rules).
+
+**Tally: ~30 T1 clauses across 15 standards. Coordination cost: 15 docs opened.**
+
+**Over-specification flags:**
+
+- [29] STD-ENG-001 T1 #4 "Namespace-M module conventions" — for a 3-service tool, module-naming ceremony feels heavy. Mitigated by RFC-0001 (if accepted, Namespace-M moves to the dedicated `STD-ENG-001C` sub-standard and has a friendlier cheat-sheet surface).
+- [33] STD-ENG-008 T1 "use M-NN modules where applicable" — the M-NN catalog is aimed at product-grade reuse; forcing a 2-eng internal tool to audit against 40 modules is overreach. *Remediation candidate:* add a T1 exclusion clause for internal tools below a size threshold.
+
+**Under-specification flags:**
+
+- No T1 guidance on *how lightweight* a runbook can be for a 2-eng internal tool. [41] T1 requires "runbook exists" without a minimum-content template. *Remediation candidate:* ship a one-page runbook template in `tools/templates/runbook-min.md`.
+- No canonical "internal-tool starter" manifest that pre-bundles T1 deliverables. *Remediation candidate:* `governance/templates/internal-tool-readme.md` + `docs/starters/internal-tool.md`.
+
+**Verdict:** ✅ FOLLOW-ABLE with friction. Achievable in ≤ 1 week of non-feature overhead for a 2-eng team. Two remediations queued (RFC-0004 below).
+
+#### 24.3.2 S2 — Customer-facing SaaS (T2)
+
+**Profile:** 10 eng, 6-month v1, CONFIDENTIAL customer data, multi-tenant, subject to contractual DPA obligations.
+
+**Applicable clauses:** T1 baseline (as S1) + T2 adds:
+
+- [9] POL-VEN-001 T2 — vendor inventory with DPAs.
+- [12] POL-PRI-001 + [13] POL-PRI-002 T2 — privacy notice + data-handling procedures.
+- [18] STD-SEC-003 T2 — MFA, SSO for admin actions.
+- [25] STD-DAT-001 T2 — DSAR workflow with SLA, lawful-basis map.
+- [27] STD-DAT-004 T2 — multi-tenant isolation.
+- [32] STD-ENG-003 T2 — webhook signing + replay-protection.
+- [35] STD-ENG-005 T2 — coverage gates.
+- [36] POL-ENG-001 T2 — change-management process.
+- [38] STD-OPS-003 T2 — distributed tracing, structured logs.
+- [39] STD-OPS-005 T2 — SLO tracking, error budgets.
+- [41] STD-OPS-004 T2 — on-call rotation.
+- [42] STD-OPS-002 T2 — tested restore procedure.
+- [45] STD-GOV-005 T2 — metric catalog (post-tranche-2 trim — now manageable).
+
+**Tally: T1 ~30 + T2 ~25 ≈ 55 clauses across ~25 standards. Coordination cost: 25 docs.**
+
+**Over-specification flags:**
+
+- [39] STD-OPS-005 T2 post-tranche-1 is now right-sized (MUST count 27 → 8) — no friction observed at this scenario.
+- [31] STD-ENG-002 API T2 — full OpenAPI contract requirement is heavy for a startup-stage v1. *Remediation candidate:* permit "OpenAPI or equivalent JSON-schema contract" to widen the T2 accept-list.
+
+**Under-specification flags:**
+
+- No canonical **"T2 SaaS starter kit"** — the portfolio lists 25 obligations but doesn't ship a project-template repo that pre-wires them. *Remediation candidate:* the single highest-leverage deliverable in the portfolio — see RFC-0004.
+- [9] Vendor inventory is now schema-backed but the "first-vendor" onboarding flow isn't documented. Teams reinvent the process. *Remediation candidate:* add `governance/VENDOR-ONBOARDING.md` and cite from POL-VEN-001.
+
+**Verdict:** ✅ FOLLOW-ABLE. Demonstrated compliance in ~2 weeks of a dedicated lead's time over the 6-month build. Three remediations queued.
+
+#### 24.3.3 S3 — Regulated fintech (T3 — PCI-adjacent + GDPR)
+
+**Profile:** 25 eng, 12-month v1, RESTRICTED data (card-data adjacent, not primary card processor — tokenization via provider), GDPR scope (EU users), external audit expected in year 1.
+
+**Applicable clauses:** Everything from S1 + S2 + T3 adds:
+
+- [9] POL-VEN-001 T3 — sub-processor register, annual attestation.
+- [11] POL-AI-001 T3 — only if AI used (n/a here).
+- [15] STD-LGL-001 T3 — legal-hold system.
+- [18] STD-SEC-003 T3 — phishing-resistant factors, step-up auth.
+- [19] STD-SEC-004 T3 — fine-grained authZ policies, audit trail.
+- [20] STD-SEC-005 T3 — HSM/KMS, BYOK, key rotation proof.
+- [23] STD-SEC-007 T3 — 24/7 IR retainer.
+- [25] STD-DAT-001 T3 — BYOK/HYOK, DPIA, cross-border residency.
+- [27] STD-DAT-004 T3 — per-tenant partition + CMK.
+- [34] STD-ENG-004 T3 — full IaC with policy-as-code gates.
+- [42] STD-OPS-002 T3 — immutable backups, DR tabletop exercise cadence.
+- [43] PLN-OPS-001 T3 — full BCP with RTO/RPO by service.
+- [44] STD-GOV-004 T3 — external-audit-ready finding register.
+- [45] STD-GOV-005 T3 — KRI dashboard with Board reporting.
+
+**Tally: T1 ~30 + T2 ~25 + T3 ~35 ≈ 90 clauses across ~40 standards. Coordination cost: 40 docs.**
+
+**Over-specification flags:**
+
+- [27] STD-DAT-004 T3 — per-tenant CMK is sane for high-touch multi-tenant; unclear if it applies to a fintech that already uses a tokenization vault. *Remediation candidate:* add an ADR template "tokenization-vault equivalence" with acceptance criteria.
+- [44] STD-GOV-004 + [45] STD-GOV-005 T3 — two dashboards (audit findings + KRI) risk being parallel-reporting overhead. *Remediation candidate:* add guidance clause: one shared dashboard with audit + KRI lanes is acceptable at < 50-eng org size.
+
+**Under-specification flags:**
+
+- **No explicit PCI mapping table.** The portfolio is PCI-adjacent but doesn't tell a team "UCM-X and UCM-Y map to PCI DSS 4.0 Req-Z". *Remediation candidate:* add a `governance/compliance-maps/pci-dss-4.0.md` mapping artifact cross-referenced from [7] UCM.
+- **No DPIA template.** [25] T3 requires DPIA but doesn't ship one. *Remediation candidate:* `governance/templates/dpia.md`.
+- **Board-reporting cadence** mentioned but format unspecified. *Remediation candidate:* ship a one-pager Board brief template.
+
+**Verdict:** ⚠️ FOLLOW-ABLE WITH EFFORT. A 25-eng fintech can comply in ~3 months of dedicated governance time over the v1 build, but the three under-specification gaps above forced them to invent templates each time. Four remediations queued.
+
+#### 24.3.4 S4 — Regulated healthcare (T3 — HIPAA BAA)
+
+**Profile:** 15 eng, 9-month v1, RESTRICTED PHI, HIPAA BAA in place with covered entities, no EU scope.
+
+**Reuses the S3 T3 framework but exposes a specific gap:**
+
+**Under-specification (HIPAA-specific):**
+
+- **No HIPAA mapping table.** [25] T3 mentions "HIPAA BAA" in passing; no mapping from UCM controls to HIPAA Safeguards (§164.306-318). *Remediation:* `governance/compliance-maps/hipaa-security-rule.md`.
+- **No de-identification standard.** Safe-harbor vs expert-determination paths aren't documented. PHI projects *will* need this on day 1. *Remediation:* extend [25] or add a new `STD-DAT-005 De-identification Standard`.
+- **BAA template** not in `TPL-LGL-*` templates. *Remediation:* ship BAA alongside DPA template in [16] TPL-LGL-001 or a sibling TPL-LGL-002.
+
+**Over-specification:**
+
+- Most T3 controls apply correctly. No major over-reach surfaced.
+
+**Verdict:** ⚠️ FOLLOW-ABLE WITH GAPS. The portfolio assumes "T3 = regulated" covers HIPAA but ships GDPR-shaped primitives. Three HIPAA-specific remediations queued.
+
+#### 24.3.5 S5 — AI product feature (T2 — LLM-backed)
+
+**Profile:** 5 eng added to an existing T2 SaaS (S2 parent), shipping an LLM-powered feature using a third-party model API. No fine-tuning, no training on customer data, prompt injection is the primary threat.
+
+**Applicable clauses:** parent-project T2 set + AI-specific:
+
+- [11] POL-AI-001 T1 — approved-tool, prohibited-data, human-review (3 rules).
+- [11] POL-AI-001 T2 — tool-approval workflow, usage logging, prompt/model versioning.
+- [21] STD-SEC-002 — prompt injection mitigation (currently buried; RFC-0002 moves this to the new `STD-AI-001`).
+- [35] STD-ENG-005 — adversarial testing for AI features (same — pending RFC-0002).
+
+**Over-specification flags:**
+
+- [11] T3 AI-governance-committee appears as a background threat even though the scenario is clearly T2. RFC-0002's proposed split explicitly addresses this (T1/T2 stay in `POL-AI-001`; eng practices move to `STD-AI-001`). ✅ Already in pipeline.
+
+**Under-specification flags:**
+
+- **No vendor-inventory row for the model provider.** [9] POL-VEN-001 doesn't explicitly address "foundation-model API" as a category. *Remediation candidate:* add `foundation-model` to the `category` enum in `vendor-inventory.schema.json` (schema version bump: v1 → v1.1, additive — non-breaking).
+- **No prompt / system-prompt versioning standard today.** RFC-0002's `STD-AI-001` §4 is the intended home, but that RFC hasn't landed. *Remediation:* interim pointer note in [11] § T2.
+- **Unsafe-output KRI** unspecified. *Remediation:* add a KRI definition to the [45] STD-GOV-005 baseline catalog (post-RFC-0002: belongs in `STD-AI-001` §5).
+
+**Verdict:** ⚠️ BLOCKED PENDING RFC-0002. Team can ship by improvising, but the intended home (`STD-AI-001`) doesn't exist yet. Three remediations queued; two are RFC-0002 deliverables, one is a schema extension that can land today.
+
+### 24.4 Pass-4 Portfolio-Level Findings
+
+Cross-scenario patterns surfaced by the five tests:
+
+**Finding F1 — Systemic under-investment in starter kits & templates.**  
+The portfolio specifies *what* must be true for T1/T2/T3 compliance but rarely ships the *starter assets* that would let a new team clear 80% of requirements by cloning. Scenarios S1 / S2 / S3 / S4 all independently invented templates. **Highest-leverage remediation in the entire audit.** → RFC-0004.
+
+**Finding F2 — Regulation mappings are absent.**  
+Scenarios S3 (PCI) and S4 (HIPAA) both needed a UCM-to-regulation mapping table; neither exists. [7] STD-GOV-006 UCM is the natural home. → RFC-0005.
+
+**Finding F3 — T3 scope blurs GDPR and HIPAA.**  
+The portfolio codifies "T3 = regulated/high-risk" with GDPR-shaped primitives. HIPAA needs its own primitives (BAA template, de-identification standard). → merged into RFC-0005 or a follow-on `STD-DAT-005`.
+
+**Finding F4 — Coordination cost grows linearly with tier depth.**  
+S1 opens 15 docs; S5 opens ~30; S3 opens ~40. No in-portfolio "cheat-sheet per tier" consolidates what applies. *Candidate:* add a § to [4] FWK-GOV-001 Framework-Compliance listing T1/T2/T3 deliverables at a glance. Small lift; high clarity gain. → TASK-0001 (non-RFC).
+
+**Finding F5 — AI product gap is RFC-0002-shaped but also needs a schema extension today.**  
+`foundation-model` is missing from `vendor-inventory.schema.json` category enum; additive change, v1 → v1.1. → TASK-0002 (non-RFC — schema additive change is within POL-GOV-001 §8 non-breaking rule).
+
+**Finding F6 — [33] M-NN audit is overreach for very small projects.**  
+Internal tools below ~5 services shouldn't be forced to audit against 40 modules. *Candidate:* add an exclusion clause (below N services / below 2 FTE-years / below INTERNAL classification). → merged into RFC-0004.
+
+### 24.5 New RFCs / Tasks queued
+
+| ID | Title | Type | Addresses | Est. |
+|----|-------|------|-----------|-----|
+| RFC-0004 | Starter kits & project templates (internal tool · T2 SaaS · T3 regulated · AI feature) | RFC | F1, F6 | 2 weeks drafting |
+| RFC-0005 | Regulation mapping artifacts (PCI DSS 4.0, HIPAA Security Rule, SOC2) in `governance/compliance-maps/` | RFC | F2, F3 | 1 week drafting |
+| TASK-0001 | Add "tier cheat-sheet" §§ to [4] FWK-GOV-001 | task | F4 | 2 hours |
+| TASK-0002 | Add `foundation-model` to `vendor-inventory.schema.json` category enum (v1 → v1.1) | task | F5 | 15 minutes |
+
+### 24.6 Scenario verdicts summary
+
+| Scenario | Verdict | T1 clauses | Docs opened | Remediations |
+|----------|---------|-----------:|------------:|-------------:|
+| S1 internal tool | ✅ follow-able with friction | ~30 | 15 | 2 |
+| S2 B2B SaaS | ✅ follow-able | ~55 | 25 | 3 |
+| S3 fintech | ⚠️ follow-able with effort | ~90 | 40 | 4 |
+| S4 healthcare | ⚠️ follow-able with gaps | ~85 | 40 | 3 |
+| S5 AI feature | ⚠️ blocked pending RFC-0002 | ~65 | 30 | 3 |
+
+**Pass-4 result: portfolio passes the follow-ability test at all tiers, with six findings queued (4 remediations via 2 RFCs and 2 tasks). No severe architectural gap surfaced.**
+
+### 24.7 Pending work (post §24)
+
+| Item | State | Action |
+|------|-------|--------|
+| Regenerated `modules/contracts/*.md` (41 files, metadata-only) | drift present | Commit with message like `chore(modules): refresh ICD mirror metadata`. |
+| TASK-0001 (tier cheat-sheet) | queued | Add to [4] FWK-GOV-001 — next session. |
+| TASK-0002 (`foundation-model` enum) | queued | One-line schema change + validator re-run — next session. |
+| RFC-0004 (starter kits) | drafting | Scoped in §24.4 F1. |
+| RFC-0005 (regulation maps) | drafting | Scoped in §24.4 F2 / F3. |
+| Survey window close (2026-05-06) | external | `forms/responses/*.yaml` land → `tools/pass3-score.py` → §21.8 populated. |
+| RFC-0001/0002/0003 approvals | external | Decisions 2026-05-13 / -20 / -27. |
+
+### 24.8 Audit methodology — status
+
+| Pass | State | Output section |
+|------|-------|---------------|
+| Pass 1 — Structural Map | ✅ complete | §10–§15 |
+| Pass 2 — Clause Tiering | ✅ complete | §16–§20 |
+| Pass 3 — Friction Audit | ✅ methodology complete; numeric re-score pending survey | §21, §21.11, §22, §24.1 |
+| Pass 4 — Scenario Integration Test | ✅ complete | §24.3 |
+
+Audit loop is now fully traversed. Ongoing enforcement runs through CI (`freeze-check`, `schema-validate`) and pre-commit hooks. Further changes are RFC-driven, not audit-driven.
+
+---

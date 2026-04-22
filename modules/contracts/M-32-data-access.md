@@ -1,7 +1,7 @@
 # M-32 — Data Access Module Interface Contract
 
 **Status:** EXTRACTED (owner: `eng-lead`)  
-**Source:** `[33]-STD-ENG-008 CYBERCUBE-Reusable-Modules-Standard-v1.1.md` §ICD-3.32 (lines 2098–2224)  
+**Source:** `[33]-STD-ENG-008 CYBERCUBE-Reusable-Modules-Standard-v1.1.md` §ICD-3.32 (lines 2100–2226)  
 **Versioning:** semver per ICD-6 (API Versioning Contract) in STD-ENG-008.  
 **Change control:** non-breaking edits may be made without STD-ENG-008 version bump; breaking changes require RFC (STD-ENG-007).
 

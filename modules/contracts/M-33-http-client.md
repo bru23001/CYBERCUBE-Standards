@@ -1,7 +1,7 @@
 # M-33 — HTTP Client Module Interface Contract
 
 **Status:** EXTRACTED (owner: `eng-lead`)  
-**Source:** `[33]-STD-ENG-008 CYBERCUBE-Reusable-Modules-Standard-v1.1.md` §ICD-3.33 (lines 2225–2352)  
+**Source:** `[33]-STD-ENG-008 CYBERCUBE-Reusable-Modules-Standard-v1.1.md` §ICD-3.33 (lines 2227–2354)  
 **Versioning:** semver per ICD-6 (API Versioning Contract) in STD-ENG-008.  
 **Change control:** non-breaking edits may be made without STD-ENG-008 version bump; breaking changes require RFC (STD-ENG-007).
 

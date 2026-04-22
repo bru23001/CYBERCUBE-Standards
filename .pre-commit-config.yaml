@@ -22,3 +22,27 @@ repos:
           requirement across all [N]-*.md standards. Fails the commit if any
           standard is frozen, uses unknown status vocabulary, or (warn) is
           missing its Applicability Tier Table.
+
+      - id: schema-validate
+        name: Governance Artifact Schema Validation
+        entry: python tools/validate-schemas.py --strict
+        language: system
+        pass_filenames: false
+        files: '^(schemas|governance)/|^tools/validate-schemas\.py$'
+        description: >
+          Validates governance artifacts (ADRs, risk register, vendor
+          inventory, audit findings) against schemas/*.schema.json. Runs in
+          --strict mode: fails if any schema has zero artifacts. Mirrors the
+          schema-validate CI job.
+
+      - id: icd-mirror-fresh
+        name: ICD mirror freshness (STD-ENG-008)
+        entry: bash -c 'python3 tools/extract-icds.py && git diff --exit-code --quiet modules/contracts/ || { echo "ICD mirror is stale — re-run tools/extract-icds.py and stage modules/contracts/"; exit 1; }'
+        language: system
+        pass_filenames: false
+        files: '^\[33\]-STD-ENG-008.*\.md$|^tools/extract-icds\.py$'
+        description: >
+          Regenerates per-module contract mirror from [33]-STD-ENG-008 and
+          fails if it's drifted from git. Prevents the mirror from going
+          stale while the source doc remains authoritative (pre-v2.0
+          cut-over).

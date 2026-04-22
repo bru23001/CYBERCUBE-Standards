@@ -1,6 +1,6 @@
 {
   "schema": "cybercube.modules.contracts.v1",
-  "generated": "2026-04-22T17:51:54+00:00",
+  "generated": "2026-04-22T18:13:54+00:00",
   "source": "[33]-STD-ENG-008 CYBERCUBE-Reusable-Modules-Standard-v1.1.md",
   "count": 40,
   "owner": "eng-lead",
@@ -13,8 +13,8 @@
       "contract_file": "modules/contracts/M-01-identity.md",
       "source_icd": "ICD-3.1",
       "source_lines": [
-        682,
-        746
+        684,
+        748
       ]
     },
     {
@@ -24,8 +24,8 @@
       "contract_file": "modules/contracts/M-02-authentication.md",
       "source_icd": "ICD-3.2",
       "source_lines": [
-        747,
-        816
+        749,
+        818
       ]
     },
     {
@@ -35,8 +35,8 @@
       "contract_file": "modules/contracts/M-03-authorization.md",
       "source_icd": "ICD-3.3",
       "source_lines": [
-        817,
-        868
+        819,
+        870
       ]
     },
     {
@@ -46,8 +46,8 @@
       "contract_file": "modules/contracts/M-09-audit.md",
       "source_icd": "ICD-3.4",
       "source_lines": [
-        869,
-        931
+        871,
+        933
       ]
     },
     {
@@ -57,8 +57,8 @@
       "contract_file": "modules/contracts/M-10-multi-tenancy.md",
       "source_icd": "ICD-3.5",
       "source_lines": [
-        932,
-        969
+        934,
+        971
       ]
     },
     {
@@ -68,8 +68,8 @@
       "contract_file": "modules/contracts/M-04-api-gateway.md",
       "source_icd": "ICD-3.6",
       "source_lines": [
-        970,
-        1012
+        972,
+        1014
       ]
     },
     {
@@ -79,8 +79,8 @@
       "contract_file": "modules/contracts/M-05-identifier.md",
       "source_icd": "ICD-3.7",
       "source_lines": [
-        1013,
-        1051
+        1015,
+        1053
       ]
     },
     {
@@ -90,8 +90,8 @@
       "contract_file": "modules/contracts/M-06-data-classification.md",
       "source_icd": "ICD-3.8",
       "source_lines": [
-        1052,
-        1086
+        1054,
+        1088
       ]
     },
     {
@@ -101,8 +101,8 @@
       "contract_file": "modules/contracts/M-07-soft-delete.md",
       "source_icd": "ICD-3.9",
       "source_lines": [
-        1087,
-        1124
+        1089,
+        1126
       ]
     },
     {
@@ -112,8 +112,8 @@
       "contract_file": "modules/contracts/M-08-records-management.md",
       "source_icd": "ICD-3.10",
       "source_lines": [
-        1125,
-        1162
+        1127,
+        1164
       ]
     },
     {
@@ -123,8 +123,8 @@
       "contract_file": "modules/contracts/M-11-logging.md",
       "source_icd": "ICD-3.11",
       "source_lines": [
-        1163,
-        1211
+        1165,
+        1213
       ]
     },
     {
@@ -134,8 +134,8 @@
       "contract_file": "modules/contracts/M-12-metrics.md",
       "source_icd": "ICD-3.12",
       "source_lines": [
-        1212,
-        1251
+        1214,
+        1253
       ]
     },
     {
@@ -145,8 +145,8 @@
       "contract_file": "modules/contracts/M-13-tracing.md",
       "source_icd": "ICD-3.13",
       "source_lines": [
-        1252,
-        1285
+        1254,
+        1287
       ]
     },
     {
@@ -156,8 +156,8 @@
       "contract_file": "modules/contracts/M-14-alerting.md",
       "source_icd": "ICD-3.14",
       "source_lines": [
-        1286,
-        1320
+        1288,
+        1322
       ]
     },
     {
@@ -167,8 +167,8 @@
       "contract_file": "modules/contracts/M-15-health-check.md",
       "source_icd": "ICD-3.15",
       "source_lines": [
-        1321,
-        1356
+        1323,
+        1358
       ]
     },
     {
@@ -178,8 +178,8 @@
       "contract_file": "modules/contracts/M-16-cryptography.md",
       "source_icd": "ICD-3.16",
       "source_lines": [
-        1357,
-        1403
+        1359,
+        1405
       ]
     },
     {
@@ -189,8 +189,8 @@
       "contract_file": "modules/contracts/M-17-secret-management.md",
       "source_icd": "ICD-3.17",
       "source_lines": [
-        1404,
-        1442
+        1406,
+        1444
       ]
     },
     {
@@ -200,8 +200,8 @@
       "contract_file": "modules/contracts/M-18-input-validation.md",
       "source_icd": "ICD-3.18",
       "source_lines": [
-        1443,
-        1477
+        1445,
+        1479
       ]
     },
     {
@@ -211,8 +211,8 @@
       "contract_file": "modules/contracts/M-19-rate-limiting.md",
       "source_icd": "ICD-3.19",
       "source_lines": [
-        1478,
-        1517
+        1480,
+        1519
       ]
     },
     {
@@ -222,8 +222,8 @@
       "contract_file": "modules/contracts/M-20-security-headers.md",
       "source_icd": "ICD-3.20",
       "source_lines": [
-        1518,
-        1553
+        1520,
+        1555
       ]
     },
     {
@@ -233,8 +233,8 @@
       "contract_file": "modules/contracts/M-21-webhook.md",
       "source_icd": "ICD-3.21",
       "source_lines": [
-        1554,
-        1591
+        1556,
+        1593
       ]
     },
     {
@@ -244,8 +244,8 @@
       "contract_file": "modules/contracts/M-22-notification.md",
       "source_icd": "ICD-3.22",
       "source_lines": [
-        1592,
-        1628
+        1594,
+        1630
       ]
     },
     {
@@ -255,8 +255,8 @@
       "contract_file": "modules/contracts/M-23-email.md",
       "source_icd": "ICD-3.23",
       "source_lines": [
-        1629,
-        1666
+        1631,
+        1668
       ]
     },
     {
@@ -266,8 +266,8 @@
       "contract_file": "modules/contracts/M-24-file-upload.md",
       "source_icd": "ICD-3.24",
       "source_lines": [
-        1667,
-        1704
+        1669,
+        1706
       ]
     },
     {
@@ -277,8 +277,8 @@
       "contract_file": "modules/contracts/M-25-incident-management.md",
       "source_icd": "ICD-3.25",
       "source_lines": [
-        1705,
-        1742
+        1707,
+        1744
       ]
     },
     {
@@ -288,8 +288,8 @@
       "contract_file": "modules/contracts/M-26-change-management.md",
       "source_icd": "ICD-3.26",
       "source_lines": [
-        1743,
-        1780
+        1745,
+        1782
       ]
     },
     {
@@ -299,8 +299,8 @@
       "contract_file": "modules/contracts/M-27-feature-flag.md",
       "source_icd": "ICD-3.27",
       "source_lines": [
-        1781,
-        1817
+        1783,
+        1819
       ]
     },
     {
@@ -310,8 +310,8 @@
       "contract_file": "modules/contracts/M-28-backup.md",
       "source_icd": "ICD-3.28",
       "source_lines": [
-        1818,
-        1861
+        1820,
+        1863
       ]
     },
     {
@@ -321,8 +321,8 @@
       "contract_file": "modules/contracts/M-29-configuration.md",
       "source_icd": "ICD-3.29",
       "source_lines": [
-        1862,
-        1926
+        1864,
+        1928
       ]
     },
     {
@@ -332,8 +332,8 @@
       "contract_file": "modules/contracts/M-30-error-handling.md",
       "source_icd": "ICD-3.30",
       "source_lines": [
-        1927,
-        1996
+        1929,
+        1998
       ]
     },
     {
@@ -343,8 +343,8 @@
       "contract_file": "modules/contracts/M-31-core-utilities.md",
       "source_icd": "ICD-3.31",
       "source_lines": [
-        1997,
-        2097
+        1999,
+        2099
       ]
     },
     {
@@ -354,8 +354,8 @@
       "contract_file": "modules/contracts/M-32-data-access.md",
       "source_icd": "ICD-3.32",
       "source_lines": [
-        2098,
-        2224
+        2100,
+        2226
       ]
     },
     {
@@ -365,8 +365,8 @@
       "contract_file": "modules/contracts/M-33-http-client.md",
       "source_icd": "ICD-3.33",
       "source_lines": [
-        2225,
-        2352
+        2227,
+        2354
       ]
     },
     {
@@ -376,8 +376,8 @@
       "contract_file": "modules/contracts/M-34-message-bus.md",
       "source_icd": "ICD-3.34",
       "source_lines": [
-        2353,
-        2510
+        2355,
+        2512
       ]
     },
     {
@@ -387,8 +387,8 @@
       "contract_file": "modules/contracts/M-35-billing.md",
       "source_icd": "ICD-3.35",
       "source_lines": [
-        2511,
-        2628
+        2513,
+        2630
       ]
     },
     {
@@ -398,8 +398,8 @@
       "contract_file": "modules/contracts/M-36-workflow.md",
       "source_icd": "ICD-3.36",
       "source_lines": [
-        2629,
-        2767
+        2631,
+        2769
       ]
     },
     {
@@ -409,8 +409,8 @@
       "contract_file": "modules/contracts/M-37-ui-foundation.md",
       "source_icd": "ICD-3.37",
       "source_lines": [
-        2768,
-        2900
+        2770,
+        2902
       ]
     },
     {
@@ -420,8 +420,8 @@
       "contract_file": "modules/contracts/M-38-localization.md",
       "source_icd": "ICD-3.38",
       "source_lines": [
-        2901,
-        2972
+        2903,
+        2974
       ]
     },
     {
@@ -431,8 +431,8 @@
       "contract_file": "modules/contracts/M-39-search.md",
       "source_icd": "ICD-3.39",
       "source_lines": [
-        2973,
-        3060
+        2975,
+        3062
       ]
     },
     {
@@ -442,8 +442,8 @@
       "contract_file": "modules/contracts/M-40-cache.md",
       "source_icd": "ICD-3.40",
       "source_lines": [
-        3061,
-        3160
+        3063,
+        3162
       ]
     }
   ]
