@@ -1,13 +1,13 @@
-# CYBERCUBE Unified Control Matrix (UCM) (v1.1)
+# CYBERCUBE Unified Control Matrix (UCM) (v1.2)
 
 | Metadata | Value |
 |----------|-------|
 | **Standard ID** | STD-GOV-006 |
 | **Catalog Number** | 6.4 |
-| **Version** | 1.1 |
+| **Version** | 1.2 |
 | **Status** | Active |
 | **Owner** | CISO + Compliance Lead |
-| **Effective** | 2026-02-16 (v1), 2026-04-22 (v1.1) |
+| **Effective** | 2026-02-16 (v1), 2026-04-22 (v1.1), 2026-04-22 (v1.2) |
 | **Classification** | INTERNAL |
 | **Compliance Level** | Mandatory |
 | **Next Review** | 2026-Q3 (post SOC 2 Type II audit) |
@@ -17,7 +17,7 @@
 | Applicability | Tier | Summary of Clauses in This Standard | Waiver Path |
 | ------------- | ---- | ----------------------------------- | ----------- |
 | All projects | **T1 MUST** | (1) Every normative clause (`MUST`/`SHALL`) across CYBERCUBE standards MUST map to a control entry in the UCM. (2) The UCM is the authoritative traceability source; divergent per-standard mappings are not normative. (3) Adding or removing a MUST clause in any standard MUST update the UCM in the same change. | None (non-waivable) |
-| SaaS / customer-facing | **T2 SHOULD** | Quarterly UCM refresh, gap-analysis feeding a remediation plan, compliance dashboard kept current, mapping to at least one external framework (e.g. SOC-2, NIST CSF, ISO-27001). | Lightweight waiver per POL-GOV-001 §8.3 |
+| SaaS / customer-facing | **T2 SHOULD** | Quarterly UCM refresh, gap-analysis feeding a remediation plan, compliance dashboard kept current, mapping to at least one external framework via `governance/compliance-maps/` (PCI DSS 4.0 / HIPAA Security Rule / SOC 2 seeded at v1.2; see §13). When a product declares scope for a regulation listed in `governance/compliance-maps/`, the product MUST reference the relevant map file in its PCL row ([5] STD-GOV-001) and include the mapping in its audit-evidence pack ([44] STD-GOV-004 T2/T3). | Lightweight waiver per POL-GOV-001 §8.3 |
 | Regulated / high-risk | **T3 MAY** | External-auditor evidence packs derived from UCM, live regulator-facing crosswalk (multiple frameworks in parallel), automated evidence collection against UCM rows. | Formal waiver per STD-GOV-003 |
 
 > Per POL-GOV-001 §8.8.
@@ -47,6 +47,7 @@
 10. [Coverage Dashboard](#10-coverage-dashboard)
 11. [Gap Register](#11-gap-register)
 12. [Maintenance & Governance](#12-maintenance--governance)
+13. [External Regulation Crosswalks (compliance-maps/)](#13-external-regulation-crosswalks-compliance-maps)
 
 ---
 
@@ -472,8 +473,38 @@ PROPOSED → APPROVED → IMPLEMENTING → PARTIAL → IMPLEMENTED → VERIFIED 
 
 ---
 
+## 13. External Regulation Crosswalks (`compliance-maps/`)
+
+Per-regulation UCM→external-framework crosswalks live in `governance/compliance-maps/` as Markdown files with machine-readable YAML front-matter validated against `schemas/compliance-map.schema.json` (via `tools/validate-schemas.py`).
+
+**Files published at v1.2:**
+
+| File | Regulation | Authority | Owner |
+|------|------------|-----------|-------|
+| `pci-dss-4.0.md` | PCI DSS v4.0 | PCI SSC | `sec-lead` |
+| `hipaa-security-rule.md` | HIPAA Security Rule (45 CFR §164.306-318) | HHS / OCR | `privacy-lead` + `legal-lead` |
+| `soc2.md` | SOC 2 Trust Services Criteria | AICPA | `sec-lead` |
+
+**Non-authoritative.** Each map file is CYBERCUBE's self-assessment of how our UCM rows correspond to the external regulation; it is *not* a regulator attestation or auditor opinion. The regulation text is the authority.
+
+**Relationship enum** used per mapping row (`direct` / `partial` / `adjacent`) — see `governance/compliance-maps/README.md` for full definitions.
+
+**Consuming a map.** When a product declares scope for a listed regulation:
+
+1. Reference the map file by slug in the PCL row per [5] STD-GOV-001.
+2. Evidence artifacts named in each `direct` row become the starting audit-evidence pack ([44] STD-GOV-004 T2/T3).
+3. `partial` / `adjacent` rows identify the additional work teams owe beyond the UCM row to meet the regulation requirement.
+
+**Cadence.** Each map has a `published_map` date. Staleness >13 months is a lint finding; annual review is owner responsibility.
+
+**Scope of v1.2.** Governance, schema, and seed rows (3-7 rows per regulation). Bulk population of each map is a follow-on ticket per RFC-0005 §3.2.
+
+---
+
 ## Version History
 
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
 | 1.0 | 2026-02-16 | — | Initial UCM with 105 controls across 7 domains; ISO 27001, SOC 2, NIST CSF, GDPR, EU AI Act, PCI DSS mappings |
+| 1.1 | 2026-04-22 | Standards Council | Applicability Tier Table added (pre-RFC-0005 backfill to close drift). |
+| 1.2 | 2026-04-22 | Standards Council | RFC-0005 additive: T2 reference-clause for `governance/compliance-maps/` + §13 describing the map-file contract. Seeded PCI DSS 4.0 / HIPAA Security Rule / SOC 2 crosswalks. No existing rows altered. |
