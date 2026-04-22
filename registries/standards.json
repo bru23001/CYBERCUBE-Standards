@@ -215,12 +215,12 @@
     "name": "CYBERCUBE Data Classification & Retention Standard",
     "type": "Standard",
     "domain": "Data & Privacy",
-    "version": "v1",
+    "version": "v1.2",
     "owner": "Security Team / Data Protection",
     "status": "Active",
-    "effective": "2026-01-17",
+    "effective": "2026-04-22",
     "classification": "INTERNAL",
-    "filename": "STD-DAT-001 CYBERCUBE-Data-Classification-Retention-Standard-v1.md",
+    "filename": "STD-DAT-001 CYBERCUBE-Data-Classification-Retention-Standard-v1.2.md",
     "createdAt": "2026-02-10"
   },
   {
@@ -285,12 +285,12 @@
     "name": "CYBERCUBE Records Management Policy",
     "type": "Policy",
     "domain": "Data & Privacy",
-    "version": "v1",
+    "version": "v2.0",
     "owner": "Legal + Operations",
     "status": "Active",
-    "effective": "2026-01-17",
+    "effective": "2026-04-22",
     "classification": "INTERNAL",
-    "filename": "POL-REC-001 CYBERCUBE-Records-Management-Policy-v1.md",
+    "filename": "POL-REC-001 CYBERCUBE-Records-Management-Policy-v2.md",
     "createdAt": "2026-02-10"
   },
   {

@@ -1,16 +1,18 @@
-CYBERCUBE Data Classification & Retention Standard (v1.1)
+CYBERCUBE Data Classification & Retention Standard (v1.2)
 
 ### Applicability Tier Table
 
 | Applicability | Tier | Summary of Clauses in This Standard | Waiver Path |
 | ------------- | ---- | ----------------------------------- | ----------- |
-| All projects | **T1 MUST** | (1) Every data entity (table, collection, file class) MUST carry a classification label: `PUBLIC`, `INTERNAL`, `CONFIDENTIAL`, or `RESTRICTED`. (2) Every entity MUST have a declared retention period — either explicit (days/months/years) or `INDEFINITE` with a documented reason. (3) PII fields MUST be flagged and listed in a per-product PII inventory (at minimum a `PII.md` or equivalent). (4) Data deletion (soft or hard) MUST be auditable — who, what, when, via what mechanism. (5) Backup data MUST inherit the classification of the source. | None (non-waivable) |
+| All projects | **T1 MUST** | (1) Every data entity (table, collection, file class) MUST carry a classification label: `PUBLIC`, `INTERNAL`, `CONFIDENTIAL`, or `RESTRICTED`. (2) Every entity MUST have a declared retention period — either explicit (days/months/years) or `INDEFINITE` with a documented reason. (3) PII fields MUST be flagged and listed in a per-product PII inventory (at minimum a `PII.md` or equivalent). (4) Data deletion (soft or hard) MUST be auditable — who, what, when, and **method** of deletion (soft-delete / hard-delete / secure-delete / cryptographic-erasure). The `deletion_log` schema in this standard is the canonical destruction record for both data entities and records-management dispositions (see POL-REC-001 §6). (5) Backup data MUST inherit the classification of the source. | None (non-waivable) |
 | SaaS / customer-facing | **T2 SHOULD** | DSAR (data-subject access request) workflow with SLA, documented lawful basis per field group, encryption at rest (platform-managed), data masking in non-production environments, automated retention enforcement where platform allows, cross-border data transfer register. | Lightweight waiver per POL-GOV-001 §8.3 |
 | Regulated / high-risk | **T3 MAY** | Legal hold system with per-entity flags, customer-managed-keys (BYOK/HYOK), automated DSAR with identity-verification gate, immutable audit trails for data access, tokenization/pseudonymization of PII, cross-jurisdiction data residency controls, regulated certifications (GDPR DPIA, HIPAA BAA, PCI segmentation). | Formal waiver per STD-GOV-003 |
 
 > Per POL-GOV-001 §8.8.
 
 > **v1.1 (2026-04-22) — Unfreeze (Path B).** T1 reduced to five rules documentable today: classification labels, retention periods, PII inventory, deletion audit, backup inheritance. Legal hold, DSAR automation, BYOK, GDPR DPIA reclassified to T2/T3 ROADMAP. This standard is **load-bearing** — [14] POL-REC-001 T1 and [19] STD-SEC-004 T1 both reference this classification schema.
+
+> **v1.2 (2026-04-22) — RFC-0003 additive.** T1 #4 wording harmonized to name the destruction **method** explicitly (soft/hard/secure/cryptographic). `deletion_log` is now explicitly the single canonical destruction record for *both* data entities and records-management dispositions. **POL-REC-001 v2.0 delegates its records-destruction T1 rule to this standard**; for records-governance context (custodian roles, special record types, disposition authority), see [14] POL-REC-001. No new T1 rules; count unchanged at 5.
 
 Glossary
 
@@ -1684,6 +1686,7 @@ Version History
 | ------- | ---------- | --------------- |
 | v1      | 2026-01-17 | Initial release |
 | v1.1    | 2026-04-22 | Unfreeze (Path B): added Applicability Tier Table with 5 T1 clauses (classification labels, retention schedule, PII inventory, deletion audit, backup inheritance). Legal hold, DSAR automation, BYOK, regulated certifications reclassified to T2/T3 ROADMAP. Compliance checklist merged into tiered Implementation Status. Status vocabulary normalized. |
+| v1.2    | 2026-04-22 | RFC-0003 additive. T1 #4 harmonized: destruction method (soft/hard/secure/cryptographic) now explicit in the T1 text; deletion_log positioned as the canonical destruction record for both data entities and records-management dispositions. Cross-link to POL-REC-001 v2.0 added. No new T1 rules; count unchanged at 5. |
 
 
 

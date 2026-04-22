@@ -498,7 +498,7 @@ Baseline applicable to internal tools, SaaS, and regulated products alike. ~30 d
 
 - **[12] POL-PRI-001** — Published, version-dated public Privacy Policy with all GDPR/CCPA categories.
 - **[13] POL-PRI-002** — Classify personal data (via STD-DAT-001); declare lawful basis before collection.
-- **[14] POL-REC-001** — Records classified per STD-DAT-001; retention per canonical schedule; legal-hold blocks deletion; destruction logged.
+- **[14] POL-REC-001** — Records that qualify per §1 have a named custodian; destruction past retention authorized by disposition authority before `deletion_log` event (per STD-DAT-001 T1 #4).
 - **[15] STD-LGL-001** — On credible claim/subpoena, GC issues a written legal hold that pauses deletion.
 
 **Security**
@@ -679,7 +679,7 @@ Adds to T1 + T2. ~35 deliverables — kicks in for fintech, healthcare, PCI-adja
 5. **Waivers (STD-GOV-003)** — any deliverable you can't produce gets filed as a waiver with compensating control + expiry; no silent skips.
 6. **Waiver inverse (scope-down)** — if a T2/T3 deliverable clearly doesn't fit (e.g. a single-tenant internal tool hitting [27] multi-tenant clauses), document the non-applicability in the same channel.
 
-*Cross-reference: starter-kit templates that pre-wire the T1/T2/T3 deliverables are scoped in RFC-0004 (pending). Until RFC-0004 lands, this cheat-sheet is the canonical summary.*
+*Cross-reference: starter-kit templates that pre-wire the T1/T2/T3 deliverables are scoped in RFC-0004 (accepted 2026-04-22, execution pending). Until RFC-0004 execution lands, this cheat-sheet is the canonical summary.*
 
 ---
 
