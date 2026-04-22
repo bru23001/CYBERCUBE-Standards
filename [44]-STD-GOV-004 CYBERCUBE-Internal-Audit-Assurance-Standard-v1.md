@@ -1,4 +1,14 @@
-# CYBERCUBE Internal Audit & Assurance Standard (v1)
+# CYBERCUBE Internal Audit & Assurance Standard (v1.1)
+
+## Applicability Tier Table
+
+| Applicability | Tier | Summary of Clauses in This Standard | Waiver Path |
+| ------------- | ---- | ----------------------------------- | ----------- |
+| All projects | **T1 MUST** | Audit findings and non-compliance items MUST be tracked in the ERM risk register (STD-ERM-001). | None (non-waivable) |
+| SaaS / customer-facing | **T2 SHOULD** | Annual audit plan, findings tracking, CAP process, periodic dashboard. | Lightweight waiver per POL-GOV-001 §8.3 |
+| Regulated / high-risk | **T3 MAY** | Full independent internal audit function, scheduled compliance audits, program metrics baseline, audit universe refresh. | Formal waiver with risk assessment per STD-GOV-003 |
+
+> **v1.1 (2026-04-22) — MUST scope narrowed.** Body clauses labelled MUST without a tier default to T1 per POL-GOV-001 §8.7.3. Clauses describing the full audit program (audit universe refresh, annual plan, dedicated tooling, quarterly dashboards, metrics baseline) are SHOULD unless a T3 project inherits them.
 
 ## Glossary
 
@@ -613,17 +623,19 @@ Updates require executive approval. Material changes trigger interim review.
 
 ### Core Implementation
 
-| Component | Status | Target Date | Notes |
-|-----------|--------|-------------|-------|
-| Standard document | COMPLETE | — | This document |
-| Audit universe definition | COMPLETE | — | Section 2.2–2.3 |
-| Annual audit plan (2026) | PENDING | Q1 2026 | First annual plan |
-| Audit report template | COMPLETE | — | Section 6.3 |
-| Finding tracking system | PENDING | Q2 2026 | Select and configure tool |
-| CAP tracking process | PENDING | Q2 2026 | Integrate with finding tracker |
-| Quarterly dashboard | PENDING | Q3 2026 | First dashboard after initial audits |
-| First compliance audit | PENDING | Q2 2026 | Target: Security controls domain |
-| Audit program metrics baseline | PENDING | Q4 2026 | After first full audit cycle |
+| Component | Status | Tier | Notes |
+|-----------|--------|------|-------|
+| Standard document | IN PLACE | T1 | This document |
+| Audit universe definition | IN PLACE | T2 | Section 2.2–2.3 |
+| Audit report template | IN PLACE | T2 | Section 6.3 |
+| Finding tracking (via ERM risk register) | IN PLACE | T1 | Reuses STD-ERM-001 register; no new tool |
+| CAP tracking (via ERM risk register) | IN PLACE | T1 | Reuses STD-ERM-001 register |
+| Annual audit plan (2026) | ROADMAP | T3 | Required only for T3 projects |
+| Quarterly dashboard | ROADMAP | T3 | Follows first audit |
+| First compliance audit | ROADMAP | T3 | Security controls domain |
+| Audit program metrics baseline | ROADMAP | T3 | After first full cycle |
+
+Status vocabulary: `IN PLACE` | `COMPLETE` | `PARTIAL` | `ROADMAP` | `N/A`. `ROADMAP` = declared aspirational, not enforceable until moved to `IN PLACE`.
 
 ---
 
@@ -632,6 +644,7 @@ Updates require executive approval. Material changes trigger interim review.
 | Version | Date | Changes |
 |---------|------|---------|
 | v1 | 2026-02-07 | Initial release: full rewrite to CYBERCUBE standard format with audit lifecycle, coverage matrix, remediation SLAs, report template, metrics, risk acceptance process |
+| v1.1 | 2026-04-22 | Unfreeze (Path B): added Applicability Tier Table; T1 = findings/CAP tracked in ERM risk register; audit program items (annual plan, tooling, dashboards, metrics baseline) reclassified as T3 ROADMAP. Status vocabulary normalized. |
 
 ---
 

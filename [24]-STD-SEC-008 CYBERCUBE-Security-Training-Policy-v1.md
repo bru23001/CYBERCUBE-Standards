@@ -1,4 +1,16 @@
-Glossary
+# CYBERCUBE Security Training Policy (v1.1)
+
+## Applicability Tier Table
+
+| Applicability | Tier | Summary of Clauses in This Policy | Waiver Path |
+| ------------- | ---- | --------------------------------- | ----------- |
+| All projects | **T1 MUST** | (1) All new hires MUST complete security-awareness onboarding before system access. (2) All personnel MUST complete annual security-awareness refresh. (3) Incident-triggered re-training MUST be issued after any confirmed phishing click or credential leak. | None (non-waivable) |
+| SaaS / customer-facing | **T2 SHOULD** | Quarterly phishing simulations, role-based curricula (developer, support, ops), LMS-backed tracking, completion reporting. | Lightweight waiver per POL-GOV-001 §8.3 |
+| Regulated / high-risk | **T3 MAY** | PCI-specific training (12.6), sector-specific compliance modules, executive crisis-simulation exercises, bi-annual tabletop. | Formal waiver per STD-GOV-003 |
+
+> **v1.1 (2026-04-22) — MUST scope narrowed.** T1 reduced to onboarding + annual refresh + incident re-training. LMS, phishing platform, role-based content, reporting dashboards are T2 ROADMAP until tooling selected.
+
+## Glossary
 
 This glossary defines key terms used throughout the CYBERCUBE Security
 Training Policy.
@@ -990,16 +1002,20 @@ Remediation: 7 days, no grace
 
 ### Core Implementation
 
-| Component              | Status   | Notes               |
-| ---------------------- | -------- | ------------------- |
-| Policy document        | COMPLETE | This policy         |
-| LMS selection          | PENDING  | Evaluate platforms  |
-| Baseline curriculum    | PARTIAL  | Core content needed |
-| Role-based content     | PENDING  | Develop per role    |
-| Phishing platform      | PENDING  | Select vendor       |
-| Onboarding integration | PENDING  | HR process update   |
-| Reporting dashboard    | PENDING  | Build or configure  |
-| Annual calendar        | PENDING  | Schedule            |
+| Component              | Status   | Tier | Notes               |
+| ---------------------- | -------- | ---- | ------------------- |
+| Policy document        | IN PLACE | T1   | This policy         |
+| Onboarding deck (baseline) | IN PLACE | T1 | Static deck + attestation; reviewed at hire |
+| Annual refresh (baseline)  | IN PLACE | T1 | Async module + attestation, calendar-year cycle |
+| Incident-triggered re-training | IN PLACE | T1 | Issued by Security Team on confirmed click/leak |
+| Baseline curriculum    | PARTIAL  | T1/T2 | Core content defined; expansion for T2 roles is ROADMAP |
+| LMS selection          | ROADMAP  | T2   | Required when T2 projects exist |
+| Role-based content     | ROADMAP  | T2   | Develop per role when LMS available |
+| Phishing platform      | ROADMAP  | T2   | Select vendor; quarterly sims are T2 |
+| Reporting dashboard    | ROADMAP  | T2   | Build after LMS live |
+| Annual calendar (formal) | ROADMAP | T2   | Calendar invites + attestation tracking |
+
+Status vocabulary: `IN PLACE` | `COMPLETE` | `PARTIAL` | `ROADMAP` | `N/A`.
 
 ---
 
@@ -1008,6 +1024,7 @@ Remediation: 7 days, no grace
 | Version | Date       | Changes         |
 | ------- | ---------- | --------------- |
 | v1      | 2026-01-17 | Initial release |
+| v1.1    | 2026-04-22 | Unfreeze (Path B): added Applicability Tier Table; T1 reduced to onboarding + annual refresh + incident re-training (all three enactable today with no tooling). LMS, phishing sims, role-based curricula, reporting dashboards reclassified as T2 ROADMAP. Status vocabulary normalized. |
 
 ---
 

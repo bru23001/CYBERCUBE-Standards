@@ -5,11 +5,11 @@
 | **Standard ID** | STD-ENG-009 |
 | **Catalog Number** | 5.10 |
 | **Name** | CYBERCUBE Technology Stack Standard |
-| **Version** | 2.0 |
+| **Version** | 2.1 |
 | **Status** | Active |
 | **Owner** | Engineering Lead |
 | **Effective** | 2026-04-15 |
-| **Last Updated** | 2026-04-15 |
+| **Last Updated** | 2026-04-16 |
 | **Classification** | INTERNAL |
 | **Compliance Level** | Mandatory |
 | **Next Review** | 2026-07-15 |
@@ -94,7 +94,7 @@ These technologies form the foundation used across all CYBERCUBE projects.
 | **Swift** | Native iOS development | 6.2+ |
 | **Kotlin** | Native Android development | 2.1+ |
 | **Dart** | Cross-platform mobile (Flutter) | 3.x |
-| **SQL** | Database queries | MySQL 8.0+ / PostgreSQL 17+ |
+| **SQL** | Database queries | PostgreSQL 17+ / MySQL 8.0+ |
 
 ### Primary Frameworks
 
@@ -109,7 +109,7 @@ These technologies form the foundation used across all CYBERCUBE projects.
 
 | Type | Primary | Alternative |
 |------|---------|-------------|
-| Relational | **MySQL 8.0+** | PostgreSQL 17+ |
+| Relational | **PostgreSQL 17+** | MySQL 8.0+ |
 | Document | MongoDB 7+ | — |
 | Caching | **Redis 8+** | Memcached |
 | Search | Elasticsearch 8+ | Algolia |
@@ -119,7 +119,7 @@ These technologies form the foundation used across all CYBERCUBE projects.
 
 **Primary:** Google Cloud Platform (GCP)
 - Cloud Run (containerized services)
-- Cloud SQL (managed MySQL/PostgreSQL)
+- Cloud SQL (managed PostgreSQL/MySQL)
 - Cloud Storage (GCS)
 - BigQuery (data warehouse)
 - Secret Manager
@@ -147,6 +147,8 @@ Build custom web applications, marketing websites, eCommerce platforms, business
 | **State Management** | Zustand, TanStack Query | Minimal Redux |
 | **Forms** | React Hook Form, Zod | Schema validation |
 | **Animation** | Framer Motion, GSAP | Performance-optimized |
+| **Accessibility** | axe-core, Lighthouse CI, eslint-plugin-jsx-a11y | WCAG 2.2 AA compliance required for all web deliverables |
+| **Internationalization** | next-intl (Next.js), react-i18next, FormatJS | Required when project serves multiple locales; ICU MessageFormat for plurals/gender |
 
 #### Backend Technologies
 
@@ -154,13 +156,27 @@ Build custom web applications, marketing websites, eCommerce platforms, business
 |----------|-------------|-------|
 | **Runtime** | Node.js 22 LTS | Active LTS; Node.js 24 target after Oct 2026 LTS promotion |
 | **Alt Runtime** | Bun | Performance-critical services; Node.js API compatible |
-| **Framework** | Express 5.x, Fastify 5.x | REST APIs; Express 5 default on npm since Mar 2025 |
+| **Framework** | Express 5.x | REST APIs; Express 5 default on npm since Mar 2025 |
+| **Alt Framework** | Fastify 5.x | Use when p95 latency < 50 ms is a hard requirement |
 | **Alt Framework** | Hono | Lightweight, edge-first, Web Standards API |
 | **Language** | TypeScript 5.9+ | Full type safety |
-| **API Design** | REST, GraphQL (Apollo), tRPC | OpenAPI documentation; tRPC for TS-only stacks |
-| **Authentication** | Access tokens (JWT ES256 preferred), refresh tokens (opaque, server-stored), OAuth 2.0 + PKCE, Passport.js | Per STD-SEC-003 session model; no localStorage token storage |
+| **API Design** | REST, GraphQL (Yoga preferred, Apollo for existing), tRPC | OpenAPI documentation; tRPC for TS-only stacks |
+| **Authentication** | Access tokens (JWT ES256 via `jose`), refresh tokens (opaque, server-stored), OAuth 2.0 + PKCE | Per STD-SEC-003 session model; no localStorage token storage |
+| **Auth Libraries** | `jose` (JWT), `@oslojs/crypto` (hashing/TOTP), Passport.js (legacy) | `jose` + `@oslojs` preferred for new projects; Passport.js for legacy migration only |
 | **Validation** | Zod, Joi | Request validation |
-| **ORM/Query** | Prisma, Drizzle, mysql2 | Type-safe queries |
+| **ORM/Query** | Prisma, Drizzle | Type-safe queries; Prisma default for new projects |
+| **Migrations** | Prisma Migrate (default), Drizzle Kit, Alembic (Python), Flyway (JVM) | Every project MUST use managed migrations; raw DDL forbidden in production |
+| **Email** | Resend (preferred), SendGrid | Transactional email; Resend for new projects; SendGrid for high-volume or legacy |
+| **Background Jobs** | BullMQ (Redis-backed), Cloud Tasks | BullMQ for Node.js job queues; Cloud Tasks for serverless/lightweight |
+| **Scheduled Jobs** | Cloud Scheduler (preferred), node-cron | Cloud Scheduler for production; node-cron for local dev only |
+| **Connection Pooling** | Cloud SQL Auth Proxy, PgBouncer | Required for Cloud Run / serverless; Prisma Data Proxy as alternative |
+| **File Storage** | GCS + signed URLs, Sharp (image processing) | Cloudinary or Imgproxy for CDN-backed image transformation |
+| **API Codegen** | openapi-typescript, orval | Generate typed clients from OpenAPI specs; required for cross-service contracts |
+| **Logging** | pino (preferred), winston | Structured JSON logging; pino for performance; pairs with OpenTelemetry via pino-opentelemetry-transport |
+| **Env Management** | `@t3-oss/env-nextjs` (Next.js), `envalid` (Node.js), `dotenv` | Typed env validation required; `dotenv` for local dev only; production secrets via Secret Manager |
+| **Date/Time** | date-fns (preferred), dayjs | date-fns for tree-shaking and immutability; dayjs for drop-in Moment replacement; avoid Moment.js (HOLD) |
+| **Rich Text Editor** | TipTap (preferred), Lexical | TipTap (ProseMirror-based) for content-rich apps; Lexical for Meta-ecosystem projects |
+| **Webhook Delivery** | Svix, or custom via BullMQ + HMAC signing | Reliable outbound webhooks with retry, idempotency, and payload signing per STD-ENG-003 |
 
 #### eCommerce Technologies
 
@@ -176,7 +192,7 @@ Build custom web applications, marketing websites, eCommerce platforms, business
 | Type | Technologies | Use Case |
 |------|-------------|----------|
 | **Headless** | Sanity, Strapi, Contentful | Modern JAMstack |
-| **Traditional** | WordPress (headless) | Blog-heavy sites |
+| **Traditional** | WordPress (headless) | Blog-heavy sites; **HOLD** — use for legacy only; migrate to Sanity/Strapi |
 | **Simple** | Notion API, Airtable | MVP/internal |
 
 #### API Development
@@ -185,9 +201,11 @@ Build custom web applications, marketing websites, eCommerce platforms, business
 |----------|-------------|-------|
 | **REST** | Express + OpenAPI/Swagger | Auto-documentation |
 | **Type-Safe API** | tRPC | End-to-end type safety for TypeScript-only stacks |
-| **GraphQL** | Apollo Server, Yoga | Complex data needs |
+| **GraphQL** | Yoga (new projects), Apollo Server (existing) | Yoga preferred — lighter runtime; Apollo for legacy |
 | **Real-time** | Socket.IO, WebSockets | Live updates |
-| **Rate Limiting** | express-rate-limit | DDoS protection |
+| **Rate Limiting** | express-rate-limit, @upstash/ratelimit (serverless) | DDoS protection; sliding-window or token-bucket per STD-SEC-003 |
+| **Health Checks** | `GET /healthz` (liveness), `GET /readyz` (readiness) | Required for all deployable services; response must include dependency status |
+| **Graceful Shutdown** | Built-in `server.close()` + SIGTERM handler | Drain in-flight requests before exit; mandatory for Cloud Run / K8s |
 
 ---
 
@@ -238,6 +256,24 @@ Build native iOS/Android apps, cross-platform solutions, and wearable applicatio
 | **Wear OS** | Compose for Wear OS | Android watches |
 | **Widgets** | WidgetKit (iOS), Glance (Android) | Home screen |
 
+#### Progressive Web Apps (PWA)
+
+| Category | Technologies | Notes |
+|----------|-------------|-------|
+| **Service Workers** | Workbox | Caching strategies, offline support |
+| **Manifest** | Web App Manifest | Installability, splash screen, icons |
+| **Push** | Web Push API + FCM | Browser push notifications |
+| **Scope** | Use for content-heavy apps where native install is not required | Aligns with MA-PW artifact code |
+
+#### Desktop Applications
+
+| Category | Technologies | Notes |
+|----------|-------------|-------|
+| **Primary** | Tauri 2.x (Rust + web frontend) | Small binary, strong security sandbox; preferred for new projects |
+| **Alternative** | Electron | Larger binary; use when extensive Node.js API access is required |
+| **Cross-Platform** | Flutter Desktop | When mobile + desktop from single codebase is a requirement |
+| **Scope** | Aligns with DA-MC/WN/LX/XP artifact codes | ADR required for framework selection |
+
 #### Mobile Backend Services
 
 | Category | Technologies | Notes |
@@ -265,7 +301,7 @@ Build AI-powered applications, chatbots, predictive analytics, and NLP solutions
 
 #### Large Language Models (LLMs)
 
-> **Note:** Model versions below reflect the latest available or announced releases as of Feb 2026. Verify current versions before implementation — providers ship new models frequently.
+> **Note:** Model versions below reflect the latest available or announced releases as of April 2026. Verify current versions before implementation — providers ship new models frequently.
 
 | Provider | Models | Use Case |
 |----------|--------|----------|
@@ -273,7 +309,7 @@ Build AI-powered applications, chatbots, predictive analytics, and NLP solutions
 | **Anthropic** | Claude-series (Opus/Sonnet/Haiku) | Complex reasoning; strong coding benchmarks |
 | **Google** | Gemini-series (Pro/Flash) | Multimodal; large context; video processing |
 | **Open Source** | Llama, Mistral, DeepSeek (latest stable) | Self-hosted options |
-| **xAI** | Grok (latest stable) | Multi-step reasoning |
+| **xAI** | Grok (latest stable) | Multi-step reasoning; **ASSESS** — evaluate before production use |
 
 #### AI Development Frameworks
 
@@ -335,7 +371,7 @@ Build AI-powered applications, chatbots, predictive analytics, and NLP solutions
 |----------|-------------|-------|
 | **Language** | Python 3.12+ | Primary AI language |
 | **Notebooks** | Jupyter, Google Colab | Experimentation |
-| **Package Manager** | pip, Poetry, uv | Dependency management |
+| **Package Manager** | uv (preferred), Poetry, pip | uv default for new projects (10-100x faster); Poetry for complex dependency resolution; pip as fallback |
 | **GPU** | NVIDIA CUDA, Cloud GPUs | Training acceleration |
 
 ---
@@ -471,8 +507,8 @@ Build enterprise-grade platforms, workflow automation, and complex integrations.
 
 | Category | Technologies | Notes |
 |----------|-------------|-------|
-| **Node.js** | Express 5.x, Fastify 5.x, Hono, NestJS | JavaScript ecosystem |
-| **Python** | FastAPI, Django | Data-heavy apps |
+| **Node.js** | Express 5.x (default), Fastify 5.x, Hono, NestJS | Express default; Fastify/Hono for perf-critical; NestJS for enterprise DI patterns |
+| **Python** | FastAPI + Pydantic, Django | Data-heavy apps; Pydantic mandatory for FastAPI validation/serialization |
 | **Go** | Gin, Echo | High performance |
 | **Java** | Spring Boot | Enterprise clients |
 | **.NET** | ASP.NET Core | Microsoft stack |
@@ -529,6 +565,7 @@ Build enterprise-grade platforms, workflow automation, and complex integrations.
 | **Parsing** | Apache PDFBox, Document AI | Extraction |
 | **Office** | LibreOffice (headless), docx | Conversion |
 | **OCR** | Tesseract, Google Vision | Text extraction |
+| **PDF Accessibility** | PDF/UA compliance via tagged PDF generation | Required for government / healthcare clients; validate with PAC 2024 |
 
 #### Enterprise Integrations
 
@@ -548,7 +585,7 @@ Build enterprise-grade platforms, workflow automation, and complex integrations.
 | Service | GCP Technology | Purpose |
 |---------|---------------|---------|
 | **Compute** | Cloud Run | Containerized services |
-| **Database** | Cloud SQL | Managed MySQL/PostgreSQL |
+| **Database** | Cloud SQL | Managed PostgreSQL/MySQL |
 | **Storage** | Cloud Storage (GCS) | Files, assets, backups |
 | **CDN** | Cloud CDN | Static content delivery |
 | **Functions** | Cloud Functions | Serverless compute |
@@ -625,6 +662,8 @@ Build enterprise-grade platforms, workflow automation, and complex integrations.
 | **Linting** | ESLint, Prettier | JavaScript/TypeScript |
 | **Alt Linting** | Biome | All-in-one linter + formatter; faster than ESLint + Prettier |
 | **Python** | Ruff, Black, isort | Python formatting |
+| **Python Logging** | structlog (preferred), loguru | Structured JSON logging for Python services; pairs with OpenTelemetry |
+| **Python Env** | pydantic-settings, python-dotenv | Typed env validation; `python-dotenv` for local dev only |
 | **Type Checking** | TypeScript strict, mypy | Type safety |
 | **Static Analysis** | SonarQube, CodeClimate | Code quality |
 
@@ -638,6 +677,24 @@ Build enterprise-grade platforms, workflow automation, and complex integrations.
 | **API Tests** | Supertest, httpx | HTTP testing |
 | **Load Tests** | K6, Artillery | Performance |
 | **Mobile** | XCTest, Espresso | Native tests |
+
+### Test Data & Contract Testing
+
+| Category | Technologies | Notes |
+|----------|-------------|-------|
+| **Seeding / Fixtures** | @faker-js/faker, Prisma seed scripts | Every project MUST have a repeatable seed command |
+| **Contract Testing** | Pact | Consumer-driven contracts for microservice APIs; required when 3+ services |
+| **API Mocking** | msw (browser + Node), nock (Node-only) | msw preferred for full-stack mocking; nock for backend-only unit tests |
+| **Snapshot Testing** | Vitest snapshots | UI component regression |
+
+### Monorepo Shared Config
+
+| Category | Pattern | Notes |
+|----------|---------|-------|
+| **ESLint** | `@cybercube/eslint-config` | Shared across all packages in Turborepo |
+| **TypeScript** | `@cybercube/tsconfig` | Base `tsconfig.json` with strict mode |
+| **Tailwind** | `@cybercube/tailwind-config` | Shared design tokens, theme, plugins |
+| **Prettier** | `.prettierrc` at repo root | Single config, no per-package overrides |
 
 ### Documentation
 
@@ -684,6 +741,8 @@ Build enterprise-grade platforms, workflow automation, and complex integrations.
 | **RBAC** | Role-based access | Principle of least privilege |
 | **CSRF** | Double-submit cookie or SameSite strict | Required for mutation endpoints |
 | **CSP** | Content Security Policy headers | Required for all web applications |
+| **Security Headers** | helmet (Express), secure-headers (Fastify) | Enforces CSP, HSTS, X-Frame-Options, X-Content-Type-Options; must be first middleware |
+| **CORS** | cors (Express), @fastify/cors | Allowlist-only origin policy; no wildcard `*` in production |
 
 ### Data Protection
 
@@ -702,6 +761,22 @@ Build enterprise-grade platforms, workflow automation, and complex integrations.
 | **Input Validation** | Zod schemas | All endpoints |
 | **CORS** | Strict origin policy | Whitelist domains |
 | **Headers** | Helmet.js | Security headers |
+
+### Client-Side Encryption
+
+| Category | Standard | Implementation |
+|----------|----------|----------------|
+| **Browser Crypto** | Web Crypto API | Native browser cryptography for client-side operations |
+| **Library** | `libsodium.js` (tweetnacl) | Use when Web Crypto API is insufficient (e.g. NaCl box/secretbox) |
+| **Scope** | Required for healthcare, finance, or client-mandated E2E encryption | ADR required; coordinate with STD-SEC-005 |
+
+### Feature Flags
+
+| Category | Standard | Implementation |
+|----------|----------|----------------|
+| **Platform** | LaunchDarkly (enterprise), GrowthBook (open-source), PostHog | LaunchDarkly for paid clients needing audit trails; GrowthBook default for internal |
+| **Mobile** | Firebase Remote Config | Flutter / React Native feature toggles |
+| **Governance** | All flags MUST have an owner and expiry date | Stale flags (> 90 days unused) must be removed |
 
 ### Dependency Management
 
@@ -741,7 +816,7 @@ Build enterprise-grade platforms, workflow automation, and complex integrations.
 | Scenario | Choice | Rationale |
 |----------|--------|-----------|
 | Standard web API | **Node.js + Express 5.x** | Team expertise |
-| High-performance API | **Fastify 5.x, Hono, or Go** | Lower latency; Hono for edge |
+| High-performance API | **Fastify 5.x**, Hono, or Go | Lower latency; Fastify/Hono are TRIAL — ADR required |
 | AI/ML integration | **Python + FastAPI** | ML ecosystem |
 | Enterprise client | **Java Spring Boot** | Industry standard |
 
@@ -749,7 +824,7 @@ Build enterprise-grade platforms, workflow automation, and complex integrations.
 
 | Scenario | Choice | Rationale |
 |----------|--------|-----------|
-| Transactional data | **MySQL 8.0+ / PostgreSQL** | ACID, relations |
+| Transactional data | **PostgreSQL 17+ / MySQL 8.0+** | ACID, relations; PostgreSQL default for new projects |
 | Flexible schema | **MongoDB** | Document store |
 | Caching layer | **Redis** | In-memory speed |
 | Full-text search | **Elasticsearch** | Search features |
@@ -783,7 +858,7 @@ Build enterprise-grade platforms, workflow automation, and complex integrations.
 | Go | **TRIAL** | High-performance services, enterprise backend |
 | Java (Spring Boot) | **TRIAL** | Enterprise client requirement only |
 | .NET (ASP.NET Core) | **TRIAL** | Microsoft-stack client requirement only |
-| SQL (MySQL 8.0+ / PostgreSQL 17+) | **ADOPT** | Database queries |
+| SQL (PostgreSQL 17+ / MySQL 8.0+) | **ADOPT** | Database queries |
 
 ### Radar — Web Frameworks
 
@@ -791,6 +866,7 @@ Build enterprise-grade platforms, workflow automation, and complex integrations.
 |------------|------|-------|
 | React 19+ / Next.js 16+ | **ADOPT** | Primary web frontend |
 | Vue 3 / Nuxt 3 | **TRIAL** | Client preference only |
+| React Router v7 (Remix) | **ASSESS** | React meta-framework alternative; evaluate for SPA-heavy projects |
 | Vite + React | **ADOPT** | SPA with existing API |
 | Tailwind CSS 4.x | **ADOPT** | Primary styling |
 | shadcn/ui 3.x / Radix UI | **ADOPT** | Accessible component library |
@@ -801,11 +877,11 @@ Build enterprise-grade platforms, workflow automation, and complex integrations.
 | Technology | Ring | Notes |
 |------------|------|-------|
 | Node.js 22 LTS + Express 5.x | **ADOPT** | Primary backend |
-| Fastify 5.x | **ADOPT** | High-performance alternative |
+| Fastify 5.x | **TRIAL** | Use when p95 latency < 50 ms is a hard requirement; ADR required |
 | Hono | **TRIAL** | Edge-first, lightweight |
 | Bun | **TRIAL** | Performance-critical services |
 | NestJS | **TRIAL** | Enterprise-pattern projects |
-| Python + FastAPI | **ADOPT** | AI/ML integration, data-heavy apps |
+| Python + FastAPI + Pydantic | **ADOPT** | AI/ML integration, data-heavy apps; Pydantic mandatory for validation |
 | Python + Django | **TRIAL** | Admin-heavy data apps |
 
 ### Radar — Mobile Frameworks
@@ -821,8 +897,8 @@ Build enterprise-grade platforms, workflow automation, and complex integrations.
 
 | Technology | Ring | Notes |
 |------------|------|-------|
-| MySQL 8.0+ | **ADOPT** | Primary relational |
-| PostgreSQL 17+ | **ADOPT** | Alternative relational, required for pgvector |
+| PostgreSQL 17+ | **ADOPT** | Primary relational; default for new projects; required for pgvector, TimescaleDB, PostGIS |
+| MySQL 8.0+ | **ADOPT** | Alternative relational; existing projects, client preference |
 | MongoDB 7+ | **TRIAL** | Flexible schema use cases |
 | Redis 8+ | **ADOPT** | Caching layer |
 | Elasticsearch 8+ | **ADOPT** | Full-text search |
@@ -831,17 +907,13 @@ Build enterprise-grade platforms, workflow automation, and complex integrations.
 | Chroma | **ASSESS** | Local dev vector search |
 | Algolia | **TRIAL** | Managed search (client requirement) |
 
-### Radar — AI / ML
+### Radar — AI / ML Frameworks
 
 | Technology | Ring | Notes |
 |------------|------|-------|
-| OpenAI GPT-series | **ADOPT** | Primary LLM provider |
-| Anthropic Claude-series | **ADOPT** | Complex reasoning, coding |
-| Google Gemini-series | **TRIAL** | Multimodal, large context |
 | LangChain / LangGraph | **ADOPT** | Agent orchestration |
 | LlamaIndex | **TRIAL** | RAG pipelines |
 | CrewAI | **ASSESS** | Multi-agent patterns |
-| Llama / Mistral / DeepSeek (open-source) | **ASSESS** | Self-hosted evaluation |
 | TensorFlow 2.x / PyTorch 2.x | **ADOPT** | Model training |
 | scikit-learn / XGBoost | **ADOPT** | Classical ML |
 | Vertex AI | **ADOPT** | GCP ML platform |
@@ -873,6 +945,10 @@ Build enterprise-grade platforms, workflow automation, and complex integrations.
 | npm | **ADOPT** | Fallback package manager |
 | Biome | **TRIAL** | All-in-one linter + formatter |
 | ESLint + Prettier | **ADOPT** | JS/TS lint + format |
+| pino | **ADOPT** | Structured JSON logging for Node.js; pairs with OpenTelemetry |
+| winston | **TRIAL** | Node.js logging; use only for legacy projects |
+| structlog | **ADOPT** | Structured logging for Python services |
+| loguru | **TRIAL** | Python logging; convenient but less structured than structlog |
 
 ### Radar — Testing
 
@@ -883,6 +959,109 @@ Build enterprise-grade platforms, workflow automation, and complex integrations.
 | pytest | **ADOPT** | Python tests |
 | K6 | **TRIAL** | Load testing |
 | Jest | **HOLD** | Migrate to Vitest for new projects |
+| msw | **ADOPT** | API mocking for tests and dev (browser + Node); preferred over nock |
+| nock | **TRIAL** | Node-only HTTP mocking; use for backend unit tests |
+
+### Radar — ORM, API & Real-time
+
+| Technology | Ring | Notes |
+|------------|------|-------|
+| Prisma | **ADOPT** | Primary ORM; schema-first, migrations, type-safe |
+| Drizzle | **TRIAL** | SQL-first ORM; lighter than Prisma; use for performance-sensitive queries |
+| tRPC | **ADOPT** | End-to-end type safety for TypeScript-only stacks |
+| GraphQL Yoga | **ADOPT** | Preferred GraphQL server for new projects; lighter than Apollo |
+| Apollo Server | **TRIAL** | Existing GraphQL projects; heavier runtime |
+| Socket.IO | **ADOPT** | Real-time bidirectional communication |
+| gRPC | **TRIAL** | Inter-service communication; high-throughput microservices |
+
+### Radar — Data & Workflow
+
+| Technology | Ring | Notes |
+|------------|------|-------|
+| Apache Kafka | **TRIAL** | Event streaming; use for high-throughput event-driven architectures |
+| Google Pub/Sub | **ADOPT** | GCP-native async messaging |
+| Temporal | **TRIAL** | Durable workflow orchestration; enterprise-grade |
+| Apache Airflow | **ADOPT** | ETL/ELT orchestration |
+| dbt | **ADOPT** | SQL transformations in data warehouse |
+| Storybook | **ADOPT** | Component documentation and visual testing |
+| Framer Motion | **ADOPT** | React animation library |
+
+### Radar — Platforms & BaaS
+
+| Technology | Ring | Notes |
+|------------|------|-------|
+| Supabase | **TRIAL** | BaaS for MVPs; PostgreSQL-backed |
+| Firebase | **TRIAL** | BaaS for mobile-first MVPs |
+| WordPress (headless) | **HOLD** | Legacy CMS only; migrate to Sanity/Strapi for new projects |
+| Sanity | **ADOPT** | Primary headless CMS |
+| Strapi | **TRIAL** | Self-hosted headless CMS |
+
+### Radar — LLM Providers
+
+| Technology | Ring | Notes |
+|------------|------|-------|
+| OpenAI GPT-series | **ADOPT** | Primary LLM provider |
+| Anthropic Claude-series | **ADOPT** | Complex reasoning, coding |
+| Google Gemini-series | **TRIAL** | Multimodal, large context |
+| xAI Grok | **ASSESS** | Emerging provider; evaluate before production use |
+| Open-source (Llama, Mistral, DeepSeek) | **ASSESS** | Self-hosted evaluation only |
+
+### Radar — Cross-Cutting Concerns
+
+| Technology | Ring | Notes |
+|------------|------|-------|
+| axe-core | **ADOPT** | Accessibility testing; integrate in CI via Lighthouse CI or playwright-axe |
+| eslint-plugin-jsx-a11y | **ADOPT** | Lint-time a11y checks for React |
+| pa11y | **TRIAL** | Automated WCAG audit tool |
+| next-intl | **ADOPT** | i18n for Next.js projects |
+| react-i18next | **ADOPT** | i18n for non-Next React projects |
+| FormatJS (react-intl) | **TRIAL** | Alternative i18n; ICU MessageFormat |
+| Resend | **ADOPT** | Transactional email; preferred for new projects |
+| SendGrid | **TRIAL** | High-volume / legacy email |
+| BullMQ | **ADOPT** | Redis-backed job queue for Node.js |
+| Cloud Tasks | **ADOPT** | GCP serverless task queue |
+| Cloud Scheduler | **ADOPT** | Managed cron; production scheduled jobs |
+| node-cron | **TRIAL** | Local dev / simple scheduling only |
+| GrowthBook | **ADOPT** | Open-source feature flags; default for internal projects |
+| LaunchDarkly | **TRIAL** | Enterprise feature flags with audit trail |
+| Sharp | **ADOPT** | Node.js image processing (resize, format conversion) |
+| Cloudinary / Imgproxy | **TRIAL** | CDN-backed image transformation |
+| openapi-typescript | **ADOPT** | Typed API client generation from OpenAPI specs |
+| orval | **TRIAL** | OpenAPI → React Query / Axios client generation |
+| @faker-js/faker | **ADOPT** | Test data generation and database seeding |
+| Pact | **TRIAL** | Consumer-driven contract testing for microservices |
+| Web Crypto API | **ADOPT** | Browser-native cryptography |
+| libsodium.js | **TRIAL** | Client-side encryption when Web Crypto is insufficient |
+| date-fns | **ADOPT** | Date manipulation; tree-shakable, immutable |
+| dayjs | **TRIAL** | Lightweight date library; drop-in Moment.js replacement |
+| Moment.js | **HOLD** | Deprecated; migrate to date-fns or dayjs |
+| TipTap | **ADOPT** | ProseMirror-based rich text editor; preferred for content-rich apps |
+| Lexical | **TRIAL** | Meta's rich text framework; evaluate for React-heavy projects |
+| `@t3-oss/env-nextjs` | **ADOPT** | Typed environment variable validation for Next.js |
+| envalid | **ADOPT** | Typed env validation for Node.js |
+| pydantic-settings | **ADOPT** | Typed env validation for Python (FastAPI) |
+| Svix | **TRIAL** | Managed webhook delivery with retry and signing |
+| helmet | **ADOPT** | Express security headers middleware |
+| cors (Express) | **ADOPT** | CORS middleware; allowlist-only in production |
+| @upstash/ratelimit | **TRIAL** | Serverless rate limiting (Redis-backed) |
+
+### Radar — Desktop & PWA
+
+| Technology | Ring | Notes |
+|------------|------|-------|
+| Tauri 2.x | **TRIAL** | Rust-backed desktop apps; smaller binary than Electron; preferred for new projects |
+| Electron | **TRIAL** | Desktop apps requiring full Node.js API access |
+| Flutter Desktop | **ASSESS** | Cross-platform mobile + desktop from single codebase |
+| Workbox | **ADOPT** | Service worker tooling for PWA |
+| Web Push API | **ADOPT** | Browser push notifications |
+
+### Radar — Infrastructure (additional)
+
+| Technology | Ring | Notes |
+|------------|------|-------|
+| Cloud SQL Auth Proxy | **ADOPT** | Connection pooling for Cloud Run → Cloud SQL |
+| PgBouncer | **TRIAL** | Connection pooling for self-managed PostgreSQL |
+| Prisma Data Proxy | **TRIAL** | Managed connection pooling for Prisma + serverless |
 
 ### Radar — Security & Auth
 
@@ -890,6 +1069,9 @@ Build enterprise-grade platforms, workflow automation, and complex integrations.
 |------------|------|-------|
 | Argon2id | **ADOPT** | Password hashing (mandatory for new systems) |
 | bcrypt (cost 12+) | **HOLD** | Legacy only; migrate to Argon2id |
+| `jose` (JWT) | **ADOPT** | Token creation/verification |
+| `@oslojs/crypto` | **ADOPT** | Hashing, TOTP, crypto primitives |
+| Passport.js | **HOLD** | Legacy auth middleware; migrate to `jose` + `@oslojs` for new projects |
 | OAuth 2.0 + PKCE | **ADOPT** | Third-party auth |
 | TOTP (speakeasy) + WebAuthn | **ADOPT** | MFA |
 | SMS OTP | **HOLD** | Not recommended; SIM-swap/interception risk |
@@ -908,10 +1090,11 @@ Quick reference for primary and fallback choices:
 |------------|---------|----------|
 | Web Frontend | React + Next.js | Vue + Nuxt |
 | Web Backend | Node.js + Express | Python + FastAPI |
-| Database | MySQL 8.0+ | PostgreSQL 17+ |
+| Database | PostgreSQL 17+ | MySQL 8.0+ |
 | Mobile Cross-Platform | Flutter | React Native |
 | Mobile iOS | Swift + SwiftUI | — |
 | Mobile Android | Kotlin + Compose | — |
+| Desktop | Tauri 2.x | Electron |
 | AI/LLM | OpenAI + LangGraph | Claude API |
 | Data Viz | D3.js + React | Chart.js |
 | BI Platform | Metabase | Looker Studio |
@@ -922,6 +1105,24 @@ Quick reference for primary and fallback choices:
 | CI/CD | GitHub Actions + Cloud Build | GitLab CI |
 | Containers | Docker + Cloud Run | Kubernetes |
 | IaC | Terraform | Pulumi |
+| Email | Resend | SendGrid |
+| Background Jobs | BullMQ | Cloud Tasks |
+| Feature Flags | GrowthBook | LaunchDarkly |
+| Accessibility | axe-core + Lighthouse CI | pa11y |
+| i18n | next-intl / react-i18next | FormatJS |
+| ORM | Prisma | Drizzle |
+| GraphQL | Yoga | Apollo Server |
+| Connection Pooling | Cloud SQL Auth Proxy | PgBouncer |
+| Logging (Node.js) | pino | winston |
+| Logging (Python) | structlog | loguru |
+| Date/Time (JS) | date-fns | dayjs |
+| Rich Text Editor | TipTap | Lexical |
+| Env Validation (Node) | envalid / @t3-oss/env | dotenv |
+| Env Validation (Python) | pydantic-settings | python-dotenv |
+| API Mocking | msw | nock |
+| Security Headers | helmet | — |
+| Webhooks | Svix | BullMQ + HMAC |
+| Rate Limiting | express-rate-limit | @upstash/ratelimit |
 
 ---
 
@@ -950,7 +1151,7 @@ Quick reference for primary and fallback choices:
 |---------|-----------------|
 | Chrome | 90+ |
 | Firefox | 88+ |
-| Safari | 14+ |
+| Safari | 16+ |
 | Edge | 90+ (Chromium) |
 
 ---
@@ -1036,6 +1237,9 @@ Current HOLD items and their replacement paths:
 | SCSS | Tailwind CSS 4.x | 2026-10-15 |
 | bcrypt | Argon2id | 2026-10-15 |
 | SMS OTP | TOTP (speakeasy) / WebAuthn | 2026-10-15 |
+| WordPress (headless) | Sanity / Strapi | 2026-10-15 |
+| Passport.js | `jose` + `@oslojs/crypto` | 2027-01-15 |
+| Apollo Server | GraphQL Yoga | 2027-01-15 |
 | Jest | Vitest | 2027-01-15 |
 
 ---
@@ -1049,7 +1253,8 @@ Current HOLD items and their replacement paths:
 | Version | Date | Author | Summary |
 |---------|------|--------|---------|
 | 1.0 | 2026-01-13 | Engineering Lead | Initial technology stack standard |
-| 2.0 | 2026-04-15 | Engineering Lead | Major revision: Technology Radar governance, security alignment with STD-SEC-003/005, upgraded baselines (React 19, Next 16, Node 22, Express 5, Tailwind 4, LangGraph), AI/data/enterprise coverage expansion |
+| 2.0 | 2026-04-15 | Engineering Lead | Major revision: Technology Radar governance, security alignment with STD-SEC-003/005, upgraded baselines (React 19, Next 16, Node 22, Express 5, Tailwind 4, LangGraph), PostgreSQL as primary DB, Fastify demoted to TRIAL, Passport.js/Apollo/WordPress moved to HOLD, full Radar coverage for ORM/API/data/platform/LLM categories, uv preferred Python PM, Safari 16+ baseline, Remix ASSESS, cross-cutting gaps closed (a11y, i18n, email, background jobs, feature flags, connection pooling, file storage, cron, desktop apps, PWA, client-side encryption, contract testing, API codegen, shared monorepo config, PDF/UA, seeding) |
+| 2.1 | 2026-04-16 | Engineering Lead | Operational tooling pass: added pino/structlog (logging), envalid/pydantic-settings (env validation), date-fns (date/time), TipTap/Lexical (rich text editors), msw/nock (API mocking), helmet/cors (security middleware), health check & graceful shutdown patterns, @upstash/ratelimit (serverless), Svix (webhooks), Pydantic (FastAPI validation), Moment.js HOLD; Radar and Priority Matrix updated |
 
 ---
 

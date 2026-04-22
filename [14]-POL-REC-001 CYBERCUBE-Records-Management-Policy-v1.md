@@ -1,5 +1,7 @@
 # CYBERCUBE Records Management Policy (v1)
 
+> **FROZEN — MUST language suspended.** Per POL-GOV-001 §8.8 (ratified 2026-04-22), this standard's Implementation Status section is majority-PENDING. All normative MUST/SHALL clauses are temporarily downgraded to SHOULD until Implementation Status reaches majority IN-PLACE/COMPLETE. This status blocks advancement to Active per POL-GOV-001 §2.2. Lift the freeze by: (a) completing PENDING components, or (b) formally downgrading MUST language and re-submitting for review.
+
 ## Glossary
 
 This glossary defines key terms used throughout the CYBERCUBE Records

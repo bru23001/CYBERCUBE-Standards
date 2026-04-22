@@ -469,6 +469,18 @@ All documents follow consistent structure based on type.
 **Effective:** {YYYY-MM-DD}
 **Applies to:** {Scope}
 
+### Applicability Tier Table (REQUIRED)
+
+Per POL-GOV-001 §8.8, every standard MUST populate this table. Clauses in the body MUST be tagged with their tier (T1 / T2 / T3) and reference the row that authorizes them.
+
+| Applicability | Tier | Summary of Clauses in This Standard | Waiver Path |
+| ------------- | ---- | ----------------------------------- | ----------- |
+| All projects | **T1 MUST** | {List the baseline clauses applicable to every project, no exception} | None (non-waivable) |
+| SaaS / customer-facing | **T2 SHOULD** | {List clauses applicable to customer-facing / multi-tenant projects} | Lightweight waiver per POL-GOV-001 §8.3 |
+| Regulated / high-risk | **T3 MAY** | {List clauses applicable only to regulated, safety-critical, or high-assurance projects} | Formal waiver with risk assessment per STD-GOV-003 |
+
+> A standard whose body contains normative clauses but lacks a populated Tier Table MUST NOT advance past `Draft` status.
+
 ### 0. Purpose & Design Principles
 {Why this standard exists, principles guiding it}
 

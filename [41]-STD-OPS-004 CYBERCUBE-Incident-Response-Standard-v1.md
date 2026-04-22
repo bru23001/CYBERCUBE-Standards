@@ -1,4 +1,14 @@
-CYBERCUBE Incident Response & Reliability Standard (v1)
+CYBERCUBE Incident Response & Reliability Standard (v1.1)
+
+### Applicability Tier Table
+
+| Applicability | Tier | Summary of Clauses in This Standard | Waiver Path |
+| ------------- | ---- | ----------------------------------- | ----------- |
+| All projects | **T1 MUST** | (1) Severity matrix (SEV1/2/3/4) MUST be used for every operational incident. (2) An on-call rotation MUST exist for every production service. (3) SEV1 and SEV2 incidents MUST produce a written postmortem within 10 business days. (4) All incidents MUST be tracked in the ticketing system. | None (non-waivable) |
+| SaaS / customer-facing | **T2 SHOULD** | Paging tool (e.g. PagerDuty), public status page, communication lead role, runbook repository, monthly operational reviews, defined MTTA/MTTR targets. | Lightweight waiver per POL-GOV-001 §8.3 |
+| Regulated / high-risk | **T3 MAY** | Quarterly tabletop exercises, integration with BCP/DR activation, SEV-specific customer/regulator notification trees, external IR retainer, formal metrics dashboard. | Formal waiver per STD-GOV-003 |
+
+> **v1.1 (2026-04-22) — MUST scope narrowed.** T1 reduced to four universally enactable rules (severity matrix, on-call, SEV1/2 postmortems, ticketing-system tracking). PagerDuty, status page, runbook repo, metrics dashboards are T2 ROADMAP. Tabletops, BCP/DR integration, regulator trees are T3.
 
 Glossary
 
@@ -1617,20 +1627,23 @@ Bridge: [zoom link]
 
 ### Core Implementation
 
-| Component | Status | Notes |
-|-----------|--------|-------|
-| Severity Classification | PARTIAL | Informal use |
-| On-Call Rotation | PARTIAL | Needs formalization |
-| PagerDuty Setup | PENDING | Not configured |
-| Escalation Policies | PENDING | Document contacts |
-| Status Page | PENDING | Select provider |
-| Incident Channels | PARTIAL | Manual creation |
-| Postmortem Process | PENDING | No template in use |
-| Runbook Repository | PENDING | Create structure |
-| Metrics Tracking | PENDING | Define dashboards |
-| Monthly Reviews | PENDING | Schedule meetings |
-| Training & Exercises | PENDING | Schedule quarterly tabletops |
-| BCP/DR Integration | PENDING | Align with 4.1/4.2 activation criteria |
+| Component | Status | Tier | Notes |
+|-----------|--------|------|-------|
+| Severity Classification (SEV1–4) | IN PLACE | T1 | Defined in §1; mandatory on every incident ticket |
+| On-Call Rotation | IN PLACE | T1 | Named primary + secondary per production service |
+| Postmortem Process (SEV1/2) | IN PLACE | T1 | Template in §7; 10 business-day SLA |
+| Incident Ticketing | IN PLACE | T1 | Uses existing ticketing system |
+| Incident Channels (manual) | PARTIAL | T2 | Manual Slack channel creation; auto-creation is ROADMAP |
+| Escalation Policies (contact list) | IN PLACE | T2 | Stored in ticketing system custom field |
+| PagerDuty (or equivalent paging) | ROADMAP | T2 | Required for T2 projects when budget approved |
+| Status Page | ROADMAP | T2 | Required for T2 projects with external customers |
+| Runbook Repository | ROADMAP | T2 | Per-service runbooks under repo `ops-runbooks/` |
+| Metrics Tracking (MTTA/MTTR) | ROADMAP | T2 | Dashboards when tooling stabilized |
+| Monthly Operational Reviews | ROADMAP | T2 | Scheduled when SRE function staffed |
+| Training & Tabletop Exercises | ROADMAP | T3 | Quarterly for T3 projects |
+| BCP/DR Integration | ROADMAP | T3 | Aligned with PLN-OPS-001 activation criteria |
+
+Status vocabulary: `IN PLACE` | `COMPLETE` | `PARTIAL` | `ROADMAP` | `N/A`.
 
 ### Migration Path
 
@@ -1650,3 +1663,4 @@ Version History
 | Version | Date | Changes |
 |---------|------|---------|
 | v1 | 2026-01-17 | Initial release |
+| v1.1 | 2026-04-22 | Unfreeze (Path A+B): added Applicability Tier Table; T1 = severity matrix + on-call rotation + SEV1/2 postmortem + ticketing tracking (all enactable today with existing tools). PagerDuty, status page, runbook repo, metrics dashboards, tabletops, BCP/DR integration reclassified as T2/T3 ROADMAP. Status vocabulary normalized. |

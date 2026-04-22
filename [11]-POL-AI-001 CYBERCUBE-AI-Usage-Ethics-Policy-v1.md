@@ -1,4 +1,14 @@
-# CYBERCUBE AI Usage & Ethics Policy (v1)
+# CYBERCUBE AI Usage & Ethics Policy (v1.1)
+
+## Applicability Tier Table
+
+| Applicability | Tier | Summary of Clauses in This Policy | Waiver Path |
+| ------------- | ---- | --------------------------------- | ----------- |
+| All projects | **T1 MUST** | (1) AI tools MUST be chosen from the Approved Tools list (§2). (2) Personal/sensitive data (PII, secrets, customer data, source code of paid products) MUST NOT be sent to unapproved AI services (§3). (3) AI-generated output in shipped code MUST be reviewed by a human before merge. | None (non-waivable) |
+| SaaS / customer-facing | **T2 SHOULD** | Tool approval workflow, usage logging, prompt/model versioning in product AI. | Lightweight waiver per POL-GOV-001 §8.3 |
+| Regulated / high-risk | **T3 MAY** | AI Governance Committee, ethics review board, board-level approval for critical-risk AI, bias/fairness audits, documented model cards. | Formal waiver with risk assessment per STD-GOV-003 |
+
+> **v1.1 (2026-04-22) — MUST scope narrowed.** Only three universal rules remain MUST. Governance committee, formal ethics review, monthly meetings, critical-risk board approval, and full monitoring pipeline are now T3 (regulated projects only) or ROADMAP.
 
 ## Glossary
 
@@ -1013,15 +1023,19 @@ Ethics: ethics@cybercube.io
 
 ### Core Implementation
 
-| Component | Status | Notes |
-|-----------|--------|-------|
-| Policy document | COMPLETE | This policy |
-| Approved tools registry | PARTIAL | Initial list defined |
-| Tool approval process | PENDING | Define workflow |
-| AI training module | PENDING | Develop content |
-| Usage monitoring | PENDING | Implement logging |
-| Ethics review process | PENDING | Define criteria |
-| Governance committee | PENDING | Formalize membership |
+| Component | Status | Tier | Notes |
+|-----------|--------|------|-------|
+| Policy document | IN PLACE | T1 | This policy |
+| Approved tools registry (§2) | IN PLACE | T1 | Initial list defined; treated as canonical |
+| Data-input prohibitions (§3) | IN PLACE | T1 | Enforced via AUP + secure-coding review |
+| Human review of AI output | IN PLACE | T1 | Enforced via code-review policy |
+| Tool approval workflow | ROADMAP | T2 | Define when first non-trivial new tool requested |
+| AI training module | ROADMAP | T2 | Bundle into STD-SEC-008 onboarding once unfrozen |
+| Usage monitoring / logging | ROADMAP | T3 | Required only for product-embedded AI |
+| Ethics review process | ROADMAP | T3 | Required only for T3 / critical-risk AI |
+| Governance committee | ROADMAP | T3 | Required only for T3 / critical-risk AI |
+
+Status vocabulary: `IN PLACE` | `COMPLETE` | `PARTIAL` | `ROADMAP` | `N/A`.
 
 ---
 
@@ -1030,6 +1044,7 @@ Ethics: ethics@cybercube.io
 | Version | Date | Changes |
 |---------|------|---------|
 | v1 | 2026-01-17 | Initial release |
+| v1.1 | 2026-04-22 | Unfreeze (Path B): added Applicability Tier Table; T1 reduced to approved-tools list, data-input prohibitions, and human review of AI output. Governance committee, ethics review, usage monitoring, and critical-risk board approval reclassified as T3 ROADMAP. Status vocabulary normalized. |
 
 ---
 

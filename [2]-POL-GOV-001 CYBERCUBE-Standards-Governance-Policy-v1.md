@@ -847,6 +847,55 @@ When exception expires:
 3. If not compliant: Request extension or escalate
 4. No automatic extensions
 
+### 8.7 Applicability Tiers
+
+Not every clause in every standard applies to every project. To keep the portfolio both **wide** (covers any software/web case) and **followable** (not an insurmountable set of rules), every normative clause is classified into one of three tiers of applicability. A project inherits its tier from its Product Record (PRCS, per STD-GOV-001) and its risk classification (per STD-ERM-001).
+
+#### 8.7.1 Tier Definitions
+
+| Tier | Name | Meaning | Applies to |
+| ---- | ---- | ------- | ---------- |
+| **T1** | MUST (Baseline) | Non-negotiable. Applies to every CYBERCUBE project without exception. | All projects, including internal tools and proofs-of-concept |
+| **T2** | SHOULD (Standard) | Applies to standard customer-facing / SaaS projects. Internal tools and low-risk prototypes may skip with a lightweight waiver (§8.3). | Any product in PCL criticality C2 or above, or customer-facing |
+| **T3** | MAY (Regulated / High-Risk) | Applies only to regulated, safety-critical, or high-assurance projects (PII at scale, payments, multi-tenant with enterprise customers, health/finance regulated data, safety-of-life). | PCL criticality C1, or products in regulated scope |
+
+#### 8.7.2 Project Tier Inheritance
+
+Every project inherits a **Project Applicability Tier** (T1, T1+T2, or T1+T2+T3) based on its Product Record facets:
+
+| Project Profile | Inherited Tiers | Typical Example |
+| --------------- | --------------- | --------------- |
+| Internal tool, single team, no customer data | T1 only | Back-office dashboard, ops CLI |
+| Customer-facing SaaS, multi-tenant, standard PII | T1 + T2 | Most CYBERCUBE products |
+| Regulated / high-assurance (PII at scale, payments, HIPAA, SoX, EU AI Act Annex III) | T1 + T2 + T3 | Enterprise flagship, fintech |
+
+The Product Record MUST declare the inherited tier. The Architecture Review Board (per POL-GOV-002) MAY upgrade a project's tier but MAY NOT downgrade below the tier implied by its facets without a formal exception (§8.3).
+
+#### 8.7.3 Authoring Rules for Tiered Clauses
+
+- Every new or revised standard MUST assign each normative clause a tier.
+- A clause that reads "MUST" without a tier defaults to T1 and is subject to the over-reach check in POL-GOV-001 review (§4).
+- A clause tagged T2 or T3 MUST use conditional language: "MUST, if applicable" or "MUST, for Tier N projects".
+- Standards SHOULD NOT reproduce a clause from a sibling standard; they MUST cross-reference the single source of truth (see §8.2 on overlap drift).
+
+#### 8.7.4 Waivers vs. Tier Exemption
+
+A **tier exemption** is NOT an exception. Skipping T2 or T3 clauses because a project does not inherit that tier is the default behaviour and does not require a waiver. A waiver (per STD-GOV-003) is required only when a project asks to skip a clause that IS in its inherited tier.
+
+### 8.8 Tier Table Requirement
+
+Every standard MUST carry, immediately after its front-matter and before section 0 (Purpose), an **Applicability Tier Table** summarizing the tier distribution of its clauses. The canonical template is maintained in STD-ENG-007 §2.1A.
+
+Minimum required fields:
+
+| Applicability | Tier | Summary of Clauses | Waiver Path |
+| ------------- | ---- | ------------------ | ----------- |
+| All projects | T1 | "MUST …" items applying to every project | None (non-waivable) |
+| SaaS / customer-facing | T2 | "MUST, if applicable …" items | Lightweight waiver (§8.3) |
+| Regulated / high-risk | T3 | "MUST, for Tier 3 …" items | Waiver with risk assessment |
+
+A standard whose body contains normative clauses but lacks a populated Tier Table MUST NOT advance past `Draft` status (per §2.2).
+
 ## 9. Standards Registry
 
 The authoritative list of all standards and their status.

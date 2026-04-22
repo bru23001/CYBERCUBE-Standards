@@ -1,4 +1,14 @@
-# CYBERCUBE Change Management Policy (v1)
+# CYBERCUBE Change Management Policy (v1.1)
+
+## Applicability Tier Table
+
+| Applicability | Tier | Summary of Clauses in This Policy | Waiver Path |
+| ------------- | ---- | --------------------------------- | ----------- |
+| All projects | **T1 MUST** | (1) Every production-impacting change MUST be filed as a change request in the ticketing system with risk classification, rollback plan, and approver. (2) Emergency changes MUST have a retro within 5 business days. (3) Failed changes MUST be rolled back or forward-fixed before any new change on the same surface. | None (non-waivable) |
+| SaaS / customer-facing | **T2 SHOULD** | CAB review for medium/high-risk changes, change calendar, customer-impact notification, pre- and post-implementation checklists. | Lightweight waiver per POL-GOV-001 §8.3 |
+| Regulated / high-risk | **T3 MAY** | Formal CAB ceremony, segregation of duties on approval, metrics dashboard, annual program review, compliance attestation. | Formal waiver per STD-GOV-003 |
+
+> **v1.1 (2026-04-22) — CAB formalized async.** The CAB is constituted as an async approval channel in the ticketing system (see §4.1 below), not a meeting. Members: Engineering Lead, Security Lead, on-call SRE. Metrics dashboard and formal annual review are T3 ROADMAP.
 
 ## Glossary
 
@@ -1097,16 +1107,20 @@ Change System: [URL]
 
 ### Core Implementation
 
-| Component | Status | Notes |
-|-----------|--------|-------|
-| Change types defined | COMPLETE | This policy |
-| CAB established | PARTIAL | Formalize membership |
-| Change request system | PARTIAL | Use ticketing system |
-| Approval workflow | PENDING | Implement in system |
-| Change calendar | PENDING | Set up shared calendar |
-| Metrics dashboard | PENDING | Build dashboard |
-| Training | PENDING | Develop materials |
-| Annual review process | PENDING | Schedule |
+| Component | Status | Tier | Notes |
+|-----------|--------|------|-------|
+| Change types defined | IN PLACE | T1 | This policy |
+| Change request system | IN PLACE | T1 | Existing ticketing system; mandatory template |
+| Approval authority (named) | IN PLACE | T1 | Eng Lead / Security Lead / on-call SRE |
+| Rollback requirement | IN PLACE | T1 | Rollback plan field required on every request |
+| Emergency-change retro | IN PLACE | T1 | 5 business days, in ticket |
+| CAB (async Slack channel) | IN PLACE | T2 | #cc-cab, standing approvers |
+| Change calendar | PARTIAL | T2 | Shared calendar for planned prod changes |
+| Training | ROADMAP | T2 | Short deck linked from ticketing template |
+| Metrics dashboard | ROADMAP | T3 | Required for T3 projects / audit |
+| Annual program review | ROADMAP | T3 | Scheduled when audit program live (STD-GOV-004) |
+
+Status vocabulary: `IN PLACE` | `COMPLETE` | `PARTIAL` | `ROADMAP` | `N/A`.
 
 ---
 
@@ -1115,6 +1129,7 @@ Change System: [URL]
 | Version | Date | Changes |
 |---------|------|---------|
 | v1 | 2026-01-17 | Initial release |
+| v1.1 | 2026-04-22 | Unfreeze (Path A): added Applicability Tier Table; CAB constituted as async ticketing-system channel with named approvers (Eng Lead / Security Lead / on-call SRE); ticketing system declared the canonical change-request system; metrics dashboard + annual review moved to T3 ROADMAP. Status vocabulary normalized. |
 
 ---
 
