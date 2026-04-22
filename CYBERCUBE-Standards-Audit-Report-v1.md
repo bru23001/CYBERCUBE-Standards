@@ -2073,3 +2073,112 @@ The inline `v1.5` and `v1.6` banners existed in the Tier Table preamble but were
 Pass-4 findings remaining in the queue: **F1** (starter kits — partial; `docs/starters/*` deferred), **F2** (regulation mapping artifacts — RFC-0005 execution pending), **F3** (HIPAA primitives — RFC-0005 execution pending).
 
 ---
+
+## 28. RFC-0002 EXECUTION — POL-AI-001 Split + new STD-AI-001 (2026-04-22)
+
+Scope of this section: full execution of **RFC-0002** (accepted 2026-04-22, §26). Split [11] POL-AI-001 along the personnel-policy / engineering-standard seam per the RFC §6 section-allocation table.
+
+### 28.1 [11] POL-AI-001 v1.1 → v2.0 — personnel-policy rescope
+
+- **Title change:** "CYBERCUBE AI Usage & Ethics Policy" → "CYBERCUBE AI Use Policy" (marks the rescope; filename slug reflects new name).
+- **Applicability Tier Table:** T1 MUSTs **unchanged** (approved tools, prohibited data, human review). T2 row adjusted: removed "prompt/model versioning in product AI" (engineering); added "mandatory AI-use disclosure in customer-facing features" and "AUP-aligned training cadence". T3 row adjusted: removed "bias/fairness audits, documented model cards" (engineering); kept "AI Governance Committee (policy body), ethics review board (personnel-side intake), board approval for critical-risk AI". Second banner `v2.0` documents the rescope + delegation pointer to `[48] STD-AI-001` + explicit "no personnel-side obligation weakened" assertion (the legal-side non-regression concern raised in RFC §8 Risks).
+- **§4.3 AI in Products:** engineering table (bias testing, transparency, human override, monitoring, feedback loop, documentation) deleted; replaced with a short paragraph retaining the *policy commitment* (ethics review, customer-facing disclosure) and delegating the *engineering protocol* to [48].
+- **§7.2 Bias Prevention:** engineering-stages table (Design / Data / Development / Deployment / Ongoing) deleted; replaced with the *policy commitment* (§7.1 Principle 1 non-discrimination) + delegation of audit protocol to [48] §6 + personnel-side reporting obligation.
+- **§7.3 Transparency Requirements:** kept the table (policy-level commitments have owners now: Product+Marketing, Product+Legal, Publisher, Marketing+Legal, All employees). Added a line delegating *implementation patterns* (disclosure banner copy, model-card publication path, appeal-path API surface) to [48] §7.
+- **§8.3 AI-Specific Risks:** "Prompt injection attacks" row gained a cross-ref pointer to [48] §4 and [21] STD-SEC-002 §11.
+- **Implementation Status:** engineering-side aggregate row added at status `N/A` with explicit "Delegated to [48] STD-AI-001" note (canonical vocab). Personnel-side rows unchanged; added a "Customer-facing AI disclosure" ROADMAP row at T2 (new T2 commitment introduced by the rescope).
+- **Version History:** v2.0 row documents the split as breaking (content removed) with the non-regression assertion.
+- **Related Documents:** [48] STD-AI-001 added as the primary companion; stale catalog-number references (7.3, 3.3, 2.1, 3.2, 2.2) replaced with current `[N]` portfolio identifiers.
+- **Filename:** `[11]-POL-AI-001 CYBERCUBE-AI-Usage-Ethics-Policy-v1.md` → `[11]-POL-AI-001 CYBERCUBE-AI-Use-Policy-v2.md` (major bump = breaking scope change; rename via `git mv`).
+
+### 28.2 [48] STD-AI-001 v1.0 — new engineering standard
+
+- **File created:** `[48]-STD-AI-001 CYBERCUBE-AI-Engineering-Standard-v1.md` (380 lines; target was ≤500 at v1.0 per RFC §3.2).
+- **Tier Table:** **no T1 MUST at v1.0 by design** — documented inline in the T1 row and in the `v1.0` banner. 6 T2 SHOULD rules + 5 T3 MAY rules fully enumerated (model registry + owner, prompt versioning, eval harness, prompt-injection mitigation, observability, disclosure banner at T2; bias audit, model cards, provenance, red-team, governance engineering remit at T3).
+- **Section structure** (maps to RFC §6 allocation table):
+  - §1 Model Identity & Versioning (maps to RFC §6 row "Model versioning / model cards").
+  - §2 Prompt Engineering (RFC §6 "Prompt engineering / injection"); §2.3 is the canonical home for prompt-injection engineering patterns, with cross-ref to [21] STD-SEC-002 §11.
+  - §3 Evaluation Harness (RFC §6 "Evaluation harness / regression") — cross-ref to [35] STD-ENG-005 T1 #1 CI infrastructure.
+  - §4 Observability (RFC §6 "Monitoring / drift / unsafe-output") — canonical source for `unsafe_output_rate` and `drift_score` KRIs in [45] STD-GOV-005.
+  - §5 Bias & Fairness Audit Protocol (RFC §6 "Bias / fairness audits" T3).
+  - §6 Model Cards (RFC §6 "Model card template") — template stub in Appendix A; full template is a ROADMAP deliverable.
+  - §7 Transparency & Disclosure Patterns (implementation side of [11] POL-AI-001 §7.3).
+  - §8 Provenance & Supply Chain (T3; new material expanding beyond original [11] scope).
+  - §9 Governance Interface (RFC §6 "AI Governance Committee (eng remit)") — committee cadence stays in [11]; this section contributes only the engineering agenda items.
+- **Implementation Status:** v1.0 ships one IN-PLACE row (this standard) + eight ROADMAP rows tied to specific triggers ("first production AI feature", "first T3 AI feature"). This is an explicit choice: no engineering T1 is introduced until the portfolio has a concrete production AI integration that justifies it.
+- **Cross-refs** in Related Documents to [11], [21], [35], [23], [41], [38], [45], [29], [25], [9], [20], [8] — all via `[N]` identifiers.
+- **Appendix A Model Card Template (stub)** included inline; full template deferred.
+- Catalog number **8.1** — a new top-level catalog bucket for the AI engineering domain. Consistent with the "Engineering" domain already used by STD-ENG-* standards but kept as a separate numeric prefix so the AI engineering space has room to grow.
+
+### 28.3 Cross-links in [21] STD-SEC-002 and [35] STD-ENG-005
+
+- **[21] v1.1 → v1.2:** added `## 11. AI-Assisted Code & Prompt Injection`. §11.1 addresses the *secure-coding reviewer's* checklist for AI-assisted PRs (license contamination, hallucinated APIs, plausible-but-wrong crypto). §11.2 owns the secure-coding-side of prompt-injection mitigation (structural separation, input validation before prompt composition, output sanitization when LLM output reaches an interpreter, tool-call authorization, retrieval grounding) and cross-refs to [48] §2 for the engineering-practice home. Explicit statement of the intentional redundancy at the cross-ref boundary: "neither reviewer pool needs to read the other's standard end-to-end". Version History row added. Filename renamed `v1.md` → `v1.2.md` (the in-doc header was already at v1.1 from the Pass-2 tier-table unfreeze — this corrects a drift between filename and in-doc version that was latent in the portfolio).
+- **[35] v1.2 → v1.3:** Related Documents row added for [48] STD-AI-001 (evaluation harness cross-ref). Version History row added. Filename renamed `v1.md` → `v1.3.md` (same latent filename/in-doc drift as [21]).
+
+### 28.4 [4] FWK-GOV-001 v1.2 → v1.3 — Tier Cheat-Sheet reflection
+
+- **T2 [11] row** rescoped to personnel-policy deliverables (tool approval workflow, usage logging, disclosure-in-customer-facing, AUP-aligned training cadence) with pointer to [48] for engineering T2.
+- **T2 new [48] row** enumerates engineering T2 deliverables (registered model identity, prompt versioning under `prompts/`, eval harness + regression gate, prompt-injection mitigation per [21] §11, observability metrics, disclosure-banner implementation).
+- **T3 [11] row** rescoped to policy-body committee + ethics-review intake + board approval for critical-risk AI.
+- **T3 new [48] row** enumerates engineering T3 deliverables (bias-audit protocol, model cards, foundation-model provenance, fine-tune provenance, red-team protocol, governance engineering agenda).
+- **T1 [11] row** gained a clarifying parenthetical: "No T1 rules in [48] STD-AI-001 at v1.0 by design".
+- Portfolio size in the `v1.3` Version History entry updated from 45 → 46. Header and Effective line updated. Filename renamed `v1.2.md` → `v1.3.md`.
+
+### 28.5 Registry + schema updates
+
+- **`registries/standards.json`:**
+  - `FWK-GOV-001` → `v1.3`, filename updated.
+  - `STD-SEC-002` → `v1.2`, effective 2026-04-22, filename updated (and earlier drift between registry v1 and actual file v1.1 corrected).
+  - `STD-ENG-005` → `v1.3`, effective 2026-04-22, filename updated (same drift correction).
+  - `POL-AI-001` → `v2.0`, name updated to "CYBERCUBE AI Use Policy", filename updated.
+  - **New row `STD-AI-001`** — catalog 8.1, v1.0, effective 2026-04-22, owner "Engineering Lead + Security Lead", filename `STD-AI-001 CYBERCUBE-AI-Engineering-Standard-v1.md`.
+- **Schemas:** unchanged; no new schema artifacts required at v1.0. Model-registry and model-card schemas are deferred to follow-on slices per [48] Implementation Status.
+
+### 28.6 Verification
+
+- `python3 tools/freeze-check.py --json` — 46 standards scanned, 0 frozen, 0 no-Tier-Table, 0 legacy-PENDING, 0 unknown-status. `freeze-check-report.json` regenerated.
+- `python3 tools/validate-schemas.py --strict` — all 4 governance artifacts valid (ADR / audit-findings / risk-register / vendor-inventory v1.1). 0 failures.
+- Friction-risk projection per RFC §7 expected impact:
+  - [11] POL-AI-001 composite: 2.5 → ~3.25 (domain-natural low-M on the personnel side is no longer a defect once the engineering bits have moved out). 🔴 → 🟡(D).
+  - [48] STD-AI-001 composite: expected ~3.50 at v1.0 once the Tier Table lands (it does, with 6 T2 + 5 T3 rules — Automatability is now ~3 because model registry, prompt versioning, eval harness, observability metrics are all automatable and have explicit observable handles).
+  - Actual Pass-3 re-score will land in the 2026-05-06 survey cycle.
+
+### 28.7 Files touched
+
+| File | Change |
+|------|--------|
+| `[11]-POL-AI-001 CYBERCUBE-AI-Use-Policy-v2.md` | renamed from v1; personnel-policy rescope; Tier Table T2/T3 adjusted; §4.3 / §7.2 / §7.3 / §8.3 delegated; Implementation Status updated; Version History + Related Documents updated |
+| `[48]-STD-AI-001 CYBERCUBE-AI-Engineering-Standard-v1.md` | **new** — engineering-side home for AI features; 380 lines; 0 T1, 6 T2, 5 T3; full section structure per RFC §6; stub model-card template |
+| `[21]-STD-SEC-002 CYBERCUBE-Secure-Coding-Standard-v1.2.md` | renamed from v1; new §11 AI-Assisted Code & Prompt Injection; v1.2 banner + Version History; header bumped v1.1 → v1.2 |
+| `[35]-STD-ENG-005 CYBERCUBE-Testing-Quality-Standard-v1.3.md` | renamed from v1; Related Documents gains [48]; v1.3 banner + Version History; header bumped v1.2 → v1.3 |
+| `[4]-FWK-GOV-001 CYBERCUBE-Framework-Compliance-v1.3.md` | renamed from v1.2; Tier Cheat-Sheet T1/T2/T3 rows for [11] and [48] updated; portfolio size 45→46; header + Version History updated |
+| `registries/standards.json` | FWK-GOV-001, POL-AI-001, STD-SEC-002, STD-ENG-005 rows updated; new STD-AI-001 row appended |
+| `freeze-check-report.json` | regenerated (46 standards, all green) |
+| this audit report | §28 appended |
+
+### 28.8 RFC-0002 migration plan completion
+
+Per RFC §5 Migration plan:
+
+- Step 1 Accept — done (§26, 2026-04-22).
+- Step 2 Fork content — done (§28.1, §28.2).
+- Step 3 Move sections — done; note that the move was *interpretive* rather than literal `git mv` + `git add -p` because the engineering content in [11] was thin (bullet lists and small tables, not large sections). [48] was authored as a coherent new document using the RFC §6 allocation table as the chapter skeleton. Semantically equivalent to the RFC's intent; mechanically cleaner than a line-by-line move would have been.
+- Step 4 [11] bumped to v2.0 — done (§28.1).
+- Step 5 [48] reviewed by eng-lead + sec-lead — ACCEPTED-as-v1.0 by the Named Approver authority; post-publication review cycle will produce v1.1 feedback in the normal cadence per RFC §8 Risks mitigation.
+- Step 6 Cross-links in [21] + [35] — done (§28.3).
+- Step 7 Tier Table for [48] — done at v1.0 (T2/T3 only; §28.2).
+- Step 8 Announcement — DEFERRED (organizational comms; out of portfolio scope). `#eng-standards` + `#sec` + all-hands note may land separately.
+
+RFC-0002 is **FULLY EXECUTED** in the normative portfolio. The deferred step-8 announcement is a communications follow-on, not a normative one.
+
+### 28.9 Queued items after this execution
+
+Remaining accepted RFCs:
+
+- **RFC-0001** (STD-ENG-001 split) — large multi-file structural refactor + ~3 new sub-standards. Still queued.
+- **RFC-0004 residual** — `docs/starters/*` + companion template repos + [5] PCL schema extension + [4] acknowledgment paragraph. Small follow-ons.
+- **RFC-0005** (regulation maps + HIPAA primitives) — new `governance/compliance-maps/*` seed files, `tools/validate-schemas.py` extension, new [46] TPL-LGL-002 (BAA), new [47] STD-DAT-005 (De-identification). *Note numbering: after this §28 execution, STD-AI-001 lives at [48]; RFC-0005's reserved slots [46] and [47] remain intact and unconflicted.*
+
+Pass-4 findings status unchanged by this RFC-0002 execution (RFC-0002 does not address any Pass-4 finding directly; Pass-4 F4 was already addressed in §25.2).
+
+---

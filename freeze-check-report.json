@@ -1,6 +1,6 @@
 {
   "summary": {
-    "scanned": 45,
+    "scanned": 46,
     "frozen": 0,
     "missing_tier_table": 0,
     "legacy_pending": 0,
@@ -13,12 +13,12 @@
       "has_tier_table": true,
       "meta_exempt": true,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 0,
-        "COMPLETE": 0,
-        "PARTIAL": 0,
-        "PENDING": 0,
         "IN PLACE": 0,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 0
       },
       "frozen": false,
       "findings": []
@@ -29,12 +29,12 @@
       "has_tier_table": true,
       "meta_exempt": true,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 0,
-        "COMPLETE": 0,
-        "PARTIAL": 0,
-        "PENDING": 0,
         "IN PLACE": 0,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 0
       },
       "frozen": false,
       "findings": []
@@ -45,28 +45,28 @@
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 0,
-        "COMPLETE": 0,
-        "PARTIAL": 0,
-        "PENDING": 0,
         "IN PLACE": 0,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 0
       },
       "frozen": false,
       "findings": []
     },
     {
-      "file": "[4]-FWK-GOV-001 CYBERCUBE-Framework-Compliance-v1.2.md",
+      "file": "[4]-FWK-GOV-001 CYBERCUBE-Framework-Compliance-v1.3.md",
       "number": 4,
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 0,
-        "COMPLETE": 0,
-        "PARTIAL": 0,
-        "PENDING": 0,
         "IN PLACE": 0,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 0
       },
       "frozen": false,
       "findings": []
@@ -77,12 +77,12 @@
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 4,
-        "COMPLETE": 6,
-        "PARTIAL": 0,
-        "PENDING": 0,
         "IN PLACE": 0,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 6,
+        "PARTIAL": 0
       },
       "frozen": false,
       "findings": []
@@ -93,12 +93,12 @@
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 4,
-        "COMPLETE": 4,
-        "PARTIAL": 0,
-        "PENDING": 0,
         "IN PLACE": 0,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 4,
+        "PARTIAL": 0
       },
       "frozen": false,
       "findings": []
@@ -109,12 +109,12 @@
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 0,
-        "COMPLETE": 0,
-        "PARTIAL": 0,
-        "PENDING": 0,
         "IN PLACE": 0,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 0
       },
       "frozen": false,
       "findings": []
@@ -125,12 +125,12 @@
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 0,
-        "COMPLETE": 0,
-        "PARTIAL": 0,
-        "PENDING": 0,
         "IN PLACE": 0,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 0
       },
       "frozen": false,
       "findings": []
@@ -141,12 +141,12 @@
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 5,
-        "COMPLETE": 5,
-        "PARTIAL": 1,
-        "PENDING": 0,
         "IN PLACE": 0,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 5,
+        "PARTIAL": 1
       },
       "frozen": false,
       "findings": []
@@ -157,28 +157,28 @@
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 9,
-        "COMPLETE": 1,
-        "PARTIAL": 3,
-        "PENDING": 0,
         "IN PLACE": 1,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 1,
+        "PARTIAL": 3
       },
       "frozen": false,
       "findings": []
     },
     {
-      "file": "[11]-POL-AI-001 CYBERCUBE-AI-Usage-Ethics-Policy-v1.md",
+      "file": "[11]-POL-AI-001 CYBERCUBE-AI-Use-Policy-v2.md",
       "number": 11,
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
-        "ROADMAP": 5,
-        "COMPLETE": 0,
-        "PARTIAL": 0,
-        "PENDING": 0,
+        "N/A": 1,
+        "ROADMAP": 6,
         "IN PLACE": 4,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 0
       },
       "frozen": false,
       "findings": []
@@ -189,12 +189,12 @@
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 0,
-        "COMPLETE": 0,
-        "PARTIAL": 0,
-        "PENDING": 0,
         "IN PLACE": 0,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 0
       },
       "frozen": false,
       "findings": []
@@ -205,12 +205,12 @@
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 0,
-        "COMPLETE": 0,
-        "PARTIAL": 0,
-        "PENDING": 0,
         "IN PLACE": 0,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 0
       },
       "frozen": false,
       "findings": []
@@ -221,12 +221,12 @@
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 4,
-        "COMPLETE": 0,
-        "PARTIAL": 2,
-        "PENDING": 0,
         "IN PLACE": 5,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 2
       },
       "frozen": false,
       "findings": []
@@ -237,12 +237,12 @@
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 9,
-        "COMPLETE": 3,
-        "PARTIAL": 2,
-        "PENDING": 0,
         "IN PLACE": 2,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 3,
+        "PARTIAL": 2
       },
       "frozen": false,
       "findings": []
@@ -253,12 +253,12 @@
       "has_tier_table": true,
       "meta_exempt": true,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 0,
-        "COMPLETE": 0,
-        "PARTIAL": 0,
-        "PENDING": 0,
         "IN PLACE": 0,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 0
       },
       "frozen": false,
       "findings": []
@@ -269,12 +269,12 @@
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 1,
-        "COMPLETE": 0,
-        "PARTIAL": 1,
-        "PENDING": 0,
         "IN PLACE": 20,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 1
       },
       "frozen": false,
       "findings": []
@@ -285,12 +285,12 @@
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 13,
-        "COMPLETE": 0,
-        "PARTIAL": 7,
-        "PENDING": 0,
         "IN PLACE": 2,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 7
       },
       "frozen": false,
       "findings": []
@@ -301,12 +301,12 @@
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 9,
-        "COMPLETE": 0,
-        "PARTIAL": 3,
-        "PENDING": 0,
         "IN PLACE": 4,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 3
       },
       "frozen": false,
       "findings": []
@@ -317,28 +317,28 @@
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 0,
-        "COMPLETE": 0,
-        "PARTIAL": 0,
-        "PENDING": 0,
         "IN PLACE": 0,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 0
       },
       "frozen": false,
       "findings": []
     },
     {
-      "file": "[21]-STD-SEC-002 CYBERCUBE-Secure-Coding-Standard-v1.md",
+      "file": "[21]-STD-SEC-002 CYBERCUBE-Secure-Coding-Standard-v1.2.md",
       "number": 21,
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 2,
-        "COMPLETE": 5,
-        "PARTIAL": 3,
-        "PENDING": 0,
         "IN PLACE": 0,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 5,
+        "PARTIAL": 3
       },
       "frozen": false,
       "findings": []
@@ -349,12 +349,12 @@
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 9,
-        "COMPLETE": 2,
-        "PARTIAL": 3,
-        "PENDING": 0,
         "IN PLACE": 4,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 2,
+        "PARTIAL": 3
       },
       "frozen": false,
       "findings": []
@@ -365,12 +365,12 @@
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 10,
-        "COMPLETE": 1,
-        "PARTIAL": 1,
-        "PENDING": 0,
         "IN PLACE": 4,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 1,
+        "PARTIAL": 1
       },
       "frozen": false,
       "findings": []
@@ -381,12 +381,12 @@
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 5,
-        "COMPLETE": 0,
-        "PARTIAL": 1,
-        "PENDING": 0,
         "IN PLACE": 4,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 1
       },
       "frozen": false,
       "findings": []
@@ -397,12 +397,12 @@
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 9,
-        "COMPLETE": 0,
-        "PARTIAL": 6,
-        "PENDING": 0,
         "IN PLACE": 4,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 6
       },
       "frozen": false,
       "findings": []
@@ -413,12 +413,12 @@
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 8,
-        "COMPLETE": 0,
-        "PARTIAL": 5,
-        "PENDING": 0,
         "IN PLACE": 2,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 5
       },
       "frozen": false,
       "findings": []
@@ -429,12 +429,12 @@
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 9,
-        "COMPLETE": 0,
-        "PARTIAL": 3,
-        "PENDING": 0,
         "IN PLACE": 3,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 3
       },
       "frozen": false,
       "findings": []
@@ -445,12 +445,12 @@
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 0,
-        "COMPLETE": 0,
-        "PARTIAL": 0,
-        "PENDING": 0,
         "IN PLACE": 0,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 0
       },
       "frozen": false,
       "findings": []
@@ -461,12 +461,12 @@
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 4,
-        "COMPLETE": 14,
-        "PARTIAL": 10,
-        "PENDING": 0,
         "IN PLACE": 0,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 14,
+        "PARTIAL": 10
       },
       "frozen": false,
       "findings": []
@@ -477,12 +477,12 @@
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 0,
-        "COMPLETE": 0,
-        "PARTIAL": 0,
-        "PENDING": 0,
         "IN PLACE": 0,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 0
       },
       "frozen": false,
       "findings": []
@@ -493,12 +493,12 @@
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 10,
-        "COMPLETE": 0,
-        "PARTIAL": 4,
-        "PENDING": 0,
         "IN PLACE": 4,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 4
       },
       "frozen": false,
       "findings": []
@@ -509,12 +509,12 @@
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 8,
-        "COMPLETE": 0,
-        "PARTIAL": 0,
-        "PENDING": 0,
         "IN PLACE": 4,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 0
       },
       "frozen": false,
       "findings": []
@@ -525,12 +525,12 @@
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 0,
-        "COMPLETE": 0,
-        "PARTIAL": 0,
-        "PENDING": 0,
         "IN PLACE": 0,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 0
       },
       "frozen": false,
       "findings": []
@@ -541,28 +541,28 @@
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 13,
-        "COMPLETE": 3,
-        "PARTIAL": 1,
-        "PENDING": 0,
         "IN PLACE": 3,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 3,
+        "PARTIAL": 1
       },
       "frozen": false,
       "findings": []
     },
     {
-      "file": "[35]-STD-ENG-005 CYBERCUBE-Testing-Quality-Standard-v1.md",
+      "file": "[35]-STD-ENG-005 CYBERCUBE-Testing-Quality-Standard-v1.3.md",
       "number": 35,
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 10,
-        "COMPLETE": 0,
-        "PARTIAL": 7,
-        "PENDING": 0,
         "IN PLACE": 3,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 7
       },
       "frozen": false,
       "findings": []
@@ -573,12 +573,12 @@
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 3,
-        "COMPLETE": 0,
-        "PARTIAL": 1,
-        "PENDING": 0,
         "IN PLACE": 6,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 1
       },
       "frozen": false,
       "findings": []
@@ -589,12 +589,12 @@
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 10,
-        "COMPLETE": 1,
-        "PARTIAL": 5,
-        "PENDING": 0,
         "IN PLACE": 5,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 1,
+        "PARTIAL": 5
       },
       "frozen": false,
       "findings": []
@@ -605,12 +605,12 @@
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 11,
-        "COMPLETE": 0,
-        "PARTIAL": 6,
-        "PENDING": 0,
         "IN PLACE": 1,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 6
       },
       "frozen": false,
       "findings": []
@@ -621,12 +621,12 @@
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 11,
-        "COMPLETE": 3,
-        "PARTIAL": 7,
-        "PENDING": 0,
         "IN PLACE": 1,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 3,
+        "PARTIAL": 7
       },
       "frozen": false,
       "findings": []
@@ -637,12 +637,12 @@
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 6,
-        "COMPLETE": 0,
-        "PARTIAL": 2,
-        "PENDING": 0,
         "IN PLACE": 5,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 2
       },
       "frozen": false,
       "findings": []
@@ -653,12 +653,12 @@
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 7,
-        "COMPLETE": 0,
-        "PARTIAL": 1,
-        "PENDING": 0,
         "IN PLACE": 5,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 1
       },
       "frozen": false,
       "findings": []
@@ -669,12 +669,12 @@
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 3,
-        "COMPLETE": 3,
-        "PARTIAL": 3,
-        "PENDING": 0,
         "IN PLACE": 0,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 3,
+        "PARTIAL": 3
       },
       "frozen": false,
       "findings": []
@@ -685,12 +685,12 @@
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 2,
-        "COMPLETE": 3,
-        "PARTIAL": 3,
-        "PENDING": 0,
         "IN PLACE": 0,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 3,
+        "PARTIAL": 3
       },
       "frozen": false,
       "findings": []
@@ -701,12 +701,12 @@
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 4,
-        "COMPLETE": 0,
-        "PARTIAL": 0,
-        "PENDING": 0,
         "IN PLACE": 5,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 0
       },
       "frozen": false,
       "findings": []
@@ -717,12 +717,28 @@
       "has_tier_table": true,
       "meta_exempt": false,
       "counts": {
+        "N/A": 0,
         "ROADMAP": 0,
-        "COMPLETE": 0,
-        "PARTIAL": 0,
-        "PENDING": 0,
         "IN PLACE": 0,
-        "N/A": 0
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 0
+      },
+      "frozen": false,
+      "findings": []
+    },
+    {
+      "file": "[48]-STD-AI-001 CYBERCUBE-AI-Engineering-Standard-v1.md",
+      "number": 48,
+      "has_tier_table": true,
+      "meta_exempt": false,
+      "counts": {
+        "N/A": 0,
+        "ROADMAP": 7,
+        "IN PLACE": 1,
+        "PENDING": 0,
+        "COMPLETE": 0,
+        "PARTIAL": 0
       },
       "frozen": false,
       "findings": []

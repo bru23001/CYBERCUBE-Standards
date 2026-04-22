@@ -5,12 +5,12 @@
     "name": "CYBERCUBE Framework Compliance",
     "type": "Framework",
     "domain": "Governance",
-    "version": "v1.2",
+    "version": "v1.3",
     "owner": "Standards Council",
     "status": "Active",
     "effective": "2026-04-22",
     "classification": "INTERNAL",
-    "filename": "FWK-GOV-001 CYBERCUBE-Framework-Compliance-v1.2.md",
+    "filename": "FWK-GOV-001 CYBERCUBE-Framework-Compliance-v1.3.md",
     "createdAt": "2026-02-10"
   },
   {
@@ -89,12 +89,12 @@
     "name": "CYBERCUBE Secure Coding Standard",
     "type": "Standard",
     "domain": "Security",
-    "version": "v1",
+    "version": "v1.2",
     "owner": "Security Team",
     "status": "Active",
-    "effective": "2026-01-17",
+    "effective": "2026-04-22",
     "classification": "INTERNAL",
-    "filename": "STD-SEC-002 CYBERCUBE-Secure-Coding-Standard-v1.md",
+    "filename": "STD-SEC-002 CYBERCUBE-Secure-Coding-Standard-v1.2.md",
     "createdAt": "2026-02-10"
   },
   {
@@ -439,12 +439,12 @@
     "name": "CYBERCUBE Testing & Quality Assurance Standard",
     "type": "Standard",
     "domain": "Engineering",
-    "version": "v1",
+    "version": "v1.3",
     "owner": "Engineering",
     "status": "Active",
-    "effective": "2026-01-17",
+    "effective": "2026-04-22",
     "classification": "INTERNAL",
-    "filename": "STD-ENG-005 CYBERCUBE-Testing-Quality-Standard-v1.md",
+    "filename": "STD-ENG-005 CYBERCUBE-Testing-Quality-Standard-v1.3.md",
     "createdAt": "2026-02-10"
   },
   {
@@ -604,15 +604,15 @@
   {
     "id": "POL-AI-001",
     "catalogNumber": "7.2",
-    "name": "CYBERCUBE AI Usage & Ethics Policy",
+    "name": "CYBERCUBE AI Use Policy",
     "type": "Policy",
     "domain": "Policies",
-    "version": "v1",
+    "version": "v2.0",
     "owner": "CTO + Legal",
     "status": "Active",
-    "effective": "2026-01-17",
+    "effective": "2026-04-22",
     "classification": "INTERNAL",
-    "filename": "POL-AI-001 CYBERCUBE-AI-Usage-Ethics-Policy-v1.md",
+    "filename": "POL-AI-001 CYBERCUBE-AI-Use-Policy-v2.md",
     "createdAt": "2026-02-10"
   },
   {
@@ -656,5 +656,19 @@
     "classification": "INTERNAL",
     "filename": "STD-INT-001 CYBERCUBE-Interop-Wire-Contract-Standard-v1.md",
     "createdAt": "2026-02-26"
+  },
+  {
+    "id": "STD-AI-001",
+    "catalogNumber": "8.1",
+    "name": "CYBERCUBE AI Engineering Standard",
+    "type": "Standard",
+    "domain": "Engineering",
+    "version": "v1.0",
+    "owner": "Engineering Lead + Security Lead",
+    "status": "Active",
+    "effective": "2026-04-22",
+    "classification": "INTERNAL",
+    "filename": "STD-AI-001 CYBERCUBE-AI-Engineering-Standard-v1.md",
+    "createdAt": "2026-04-22"
   }
 ]
