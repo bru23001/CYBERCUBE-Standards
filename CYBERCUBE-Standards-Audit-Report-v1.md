@@ -2551,7 +2551,11 @@ diff <(git show HEAD:"[29]-STD-ENG-001 CYBERCUBE-Naming-Identifier-Standard-v1.2
   - Four `cybercube-starter-<archetype>` template repos — out-of-tree; owners `eng-lead` + per-domain leads; weeks 4–6 of RFC-0004 schedule.
   - `#eng-standards` announcement — non-normative.
   - ~~Wire `tools/starter-check.py` into CI~~ — **Closed by `dd53825`**. New `.github/workflows/starter-check.yml` mirrors `freeze-check.yml` / `schema-validate.yml` shape: triggers on PR + push-to-main for `docs/starters/**`, `[[]*[]]-*.md`, `governance/compliance-maps/**`, `tools/starter-check.py`; BLOCKS merge on any starter-rot finding (UNKNOWN_STANDARD / BRACKET_MISMATCH / STALE_VERSION / MISSING_COMPLIANCE_MAP / MISSING_STARTER_CROSSLINK); uploads `starter-check-report.json` artifact; posts summary to PR. Pre-commit hook not added (repo has no husky/pre-commit config — introducing one is a separate opinionated choice).
-- **RFC-0005 follow-ons** — per-regulation bulk population (PCI ≈3 wk / HIPAA ≈2 wk / SOC2 ≈2 wk).
+- **RFC-0005 follow-ons** — per-regulation bulk population:
+  - ~~SOC 2 Common Criteria~~ — **Closed by `42b69c0`**. `governance/compliance-maps/soc2.md` bumped v1 → v1.1; 7 seed rows → 46 rows covering CC1–CC9 end-to-end (schema-valid under `compliance-map.v1.json`). The new "Category-Specific Criteria" section pre-names the likely `CTL-*` source rows per A / C / PI / P category so future per-engagement scoping is drop-in.
+  - PCI DSS 4.0 (~3 wk, owner `sec-lead`) — still pending.
+  - HIPAA Security Rule (~2 wk, owner `privacy-lead` + `legal-lead`) — still pending.
+  - SOC 2 category-specific (A / C / PI / P) — per-engagement scoping, not a single bulk-pop ticket.
 - ~~**Optional**: install `PyYAML` in CI runtime.~~ — **Closed by `b0f5fd3`**. `schema-validate.yml` now `pip install jsonschema pyyaml`; compliance-map YAML front-matter is actually validated in CI against `compliance-map.schema.json` instead of graceful-skipped.
 - **Blocked**: Pass-3 numeric re-score until 2026-05-06.
 
