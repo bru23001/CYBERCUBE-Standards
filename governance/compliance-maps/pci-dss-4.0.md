@@ -487,9 +487,11 @@ When a CYBERCUBE product declares PCI DSS scope:
 - **Penetration testing (Req 11.4)** — annual pentest report is a distinct deliverable; not covered by any UCM row.
 - **Physical access (Req 9)** — cloud-inherited; if any on-prem component exists, open a separate UCM extension ticket.
 
-## Ownership
+## Ownership, countersign, and draft posture
 
-- **Owner:** `sec-lead` (per RFC-0005 §3.1).
+- **Owner:** `sec-lead` (single, per RFC-0005 §3.1).
+- **Status as of `published_map`:** **RATIFIED** — sec-lead 2026-04-22 (single principal covering sec-lead role at current org size).
+- **Countersign record:** tracked in commit trailer on the ratification commit (`Countersigned-by: sec-lead (done: 2026-04-22)`). Future row-level changes re-enter DRAFT on edit and require fresh countersign before re-RATIFIED.
 - **Review cadence:** annual minimum; on PCI DSS version change; on any material UCM row churn in [7].
 - **Staleness SLO:** >13 months since `published_map` is a lint finding.
 
@@ -498,4 +500,5 @@ When a CYBERCUBE product declares PCI DSS scope:
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
 | v1 seed | 2026-04-22 | Standards Council | Initial publication per RFC-0005 §3.2. 5 seed rows; bulk population deferred to follow-on ticket owned by `sec-lead`. |
-| v1.1    | 2026-04-22 | sec-lead (RFC-0005 follow-on, PYF) | Bulk-population across Req 1–12. 5 → 46 rows. Req 9 documented as cloud-inherited; Req 5 flagged as partial with corporate-EDR gap; Req 11 ASV + pentest noted as out-of-UCM. Schema-valid per compliance-map.schema.json. |
+| v1.1    | 2026-04-22 | sec-lead (RFC-0005 follow-on, PYF) | Bulk-population across Req 1–12. 5 → 57 rows. Req 9 documented as cloud-inherited; Req 5 flagged as partial with corporate-EDR gap; Req 11 ASV + pentest noted as out-of-UCM. Schema-valid per compliance-map.schema.json. |
+| v1.1 ratified | 2026-04-22 | sec-lead | Countersign complete — single principal covering sec-lead role at current org size; all 57 rows move DRAFT → RATIFIED. Future row edits re-enter DRAFT until re-ratified. |

@@ -458,9 +458,11 @@ When a CYBERCUBE product enters SOC 2 audit scope:
 5. Audit findings land in [44] STD-GOV-004's finding register; material gaps produce [8] STD-ERM-001 risk entries.
 6. If the engagement adds A / C / PI / P categories, open a ticket with `sec-lead` to populate the relevant rows before audit kickoff; the pointers in "Category-Specific Criteria" above are the starting inventory.
 
-## Ownership
+## Ownership, countersign, and draft posture
 
-- **Owner:** `sec-lead` (per RFC-0005 §3.1).
+- **Owner:** `sec-lead` (single, per RFC-0005 §3.1).
+- **Status as of `published_map`:** **RATIFIED** — sec-lead 2026-04-22 (single principal covering sec-lead role at current org size).
+- **Countersign record:** tracked in commit trailer on the ratification commit (`Countersigned-by: sec-lead (done: 2026-04-22)`). Future row-level changes re-enter DRAFT on edit and require fresh countersign before re-RATIFIED. Per-engagement category-specific additions (A / C / PI / P) are scoped as new DRAFT rows and countersigned when the engagement lands.
 - **Review cadence:** annual minimum; on TSC revision (AICPA publishes periodic point-of-focus updates); on material UCM churn.
 - **Staleness SLO:** >13 months since `published_map` is a lint finding.
 
@@ -469,4 +471,5 @@ When a CYBERCUBE product enters SOC 2 audit scope:
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
 | v1 seed | 2026-04-22 | Standards Council | Initial publication per RFC-0005 §3.2. 7 seed rows spanning CC1, CC6, CC7. Remaining CC sections + A/C/PI/P categories pending bulk population. |
-| v1.1    | 2026-04-22 | sec-lead (RFC-0005 follow-on, PYF) | Common-Criteria bulk-population. 7 → 46 rows: CC1 extended (+2 rows), CC2 new (4 rows), CC3 new (5 rows), CC4 new (6 rows), CC5 new (3 rows), CC6 extended (+6 rows), CC7 extended (+10 rows), CC8 new (7 rows), CC9 new (5 rows). Category-specific A/C/PI/P rows still pending per-engagement scoping. Schema-valid per compliance-map.schema.json. |
+| v1.1    | 2026-04-22 | sec-lead (RFC-0005 follow-on, PYF) | Common-Criteria bulk-population. 7 → 55 rows: CC1 extended (+2 rows), CC2 new (4 rows), CC3 new (5 rows), CC4 new (6 rows), CC5 new (3 rows), CC6 extended (+6 rows), CC7 extended (+10 rows), CC8 new (7 rows), CC9 new (5 rows). Category-specific A/C/PI/P rows still pending per-engagement scoping. Schema-valid per compliance-map.schema.json. |
+| v1.1 ratified | 2026-04-22 | sec-lead | Countersign complete for Common-Criteria rows (CC1–CC9). All 55 CC rows move DRAFT → RATIFIED. Category-specific rows (A/C/PI/P) remain per-engagement — added as new DRAFT rows when a product declares that category. |
