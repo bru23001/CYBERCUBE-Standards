@@ -2540,6 +2540,7 @@ diff <(git show HEAD:"[29]-STD-ENG-001 CYBERCUBE-Naming-Identifier-Standard-v1.2
 | `9e17890` | post | Umbrella Tier Table Quick-links replaced with sub-standard cross-links (§31.10 deferred item closed) |
 | `dd53825` | post | `ci:` `.github/workflows/starter-check.yml` added — RFC-0004 optional follow-on closed |
 | `b0f5fd3` | post | `ci:` `schema-validate.yml` installs `pyyaml` — PyYAML-in-CI optional follow-on closed |
+| `42b69c0` | post | RFC-0005: SOC 2 Common-Criteria bulk-population (7 → 46 rows, CC1–CC9 complete) |
 
 ### 31.10 Remaining work after §31 (refreshed 2026-04-22)
 
