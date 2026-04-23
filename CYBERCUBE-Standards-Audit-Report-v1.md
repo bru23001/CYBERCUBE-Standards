@@ -2541,6 +2541,7 @@ diff <(git show HEAD:"[29]-STD-ENG-001 CYBERCUBE-Naming-Identifier-Standard-v1.2
 | `dd53825` | post | `ci:` `.github/workflows/starter-check.yml` added — RFC-0004 optional follow-on closed |
 | `b0f5fd3` | post | `ci:` `schema-validate.yml` installs `pyyaml` — PyYAML-in-CI optional follow-on closed |
 | `42b69c0` | post | RFC-0005: SOC 2 Common-Criteria bulk-population (7 → 46 rows, CC1–CC9 complete) |
+| `8b7f453` | post | RFC-0005: PCI DSS 4.0 bulk-population (5 → 46 rows, Req 1–12 covered; Req 9 cloud-inherited) |
 
 ### 31.10 Remaining work after §31 (refreshed 2026-04-22)
 
@@ -2553,7 +2554,7 @@ diff <(git show HEAD:"[29]-STD-ENG-001 CYBERCUBE-Naming-Identifier-Standard-v1.2
   - ~~Wire `tools/starter-check.py` into CI~~ — **Closed by `dd53825`**. New `.github/workflows/starter-check.yml` mirrors `freeze-check.yml` / `schema-validate.yml` shape: triggers on PR + push-to-main for `docs/starters/**`, `[[]*[]]-*.md`, `governance/compliance-maps/**`, `tools/starter-check.py`; BLOCKS merge on any starter-rot finding (UNKNOWN_STANDARD / BRACKET_MISMATCH / STALE_VERSION / MISSING_COMPLIANCE_MAP / MISSING_STARTER_CROSSLINK); uploads `starter-check-report.json` artifact; posts summary to PR. Pre-commit hook not added (repo has no husky/pre-commit config — introducing one is a separate opinionated choice).
 - **RFC-0005 follow-ons** — per-regulation bulk population:
   - ~~SOC 2 Common Criteria~~ — **Closed by `42b69c0`**. `governance/compliance-maps/soc2.md` bumped v1 → v1.1; 7 seed rows → 46 rows covering CC1–CC9 end-to-end (schema-valid under `compliance-map.v1.json`). The new "Category-Specific Criteria" section pre-names the likely `CTL-*` source rows per A / C / PI / P category so future per-engagement scoping is drop-in.
-  - PCI DSS 4.0 (~3 wk, owner `sec-lead`) — still pending.
+  - ~~PCI DSS 4.0~~ — **Closed by `8b7f453`**. `governance/compliance-maps/pci-dss-4.0.md` bumped v1 → v1.1; 5 seed rows → 46 rows covering Req 1–12 at the CYBERCUBE-platform layer (schema-valid under `compliance-map.v1.json`). Req 9 (physical access) documented as cloud-inherited with a shared-responsibility note rather than CYBERCUBE-owned UCM rows. Req 5 (anti-malware) flagged as partial pending a corporate-endpoint-EDR program (out of UCM). Req 11.3.2 ASV scans and Req 11.4 pentesting noted as out-of-UCM deliverables expected at QSA engagement.
   - HIPAA Security Rule (~2 wk, owner `privacy-lead` + `legal-lead`) — still pending.
   - SOC 2 category-specific (A / C / PI / P) — per-engagement scoping, not a single bulk-pop ticket.
 - ~~**Optional**: install `PyYAML` in CI runtime.~~ — **Closed by `b0f5fd3`**. `schema-validate.yml` now `pip install jsonschema pyyaml`; compliance-map YAML front-matter is actually validated in CI against `compliance-map.schema.json` instead of graceful-skipped.
